@@ -1,0 +1,8 @@
+<div class="faq">
+  {% for item in section.extra.faq %}
+    <details class="faq__item" data-reveal>
+      <summary class="faq__question">{{ item.question }}<span class="faq__icon" aria-hidden="true"></span></summary>
+      <p class="faq__answer">{{ item.answer }}</p>
+    </details>
+  {% endfor %}
+</div>

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <section id="home" class="hero-compact" aria-label="Logven">
-    <picture class="hero-compact__media">
+  <section class="hero hero--home" aria-labelledby="hero-title">
+    <picture class="hero__media">
       <source
         type="image/avif"
         srcset="
@@ -14,7 +14,7 @@
         sizes="100vw"
       >
       <img
-        class="hero-compact__image"
+        class="hero__image"
         src="{{ get_url(path='images/home/hero-2560.avif') }}"
         alt=""
         width="2560"
@@ -23,32 +23,43 @@
         decoding="async"
       >
     </picture>
-    <canvas
-      class="hero-compact__matrix"
-      data-hero-matrix
-      aria-hidden="true"
-    ></canvas>
-    <img
-      class="hero-compact__logo"
-      src="{{ get_url(path='brand/hero-logo.svg') }}"
-      alt="Logven"
-      width="114"
-      height="125"
-    >
+    <canvas class="hero__matrix" data-hero-matrix aria-hidden="true"></canvas>
+
+    <div class="hero__mark">
+      <img
+        class="hero__logo"
+        src="{{ get_url(path='brand/hero-logo.svg') }}"
+        alt="Logven"
+        width="114"
+        height="125"
+      >
+    </div>
+
+    <div class="hero__content">
+      <h1 id="hero-title" class="hero__title" data-reveal>The executable digital twin of your organisation.</h1>
+      <p class="hero__lede" data-reveal>
+        Logven turns the manual work of specialised teams into traceable, deterministic software,
+        and builds a live model of how your company runs that leaders can see, version and optimise.
+      </p>
+      <div class="actions" data-reveal>
+        <a class="button" href="#pilot">Start a pilot</a>
+        <a class="text-link" href="#how-it-works">How it works <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
   </section>
 
-  <div id="stories" class="story">
+  <div class="story">
     <section class="content-section" aria-labelledby="thesis-title">
-      <h2 id="thesis-title" class="content-section__title">Thesis</h2>
+      <h2 id="thesis-title" class="content-section__title" data-reveal>Thesis</h2>
       <div class="content-section__copy">
-        <p><strong>Your top technical teams are doing work that shouldn't exist.</strong></p>
+        <p data-reveal><strong>Your top technical teams are doing work that shouldn't exist.</strong></p>
       </div>
     </section>
 
-    <section class="content-section content-section--first" aria-labelledby="concept-title">
-      <h2 id="concept-title" class="content-section__title">The concept</h2>
+    <section id="product" class="content-section" aria-labelledby="concept-title">
+      <h2 id="concept-title" class="content-section__title" data-reveal>The concept</h2>
       <div class="content-section__copy">
-        <p>
+        <p data-reveal>
           <strong>Logven is an operational platform for defining, executing, observing, and
           formalizing enterprise processes.</strong> It is designed for complex,
           <strong>data-heavy technical operations.</strong>
@@ -57,15 +68,15 @@
     </section>
 
     <section class="content-section" aria-labelledby="problem-title">
-      <h2 id="problem-title" class="content-section__title">The problem</h2>
+      <h2 id="problem-title" class="content-section__title" data-reveal>The problem</h2>
       <div class="content-section__copy">
-        <p>
+        <p data-reveal>
           <strong>Enterprise software initiatives often require complete process specifications before
           implementation begins.</strong> In practice, dependencies, exceptions, approval paths, and
           edge cases frequently become visible only during execution.
         </p>
 
-        <p>
+        <p data-reveal>
           Large organizations must translate these evolving processes into reliable systems that can
           support tens of thousands of employees. They must also meet requirements for governance,
           data residency, security, auditability, and on-premises deployment.
@@ -76,43 +87,43 @@
     <figure class="story-media">
       <img
         class="story-media__image"
-        src="{{ get_url(path='images/stories/mission-control.avif') }}"
-        alt="A mission operations command center dashboard"
-        width="1920"
-        height="1080"
+        src="{{ get_url(path='images/stories/convergence-housekeeping.avif') }}"
+        alt="Engineers reviewing data on a laptop beside vehicle test rigs"
+        width="1600"
+        height="900"
         loading="lazy"
         decoding="async"
       >
     </figure>
 
-    <section class="content-section" aria-labelledby="solution-title">
-      <h2 id="solution-title" class="content-section__title">The solution</h2>
+    <section id="how-it-works" class="content-section" aria-labelledby="solution-title">
+      <h2 id="solution-title" class="content-section__title" data-reveal>The solution</h2>
       <div class="content-section__copy">
-        <p>
+        <p data-reveal>
           <strong>Logven uses LLM-powered agents to create an executable first model of a process
           before every workflow detail is known.</strong> Each execution produces operational evidence
           that shows how the work is performed in practice.
         </p>
 
-        <p>
+        <p data-reveal>
           An initial agent represents a testable hypothesis about how a task should be performed.
           Running that hypothesis against real work exposes missing inputs, failure modes, decision
           points, and control requirements.
         </p>
 
-        <p>
+        <p data-reveal>
           <strong>Over time, execution data provides the basis for converting variable workflows into
           standardized processes and, ultimately, purpose-built operational software.</strong>
         </p>
 
-        <p>
+        <p data-reveal>
           <strong>User-modeled agents are therefore an intermediate representation, not the target
           architecture.</strong> As process knowledge matures, Logven progressively compiles stable
           behavior into private, deterministic software. Smaller language models, ideally below 40
           billion parameters, remain only where probabilistic reasoning provides measurable value.
         </p>
 
-        <p>
+        <p data-reveal>
           <strong>We view agents as a transitional mechanism for process discovery rather than a
           permanent abstraction for every system component.</strong> They make an incomplete workflow
           executable and observable; once behavior becomes stable and well understood, conventional
@@ -124,8 +135,8 @@
     <figure class="story-media">
       <img
         class="story-media__image"
-        src="{{ get_url(path='images/stories/mission-operations.avif') }}"
-        alt="A mission operations data table"
+        src="{{ get_url(path='images/stories/launch-window-ledger.avif') }}"
+        alt="A Logven sheet showing the launch window ledger in a mission operations database"
         width="1920"
         height="1080"
         loading="lazy"
@@ -133,54 +144,66 @@
       >
     </figure>
 
-    <section class="content-section" aria-labelledby="example-title">
-      <h2 id="example-title" class="content-section__title">An example</h2>
+    <section id="example" class="content-section" aria-labelledby="example-title">
+      <h2 id="example-title" class="content-section__title" data-reveal>An example</h2>
       <div class="content-section__copy">
-        <p>
+        <p data-reveal>
           <strong>We explored this approach with a geothermal team in the public sector.</strong>
         </p>
 
-        <p>
+        <p data-reveal>
           The team manages data from 36 geothermal plants. Its workflow includes extracting values
           from PDFs, updating spreadsheets and databases, consolidating and analyzing data, producing
           reports, processing responses, and resolving anomalies.
         </p>
 
-        <p>
+        <p data-reveal>
           As the system observes more executions, Logven can consolidate equivalent agents, establish
           canonical data models, introduce approval controls at validated decision points, and replace
           variable agent handoffs with deterministic code and system integrations.
         </p>
 
-        <p>
+        <p data-reveal>
           <strong>Language models remain only in workflow segments where material ambiguity
           persists.</strong>
         </p>
 
-        <p>
+        <p data-reveal>
           <strong>The resulting architecture is no longer primarily agent-based.</strong> It becomes a
           dedicated plant-operations system that <em>converges from observed work rather than relying
           on a complete upfront specification</em>.
         </p>
 
-        <p>
+        <p data-reveal>
           This convergence reduces model dependence, improves predictability, and lowers inference
           and operational costs.
         </p>
       </div>
     </section>
 
+    <figure class="story-media">
+      <img
+        class="story-media__image"
+        src="{{ get_url(path='images/stories/greenhouse.avif') }}"
+        alt="A grower watering crops inside a greenhouse"
+        width="1600"
+        height="900"
+        loading="lazy"
+        decoding="async"
+      >
+    </figure>
+
     <section class="content-section" aria-labelledby="outcomes-title">
-      <h2 id="outcomes-title" class="content-section__title">Additional outcomes</h2>
+      <h2 id="outcomes-title" class="content-section__title" data-reveal>Additional outcomes</h2>
       <div class="content-section__copy">
-        <p>
+        <p data-reveal>
           <strong>The operational record also provides a clearer basis for workforce planning.</strong>
           When an employee leaves or changes role, the organization can see the responsibilities,
           dependencies, and decision points that person occupied within the team. This supports a
           more accurate handover and a more precise definition of the role to be filled.
         </p>
 
-        <p>
+        <p data-reveal>
           Across the organization, the same record provides a clearer picture of how the company
           operates in practice: where responsibilities sit, how teams and systems depend on one
           another, and where work is duplicated or constrained. This gives management a firmer basis
@@ -201,23 +224,55 @@
       >
     </figure>
 
-    <section class="content-section" aria-labelledby="team-title">
-      <h2 id="team-title" class="content-section__title">Team</h2>
+    <section id="team" class="content-section" aria-labelledby="team-title">
+      <h2 id="team-title" class="content-section__title" data-reveal>Team</h2>
       <div class="content-section__copy">
-        <p>
+        <p data-reveal>
           <strong>We develop Logven in close collaboration with the technical teams that operate
           it.</strong> Direct discovery, production workflows, and early deployments in hard-tech
           environments inform the product architecture.
         </p>
 
-        <p>
+        <p data-reveal>
           We maintain a focused team and work directly with the operations the platform is designed
           to improve.
         </p>
       </div>
     </section>
+
+    {% if config.extra.show_partners %}
+      {% set partners = config.extra.partners %}
+      {% if partners | length >= 5 %}{% set passes = 2 %}{% else %}{% set passes = 1 %}{% endif %}
+      <section class="logos{% if passes > 1 %} logos--marquee{% endif %}" aria-labelledby="logos-title">
+        <p id="logos-title" class="eyebrow" data-reveal>Developed in collaboration with</p>
+        <div class="logos__viewport" data-reveal>
+          <ul class="logos__list" role="list">
+            {% for pass in range(end=passes) %}
+              {% for partner in partners %}
+                <li class="logos__item"{% if pass > 0 %} aria-hidden="true"{% endif %}>
+                  {% if partner.logo %}
+                    <img src="{{ get_url(path=partner.logo) }}" alt="{{ partner.name }}">
+                  {% else %}
+                    <span class="logo-mark">{{ partner.name }}</span>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    {% endif %}
+
+    <section id="faq" class="section section--mist" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <h2 id="faq-title" class="section-title" data-reveal>Frequently asked questions</h2>
+        </div>
+
+        {% include "partials/faq.html" %}
+      </div>
+    </section>
   </div>
 
-  <script src="{{ get_url(path='js/hero-matrix.js', cachebust=true) }}" defer></script>
-  <script src="{{ get_url(path='js/paragraph-reveal.js', cachebust=true) }}" defer></script>
+  {% include "partials/cta.html" %}
 {% endblock content %}

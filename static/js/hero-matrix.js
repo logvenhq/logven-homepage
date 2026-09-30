@@ -1,6 +1,6 @@
 (() => {
   const canvas = document.querySelector("[data-hero-matrix]");
-  const logo = document.querySelector(".hero-compact__logo");
+  const logo = document.querySelector(".hero__logo");
 
   if (!canvas) return;
 

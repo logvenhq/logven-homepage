@@ -1,39 +1,53 @@
 (() => {
-  const textElements = [
-    ...document.querySelectorAll(".content-section__title, .content-section__copy p"),
-  ];
+  const textElements = [...document.querySelectorAll("[data-reveal]")];
   const keyStatements = [...document.querySelectorAll(".content-section__copy strong")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (keyStatements.length) {
-    if (reduceMotion.matches) {
-      keyStatements.forEach((statement) => statement.classList.add("is-emphasized"));
-    } else {
-      const statementObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add("is-emphasized");
-            statementObserver.unobserve(entry.target);
-          });
-        },
-        { rootMargin: "0px 0px -18%", threshold: 0.65 },
-      );
+  const reveal = (element) => {
+    element.classList.add("is-visible");
+  };
 
-      keyStatements.forEach((statement) => statementObserver.observe(statement));
-    }
+  const revealAll = () => {
+    textElements.forEach(reveal);
+    keyStatements.forEach((statement) => statement.classList.add("is-emphasized"));
+  };
+
+  if (reduceMotion.matches) {
+    revealAll();
+    return;
   }
 
-  if (!textElements.length || reduceMotion.matches) return;
+  if (keyStatements.length) {
+    const statementObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-emphasized");
+          statementObserver.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -18%", threshold: 0.65 },
+    );
+
+    keyStatements.forEach((statement) => statementObserver.observe(statement));
+  }
+
+  if (!textElements.length) return;
 
   const pendingRevealTimers = new Map();
+  const viewportHeight = window.innerHeight;
+  const initialElements = [];
+  const laterElements = [];
 
-  textElements.forEach((element, index) => {
+  textElements.forEach((element) => {
     element.dataset.revealText = "";
-    element.dataset.revealOrder = index;
+    const isInFirstViewport = element.getBoundingClientRect().top < viewportHeight;
+    (isInFirstViewport ? initialElements : laterElements).push(element);
+  });
 
+  initialElements.forEach((element, index) => {
     const timer = window.setTimeout(() => {
-      element.classList.add("is-visible");
+      reveal(element);
       pendingRevealTimers.delete(element);
     }, 1100 + index * 180);
 
@@ -45,19 +59,33 @@
     () => {
       pendingRevealTimers.forEach((timer, element) => {
         window.clearTimeout(timer);
-        element.classList.add("is-visible");
+        reveal(element);
       });
       pendingRevealTimers.clear();
     },
     { once: true, passive: true },
   );
 
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries
+        .filter((entry) => entry.isIntersecting)
+        .forEach((entry, index) => {
+          revealObserver.unobserve(entry.target);
+          window.setTimeout(() => reveal(entry.target), index * 90);
+        });
+    },
+    { rootMargin: "0px 0px -8%" },
+  );
+
+  laterElements.forEach((element) => revealObserver.observe(element));
+
   reduceMotion.addEventListener("change", (event) => {
     if (!event.matches) return;
 
     pendingRevealTimers.forEach((timer) => window.clearTimeout(timer));
     pendingRevealTimers.clear();
-    textElements.forEach((element) => element.classList.add("is-visible"));
-    keyStatements.forEach((statement) => statement.classList.add("is-emphasized"));
+    revealObserver.disconnect();
+    revealAll();
   });
 })();
