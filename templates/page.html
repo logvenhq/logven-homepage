@@ -4,9 +4,9 @@
 {% block description %}{{ page.description | default(value=config.description) }}{% endblock description %}
 
 {% block content %}
-  <section id="home" class="page-hero" aria-labelledby="page-title">
+  <section class="hero hero--page" aria-labelledby="page-title">
     <img
-      class="page-hero__image"
+      class="hero__image"
       src="{{ get_url(path='images/home/hero-1920.avif') }}"
       alt=""
       width="1920"
@@ -14,18 +14,18 @@
       fetchpriority="high"
       decoding="async"
     >
-    <canvas class="page-hero__matrix" data-hero-matrix aria-hidden="true"></canvas>
+    <canvas class="hero__matrix" data-hero-matrix aria-hidden="true"></canvas>
 
-    <div class="page-hero__content">
+    <div class="hero__content">
       {% if page.extra.heading %}
         <p class="eyebrow" data-reveal>{{ page.title }}</p>
       {% endif %}
-      <h1 id="page-title" class="page-hero__title" data-reveal>{{ page.extra.heading | default(value=page.title) }}</h1>
+      <h1 id="page-title" class="hero__title" data-reveal>{{ page.extra.heading | default(value=page.title) }}</h1>
       {% if page.description %}
-        <p class="page-hero__lede" data-reveal>{{ page.description }}</p>
+        <p class="hero__lede" data-reveal>{{ page.description }}</p>
       {% endif %}
       {% if page.extra.action %}
-        <div class="hero-intro__actions" data-reveal>
+        <div class="actions" data-reveal>
           <a class="button" href="{{ page.extra.action.href }}">{{ page.extra.action.label }}</a>
         </div>
       {% endif %}
@@ -48,7 +48,4 @@
   {% if not page.extra.hide_cta %}
     {% include "partials/cta.html" %}
   {% endif %}
-
-  <script src="{{ get_url(path='js/hero-matrix.js', cachebust=true) }}" defer></script>
-  <script src="{{ get_url(path='js/paragraph-reveal.js', cachebust=true) }}" defer></script>
 {% endblock content %}

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#F8FAFC">
+    <meta name="theme-color" content="#f8fafc">
     <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
     <meta name="robots" content="index,follow">
     <meta property="og:site_name" content="{{ config.title }}">
@@ -34,11 +34,11 @@
       {% block content %}{% endblock content %}
     </main>
 
-    <footer id="contacts" class="site-footer">
+    <footer class="site-footer">
       <div class="container">
         <div class="site-footer__grid">
           <div class="site-footer__brand">
-            <a class="site-nav__logo" href="{{ home }}" aria-label="Logven home">
+            <a class="site-footer__logo" href="{{ home }}" aria-label="Logven home">
               <img src="{{ get_url(path='brand/hero-logo.svg') }}" alt="" width="114" height="125">
               <span>Logven</span>
             </a>
@@ -46,18 +46,16 @@
           </div>
 
           <nav class="site-footer__column" aria-labelledby="footer-product">
-            <h2 id="footer-product">Product</h2>
+            <h2 id="footer-product" class="eyebrow">Product</h2>
             <ul role="list">
               <li><a href="{{ home }}#product">Overview</a></li>
               <li><a href="{{ home }}#how-it-works">How it works</a></li>
-              <li><a href="{{ home }}#principles">Principles</a></li>
-              <li><a href="{{ home }}#twin">Twin, not shadow</a></li>
               <li><a href="{{ home }}#faq">FAQ</a></li>
             </ul>
           </nav>
 
           <nav class="site-footer__column" aria-labelledby="footer-company">
-            <h2 id="footer-company">Company</h2>
+            <h2 id="footer-company" class="eyebrow">Company</h2>
             <ul role="list">
               <li><a href="{{ get_url(path='@/who-its-for.md') }}">Who it’s for</a></li>
               <li><a href="{{ get_url(path='@/engagements.md') }}">Engagements</a></li>
@@ -65,7 +63,7 @@
           </nav>
 
           <nav class="site-footer__column" aria-labelledby="footer-contact">
-            <h2 id="footer-contact">Contact</h2>
+            <h2 id="footer-contact" class="eyebrow">Contact</h2>
             <ul role="list">
               <li><a href="mailto:info@logven.com">info@logven.com</a></li>
               <li><a href="{{ get_url(path='@/start-a-pilot.md') }}">Start a pilot</a></li>
@@ -80,5 +78,8 @@
         </div>
       </div>
     </footer>
+
+    <script src="{{ get_url(path='js/hero-matrix.js', cachebust=true) }}" defer></script>
+    <script src="{{ get_url(path='js/paragraph-reveal.js', cachebust=true) }}" defer></script>
   </body>
 </html>

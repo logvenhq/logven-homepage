@@ -16,7 +16,10 @@ smart_punctuation = true
 [extra]
 tagline = "The executable digital twin of your organisation"
 
-# Logo showcase. Add `logo = "brand/logos/<file>.svg"` to replace a text wordmark with an image.
+# Logo showcase ("Developed in collaboration with"). Hidden for now; set to true to show it again.
+show_partners = false
+
+# Partners in the logo showcase. Add `logo = "brand/logos/<file>.svg"` to replace a text wordmark with an image.
 # Five or more partners turn the strip into a scrolling marquee.
 partners = [
   { name = "SKS Energies" },

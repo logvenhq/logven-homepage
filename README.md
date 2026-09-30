@@ -20,7 +20,11 @@ Generated files are written to `public/`.
 
 ## Structure
 
-- `templates/` contains the shared page shell and homepage template.
-- `static/css/style.css` contains the ordered, plain-CSS stylesheet.
+- `templates/` contains the shared page shell (`base.html`), the homepage (`index.html`), the
+  inner-page template (`page.html`) and the FAQ and call-to-action partials.
+- `content/` holds the homepage FAQ and the inner pages, whose sections live in front matter.
+- `static/css/style.css` contains the plain-CSS stylesheet, ordered tokens → base → layout →
+  components → responsive → reduced motion.
+- `static/js/` contains the hero grid animation and the scroll reveal, both loaded from `base.html`.
 - `static/fonts/` contains the self-hosted Geist variable font.
 - `static/images/` and `static/brand/` contain Logven's existing visual assets.

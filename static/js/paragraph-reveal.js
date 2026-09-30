@@ -1,31 +1,14 @@
 (() => {
   const textElements = [...document.querySelectorAll("[data-reveal]")];
-  const keyStatements = [...document.querySelectorAll(".content-section__copy strong, .lede strong")];
-  const meters = [...document.querySelectorAll("[data-meter]")];
+  const keyStatements = [...document.querySelectorAll(".content-section__copy strong")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const meterCells = 8;
-
-  meters.forEach((meter) => {
-    const codeCells = Number(meter.dataset.meter) || 0;
-
-    meter.replaceChildren(
-      ...Array.from({ length: meterCells }, (_, index) => {
-        const cell = document.createElement("span");
-        cell.className = index < codeCells ? "steps__cell steps__cell--code" : "steps__cell";
-        cell.style.setProperty("--cell-delay", `${280 + index * 70}ms`);
-        return cell;
-      }),
-    );
-  });
 
   const reveal = (element) => {
     element.classList.add("is-visible");
-    element.querySelectorAll("[data-meter]").forEach((meter) => meter.classList.add("is-filled"));
   };
 
   const revealAll = () => {
     textElements.forEach(reveal);
-    meters.forEach((meter) => meter.classList.add("is-filled"));
     keyStatements.forEach((statement) => statement.classList.add("is-emphasized"));
   };
 
