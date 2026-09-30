@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "zola",
+      "runtimeExecutable": "zola",
+      "runtimeArgs": ["serve", "--port", "1111"],
+      "port": 1111
+    },
+    {
+      "name": "zola-alt",
+      "runtimeExecutable": "zola",
+      "runtimeArgs": ["serve", "--port", "1113", "--output-dir", "/private/tmp/claude-501/-Users-michelangelogubinelli-Github-logven-homepage/a8a44c93-9b4d-409e-a8c3-9029810dedc1/scratchpad/public", "--force"],
+      "port": 1113,
+      "autoPort": false
+    }
+  ]
+}

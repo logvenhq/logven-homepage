@@ -1,6 +1,6 @@
 base_url = "https://logven.com"
 title = "Logven"
-description = "Operational software for data-heavy technical teams, deployable on-premises and shaped by observed workflows."
+description = "Logven is the executable digital twin of your organisation. It turns the manual work of specialised teams into traceable, deterministic software."
 default_language = "en"
 
 # Assets are maintained as plain CSS and static files.
@@ -12,3 +12,13 @@ minify_html = true
 
 [markdown]
 smart_punctuation = true
+
+[extra]
+tagline = "The executable digital twin of your organisation"
+
+# Logo showcase. Add `logo = "brand/logos/<file>.svg"` to replace a text wordmark with an image.
+# Five or more partners turn the strip into a scrolling marquee.
+partners = [
+  { name = "SKS Energies" },
+  { name = "ARPAT" },
+]
