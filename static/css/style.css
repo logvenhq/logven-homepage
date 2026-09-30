@@ -105,7 +105,7 @@ a {
   background:
     linear-gradient(to bottom, transparent 78%, var(--paper)),
     radial-gradient(
-      ellipse 62% 78% at 50% 100%,
+      ellipse 72% 88% at 50% 100%,
       var(--paper) 0,
       rgb(248 250 252 / 94%) 38%,
       rgb(248 250 252 / 62%) 62%,
@@ -866,7 +866,7 @@ a {
     background:
       linear-gradient(to bottom, transparent 82%, var(--paper)),
       radial-gradient(
-        ellipse 95% 72% at 50% 100%,
+        ellipse 105% 80% at 50% 100%,
         var(--paper) 0,
         rgb(248 250 252 / 94%) 45%,
         rgb(248 250 252 / 55%) 72%,
