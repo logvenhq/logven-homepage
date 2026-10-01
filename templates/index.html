@@ -52,17 +52,25 @@
     <section class="content-section" aria-labelledby="thesis-title">
       <h2 id="thesis-title" class="content-section__title" data-reveal>Thesis</h2>
       <div class="content-section__copy">
-        <p data-reveal><strong>Your top technical teams are doing work that shouldn't exist.</strong></p>
+        <p data-reveal>
+          <strong>Everyone built digital shadows of their organisation. We built the twin that runs it.</strong>
+        </p>
       </div>
     </section>
 
     <section id="product" class="content-section" aria-labelledby="concept-title">
-      <h2 id="concept-title" class="content-section__title" data-reveal>The concept</h2>
+      <h2 id="concept-title" class="content-section__title" data-reveal>The idea</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>Logven is an operational platform for defining, executing, observing, and
-          formalizing enterprise processes.</strong> It is designed for complex,
-          <strong>data-heavy technical operations.</strong>
+          <strong>A company is state plus processes.</strong> State is its data. Processes are the functions that act on that data. Logven makes both explicit in one versioned system: GitHub for the state of the company.
+        </p>
+
+        <p data-reveal>
+          <strong>The twin is built from executed work.</strong> It is not drawn or maintained by hand. Agents do the work, stable work is compiled into code, and inputs become state.
+        </p>
+
+        <p data-reveal>
+          Emails, documents, communications and numbers are simple data points, and together they are the whole company state. Because the model sits at a higher level of abstraction than any single task, improving it improves the work itself.
         </p>
       </div>
     </section>
@@ -71,15 +79,11 @@
       <h2 id="problem-title" class="content-section__title" data-reveal>The problem</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>Enterprise software initiatives often require complete process specifications before
-          implementation begins.</strong> In practice, dependencies, exceptions, approval paths, and
-          edge cases frequently become visible only during execution.
+          <strong>Specialised technical teams spend their time on manual work around data.</strong> They extract values from PDFs, update spreadsheets and databases, consolidate and analyse, write reports, process responses and resolve anomalies.
         </p>
 
         <p data-reveal>
-          Large organizations must translate these evolving processes into reliable systems that can
-          support tens of thousands of employees. They must also meet requirements for governance,
-          data residency, security, auditability, and on-premises deployment.
+          Leaders have no live view of how this work runs, so they cannot standardise expertise or optimise a department. Existing digital twins of an organisation mirror the company after the fact and do not change the work.
         </p>
       </div>
     </section>
@@ -97,37 +101,26 @@
     </figure>
 
     <section id="how-it-works" class="content-section" aria-labelledby="solution-title">
-      <h2 id="solution-title" class="content-section__title" data-reveal>The solution</h2>
+      <h2 id="solution-title" class="content-section__title" data-reveal>How it works</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>Logven uses LLM-powered agents to create an executable first model of a process
-          before every workflow detail is known.</strong> Each execution produces operational evidence
-          that shows how the work is performed in practice.
+          <strong>Agents are the prototype. Software is the product.</strong> Teams work with agent workers much like they would with Claude. Logven watches what those workers do, hardens the stable parts into plain code, and keeps the result as a versioned model of the company’s data and processes.
         </p>
 
         <p data-reveal>
-          An initial agent represents a testable hypothesis about how a task should be performed.
-          Running that hypothesis against real work exposes missing inputs, failure modes, decision
-          points, and control requirements.
+          <strong>First, work with agent workers.</strong> Users interact with workers the way they would with Claude, and the workers do the job. <strong>Then Logven analyses at night,</strong> running dynamic analysis of executions with embeddings, semantic search and similarity algorithms.
         </p>
 
         <p data-reveal>
-          <strong>Over time, execution data provides the basis for converting variable workflows into
-          standardized processes and, ultimately, purpose-built operational software.</strong>
+          <strong>Next, it consolidates.</strong> Equivalent agents are merged and canonical data models are established. <strong>Then it hardens.</strong> Approval controls are added at validated decision points, and variable agent handoffs are replaced by generated deterministic code and system integrations.
         </p>
 
         <p data-reveal>
-          <strong>User-modeled agents are therefore an intermediate representation, not the target
-          architecture.</strong> As process knowledge matures, Logven progressively compiles stable
-          behavior into private, deterministic software. Smaller language models, ideally below 40
-          billion parameters, remain only where probabilistic reasoning provides measurable value.
+          <strong>Finally, it converges.</strong> Each worker ends up as a single traceable function. Language models stay only where real ambiguity remains.
         </p>
 
         <p data-reveal>
-          <strong>We view agents as a transitional mechanism for process discovery rather than a
-          permanent abstraction for every system component.</strong> They make an incomplete workflow
-          executable and observable; once behavior becomes stable and well understood, conventional
-          software components replace the corresponding agentic steps.
+          <strong>Logven is designed to run on customer hardware with smaller models.</strong> Today it is built from workers and sheets: the core is the data, sheets are the table view over it, and documents and emails are snapshots of parts of that state.
         </p>
       </div>
     </section>
@@ -152,31 +145,11 @@
         </p>
 
         <p data-reveal>
-          The team manages data from 36 geothermal plants. Its workflow includes extracting values
-          from PDFs, updating spreadsheets and databases, consolidating and analyzing data, producing
-          reports, processing responses, and resolving anomalies.
+          The team manages data from 36 geothermal plants. Its workflow includes extracting values from PDFs, updating spreadsheets and databases, consolidating and analysing data, producing reports, processing responses, and resolving anomalies.
         </p>
 
         <p data-reveal>
-          As the system observes more executions, Logven can consolidate equivalent agents, establish
-          canonical data models, introduce approval controls at validated decision points, and replace
-          variable agent handoffs with deterministic code and system integrations.
-        </p>
-
-        <p data-reveal>
-          <strong>Language models remain only in workflow segments where material ambiguity
-          persists.</strong>
-        </p>
-
-        <p data-reveal>
-          <strong>The resulting architecture is no longer primarily agent-based.</strong> It becomes a
-          dedicated plant-operations system that <em>converges from observed work rather than relying
-          on a complete upfront specification</em>.
-        </p>
-
-        <p data-reveal>
-          This convergence reduces model dependence, improves predictability, and lowers inference
-          and operational costs.
+          <strong>The end state is a dedicated plant-operations system.</strong> It <em>emerges from observed work rather than an upfront spec</em>, and it reduces model dependence and inference cost.
         </p>
       </div>
     </section>
@@ -194,20 +167,18 @@
     </figure>
 
     <section class="content-section" aria-labelledby="outcomes-title">
-      <h2 id="outcomes-title" class="content-section__title" data-reveal>Additional outcomes</h2>
+      <h2 id="outcomes-title" class="content-section__title" data-reveal>What makes it different</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>The operational record also provides a clearer basis for workforce planning.</strong>
-          When an employee leaves or changes role, the organization can see the responsibilities,
-          dependencies, and decision points that person occupied within the team. This supports a
-          more accurate handover and a more precise definition of the role to be filled.
+          <strong>The analyst category of “Digital Twin of an Organization” produces digital shadows:</strong> models that mirror the company. Logven’s twin runs it, so optimising the model changes the work.
         </p>
 
         <p data-reveal>
-          Across the organization, the same record provides a clearer picture of how the company
-          operates in practice: where responsibilities sit, how teams and systems depend on one
-          another, and where work is duplicated or constrained. This gives management a firmer basis
-          for organizational and operational decisions.
+          A digital shadow is drawn and maintained by hand, and optimising it yields insight only. Logven’s twin is built from executed work, and optimising it changes how the work is done. Its agents are the means of building the twin, not the product, and the end state is traceable, deterministic software rather than dashboards.
+        </p>
+
+        <p data-reveal>
+          <strong>They sell agents. Agents are how we build the twin.</strong>
         </p>
       </div>
     </section>
@@ -224,18 +195,28 @@
       >
     </figure>
 
-    <section id="team" class="content-section" aria-labelledby="team-title">
-      <h2 id="team-title" class="content-section__title" data-reveal>Team</h2>
+    <section id="who-its-for" class="content-section" aria-labelledby="who-title">
+      <h2 id="who-title" class="content-section__title" data-reveal>Who it’s for</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>We develop Logven in close collaboration with the technical teams that operate
-          it.</strong> Direct discovery, production workflows, and early deployments in hard-tech
-          environments inform the product architecture.
+          <strong>Logven works with enterprise and medium-to-large companies,</strong> for the people who do the work and the people accountable for it.
         </p>
 
         <p data-reveal>
-          We maintain a focused team and work directly with the operations the platform is designed
-          to improve.
+          <strong>Technical, highly specialised teams</strong> get manual work removed and their expertise captured as software. <strong>VPs and department heads</strong> get their department as a system they can see, version and optimise.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-section" aria-labelledby="partners-title">
+      <h2 id="partners-title" class="content-section__title" data-reveal>Design partners</h2>
+      <div class="content-section__copy">
+        <p data-reveal>
+          <strong>We are building Logven with the engineering teams of our design partners,</strong> on their real workflows and data. A larger pilot is the next step.
+        </p>
+
+        <p data-reveal>
+          <strong>Every engagement starts with a paid pilot,</strong> then deployment, then an annual licence priced per team rather than per employee.
         </p>
       </div>
     </section>
