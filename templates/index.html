@@ -126,15 +126,21 @@
     </section>
 
     <figure class="story-media">
-      <img
-        class="story-media__image"
-        src="{{ get_url(path='images/stories/launch-window-ledger.avif') }}"
-        alt="A Logven sheet showing the launch window ledger in a mission operations database"
-        width="1920"
-        height="1080"
-        loading="lazy"
-        decoding="async"
-      >
+      <picture class="story-media__picture">
+        <source
+          media="(prefers-color-scheme: dark)"
+          srcset="{{ get_url(path='images/stories/launch-window-ledger-dark.avif') }}"
+        >
+        <img
+          class="story-media__image"
+          src="{{ get_url(path='images/stories/launch-window-ledger.avif') }}"
+          alt="A Logven sheet showing the launch window ledger in a mission operations database"
+          width="1920"
+          height="1080"
+          loading="lazy"
+          decoding="async"
+        >
+      </picture>
     </figure>
 
     <section id="example" class="content-section" aria-labelledby="example-title">

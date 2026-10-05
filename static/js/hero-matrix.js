@@ -6,7 +6,48 @@
 
   const context = canvas.getContext("2d");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const colors = ["104, 135, 173", "119, 151, 188", "144, 169, 199"];
+  const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  const lightColors = ["104 135 173", "119 151 188", "144 169 199"];
+  // Dark mode supplies its palette through the --matrix-colors custom property.
+  const readColors = () => {
+    const custom = getComputedStyle(canvas).getPropertyValue("--matrix-colors").trim();
+    return custom ? custom.split(",").map((color) => color.trim()) : lightColors;
+  };
+
+  let colors = readColors();
+
+  // In dark mode the CSS overlay is off and its fade is applied per cell instead,
+  // matching the shapes of .hero--home::after and .hero--page::after.
+  const narrowScreen = window.matchMedia("(max-width: 700px)");
+  const homeFade = [[0, 1], [0.38, 0.94], [0.62, 0.62], [0.84, 0.18], [1, 0]];
+  const wideFade = [[0, 1], [0.45, 0.94], [0.72, 0.55], [1, 0]];
+  const fadeShape = () => {
+    if (canvas.closest(".hero--page")) return { rx: 0.62, ry: 0.9, edge: 0.7, stops: wideFade };
+    if (narrowScreen.matches) return { rx: 1.05, ry: 0.8, edge: 0.82, stops: wideFade };
+    return { rx: 0.72, ry: 0.88, edge: 0.78, stops: homeFade };
+  };
+  const interpolate = (stops, value) => {
+    for (let index = 1; index < stops.length; index += 1) {
+      const [position, amount] = stops[index];
+      const [previousPosition, previousAmount] = stops[index - 1];
+      if (value <= position) {
+        const progress = (value - previousPosition) / (position - previousPosition);
+        return previousAmount + (amount - previousAmount) * progress;
+      }
+    }
+
+    return 0;
+  };
+  const cellVisibility = (centerX, centerY, width, height, shape) => {
+    const distance = Math.hypot(
+      (centerX - width / 2) / (shape.rx * width),
+      (centerY - height) / (shape.ry * height),
+    );
+    const radialCover = interpolate(shape.stops, distance);
+    const bottomCover = Math.min(Math.max((centerY / height - shape.edge) / (1 - shape.edge), 0), 1);
+
+    return (1 - radialCover) * (1 - bottomCover);
+  };
   const initialDensity = 0.16;
 
   let cells = [];
@@ -92,6 +133,8 @@
         }
       : null;
 
+    const shape = darkScheme.matches ? fadeShape() : null;
+
     context.clearRect(0, 0, width, height);
 
     cells.forEach((cell) => {
@@ -135,12 +178,16 @@
 
       const x = restingX + cell.wakeX;
       const y = restingY + cell.wakeY;
-      const opacity = cell.strength * easedFade * cycleOpacity * (1 + cell.wakeInfluence * 0.18);
+      const visibility = shape
+        ? cellVisibility(x + cellSize / 2, y + cellSize / 2, width, height, shape)
+        : 1;
+      const opacity =
+        cell.strength * easedFade * cycleOpacity * (1 + cell.wakeInfluence * 0.18) * visibility;
       const gradient = context.createLinearGradient(x, y, x + cellSize, y + cellSize);
 
-      gradient.addColorStop(0, `rgba(${cell.color}, ${opacity * 0.68})`);
-      gradient.addColorStop(0.52, `rgba(${cell.color}, ${opacity})`);
-      gradient.addColorStop(1, `rgba(${cell.color}, ${opacity * 0.78})`);
+      gradient.addColorStop(0, `rgb(${cell.color} / ${opacity * 0.68})`);
+      gradient.addColorStop(0.52, `rgb(${cell.color} / ${opacity})`);
+      gradient.addColorStop(1, `rgb(${cell.color} / ${opacity * 0.78})`);
       context.fillStyle = gradient;
       context.fillRect(x, y, cellSize, cellSize);
     });
@@ -201,6 +248,13 @@
     if (animationName !== "hero-logo-entrance") return;
     flightIsActive = false;
     flightSettledAt = performance.now();
+  });
+  darkScheme.addEventListener("change", () => {
+    colors = readColors();
+    cells.forEach((cell) => {
+      cell.color = colors[Math.floor(Math.random() * colors.length)];
+    });
+    draw(performance.now());
   });
   reduceMotion.addEventListener("change", () => {
     resize();

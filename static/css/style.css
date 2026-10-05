@@ -25,6 +25,26 @@
   --ease-flight: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Dark tokens mirror the Logven app's dark neutrals; light mode is untouched. */
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f0f1f3;
+    --text: #d5d7dc;
+    --muted: #a7aab1;
+    --quiet: #8c9098;
+    --mist: #333437;
+    --wash: #27282a;
+    --paper: #1e1f21;
+    --paper-on-dark: #1e1f21;
+    /* Read by hero-matrix.js; light mode falls back to the script's own palette. */
+    --matrix-colors: 96 98 105, 117 121 131, 140 144 152;
+  }
+}
+
 /* Base */
 
 *,
@@ -460,6 +480,11 @@ a {
   padding: 0 var(--gutter);
 }
 
+/* Lets the image stay the grid item when wrapped for a dark-mode source. */
+.story-media__picture {
+  display: contents;
+}
+
 .story-media__image {
   grid-column: 2;
   width: 100%;
@@ -831,6 +856,65 @@ a {
 
   .site-footer__rule {
     display: none;
+  }
+}
+
+/* Dark mode */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* The hero sits on the plain page colour; the CTA keeps the silk, darkened. */
+  .hero__image {
+    display: none;
+  }
+
+  /* Logven's dark card surface, one step above the page. */
+  .cta {
+    background: #242527;
+  }
+
+  .cta__image {
+    opacity: 0.25;
+    filter: invert(0.9) hue-rotate(180deg) saturate(0.45);
+  }
+
+  .section--mist {
+    background: var(--paper);
+  }
+
+  /* The fade is applied per cell by hero-matrix.js: an overlay gradient bands on dark. */
+  .hero::after {
+    display: none;
+  }
+
+  .hero__mark::before {
+    display: none;
+  }
+
+  .hero__logo {
+    filter:
+      drop-shadow(0 0.2rem 0.45rem rgb(0 0 0 / 32%))
+      drop-shadow(0 0.65rem 1.15rem rgb(0 0 0 / 24%));
+  }
+
+  .cta__logo {
+    filter: drop-shadow(0 0.4rem 0.8rem rgb(0 0 0 / 32%));
+  }
+
+  .button {
+    box-shadow: 0 0.5rem 1.25rem rgb(0 0 0 / 24%);
+  }
+
+  .button:hover {
+    box-shadow: 0 0.75rem 1.75rem rgb(0 0 0 / 32%);
+  }
+
+  .story-media__image {
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 32%);
   }
 }
 
