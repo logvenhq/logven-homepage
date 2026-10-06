@@ -7,18 +7,31 @@
   const context = canvas.getContext("2d");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-  const lightColors = ["104 135 173", "119 151 188", "144 169 199"];
-  // Dark mode supplies its palette through the --matrix-colors custom property.
-  const readColors = () => {
-    const custom = getComputedStyle(canvas).getPropertyValue("--matrix-colors").trim();
-    return custom ? custom.split(",").map((color) => color.trim()) : lightColors;
-  };
+  const narrowScreen = window.matchMedia("(max-width: 700px)");
+
+  // Both themes define their palette in the --matrix-colors token (style.css).
+  const readColors = () =>
+    getComputedStyle(canvas)
+      .getPropertyValue("--matrix-colors")
+      .split(",")
+      .map((color) => color.trim());
 
   let colors = readColors();
+  let isDark = darkScheme.matches;
+
+  // Checked on every draw rather than only on the change event: Safari can restore a
+  // suspended or cached tab after an appearance change without firing it.
+  const syncTheme = () => {
+    if (darkScheme.matches === isDark) return;
+    isDark = darkScheme.matches;
+    colors = readColors();
+    cells.forEach((cell) => {
+      cell.color = colors[Math.floor(Math.random() * colors.length)];
+    });
+  };
 
   // In dark mode the CSS overlay is off and its fade is applied per cell instead,
   // matching the shapes of .hero--home::after and .hero--page::after.
-  const narrowScreen = window.matchMedia("(max-width: 700px)");
   const homeFade = [[0, 1], [0.38, 0.94], [0.62, 0.62], [0.84, 0.18], [1, 0]];
   const wideFade = [[0, 1], [0.45, 0.94], [0.72, 0.55], [1, 0]];
   const fadeShape = () => {
@@ -133,7 +146,8 @@
         }
       : null;
 
-    const shape = darkScheme.matches ? fadeShape() : null;
+    syncTheme();
+    const shape = isDark ? fadeShape() : null;
 
     context.clearRect(0, 0, width, height);
 
@@ -249,13 +263,8 @@
     flightIsActive = false;
     flightSettledAt = performance.now();
   });
-  darkScheme.addEventListener("change", () => {
-    colors = readColors();
-    cells.forEach((cell) => {
-      cell.color = colors[Math.floor(Math.random() * colors.length)];
-    });
-    draw(performance.now());
-  });
+  darkScheme.addEventListener("change", () => draw(performance.now()));
+  window.addEventListener("pageshow", () => draw(performance.now()));
   reduceMotion.addEventListener("change", () => {
     resize();
     start();

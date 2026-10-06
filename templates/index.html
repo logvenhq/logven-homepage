@@ -26,13 +26,16 @@
     <canvas class="hero__matrix" data-hero-matrix aria-hidden="true"></canvas>
 
     <div class="hero__mark">
-      <img
-        class="hero__logo"
-        src="{{ get_url(path='brand/hero-logo.svg') }}"
-        alt="Logven"
+      <svg
+        class="logven-mark hero__logo"
+        viewBox="0 0 114 125"
         width="114"
         height="125"
+        role="img"
+        aria-label="Logven"
       >
+        <use href="#logven-mark" />
+      </svg>
     </div>
 
     <div class="hero__content">
@@ -126,21 +129,24 @@
     </section>
 
     <figure class="story-media">
-      <picture class="story-media__picture">
-        <source
-          media="(prefers-color-scheme: dark)"
-          srcset="{{ get_url(path='images/stories/launch-window-ledger-dark.avif') }}"
-        >
-        <img
-          class="story-media__image"
-          src="{{ get_url(path='images/stories/launch-window-ledger.avif') }}"
-          alt="A Logven sheet showing the launch window ledger in a mission operations database"
-          width="1920"
-          height="1080"
-          loading="lazy"
-          decoding="async"
-        >
-      </picture>
+      <img
+        class="story-media__image light-only"
+        src="{{ get_url(path='images/stories/launch-window-ledger.avif') }}"
+        alt="A Logven sheet showing the launch window ledger in a mission operations database"
+        width="1920"
+        height="1080"
+        loading="lazy"
+        decoding="async"
+      >
+      <img
+        class="story-media__image dark-only"
+        src="{{ get_url(path='images/stories/launch-window-ledger-dark.avif') }}"
+        alt="A Logven sheet showing the launch window ledger in a mission operations database"
+        width="1920"
+        height="1080"
+        loading="lazy"
+        decoding="async"
+      >
     </figure>
 
     <section id="example" class="content-section" aria-labelledby="example-title">
