@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1e1f21" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc">
     <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
     <meta name="robots" content="index,follow">
     <meta property="og:site_name" content="{{ config.title }}">
@@ -28,7 +27,6 @@
     <title>{% block title %}{{ config.title }} — {{ config.extra.tagline }}{% endblock title %}</title>
   </head>
   <body>
-    {% include "partials/logo-sprite.html" %}
     {% set home = get_url(path="@/_index.md") %}
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
@@ -41,7 +39,7 @@
         <div class="site-footer__grid">
           <div class="site-footer__brand">
             <a class="site-footer__logo" href="{{ home }}" aria-label="Logven home">
-              <svg class="logven-mark" viewBox="0 0 114 125" width="114" height="125" aria-hidden="true"><use href="#logven-mark" /></svg>
+              <img src="{{ get_url(path='brand/hero-logo.svg') }}" alt="" width="114" height="125">
               <span>Logven</span>
             </a>
             <p>{{ config.extra.tagline }}. Built from executed work, designed to run on your hardware.</p>
@@ -83,8 +81,5 @@
 
     <script src="{{ get_url(path='js/hero-matrix.js', cachebust=true) }}" defer></script>
     <script src="{{ get_url(path='js/paragraph-reveal.js', cachebust=true) }}" defer></script>
-    <script src="{{ get_url(path='js/convergence.js', cachebust=true) }}" defer></script>
-    <script src="{{ get_url(path='js/plant-field.js', cachebust=true) }}" defer></script>
-    <script src="{{ get_url(path='js/hardware.js', cachebust=true) }}" defer></script>
   </body>
 </html>

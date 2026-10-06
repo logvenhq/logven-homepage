@@ -11,9 +11,6 @@
 /* Tokens */
 
 :root {
-  color-scheme: light dark;
-
-  /* Colour */
   --ink: #141a21;
   --text: #30363e;
   --muted: #747e89;
@@ -21,82 +18,11 @@
   --mist: #e8eef5;
   --wash: #f1f5f9;
   --paper: #f8fafc;
-  --surface: #ffffff;
-  --on-ink: #ffffff;
-
-  /* Elevation */
-  --shadow-button: 0 0.5rem 1.25rem rgb(42 54 68 / 14%);
-  --shadow-button-hover: 0 0.75rem 1.75rem rgb(42 54 68 / 18%);
-  --shadow-media: 0 1rem 2.5rem rgb(42 54 68 / 14%);
-  --shadow-logo:
-    drop-shadow(0 0.2rem 0.45rem rgb(71 91 115 / 18%))
-    drop-shadow(0 0.65rem 1.15rem rgb(91 118 149 / 12%));
-  --shadow-logo-small: drop-shadow(0 0.4rem 0.8rem rgb(71 91 115 / 18%));
-
-  /* Brand mark gradient (partials/logo-sprite.html) */
-  --mark-start: #5c6875;
-  --mark-middle: #37434f;
-  --mark-end: #202a34;
-
-  /* Hero matrix palette as RGB triplets, read by hero-matrix.js. */
-  --matrix-colors: 104 135 173, 119 151 188, 144 169 199;
-
-  /* Convergence scene as RGB triplets, read by convergence.js. Start and end follow the mark. */
-  --convergence-dot: 104 135 173;
-  --convergence-line: 144 169 199;
-  --convergence-start: 92 104 117;
-  --convergence-end: 32 42 52;
-
-  /* Scene line art as an RGB triplet: the plant map's contours and the hardware floor grid. */
-  --topo-line: 116 126 137;
-
-  /* Layout and motion */
+  --paper-on-dark: #ffffff;
   --container: 72rem;
   --gutter: clamp(1.5rem, 5vw, 3rem);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-flight: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Dark tokens mirror the Logven app's dark neutrals. Keep both sets in the same order. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Colour */
-    --ink: #f0f1f3;
-    --text: #d5d7dc;
-    --muted: #a7aab1;
-    --quiet: #8c9098;
-    --mist: #333437;
-    --wash: #27282a;
-    --paper: #1e1f21;
-    --surface: #242527;
-    --on-ink: #1e1f21;
-
-    /* Elevation */
-    --shadow-button: 0 0.5rem 1.25rem rgb(0 0 0 / 24%);
-    --shadow-button-hover: 0 0.75rem 1.75rem rgb(0 0 0 / 32%);
-    --shadow-media: 0 1rem 2.5rem rgb(0 0 0 / 32%);
-    --shadow-logo:
-      drop-shadow(0 0.2rem 0.45rem rgb(0 0 0 / 32%))
-      drop-shadow(0 0.65rem 1.15rem rgb(0 0 0 / 24%));
-    --shadow-logo-small: drop-shadow(0 0.4rem 0.8rem rgb(0 0 0 / 32%));
-
-    /* Brand mark gradient */
-    --mark-start: #f0f1f4;
-    --mark-middle: #d5d8df;
-    --mark-end: #adb3bf;
-
-    /* Hero matrix palette */
-    --matrix-colors: 96 98 105, 117 121 131, 140 144 152;
-
-    /* Convergence scene */
-    --convergence-dot: 140 144 152;
-    --convergence-line: 96 98 105;
-    --convergence-start: 240 241 244;
-    --convergence-end: 173 179 191;
-
-    /* Plant map */
-    --topo-line: 117 121 131;
-  }
 }
 
 /* Base */
@@ -139,40 +65,6 @@ a {
   outline-offset: 4px;
 }
 
-/* Theme-specific images: both are in the markup and the page's own CSS picks one,
-   so they follow a live appearance change (a <picture> source may not in Safari). */
-.dark-only {
-  display: none;
-}
-
-/* Brand mark */
-
-/* Kept rendered but invisible: gradients inside a display: none SVG don't paint. */
-.sprite {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
-.logven-mark {
-  display: block;
-  aspect-ratio: 114 / 125;
-  height: auto;
-}
-
-.logven-mark__start {
-  stop-color: var(--mark-start);
-}
-
-.logven-mark__middle {
-  stop-color: var(--mark-middle);
-}
-
-.logven-mark__end {
-  stop-color: var(--mark-end);
-}
-
 .skip-link {
   position: fixed;
   z-index: 100;
@@ -181,7 +73,7 @@ a {
   padding: 0.65rem 0.85rem;
   transform: translateY(-150%);
   border-radius: 999px;
-  color: var(--on-ink);
+  color: var(--paper-on-dark);
   background: var(--ink);
   font-size: 0.75rem;
   text-decoration: none;
@@ -268,9 +160,9 @@ a {
   align-items: center;
   padding: 0.75rem 1.25rem;
   border-radius: 999px;
-  color: var(--on-ink);
+  color: var(--paper-on-dark);
   background: var(--ink);
-  box-shadow: var(--shadow-button);
+  box-shadow: 0 0.5rem 1.25rem rgb(42 54 68 / 14%);
   font-size: 1rem;
   line-height: 1.2;
   text-decoration: none;
@@ -283,7 +175,7 @@ a {
 
 .button:hover {
   background: var(--text);
-  box-shadow: var(--shadow-button-hover);
+  box-shadow: 0 0.75rem 1.75rem rgb(42 54 68 / 18%);
   transform: translateY(-1px);
 }
 
@@ -356,9 +248,9 @@ a {
     radial-gradient(
       ellipse 72% 88% at 50% 100%,
       var(--paper) 0,
-      color-mix(in srgb, var(--paper) 94%, transparent) 38%,
-      color-mix(in srgb, var(--paper) 62%, transparent) 62%,
-      color-mix(in srgb, var(--paper) 18%, transparent) 84%,
+      rgb(248 250 252 / 94%) 38%,
+      rgb(248 250 252 / 62%) 62%,
+      rgb(248 250 252 / 18%) 84%,
       transparent 100%
     );
 }
@@ -373,8 +265,8 @@ a {
     radial-gradient(
       ellipse 62% 90% at 50% 100%,
       var(--paper) 0,
-      color-mix(in srgb, var(--paper) 94%, transparent) 45%,
-      color-mix(in srgb, var(--paper) 55%, transparent) 72%,
+      rgb(248 250 252 / 94%) 45%,
+      rgb(248 250 252 / 55%) 72%,
       transparent 100%
     );
 }
@@ -440,7 +332,9 @@ a {
   height: auto;
   transform: translate(-50%, -50%);
   animation: hero-logo-entrance 2.1s var(--ease-flight) 220ms both;
-  filter: var(--shadow-logo);
+  filter:
+    drop-shadow(0 0.2rem 0.45rem rgb(71 91 115 / 18%))
+    drop-shadow(0 0.65rem 1.15rem rgb(91 118 149 / 12%));
 }
 
 @keyframes hero-logo-entrance {
@@ -574,225 +468,7 @@ a {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 0.375rem;
-  box-shadow: var(--shadow-media);
-}
-
-/* Convergence: convergence.js adds .is-enhanced, and .is-scrollytelling unless motion is reduced.
-   Scrollytelling pins a full-bleed canvas with the steps in a row along its bottom edge.
-   Without it the steps read as a plain list. */
-
-.convergence {
-  position: relative;
-  padding: clamp(1.5rem, 2.5vw, 2.5rem) var(--gutter);
-}
-
-.convergence__stage {
-  position: relative;
-  display: grid;
-  gap: 2.5rem;
-}
-
-.convergence__caption {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 1.5rem;
-}
-
-.convergence__steps {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 2.5rem);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.convergence__step {
-  position: relative;
-  display: grid;
-  align-content: start;
-  gap: 0.35rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--mist);
-}
-
-/* The rail fills as the scene moves into each step (--fill, set by convergence.js),
-   so the row of steps reads as one progress bar. */
-.convergence__step::before {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  content: "";
-  background: var(--ink);
-  transform: scaleX(var(--fill, 0));
-  transform-origin: left;
-}
-
-.convergence__step-title {
-  color: var(--quiet);
-  font-size: 1.25rem;
-  line-height: 1.35;
-  transition: color 500ms var(--ease-out);
-}
-
-.convergence__step-copy {
-  max-width: 22rem;
-  color: var(--quiet);
-  font-size: 1rem;
-  line-height: 1.5;
-  text-wrap: pretty;
-  opacity: 0.55;
-  transition: opacity 500ms var(--ease-out);
-}
-
-.convergence__step.is-active .convergence__step-title {
-  color: var(--ink);
-}
-
-.convergence__step.is-active .convergence__step-copy {
-  opacity: 1;
-}
-
-.convergence__canvas {
-  display: none;
-  width: 100%;
-  height: clamp(22rem, 60vh, 36rem);
-  touch-action: pan-y;
-}
-
-.convergence.is-enhanced .convergence__canvas {
-  display: block;
-}
-
-.convergence.is-scrollytelling {
-  height: 420vh;
-  padding: 0;
-}
-
-.convergence.is-scrollytelling .convergence__stage,
-.scene.is-scrollytelling .scene__stage {
-  position: sticky;
-  top: 0;
-  display: block;
-  height: 100vh;
-  height: 100svh;
-}
-
-.convergence.is-scrollytelling .convergence__canvas,
-.scene.is-scrollytelling .scene__canvas {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
-}
-
-.convergence.is-scrollytelling .convergence__caption,
-.scene.is-scrollytelling .scene__caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 4rem var(--gutter) clamp(2rem, 6vh, 4rem);
-  background: linear-gradient(to top, var(--paper) 55%, transparent);
-  pointer-events: none;
-}
-
-/* Scenes with a centred caption (the plant map and the hardware scene). Their scripts add
-   .is-enhanced and .is-scrollytelling like the convergence scene, whose pinned stage, canvas
-   and caption rules they share. */
-
-.scene {
-  position: relative;
-  padding: clamp(1.5rem, 2.5vw, 2.5rem) var(--gutter);
-}
-
-.scene__stage {
-  position: relative;
-  display: grid;
-  gap: 2.5rem;
-}
-
-.scene__caption {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  justify-items: center;
-  gap: 1rem;
-  text-align: center;
-}
-
-.scene__tag {
-  margin-left: 0.5rem;
-  padding: 0.15rem 0.5rem;
-  border: 1px solid var(--mist);
-  border-radius: 999px;
-  font-size: 0.6875rem;
-}
-
-.scene__phases {
-  display: grid;
-  justify-items: center;
-  gap: 0.75rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.scene__phase {
-  max-width: 32ch;
-  color: var(--ink);
-  font-size: clamp(1.375rem, 2.4vw, 2rem);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
-}
-
-.scene__canvas {
-  display: none;
-  width: 100%;
-  height: clamp(22rem, 60vh, 36rem);
-  touch-action: pan-y;
-}
-
-.scene.is-enhanced .scene__canvas {
-  display: block;
-}
-
-.scene.is-scrollytelling {
-  padding: 0;
-}
-
-.plants.is-scrollytelling {
-  height: 340vh;
-}
-
-.hardware.is-scrollytelling {
-  height: 380vh;
-}
-
-/* While pinned, the phases share one slot and cross-fade. */
-.scene.is-scrollytelling .scene__phases {
-  grid-template-areas: "phase";
-}
-
-.scene.is-scrollytelling .scene__phase {
-  grid-area: phase;
-  opacity: 0;
-  transform: translateY(0.5rem);
-  filter: blur(0.3rem);
-  transition:
-    opacity 600ms var(--ease-out),
-    transform 600ms var(--ease-out),
-    filter 600ms var(--ease-out);
-}
-
-.scene.is-scrollytelling .scene__phase.is-active {
-  opacity: 1;
-  transform: none;
-  filter: none;
+  box-shadow: 0 1rem 2.5rem rgb(42 54 68 / 14%);
 }
 
 /* Logo showcase */
@@ -984,7 +660,6 @@ a {
   overflow: hidden;
   padding: clamp(4rem, 9vw, 7rem) var(--gutter);
   border-radius: 1rem;
-  background: var(--surface);
   text-align: center;
 }
 
@@ -1000,7 +675,7 @@ a {
 .cta__logo {
   width: 2.5rem;
   height: auto;
-  filter: var(--shadow-logo-small);
+  filter: drop-shadow(0 0.4rem 0.8rem rgb(71 91 115 / 18%));
 }
 
 .cta .section-title {
@@ -1056,7 +731,7 @@ a {
   text-decoration: none;
 }
 
-.site-footer__logo .logven-mark {
+.site-footer__logo img {
   width: auto;
   height: 1.15rem;
 }
@@ -1102,27 +777,6 @@ a {
 
 /* Responsive */
 
-/* Below this the row of steps gets cramped, so they share one slot and show the active one. */
-@media (max-width: 900px) {
-  .convergence__steps {
-    grid-template-columns: 1fr;
-  }
-
-  .convergence.is-scrollytelling .convergence__steps {
-    grid-template-areas: "step";
-  }
-
-  .convergence.is-scrollytelling .convergence__step {
-    grid-area: step;
-    opacity: 0;
-    transition: opacity 500ms var(--ease-out);
-  }
-
-  .convergence.is-scrollytelling .convergence__step.is-active {
-    opacity: 1;
-  }
-}
-
 @media (max-width: 1024px) {
   .site-footer__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1144,8 +798,8 @@ a {
       radial-gradient(
         ellipse 105% 80% at 50% 100%,
         var(--paper) 0,
-        color-mix(in srgb, var(--paper) 94%, transparent) 45%,
-        color-mix(in srgb, var(--paper) 55%, transparent) 72%,
+        rgb(248 250 252 / 94%) 45%,
+        rgb(248 250 252 / 55%) 72%,
         transparent 100%
       );
   }
@@ -1177,48 +831,6 @@ a {
 
   .site-footer__rule {
     display: none;
-  }
-}
-
-/* Dark mode
-   Colours, shadows, the brand mark and the matrix palette switch through the tokens at the top.
-   This block holds only what differs structurally between the two themes. */
-
-@media (prefers-color-scheme: dark) {
-  /* Base */
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  .light-only {
-    display: none;
-  }
-
-  .dark-only {
-    display: block;
-  }
-
-  /* Layout: mist bands flatten to the page colour. */
-  .section--mist {
-    background: var(--paper);
-  }
-
-  /* Hero: sits on the plain page colour, without the silk image or the logo glow. */
-  .hero__image,
-  .hero__mark::before {
-    display: none;
-  }
-
-  /* An overlay gradient bands on dark, so hero-matrix.js fades each cell instead. */
-  .hero::after {
-    display: none;
-  }
-
-  /* Call to action: keeps the silk, darkened over the card surface. */
-  .cta__image {
-    opacity: 0.25;
-    filter: invert(0.9) hue-rotate(180deg) saturate(0.45);
   }
 }
 

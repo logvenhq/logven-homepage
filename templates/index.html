@@ -26,16 +26,13 @@
     <canvas class="hero__matrix" data-hero-matrix aria-hidden="true"></canvas>
 
     <div class="hero__mark">
-      <svg
-        class="logven-mark hero__logo"
-        viewBox="0 0 114 125"
+      <img
+        class="hero__logo"
+        src="{{ get_url(path='brand/hero-logo.svg') }}"
+        alt="Logven"
         width="114"
         height="125"
-        role="img"
-        aria-label="Logven"
       >
-        <use href="#logven-mark" />
-      </svg>
     </div>
 
     <div class="hero__content">
@@ -128,51 +125,10 @@
       </div>
     </section>
 
-    {# Scroll-driven scene (convergence.js): agent runs cluster, merge, harden into code and converge into the mark. #}
-    <section class="convergence" data-convergence aria-labelledby="convergence-title">
-      <div class="convergence__stage">
-        <canvas class="convergence__canvas" aria-hidden="true"></canvas>
-        <div class="convergence__caption">
-          <h2 id="convergence-title" class="eyebrow">From agents to software</h2>
-          <ol class="convergence__steps" role="list">
-            <li class="convergence__step">
-              <span class="convergence__step-title">Work</span>
-              <span class="convergence__step-copy">Agent workers do the job, and every run is a little different.</span>
-            </li>
-            <li class="convergence__step">
-              <span class="convergence__step-title">Analyse</span>
-              <span class="convergence__step-copy">At night, embeddings and semantic search group similar executions.</span>
-            </li>
-            <li class="convergence__step">
-              <span class="convergence__step-title">Consolidate</span>
-              <span class="convergence__step-copy">Equivalent agents merge into canonical data models.</span>
-            </li>
-            <li class="convergence__step">
-              <span class="convergence__step-title">Harden</span>
-              <span class="convergence__step-copy">Stable handoffs become deterministic code and integrations.</span>
-            </li>
-            <li class="convergence__step">
-              <span class="convergence__step-title">Converge</span>
-              <span class="convergence__step-copy">Each worker ends as a single traceable function.</span>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
     <figure class="story-media">
       <img
-        class="story-media__image light-only"
+        class="story-media__image"
         src="{{ get_url(path='images/stories/launch-window-ledger.avif') }}"
-        alt="A Logven sheet showing the launch window ledger in a mission operations database"
-        width="1920"
-        height="1080"
-        loading="lazy"
-        decoding="async"
-      >
-      <img
-        class="story-media__image dark-only"
-        src="{{ get_url(path='images/stories/launch-window-ledger-dark.avif') }}"
         alt="A Logven sheet showing the launch window ledger in a mission operations database"
         width="1920"
         height="1080"
@@ -195,21 +151,6 @@
         <p data-reveal>
           <strong>The end state is a dedicated plant-operations system.</strong> It <em>emerges from observed work rather than an upfront spec</em>, and it reduces model dependence and inference cost.
         </p>
-      </div>
-    </section>
-
-    {# Scroll-driven map (plant-field.js): the plants' reports flow into one system and the field calms. #}
-    <section class="scene plants" data-plant-field aria-labelledby="plants-title">
-      <div class="scene__stage">
-        <canvas class="scene__canvas" aria-hidden="true"></canvas>
-        <div class="scene__caption">
-          <h2 id="plants-title" class="eyebrow">36 geothermal plants <span class="scene__tag">Simulation</span></h2>
-          <ol class="scene__phases" role="list">
-            <li class="scene__phase">Every plant reports by PDF, email and spreadsheet, and someone keys the values in by hand.</li>
-            <li class="scene__phase">Logven reads each report as it arrives and writes it into one live state.</li>
-            <li class="scene__phase">Anomalies surface in one place and are resolved inside the workflow, not in an inbox.</li>
-          </ol>
-        </div>
       </div>
     </section>
 
@@ -239,22 +180,6 @@
         <p data-reveal>
           <strong>They sell agents. Agents are how we build the twin.</strong>
         </p>
-      </div>
-    </section>
-
-    {# Scroll-driven isometric scene (hardware.js): steps leave the model as code until it fits on the rack. #}
-    <section class="scene hardware" data-hardware aria-labelledby="hardware-title">
-      <div class="scene__stage">
-        <canvas class="scene__canvas" aria-hidden="true"></canvas>
-        <div class="scene__caption">
-          <h2 id="hardware-title" class="eyebrow">On your hardware</h2>
-          <ol class="scene__phases" role="list">
-            <li class="scene__phase">Agents call a large model in someone else’s cloud, at every step.</li>
-            <li class="scene__phase">As work hardens, steps leave the model and run as plain code.</li>
-            <li class="scene__phase">What still needs judgement fits a much smaller model.</li>
-            <li class="scene__phase">Small enough to run on your own hardware.</li>
-          </ol>
-        </div>
       </div>
     </section>
 

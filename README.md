@@ -25,8 +25,6 @@ Generated files are written to `public/`.
 - `content/` holds the homepage FAQ and the inner pages, whose sections live in front matter.
 - `static/css/style.css` contains the plain-CSS stylesheet, ordered tokens → base → layout →
   components → responsive → reduced motion.
-- `static/js/` contains the hero grid animation, the scroll reveal
-  the "From agents to software" convergence scene, the 36-plant contour map and the
-  "On your hardware" isometric scene, all loaded from `base.html`.
+- `static/js/` contains the hero grid animation and the scroll reveal, both loaded from `base.html`.
 - `static/fonts/` contains the self-hosted Geist variable font.
 - `static/images/` and `static/brand/` contain Logven's existing visual assets.

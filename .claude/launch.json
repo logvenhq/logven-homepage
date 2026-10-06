@@ -4,25 +4,8 @@
     {
       "name": "zola",
       "runtimeExecutable": "zola",
-      "runtimeArgs": [
-        "serve",
-        "--port",
-        "1111"
-      ],
+      "runtimeArgs": ["serve", "--port", "1111"],
       "port": 1111
-    },
-    {
-      "name": "zola-alt",
-      "runtimeExecutable": "zola",
-      "runtimeArgs": [
-        "serve",
-        "--port",
-        "1112",
-        "--output-dir",
-        "/private/tmp/claude-501/-Users-michelangelogubinelli-Github-logven-homepage/7925cd93-407f-41b9-94a1-6b799a630441/scratchpad/public",
-        "--force"
-      ],
-      "port": 1112
     }
   ]
 }
