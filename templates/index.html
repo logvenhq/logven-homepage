@@ -199,15 +199,15 @@
     </section>
 
     {# Scroll-driven map (plant-field.js): the plants' reports flow into one system and the field calms. #}
-    <section class="plants" data-plant-field aria-labelledby="plants-title">
-      <div class="plants__stage">
-        <canvas class="plants__canvas" aria-hidden="true"></canvas>
-        <div class="plants__caption">
-          <h2 id="plants-title" class="eyebrow">36 geothermal plants <span class="plants__tag">Simulation</span></h2>
-          <ol class="plants__phases" role="list">
-            <li class="plants__phase">Every plant reports by PDF, email and spreadsheet, and someone keys the values in by hand.</li>
-            <li class="plants__phase">Logven reads each report as it arrives and writes it into one live state.</li>
-            <li class="plants__phase">Anomalies surface in one place and are resolved inside the workflow, not in an inbox.</li>
+    <section class="scene plants" data-plant-field aria-labelledby="plants-title">
+      <div class="scene__stage">
+        <canvas class="scene__canvas" aria-hidden="true"></canvas>
+        <div class="scene__caption">
+          <h2 id="plants-title" class="eyebrow">36 geothermal plants <span class="scene__tag">Simulation</span></h2>
+          <ol class="scene__phases" role="list">
+            <li class="scene__phase">Every plant reports by PDF, email and spreadsheet, and someone keys the values in by hand.</li>
+            <li class="scene__phase">Logven reads each report as it arrives and writes it into one live state.</li>
+            <li class="scene__phase">Anomalies surface in one place and are resolved inside the workflow, not in an inbox.</li>
           </ol>
         </div>
       </div>
@@ -239,6 +239,22 @@
         <p data-reveal>
           <strong>They sell agents. Agents are how we build the twin.</strong>
         </p>
+      </div>
+    </section>
+
+    {# Scroll-driven isometric scene (hardware.js): steps leave the model as code until it fits on the rack. #}
+    <section class="scene hardware" data-hardware aria-labelledby="hardware-title">
+      <div class="scene__stage">
+        <canvas class="scene__canvas" aria-hidden="true"></canvas>
+        <div class="scene__caption">
+          <h2 id="hardware-title" class="eyebrow">On your hardware</h2>
+          <ol class="scene__phases" role="list">
+            <li class="scene__phase">Agents call a large model in someone else’s cloud, at every step.</li>
+            <li class="scene__phase">As work hardens, steps leave the model and run as plain code.</li>
+            <li class="scene__phase">What still needs judgement fits a much smaller model.</li>
+            <li class="scene__phase">Small enough to run on your own hardware.</li>
+          </ol>
+        </div>
       </div>
     </section>
 

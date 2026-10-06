@@ -4,9 +4,9 @@
 
   if (!section) return;
 
-  const canvas = section.querySelector(".plants__canvas");
-  const caption = section.querySelector(".plants__caption");
-  const phases = [...section.querySelectorAll(".plants__phase")];
+  const canvas = section.querySelector(".scene__canvas");
+  const caption = section.querySelector(".scene__caption");
+  const phases = [...section.querySelectorAll(".scene__phase")];
   const context = canvas.getContext("2d");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");

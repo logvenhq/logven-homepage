@@ -47,7 +47,7 @@
   --convergence-start: 92 104 117;
   --convergence-end: 32 42 52;
 
-  /* Plant map contour lines as an RGB triplet, read by plant-field.js. */
+  /* Scene line art as an RGB triplet: the plant map's contours and the hardware floor grid. */
   --topo-line: 116 126 137;
 
   /* Layout and motion */
@@ -673,7 +673,7 @@ a {
 }
 
 .convergence.is-scrollytelling .convergence__stage,
-.plants.is-scrollytelling .plants__stage {
+.scene.is-scrollytelling .scene__stage {
   position: sticky;
   top: 0;
   display: block;
@@ -682,7 +682,7 @@ a {
 }
 
 .convergence.is-scrollytelling .convergence__canvas,
-.plants.is-scrollytelling .plants__canvas {
+.scene.is-scrollytelling .scene__canvas {
   position: absolute;
   inset: 0;
   height: 100%;
@@ -690,7 +690,7 @@ a {
 }
 
 .convergence.is-scrollytelling .convergence__caption,
-.plants.is-scrollytelling .plants__caption {
+.scene.is-scrollytelling .scene__caption {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -700,21 +700,22 @@ a {
   pointer-events: none;
 }
 
-/* Plant map: plant-field.js adds .is-enhanced and .is-scrollytelling like the convergence scene,
-   whose pinned stage, canvas and caption rules it shares. */
+/* Scenes with a centred caption (the plant map and the hardware scene). Their scripts add
+   .is-enhanced and .is-scrollytelling like the convergence scene, whose pinned stage, canvas
+   and caption rules they share. */
 
-.plants {
+.scene {
   position: relative;
   padding: clamp(1.5rem, 2.5vw, 2.5rem) var(--gutter);
 }
 
-.plants__stage {
+.scene__stage {
   position: relative;
   display: grid;
   gap: 2.5rem;
 }
 
-.plants__caption {
+.scene__caption {
   position: relative;
   z-index: 1;
   display: grid;
@@ -723,7 +724,7 @@ a {
   text-align: center;
 }
 
-.plants__tag {
+.scene__tag {
   margin-left: 0.5rem;
   padding: 0.15rem 0.5rem;
   border: 1px solid var(--mist);
@@ -731,7 +732,7 @@ a {
   font-size: 0.6875rem;
 }
 
-.plants__phases {
+.scene__phases {
   display: grid;
   justify-items: center;
   gap: 0.75rem;
@@ -740,7 +741,7 @@ a {
   list-style: none;
 }
 
-.plants__phase {
+.scene__phase {
   max-width: 32ch;
   color: var(--ink);
   font-size: clamp(1.375rem, 2.4vw, 2rem);
@@ -749,28 +750,35 @@ a {
   text-wrap: balance;
 }
 
-.plants__canvas {
+.scene__canvas {
   display: none;
   width: 100%;
   height: clamp(22rem, 60vh, 36rem);
   touch-action: pan-y;
 }
 
-.plants.is-enhanced .plants__canvas {
+.scene.is-enhanced .scene__canvas {
   display: block;
+}
+
+.scene.is-scrollytelling {
+  padding: 0;
 }
 
 .plants.is-scrollytelling {
   height: 340vh;
-  padding: 0;
+}
+
+.hardware.is-scrollytelling {
+  height: 380vh;
 }
 
 /* While pinned, the phases share one slot and cross-fade. */
-.plants.is-scrollytelling .plants__phases {
+.scene.is-scrollytelling .scene__phases {
   grid-template-areas: "phase";
 }
 
-.plants.is-scrollytelling .plants__phase {
+.scene.is-scrollytelling .scene__phase {
   grid-area: phase;
   opacity: 0;
   transform: translateY(0.5rem);
@@ -781,7 +789,7 @@ a {
     filter 600ms var(--ease-out);
 }
 
-.plants.is-scrollytelling .plants__phase.is-active {
+.scene.is-scrollytelling .scene__phase.is-active {
   opacity: 1;
   transform: none;
   filter: none;
