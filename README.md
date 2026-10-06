@@ -26,6 +26,6 @@ Generated files are written to `public/`.
 - `static/css/style.css` contains the plain-CSS stylesheet, ordered tokens → base → layout →
   components → responsive → reduced motion.
 - `static/js/` contains the hero grid animation, the scroll reveal
-  and the "From agents to software" convergence scene, all loaded from `base.html`.
+  the "From agents to software" convergence scene and the 36-plant contour map, all loaded from `base.html`.
 - `static/fonts/` contains the self-hosted Geist variable font.
 - `static/images/` and `static/brand/` contain Logven's existing visual assets.
