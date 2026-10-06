@@ -256,7 +256,8 @@
     const toEdge = facing(to, -deltaX / length, -deltaY / length);
 
     for (let bridge = 0; bridge < bridges; bridge += 1) {
-      const pick = bridge * 3 + Math.floor(random() * 3);
+      // Skip the outermost runs, which are often strays far from their cluster.
+      const pick = 4 + bridge * 4 + Math.floor(random() * 4);
       const offset = random();
       if (pick < Math.min(fromEdge.length, toEdge.length)) bridgeLinks.push([fromEdge[pick], toEdge[pick], offset]);
     }
@@ -314,7 +315,7 @@
     linkReach = {
       similarity: clusterRadius * 1.6,
       code: codeUnit * 1.5,
-      bridge: Math.hypot(width * 0.3, sceneHeight * 0.55),
+      bridge: Math.hypot(width, sceneHeight) * 0.4,
     };
     dotRadius = Math.max(1.4, Math.min(codeUnit * 0.34, mark.spacing * markScale * 0.36));
     markBounds = { left: markLeft, top: markTop, size: (markSize.width + markSize.height) * markScale };
@@ -337,8 +338,11 @@
       // Work spans the whole canvas, edge to edge, before anything is grouped.
       work[x] = width * (0.01 + particle.u * 0.98);
       work[y] = height * (0.02 + particle.v * 0.96);
-      analyse[x] = width * centerU + particle.offsetX * clusterRadius;
-      analyse[y] = top + sceneHeight * centerV + particle.offsetY * clusterRadius;
+      const [offsetX, offsetY] = narrow
+        ? [particle.offsetY, particle.offsetX]
+        : [particle.offsetX, particle.offsetY];
+      analyse[x] = width * centerU + offsetX * clusterRadius;
+      analyse[y] = top + sceneHeight * centerV + offsetY * clusterRadius;
       consolidate[x] = groupCenter[0] + Math.cos(discAngle) * discRadius;
       consolidate[y] = groupCenter[1] + Math.sin(discAngle) * discRadius;
       harden[x] = codeLeft + slot.column * codeUnit;
