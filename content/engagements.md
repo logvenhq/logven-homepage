@@ -8,13 +8,13 @@ heading = "Start with one team."
 [[extra.sections]]
 title = "Pilot"
 body = [
-  "**A paid pilot on one team’s real workflows and data.**",
+  "**A paid pilot on one team’s real processes and data.**",
 ]
 
 [[extra.sections]]
 title = "Deployment"
 body = [
-  "**The converged system goes into production for that team.**",
+  "**Logven goes into production for that team.**",
 ]
 
 [[extra.sections]]
@@ -26,6 +26,6 @@ body = [
 [[extra.sections]]
 title = "Add-ons"
 body = [
-  "Custom tool integrations and finetuning of Logven’s models are available as add-ons.",
+  "Custom integrations and fine-tuning of Logven’s models for your domain are available as add-ons.",
 ]
 +++

@@ -36,10 +36,9 @@
     </div>
 
     <div class="hero__content">
-      <h1 id="hero-title" class="hero__title" data-reveal>The executable digital twin of your organisation.</h1>
+      <h1 id="hero-title" class="hero__title" data-reveal>The operating model of your company, built from the work itself.</h1>
       <p class="hero__lede" data-reveal>
-        Logven turns the manual work of specialised teams into traceable, deterministic software,
-        and builds a live model of how your company runs that leaders can see, version and optimise.
+        Logven lets your teams model their processes and automate them, on small private models that run on your own hardware. From that work it builds an operating model of the company, and keeps it as the system of record management can rely on.
       </p>
       <div class="actions" data-reveal>
         <a class="button" href="#pilot">Start a pilot</a>
@@ -53,7 +52,7 @@
       <h2 id="thesis-title" class="content-section__title" data-reveal>Thesis</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>Everyone built digital shadows of their organisation. We built the twin that runs it.</strong>
+          <strong>Every company runs on processes nobody has written down. Logven writes them down by running them.</strong>
         </p>
       </div>
     </section>
@@ -62,15 +61,15 @@
       <h2 id="concept-title" class="content-section__title" data-reveal>The idea</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>A company is state plus processes.</strong> State is its data. Processes are the functions that act on that data. Logven makes both explicit in one versioned system: GitHub for the state of the company.
+          <strong>A company is state plus processes.</strong> State is its data. Processes are what act on that data. Logven makes both explicit, in one structured, versioned system.
         </p>
 
         <p data-reveal>
-          <strong>The twin is built from executed work.</strong> It is not drawn or maintained by hand. Agents do the work, stable work is compiled into code, and inputs become state.
+          <strong>The model comes from the bottom up.</strong> Nobody draws it in a workshop or maintains it by hand. Teams model and automate the processes they already run, and every one of them becomes part of a single operating model of the company.
         </p>
 
         <p data-reveal>
-          Emails, documents, communications and numbers are simple data points, and together they are the whole company state. Because the model sits at a higher level of abstraction than any single task, improving it improves the work itself.
+          Once the company is computable, you can ask it questions. Emails, documents, figures and records all land as data in the same model. Instead of chasing people for status, management can ask the system and get answers grounded in the data.
         </p>
       </div>
     </section>
@@ -79,11 +78,11 @@
       <h2 id="problem-title" class="content-section__title" data-reveal>The problem</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>Specialised technical teams spend their time on manual work around data.</strong> They extract values from PDFs, update spreadsheets and databases, consolidate and analyse, write reports, process responses and resolve anomalies.
+          <strong>Specialised teams spend their days on manual work around data.</strong> They pull values out of PDFs, update spreadsheets and databases, consolidate and analyse, write reports, handle responses and chase anomalies.
         </p>
 
         <p data-reveal>
-          Leaders have no live view of how this work runs, so they cannot standardise expertise or optimise a department. Existing digital twins of an organisation mirror the company after the fact and do not change the work.
+          That knowledge lives in people’s heads and scattered files. Management has no reliable picture of how the work actually gets done, so it can’t standardise it, scale it or improve it. Process maps go stale the week they’re drawn, and custom software takes a year and breaks the first time the process changes.
         </p>
       </div>
     </section>
@@ -104,23 +103,27 @@
       <h2 id="solution-title" class="content-section__title" data-reveal>How it works</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>Agents are the prototype. Software is the product.</strong> Teams work with agent workers much like they would with Claude. Logven watches what those workers do, hardens the stable parts into plain code, and keeps the result as a versioned model of the company’s data and processes.
+          <strong>Reliable by design. Adaptive by nature.</strong> Logven uses AI to build deterministic automations, so you get the flexibility of language models and the predictability of software.
         </p>
 
         <p data-reveal>
-          <strong>First, work with agent workers.</strong> Users interact with workers the way they would with Claude, and the workers do the job. <strong>Then Logven analyses at night,</strong> running dynamic analysis of executions with embeddings, semantic search and similarity algorithms.
+          <strong>1. Model.</strong> Teams describe and run their processes in Logven, working with it the way they would with an assistant. Each process gets a clear structure: its inputs, its steps, its outputs.
         </p>
 
         <p data-reveal>
-          <strong>Next, it consolidates.</strong> Equivalent agents are merged and canonical data models are established. <strong>Then it hardens.</strong> Approval controls are added at validated decision points, and variable agent handoffs are replaced by generated deterministic code and system integrations.
+          <strong>2. Automate.</strong> Logven turns those processes into automations that run the same way every time, with approvals at the decision points that matter. Language models are used only where there is real ambiguity.
         </p>
 
         <p data-reveal>
-          <strong>Finally, it converges.</strong> Each worker ends up as a single traceable function. Language models stay only where real ambiguity remains.
+          <strong>3. Housekeeping.</strong> Every night, Logven reviews what ran. It merges duplicate processes, aligns data into shared models, fixes drift and standardises where it makes sense. The system stays clean on its own, so it doesn’t decay into another tangle of scripts.
         </p>
 
         <p data-reveal>
-          <strong>Logven is designed to run on customer hardware with smaller models.</strong> Today it is built from workers and sheets: the core is the data, sheets are the table view over it, and documents and emails are snapshots of parts of that state.
+          <strong>4. Operating model.</strong> Every process and every piece of data is connected into one model of how the company runs. It’s the system of record for operations, the way CRM is for customers and ERP is for money.
+        </p>
+
+        <p data-reveal>
+          <strong>Private by default.</strong> Logven runs on small models on your own hardware. Your data and your processes never leave the building.
         </p>
       </div>
     </section>
@@ -129,7 +132,7 @@
       <img
         class="story-media__image"
         src="{{ get_url(path='images/stories/launch-window-ledger.avif') }}"
-        alt="A Logven sheet showing the launch window ledger in a mission operations database"
+        alt="A Logven sheet showing a ledger in an operations database"
         width="1920"
         height="1080"
         loading="lazy"
@@ -141,15 +144,15 @@
       <h2 id="example-title" class="content-section__title" data-reveal>An example</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>We explored this approach with a geothermal team in the public sector.</strong>
+          <strong>We explored this with a public-sector geothermal team.</strong>
         </p>
 
         <p data-reveal>
-          The team manages data from 36 geothermal plants. Its workflow includes extracting values from PDFs, updating spreadsheets and databases, consolidating and analysing data, producing reports, processing responses, and resolving anomalies.
+          The team manages data from 36 geothermal plants: extracting values from PDFs, updating spreadsheets and databases, consolidating and analysing, producing reports, processing responses and resolving anomalies.
         </p>
 
         <p data-reveal>
-          <strong>The end state is a dedicated plant-operations system.</strong> It <em>emerges from observed work rather than an upfront spec</em>, and it reduces model dependence and inference cost.
+          <strong>The result is a plant-operations system that emerged from the team’s own work, not from a specification written upfront.</strong> It is reproducible, easy to maintain, and relies on models less over time, which keeps running costs down.
         </p>
       </div>
     </section>
@@ -170,15 +173,27 @@
       <h2 id="outcomes-title" class="content-section__title" data-reveal>What makes it different</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>The analyst category of “Digital Twin of an Organization” produces digital shadows:</strong> models that mirror the company. Logven’s twin runs it, so optimising the model changes the work.
+          <strong>Process tools describe the company. Logven runs it.</strong>
         </p>
 
         <p data-reveal>
-          A digital shadow is drawn and maintained by hand, and optimising it yields insight only. Logven’s twin is built from executed work, and optimising it changes how the work is done. Its agents are the means of building the twin, not the product, and the end state is traceable, deterministic software rather than dashboards.
+          Process mapping and mining show you how work happened. Logven is where the work happens, so improving the model improves the work.
         </p>
 
         <p data-reveal>
-          <strong>They sell agents. Agents are how we build the twin.</strong>
+          AI agent tools are flexible but unpredictable. Logven’s automations are deterministic, traceable and reproducible.
+        </p>
+
+        <p data-reveal>
+          Custom software needs a spec upfront and decays as processes change. Logven is built bottom-up from real work and maintains itself through housekeeping.
+        </p>
+
+        <p data-reveal>
+          Cloud AI sends your data out. Logven runs on private models on your hardware.
+        </p>
+
+        <p data-reveal>
+          <strong>One system, from the work of a single team to the model of the whole company.</strong>
         </p>
       </div>
     </section>
@@ -199,11 +214,11 @@
       <h2 id="who-title" class="content-section__title" data-reveal>Who it’s for</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>Logven works with enterprise and medium-to-large companies,</strong> for the people who do the work and the people accountable for it.
+          <strong>Logven is built for enterprise and medium-to-large companies,</strong> for the people who do the work and the people accountable for it.
         </p>
 
         <p data-reveal>
-          <strong>Technical, highly specialised teams</strong> get manual work removed and their expertise captured as software. <strong>VPs and department heads</strong> get their department as a system they can see, version and optimise.
+          <strong>Technical, specialised teams</strong> get the repetitive work off their plate, and their expertise kept as processes that run reliably. <strong>VPs and department heads</strong> get a clear, up-to-date picture of how their department works, and a system they can standardise and improve.
         </p>
       </div>
     </section>
@@ -212,7 +227,7 @@
       <h2 id="partners-title" class="content-section__title" data-reveal>Design partners</h2>
       <div class="content-section__copy">
         <p data-reveal>
-          <strong>We are building Logven with the engineering teams of our design partners,</strong> on their real workflows and data. A larger pilot is the next step.
+          <strong>We’re building Logven with the engineering teams of our design partners,</strong> on their real processes and data. A larger pilot is the next step.
         </p>
 
         <p data-reveal>

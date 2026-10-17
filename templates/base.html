@@ -16,6 +16,8 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Logven">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ config.title }} — {{ config.extra.tagline }}">
+    <meta name="twitter:description" content="{{ config.description }}">
     <meta name="twitter:image" content="{{ get_url(path='images/home/social-preview.png') }}">
     <meta name="twitter:image:alt" content="Logven">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='apple-touch-icon.png') }}">
@@ -42,7 +44,7 @@
               <img src="{{ get_url(path='brand/hero-logo.svg') }}" alt="" width="114" height="125">
               <span>Logven</span>
             </a>
-            <p>{{ config.extra.tagline }}. Built from executed work, designed to run on your hardware.</p>
+            <p>{{ config.extra.tagline }}. Built from real work, running on your hardware.</p>
           </div>
 
           <nav class="site-footer__column" aria-labelledby="footer-product">
