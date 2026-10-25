@@ -6,11 +6,11 @@
 
   const context = canvas.getContext("2d");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const colors = ["104, 135, 173", "119, 151, 188", "144, 169, 199"];
+  const colors = ["92, 124, 165", "108, 140, 180", "132, 158, 192"];
   const initialDensity = 0.16;
 
   let cells = [];
-  let cellSize = 32;
+  let cellSize = 18;
   let columns = 0;
   let rows = 0;
   let nextCell = 0;
@@ -39,7 +39,7 @@
         column: index % columns,
         row: Math.floor(index / columns),
         revealedAt: Infinity,
-        strength: 0.12 + Math.random() * 0.16,
+        strength: 0.09 + Math.random() * 0.14,
         color: colors[Math.floor(Math.random() * colors.length)],
         wakeX: 0,
         wakeY: 0,
@@ -63,7 +63,7 @@
     const bounds = canvas.getBoundingClientRect();
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
-    cellSize = bounds.width < 600 ? 26 : 32;
+    cellSize = bounds.width < 600 ? 14 : 18;
     columns = Math.ceil(bounds.width / cellSize);
     rows = Math.ceil(bounds.height / cellSize);
     canvas.width = Math.round(bounds.width * pixelRatio);
@@ -110,9 +110,9 @@
       if (wakeCenter && wakeFade > 0) {
         const deltaX = centerX - wakeCenter.x;
         const deltaY = centerY - wakeCenter.y;
-        const trailLength = 10 * cellSize;
-        const isInTrail = deltaY > -2.5 * cellSize && deltaY < trailLength;
-        const trailWidth = 7 * cellSize;
+        const trailLength = 320;
+        const isInTrail = deltaY > -80 && deltaY < trailLength;
+        const trailWidth = 224;
 
         if (isInTrail && Math.abs(deltaX) < trailWidth) {
           const horizontalFalloff = 1 - Math.abs(deltaX) / trailWidth;
@@ -153,7 +153,7 @@
     }
 
     if (nextCell < cells.length && time >= nextRevealAt) {
-      const batchSize = 1;
+      const batchSize = Math.max(1, Math.round(cells.length / 400));
 
       for (let count = 0; count < batchSize && nextCell < cells.length; count += 1) {
         cells[nextCell].revealedAt = time + count * 45;

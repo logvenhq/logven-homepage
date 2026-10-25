@@ -5,31 +5,31 @@ template = "index.html"
 # Rendered in the FAQ section of the homepage.
 [[extra.faq]]
 question = "What is Logven?"
-answer = "An adaptive system where teams model their processes and automate them. Logven connects those processes into an operating model of the company and keeps it as the system of record for how work gets done."
+answer = "The programmable model of your company. Teams turn the way they work into sheets and workers: structured data, and code that AI writes and people approve. Together they form one living model of the company, running on your own hardware."
 
 [[extra.faq]]
-question = "What is an operating model, in practice?"
-answer = "A structured, versioned model of your company’s data and the processes that act on it. Because it’s built from the work itself, it stays accurate, and management can query it directly instead of asking around."
+question = "What does “a programmable model of the company” mean?"
+answer = "A model you can run, not just read. Its state is everything the company knows, held as structured sheets. Its functions are everything the company does, held as workers. Because it is built from the work itself, it stays current, and you can query it, test changes on it and improve it the way you would improve software."
 
 [[extra.faq]]
 question = "Is it reliable enough for real operations?"
-answer = "Yes. Logven uses AI to build automations, but the automations themselves are deterministic: they run the same way every time and every step is traceable. Language models are only used where there’s genuine ambiguity, and approvals sit at the decision points that matter."
+answer = "Yes. AI helps write the workers, but the workers themselves run as deterministic code: the same inputs give the same results, and every step is logged and traceable. AI is called only where a step genuinely needs judgement, and people approve the decisions that matter."
 
 [[extra.faq]]
-question = "What does “housekeeping” do?"
-answer = "It’s Logven’s nightly maintenance. It merges duplicate processes, aligns data into shared models and standardises where useful, so the system stays well structured as it grows instead of turning into a pile of one-off automations."
+question = "Does it get harder to maintain as it grows?"
+answer = "No, it gets simpler. Housekeeping runs in the background, merging equivalent workers, aligning data into shared sheets and retiring what is no longer used, so the system stays clean instead of turning into a pile of one-off automations."
 
 [[extra.faq]]
 question = "Does it run on our own infrastructure?"
-answer = "Yes. Logven is designed to run on small private models on your own hardware, so your data stays inside your organisation and inference costs stay low."
+answer = "Yes. Logven runs on your own hardware or in your own cloud tenant. Its language, vision and time-series models are small enough to run privately, so your data stays inside your organisation and running costs stay low."
 
 [[extra.faq]]
 question = "Who uses Logven day to day?"
-answer = "Specialists use it to model and run their processes. Department heads and management use the operating model to understand, standardise and improve how the department runs."
+answer = "Specialist teams build and run workers on their own work. Department heads and leadership use the model of the company to see how work actually flows, to standardise it and to improve it."
 
 [[extra.faq]]
 question = "What does a pilot involve?"
-answer = "A paid pilot on one team’s real processes and data. From there, Logven moves to deployment and an annual licence priced per team, not per employee."
+answer = "A paid pilot on one team’s real processes and data. From there, Logven moves into production for that team under an annual licence priced per team, not per employee."
 
 [[extra.faq]]
 question = "Can Logven connect to our existing tools?"

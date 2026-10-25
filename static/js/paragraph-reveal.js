@@ -1,6 +1,5 @@
 (() => {
   const textElements = [...document.querySelectorAll("[data-reveal]")];
-  const keyStatements = [...document.querySelectorAll(".content-section__copy strong")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const reveal = (element) => {
@@ -9,27 +8,11 @@
 
   const revealAll = () => {
     textElements.forEach(reveal);
-    keyStatements.forEach((statement) => statement.classList.add("is-emphasized"));
   };
 
   if (reduceMotion.matches) {
     revealAll();
     return;
-  }
-
-  if (keyStatements.length) {
-    const statementObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-emphasized");
-          statementObserver.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -18%", threshold: 0.65 },
-    );
-
-    keyStatements.forEach((statement) => statementObserver.observe(statement));
   }
 
   if (!textElements.length) return;
@@ -49,7 +32,7 @@
     const timer = window.setTimeout(() => {
       reveal(element);
       pendingRevealTimers.delete(element);
-    }, 1100 + index * 180);
+    }, 600 + index * 120);
 
     pendingRevealTimers.set(element, timer);
   });

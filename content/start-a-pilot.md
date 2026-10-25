@@ -1,6 +1,6 @@
 +++
 title = "Start a pilot"
-description = "Run a paid pilot on one team’s real processes and data."
+description = "A paid pilot on one team’s real processes and data."
 
 [extra]
 heading = "Start with one team. End with a model of the company."
@@ -10,14 +10,14 @@ action = { label = "Start a pilot", href = "mailto:info@logven.com?subject=Logve
 [[extra.sections]]
 title = "The pilot"
 body = [
-  "**A paid pilot on one team’s real processes and data.** Your team models and runs its processes in Logven, working with it the way it would with an assistant.",
-  "Logven turns those processes into automations that run the same way every time, with approvals at the decision points that matter. Every night, housekeeping merges duplicates, aligns data into shared models and keeps the system clean.",
+  "**A paid pilot on one team’s real processes and data.** The team describes how it works, and Logven turns that into sheets and workers: structured data, and code that AI writes and a person approves.",
+  "From then on the workers run the same way every time, calling AI only where a step needs judgement. Every run is logged, and housekeeping keeps the system clean in the background.",
 ]
 
 [[extra.sections]]
 title = "After the pilot"
 body = [
-  "**Logven moves to deployment for that team,** under an annual licence priced per team, not per employee.",
+  "**Logven goes into production for that team,** under an annual licence priced per team, not per employee. Each new team builds on the same model of the company.",
   "Custom integrations and fine-tuning of Logven’s models for your domain are available as add-ons.",
 ]
 

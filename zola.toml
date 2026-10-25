@@ -1,6 +1,6 @@
 base_url = "https://logven.com"
 title = "Logven"
-description = "Logven is an adaptive system for teams to model their processes and automate them, on small private models running on your own hardware. It builds an operating model of your company and keeps it as the system of record."
+description = "Logven is the programmable model of your company. Teams model and automate their processes with language, vision, time-series and decision models running on your own hardware, and Logven connects them into one model you can query and change like software."
 default_language = "en"
 
 # Assets are maintained as plain CSS and static files.
@@ -14,7 +14,7 @@ minify_html = true
 smart_punctuation = true
 
 [extra]
-tagline = "The operating model of your company"
+tagline = "The programmable model of your company"
 
 # Logo showcase ("Developed in collaboration with"). Hidden for now; set to true to show it again.
 show_partners = false

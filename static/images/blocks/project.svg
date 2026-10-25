@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Project--Logven" height="14" width="14">
+  <clipPath id="project-icon-shape"><path d="M6.68 0.32A0.65 0.65 0 0 1 7.32 0.32L12.72 3.33A0.65 0.65 0 0 1 13.05 3.9L13.05 10.09A0.65 0.65 0 0 1 12.72 10.66L7.32 13.67A0.65 0.65 0 0 1 6.68 13.67L1.28 10.66A0.65 0.65 0 0 1 0.95 10.09L0.95 3.9A0.65 0.65 0 0 1 1.28 3.33L6.68 0.32Z"></path></clipPath>
+  <g clip-path="url(#project-icon-shape)">
+    <path fill="#FAD497" d="M-0.4 1.79L7 5.91L7 10L-0.4 5.88Z"></path>
+    <path fill="#EB766B" d="M7 5.91L14.4 1.79L14.4 5.88L7 10Z"></path>
+    <path fill="#A394F2" d="M-0.4 5.88L7 10L7 15.1L-0.4 10.98Z"></path>
+    <path fill="#8F7FE6" d="M7 10L14.4 5.88L14.4 10.98L7 15.1Z"></path>
+    <path fill="#F5B467" d="M7 6.91L-0.4 2.79L7 -4L14.4 2.79Z"></path>
+  </g>
+</svg>
