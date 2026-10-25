@@ -1016,7 +1016,7 @@ main > .hero:first-child {
 .lined__cell--code::after {
   position: absolute;
   z-index: 1;
-  top: -2px;
+  top: -1px;
   width: 3px;
   height: 3px;
   content: "";
@@ -1090,7 +1090,7 @@ main > .hero:first-child {
 
 /* Code card: the app's card, a slightly darker surface with its soft shadow and no border. */
 .code {
-  height: 100%;
+  height: clamp(24rem, 32vw, 28.5rem);
   overflow: hidden;
   margin: 0;
   border-radius: 0.5rem;
