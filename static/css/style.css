@@ -1484,15 +1484,14 @@ main > .hero:first-child {
 
 .render-shot .rs-activity::before {
   position: absolute;
-  z-index: 3;
-  top: 97px;
-  right: 5.7rem;
-  width: 8px;
-  height: 8px;
-  transform: rotate(45deg);
-  background: #ffffff;
-  box-shadow: 2px 2px 3px rgb(29 32 39 / 5%);
-  content: "";
+  z-index: 4;
+  top: 74px;
+  right: 3.65rem;
+  color: #1d2027;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 17px;
+  content: "12 runs";
 }
 
 .render-shot .rs-activity::after {
@@ -1500,16 +1499,19 @@ main > .hero:first-child {
   z-index: 3;
   top: 68px;
   right: 3rem;
+  display: flex;
+  align-items: flex-end;
+  width: 9.75rem;
+  height: 3.625rem;
   padding: 6px 9px;
   border-radius: 6px;
-  color: #1d2027;
+  color: #83868f;
   background: #ffffff;
   box-shadow: 0 10px 24px rgb(29 32 39 / 14%), 0 2px 6px rgb(29 32 39 / 8%);
   font-size: 12px;
-  font-weight: 600;
   line-height: 17px;
   white-space: nowrap;
-  content: "Jun 18 · 12 runs";
+  content: "Jun 18 · Worker activity";
 }
 
 .render-shot .rs-activity__head {
@@ -1747,35 +1749,45 @@ main > .hero:first-child {
 }
 
 .card__media {
-  --model-card-bg: #3f6fc9;
+  --model-card-bg: #233f86;
+  --model-card-image: url("../images/posts/model-vision.webp");
   position: relative;
   isolation: isolate;
   overflow: hidden;
   aspect-ratio: 16 / 10;
   border-radius: var(--radius);
   background-color: var(--model-card-bg);
-  background-image: radial-gradient(rgb(255 255 255 / 10%) 1px, transparent 1.3px);
-  background-size: 16px 16px;
+  background-image:
+    radial-gradient(rgb(255 255 255 / 10%) 1px, transparent 1.3px),
+    var(--model-card-image);
+  background-position: 0 0, center;
+  background-repeat: repeat, no-repeat;
+  background-size: 16px 16px, cover;
 }
 
 .card__media--language {
   --model-card-bg: #a86f22;
+  --model-card-image: url("../images/posts/model-language.webp");
 }
 
 .card__media--vision {
-  --model-card-bg: #208da3;
+  --model-card-bg: #173f8f;
+  --model-card-image: url("../images/posts/model-vision.webp");
 }
 
 .card__media--timeseries {
-  --model-card-bg: #367d5c;
+  --model-card-bg: #24581f;
+  --model-card-image: url("../images/posts/model-timeseries.webp");
 }
 
 .card__media--decision {
-  --model-card-bg: #3f6fc9;
+  --model-card-bg: #43246f;
+  --model-card-image: url("../images/posts/model-decision.webp");
 }
 
 .card__media--retrieval {
-  --model-card-bg: #b95f55;
+  --model-card-bg: #a92f0b;
+  --model-card-image: url("../images/posts/model-retrieval.webp");
 }
 
 .card__media::after {
