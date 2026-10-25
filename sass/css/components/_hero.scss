@@ -77,7 +77,7 @@
 .hero__mark {
   position: absolute;
   z-index: 3;
-  top: calc(var(--header-height) + clamp(5rem, 15vh, 9rem));
+  top: calc(var(--header-height) + clamp(8rem, 22vh, 13rem));
   left: 50%;
   width: clamp(2.5rem, 3.4vw, 3.1rem);
   aspect-ratio: 114 / 125;
