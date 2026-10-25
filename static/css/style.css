@@ -1784,12 +1784,13 @@ main > .hero:first-child {
 .model-motif--code {
   --motif-accent: #b57b28;
   --motif-tint: rgb(181 123 40 / 8%);
-  inset: -4% -12% -10% -4%;
+  inset: -4% -12% -10% -7%;
   width: auto;
   height: auto;
   overflow: hidden;
   padding: clamp(1rem, 2vw, 1.5rem) 0 5rem;
   background: rgb(255 255 255 / 38%);
+  color: var(--motif-accent);
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: clamp(0.68rem, 0.9vw, 0.86rem);
   line-height: clamp(1.35rem, 1.8vw, 1.7rem);
@@ -1808,11 +1809,11 @@ main > .hero:first-child {
 }
 
 .model-motif--code .code__ctx {
-  color: #d09a4b;
+  color: #cf9440;
 }
 
 .model-motif--code .code__string {
-  color: #956726;
+  color: #8f611f;
 }
 
 .model-motif--chart {
