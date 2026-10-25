@@ -1735,55 +1735,73 @@ main > .hero:first-child {
   pointer-events: none;
 }
 
+/* Each illustration shares the media's 8:5 canvas. Paths can continue past
+   its edges, while the fade keeps the label clear at every card width. */
 .model-motif {
+  --motif-accent: #4a80dc;
+  --motif-tint: rgb(74 128 220 / 10%);
   position: absolute;
   z-index: 1;
-  inset: -8% -5%;
-  width: auto;
-  height: auto;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   margin: 0;
   color: var(--ink);
+  pointer-events: none;
 }
 
 .model-motif--code {
-  overflow: hidden;
-  padding: clamp(1.1rem, 2vw, 1.6rem) 0 5rem;
+  --motif-accent: #b57b28;
+  --motif-tint: rgb(181 123 40 / 8%);
   background: rgb(255 255 255 / 38%);
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-size: clamp(0.65rem, 0.9vw, 0.85rem);
-  line-height: clamp(1.35rem, 1.8vw, 1.7rem);
-  mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
 }
 
-.model-motif--code > span {
-  display: block;
-  min-width: max-content;
-  padding-right: 1rem;
-  white-space: pre;
+.model-motif__code-token {
+  fill: none;
+  stroke: #b4b7bf;
+  stroke-width: 3;
+  stroke-linecap: round;
 }
 
-.model-motif--code i {
-  display: inline-block;
-  width: 3rem;
-  padding-right: 0.8rem;
-  color: #c8cad1;
-  font-style: normal;
-  text-align: right;
+.model-motif__code-accent {
+  stroke: var(--motif-accent);
 }
 
-.model-motif__line--active {
-  background: #edf3fd;
+.model-motif__code-bracket {
+  fill: none;
+  stroke: var(--motif-accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.model-motif__line--active i {
-  color: #4a80dc;
+.model-motif--chart {
+  --motif-accent: #43916c;
+  --motif-tint: rgb(67 145 108 / 10%);
+}
+
+.model-motif--retrieval {
+  --motif-accent: #cd7065;
+  --motif-tint: rgb(205 112 101 / 6%);
+}
+
+.model-motif path,
+.model-motif circle {
+  vector-effect: non-scaling-stroke;
+}
+
+.model-motif--vision {
+  --motif-accent: #2b9fb6;
+  inset: -8% -5%;
+  width: auto;
+  height: auto;
 }
 
 .model-motif__object {
   position: absolute;
-  border: 1px solid #4a80dc;
+  border: 1px solid var(--motif-accent);
   border-radius: 2px;
-  background: rgb(74 128 220 / 3%);
+  background: rgb(43 159 182 / 3%);
 }
 
 .model-motif__object::before {
@@ -1793,7 +1811,7 @@ main > .hero:first-child {
   padding: 0.12rem 0.32rem;
   border-radius: 2px 2px 0 0;
   color: var(--paper-on-dark);
-  background: #4a80dc;
+  background: var(--motif-accent);
   font-size: clamp(0.45rem, 0.58vw, 0.55rem);
   line-height: 0.75rem;
   content: attr(data-label);
@@ -1820,112 +1838,69 @@ main > .hero:first-child {
   right: 0;
   left: 0;
   height: 1px;
-  background: #4a80dc;
-  box-shadow: 0 0 0.5rem rgb(74 128 220 / 60%);
+  background: var(--motif-accent);
+  box-shadow: 0 0 0.5rem rgb(43 159 182 / 60%);
 }
 
-.model-motif--chart {
-  overflow: visible;
+.model-motif__range {
+  fill: var(--motif-tint);
 }
 
 .model-motif__actual,
-.model-motif__forecast {
+.model-motif__forecast,
+.model-motif__route,
+.model-motif__branch {
   fill: none;
-  stroke: #4a80dc;
+  stroke: var(--motif-accent);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 3;
-  vector-effect: non-scaling-stroke;
+  stroke-width: 1.75;
 }
 
 .model-motif__forecast {
-  stroke-dasharray: 5 6;
+  stroke-dasharray: 4 5;
 }
 
-.model-motif--decision {
-  overflow: visible;
-}
-
-.model-motif__connector {
-  fill: none;
-  stroke: #b4b7bf;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.model-motif__branch {
+  stroke: #c8cad1;
   stroke-width: 1.25;
-  vector-effect: non-scaling-stroke;
 }
 
-.model-motif__node rect {
-  fill: rgb(255 255 255 / 60%);
+.model-motif__point {
+  fill: var(--hero);
   stroke: #b4b7bf;
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
+  stroke-width: 1.25;
 }
 
-.model-motif__node text {
-  fill: var(--muted);
-  font-family: "Geist", system-ui, sans-serif;
-  font-size: 11px;
-  text-anchor: middle;
+.model-motif__point.is-selected {
+  fill: var(--hero);
+  stroke: var(--motif-accent);
+  stroke-width: 1.75;
 }
 
-.model-motif__node--root rect,
-.model-motif__node.is-selected rect {
-  fill: #edf3fd;
-  stroke: #4a80dc;
+.model-motif__choice {
+  fill: var(--motif-accent);
 }
 
-.model-motif__node--root text,
-.model-motif__node.is-selected text {
-  fill: #4a80dc;
-  font-weight: 550;
-}
-
-.model-motif--retrieval {
-  overflow: visible;
-}
-
-.model-motif__query rect {
-  fill: rgb(255 255 255 / 58%);
-  stroke: #b4b7bf;
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
-}
-
-.model-motif__query circle,
-.model-motif__query path {
+.model-motif__check {
   fill: none;
-  stroke: #4a80dc;
+  stroke: #fff;
   stroke-linecap: round;
+  stroke-linejoin: round;
   stroke-width: 1.5;
-  vector-effect: non-scaling-stroke;
 }
 
-.model-motif__query text,
-.model-motif__document text {
-  fill: var(--muted);
-  font-family: "Geist", system-ui, sans-serif;
-  font-size: 11px;
+.model-motif__embedding {
+  fill: var(--motif-accent);
+  opacity: 0.85;
 }
 
-.model-motif__document rect {
-  fill: rgb(255 255 255 / 42%);
-  stroke: #b4b7bf;
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
+.model-motif__embedding--soft {
+  opacity: 0.5;
 }
 
-.model-motif__document path {
-  fill: none;
-  stroke: #83868f;
-  stroke-linecap: round;
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
-}
-
-.model-motif__document text {
-  fill: #4a80dc;
-  text-anchor: middle;
+.model-motif__embedding--faint {
+  opacity: 0.25;
 }
 
 /* The category label sits below the model's characteristic visual motif. */

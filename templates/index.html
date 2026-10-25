@@ -312,7 +312,11 @@
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <pre class="model-motif model-motif--code" aria-hidden="true"><span><i>1</i><span class="code__keyword">const</span> result = <span class="code__keyword">await</span> ctx.<span class="code__fn">llm</span>({</span><span><i>2</i>  model: <span class="code__string">"gemma-3-12b"</span>,</span><span><i>3</i>  document: report,</span><span class="model-motif__line--active"><i>4</i>  output: { supplier, date, status }</span><span><i>5</i>});</span><span><i>6</i> </span><span><i>7</i><span class="code__keyword">await</span> ctx.sheets.<span class="code__fn">create_record</span>(</span><span><i>8</i>  <span class="code__string">"supplier_reports"</span>,</span><span><i>9</i>  result</span><span><i>10</i>);</span></pre>
+                <svg class="model-motif model-motif--code" aria-hidden="true" viewBox="0 0 400 250">
+                  <path class="model-motif__code-bracket" d="M58 28h-5q-12 0-12 12v35q0 16-13 18 13 2 13 18v35q0 12 12 12h5M342 28h5q12 0 12 12v35q0 16 13 18-13 2-13 18v35q0 12-12 12h-5"/>
+                  <path class="model-motif__code-token model-motif__code-accent" d="M86 52h132M86 136h196"/>
+                  <path class="model-motif__code-token" d="M110 80h190M110 108h142"/>
+                </svg>
                 <p class="card__overlay"><span>Language.</span><span>Documents stay local.</span></p>
               </div>
               <h3 class="card__title">Language models where the paperwork lives</h3>
@@ -336,7 +340,12 @@
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <svg class="model-motif model-motif--chart" aria-hidden="true" viewBox="0 0 360 116" preserveAspectRatio="none"><path class="model-motif__actual" d="M0 66C25 62 32 23 57 35S91 63 113 39s32-45 58-31 35 48 58 36 31-33 57-27"/><path class="model-motif__forecast" d="M286 17c24-5 39 11 74-12"/></svg>
+                <svg class="model-motif model-motif--chart" aria-hidden="true" viewBox="0 0 400 250">
+                  <path class="model-motif__range" d="M292 91C330 64 357 58 416 27V126C369 128 334 111 292 91Z"/>
+                  <path class="model-motif__actual" d="M-16 132 5 127 23 135 42 105 59 113 78 79 95 88 112 58 131 73 148 69 166 96 184 88 202 116 220 109 238 80 256 91 274 70 292 91"/>
+                  <path class="model-motif__forecast" d="M292 91C330 78 357 88 416 65"/>
+                  <circle class="model-motif__point is-selected" cx="292" cy="91" r="4"/>
+                </svg>
                 <p class="card__overlay"><span>Time series.</span><span>Telemetry stays inside.</span></p>
               </div>
               <h3 class="card__title">Time-series models close to the equipment</h3>
@@ -346,7 +355,14 @@
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <svg class="model-motif model-motif--decision" aria-hidden="true" viewBox="0 0 360 220"><path class="model-motif__connector" d="M180 58v36M62 94h236M62 94v32M180 94v32M298 94v32"/><g class="model-motif__node model-motif__node--root"><rect x="122" y="18" width="116" height="40" rx="5"/><text x="180" y="43">Build plan</text></g><g class="model-motif__node is-selected"><rect x="14" y="126" width="96" height="44" rx="5"/><text x="62" y="153">Plan A · 91%</text></g><g class="model-motif__node"><rect x="132" y="126" width="96" height="44" rx="5"/><text x="180" y="153">Plan B · 74%</text></g><g class="model-motif__node"><rect x="250" y="126" width="96" height="44" rx="5"/><text x="298" y="153">Hold · 38%</text></g></svg>
+                <svg class="model-motif model-motif--decision" aria-hidden="true" viewBox="0 0 400 250">
+                  <path class="model-motif__branch" d="M-20 104H38C92 104 96 158 150 158M150 52C208 52 212 28 270 28H420M150 158C208 158 212 148 270 148H420M150 158C208 158 212 214 270 214H420"/>
+                  <path class="model-motif__route" d="M-20 104H38C92 104 96 52 150 52S212 92 270 92H420"/>
+                  <g class="model-motif__point"><circle cx="270" cy="28" r="5"/><circle cx="150" cy="158" r="5"/><circle cx="270" cy="148" r="5"/><circle cx="270" cy="214" r="5"/></g>
+                  <g class="model-motif__point is-selected"><circle cx="38" cy="104" r="6"/><circle cx="150" cy="52" r="6"/><circle cx="270" cy="92" r="6"/></g>
+                  <circle class="model-motif__choice" cx="354" cy="92" r="12"/>
+                  <path class="model-motif__check" d="m349 92 3.5 3.5 6.5-7"/>
+                </svg>
                 <p class="card__overlay"><span>Decisions.</span><span>Control stays with you.</span></p>
               </div>
               <h3 class="card__title">Decision models under your control</h3>
@@ -356,7 +372,40 @@
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <svg class="model-motif model-motif--retrieval" aria-hidden="true" viewBox="0 0 360 220"><g class="model-motif__query"><rect x="40" y="18" width="280" height="42" rx="5"/><circle cx="62" cy="38" r="7"/><path d="m67 43 6 6"/><text x="84" y="43">compressor threshold</text></g><path class="model-motif__connector" d="M180 60v28M68 88h224M68 88v30M180 88v30M292 88v30"/><g class="model-motif__document"><rect x="28" y="118" width="80" height="54" rx="4"/><path d="M42 135h48M42 145h35M42 155h42"/><text x="68" y="190">96%</text></g><g class="model-motif__document"><rect x="140" y="118" width="80" height="54" rx="4"/><path d="M154 135h48M154 145h35M154 155h42"/><text x="180" y="190">91%</text></g><g class="model-motif__document"><rect x="252" y="118" width="80" height="54" rx="4"/><path d="M266 135h48M266 145h35M266 155h42"/><text x="292" y="190">86%</text></g></svg>
+                <svg class="model-motif model-motif--retrieval" aria-hidden="true" viewBox="0 0 400 250">
+                  <g class="model-motif__embedding model-motif__embedding--faint">
+                    <circle cx="-7" cy="42" r="2.5"/><circle cx="12" cy="86" r="2"/>
+                    <circle cx="31" cy="25" r="2.5"/><circle cx="77" cy="32" r="2"/>
+                    <circle cx="106" cy="73" r="2.5"/><circle cx="122" cy="43" r="2"/>
+                    <circle cx="112" cy="128" r="2.5"/><circle cx="142" cy="99" r="2"/>
+                    <circle cx="169" cy="48" r="2.5"/><circle cx="199" cy="19" r="2"/>
+                    <circle cx="218" cy="132" r="2.5"/><circle cx="280" cy="24" r="2"/>
+                    <circle cx="307" cy="60" r="2.5"/><circle cx="288" cy="119" r="2"/>
+                    <circle cx="324" cy="143" r="2.5"/><circle cx="339" cy="28" r="2"/>
+                    <circle cx="380" cy="49" r="2.5"/><circle cx="411" cy="96" r="2"/>
+                    <circle cx="369" cy="180" r="2.5"/><circle cx="258" cy="176" r="2"/>
+                  </g>
+                  <g class="model-motif__embedding model-motif__embedding--soft">
+                    <circle cx="-3" cy="107" r="3"/><circle cx="22" cy="57" r="3.5"/>
+                    <circle cx="37" cy="119" r="3"/><circle cx="58" cy="57" r="3.5"/>
+                    <circle cx="84" cy="102" r="3"/><circle cx="75" cy="136" r="3.5"/>
+                    <circle cx="184" cy="85" r="3"/><circle cx="204" cy="49" r="3.5"/>
+                    <circle cx="232" cy="34" r="3"/><circle cx="257" cy="44" r="3.5"/>
+                    <circle cx="281" cy="74" r="3"/><circle cx="266" cy="103" r="3.5"/>
+                    <circle cx="234" cy="114" r="3"/><circle cx="206" cy="106" r="3.5"/>
+                    <circle cx="336" cy="89" r="3"/><circle cx="356" cy="65" r="3.5"/>
+                    <circle cx="391" cy="83" r="3"/><circle cx="405" cy="129" r="3.5"/>
+                    <circle cx="380" cy="153" r="3"/><circle cx="343" cy="128" r="3.5"/>
+                  </g>
+                  <g class="model-motif__embedding">
+                    <circle cx="24" cy="92" r="4"/><circle cx="44" cy="77" r="4.5"/>
+                    <circle cx="61" cy="100" r="4"/><circle cx="76" cy="78" r="4.5"/>
+                    <circle cx="208" cy="76" r="4"/><circle cx="225" cy="59" r="4.5"/>
+                    <circle cx="246" cy="77" r="5"/><circle cx="259" cy="62" r="4"/>
+                    <circle cx="228" cy="94" r="4"/><circle cx="363" cy="96" r="4.5"/>
+                    <circle cx="380" cy="114" r="4"/><circle cx="360" cy="128" r="4.5"/>
+                  </g>
+                </svg>
                 <p class="card__overlay"><span>Retrieval.</span><span>Knowledge stays private.</span></p>
               </div>
               <h3 class="card__title">Retrieval across private company knowledge</h3>
