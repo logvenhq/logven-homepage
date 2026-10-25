@@ -15,6 +15,12 @@
   background: #1e2731;
 }
 
+.cta .button {
+  height: 2rem;
+  padding: 0 0.8rem;
+  font-size: 0.875rem;
+}
+
 /* Kept out of the grid flow, so the backdrop always covers the whole panel. */
 .cta .cta__bg {
   grid-column: auto;
