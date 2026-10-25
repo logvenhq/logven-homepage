@@ -3,8 +3,8 @@ title = "Logven"
 description = "Logven is the programmable model of your company. Teams model and automate their processes with language, vision, time-series and decision models running on your own hardware, and Logven connects them into one model you can query and change like software."
 default_language = "en"
 
-# Assets are maintained as plain CSS and static files.
-compile_sass = false
+# Sass compiles to the single /css/style.css asset.
+compile_sass = true
 build_search_index = false
 generate_sitemap = true
 generate_robots_txt = true

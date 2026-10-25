@@ -1,0 +1,129 @@
+/* Site header: transparent at the top of the page, paper once scrolled (site-header.js). */
+
+/* Announcement: one line in the primary blue above the header. It scrolls away; the header stays. */
+.announcement {
+  position: relative;
+  z-index: 51;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--announcement-height);
+  padding: 0.45rem var(--inset);
+  color: var(--paper-on-dark);
+  background: var(--primary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+.announcement:hover {
+  background: var(--primary-hover);
+}
+
+.announcement span {
+  transition: transform 250ms var(--ease-out);
+}
+
+.announcement:hover span {
+  transform: translateX(0.2em);
+}
+
+.site-header {
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  transition: background-color 300ms ease;
+}
+
+/* The first hero slides up under the transparent header. */
+main > .hero:first-child {
+  margin-top: calc(-1 * var(--header-height));
+}
+
+/* Always transparent: a progressive blur, strongest at the top and gone by the bottom edge. */
+.site-header::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 -1.25rem;
+  content: "";
+  pointer-events: none;
+  opacity: 0;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  mask-image: linear-gradient(to bottom, #000 35%, transparent 100%);
+  transition: opacity 300ms ease;
+}
+
+/* Clear at the top of the page; the blur fades in once the page scrolls (site-header.js). */
+.site-header.is-scrolled::before {
+  opacity: 1;
+}
+
+.site-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  padding-inline: var(--inset);
+}
+
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink);
+  font-size: 1.25rem;
+  font-weight: 450;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+
+.site-header__logo img {
+  width: auto;
+  height: 1.35rem;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.6vw, 2.25rem);
+}
+
+.site-header__nav a {
+  color: var(--text);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.site-header__nav a:hover {
+  color: var(--ink);
+}
+
+.site-header__nav .site-header__cta {
+  display: inline-flex;
+  align-items: center;
+  height: 2rem;
+  padding: 0 0.8rem;
+  border-radius: var(--radius-ctl);
+  color: var(--paper-on-dark);
+  background: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease;
+}
+
+.site-header__nav .site-header__cta:hover {
+  color: var(--paper-on-dark);
+  background: var(--primary-hover);
+}
+
+.site-header__nav .site-header__cta:active {
+  transform: scale(0.96);
+}
+

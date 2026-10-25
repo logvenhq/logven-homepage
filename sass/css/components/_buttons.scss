@@ -1,0 +1,88 @@
+/* Buttons and links: filled, tonal shapes rather than outlines. */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+}
+
+/* Buttons follow the app: 5px corners, medium weight, a slight press on click. */
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: var(--radius-ctl);
+  color: var(--paper-on-dark);
+  background: var(--primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.button:hover {
+  background: var(--primary-hover);
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.button--tint {
+  color: var(--ink);
+  background: var(--shade);
+}
+
+/* The header button's size, for secondary actions in section heads. */
+.button--small {
+  height: 2.125rem;
+  padding: 0 0.85rem;
+  font-size: 0.875rem;
+}
+
+.button--tint:hover {
+  background: var(--shade-strong);
+}
+
+.button--light {
+  color: var(--ink);
+  background: var(--paper-on-dark);
+}
+
+.button--light:hover {
+  background: var(--hero);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.text-link span {
+  transition: transform 250ms var(--ease-out);
+}
+
+.text-link:hover span {
+  transform: translateX(0.2em);
+}
+
+.text-link--light {
+  color: rgb(255 255 255 / 82%);
+  transition: color 200ms ease;
+}
+
+.text-link--light:hover {
+  color: var(--paper-on-dark);
+}
+

@@ -1,0 +1,320 @@
+/* Carousel: the track bleeds into the side inset so the next card peeks in. */
+
+.carousel__controls {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.carousel__button {
+  display: grid;
+  place-items: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-ctl);
+  color: var(--ink);
+  background: var(--mist);
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    opacity 200ms ease;
+}
+
+.carousel__button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.carousel__button:hover:not(:disabled) {
+  background: var(--shade);
+}
+
+.carousel__button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.carousel__track {
+  --carousel-gap: 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * var(--carousel-gap)) / 3);
+  gap: var(--carousel-gap);
+  margin: 0 calc(-1 * var(--inset));
+  padding: 0 var(--inset);
+  overflow-x: auto;
+  overflow-y: hidden;
+  list-style: none;
+  scroll-padding-inline: var(--inset);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__item {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.card__media {
+  --model-card-bg: #233f86;
+  --model-card-image: url("../images/posts/model-vision.webp");
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius);
+  background-color: var(--model-card-bg);
+  background-image:
+    radial-gradient(rgb(255 255 255 / 10%) 1px, transparent 1.3px),
+    var(--model-card-image);
+  background-position: 0 0, center;
+  background-repeat: repeat, no-repeat;
+  background-size: 16px 16px, cover;
+}
+
+.card__media--language {
+  --model-card-bg: #a86f22;
+  --model-card-image: url("../images/posts/model-language.webp");
+}
+
+.card__media--vision {
+  --model-card-bg: #173f8f;
+  --model-card-image: url("../images/posts/model-vision.webp");
+}
+
+.card__media--timeseries {
+  --model-card-bg: #24581f;
+  --model-card-image: url("../images/posts/model-timeseries.webp");
+}
+
+.card__media--decision {
+  --model-card-bg: #43246f;
+  --model-card-image: url("../images/posts/model-decision.webp");
+}
+
+.card__media--retrieval {
+  --model-card-bg: #a92f0b;
+  --model-card-image: url("../images/posts/model-retrieval.webp");
+}
+
+.card__media::after {
+  position: absolute;
+  z-index: 2;
+  inset: 38% 0 0;
+  background: linear-gradient(to bottom, transparent, var(--model-card-bg) 60%);
+  content: "";
+  pointer-events: none;
+}
+
+/* Each illustration shares the media's 8:5 canvas. Paths can continue past
+   its edges, while the fade keeps the label clear at every card width. */
+.model-motif {
+  --motif-accent: #ffffff;
+  --motif-tint: rgb(255 255 255 / 12%);
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: var(--paper-on-dark);
+  pointer-events: none;
+}
+
+.model-motif--code {
+  inset: -4% -12% -10% -7%;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  padding: clamp(1rem, 2vw, 1.5rem) 0 5rem;
+  background: transparent;
+  color: var(--motif-accent);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(0.68rem, 0.9vw, 0.86rem);
+  line-height: clamp(1.35rem, 1.8vw, 1.7rem);
+}
+
+.model-motif--code > span {
+  display: block;
+  min-width: max-content;
+  padding-right: 2rem;
+  white-space: pre;
+}
+
+.model-motif--code .code__keyword,
+.model-motif--code .code__fn {
+  color: var(--motif-accent);
+}
+
+.model-motif--code .code__ctx {
+  color: rgb(255 255 255 / 76%);
+}
+
+.model-motif--code .code__string {
+  color: rgb(255 255 255 / 58%);
+}
+
+.model-motif path,
+.model-motif circle {
+  vector-effect: non-scaling-stroke;
+}
+
+.model-motif--vision {
+  inset: -8% -5%;
+  width: auto;
+  height: auto;
+}
+
+.model-motif__object {
+  position: absolute;
+  border: 1px solid var(--motif-accent);
+  border-radius: 2px;
+  background: rgb(255 255 255 / 4%);
+}
+
+.model-motif__object::before {
+  position: absolute;
+  top: -1rem;
+  left: -1px;
+  padding: 0.12rem 0.32rem;
+  border-radius: 2px 2px 0 0;
+  color: var(--model-card-bg);
+  background: var(--motif-accent);
+  font-size: clamp(0.45rem, 0.58vw, 0.55rem);
+  line-height: 0.75rem;
+  content: attr(data-label);
+}
+
+.model-motif__object--a {
+  top: 25%;
+  left: 13%;
+  width: 34%;
+  height: 40%;
+}
+
+.model-motif__object--b {
+  top: 14%;
+  right: 14%;
+  width: 29%;
+  height: 48%;
+}
+
+.model-motif__scan {
+  position: absolute;
+  z-index: 1;
+  top: 45%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--motif-accent);
+  box-shadow: 0 0 0.5rem rgb(255 255 255 / 50%);
+}
+
+.model-motif__range {
+  fill: var(--motif-tint);
+}
+
+.model-motif__actual,
+.model-motif__forecast,
+.model-motif__route,
+.model-motif__branch {
+  fill: none;
+  stroke: var(--motif-accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.75;
+}
+
+.model-motif__forecast {
+  stroke-dasharray: 4 5;
+}
+
+.model-motif__branch {
+  stroke: rgb(255 255 255 / 28%);
+  stroke-width: 1.25;
+}
+
+.model-motif__point {
+  fill: var(--model-card-bg);
+  stroke: rgb(255 255 255 / 48%);
+  stroke-width: 1.25;
+}
+
+.model-motif__point.is-selected {
+  fill: var(--model-card-bg);
+  stroke: var(--motif-accent);
+  stroke-width: 1.75;
+}
+
+.model-motif__choice {
+  fill: var(--motif-accent);
+}
+
+.model-motif__check {
+  fill: none;
+  stroke: var(--model-card-bg);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.model-motif__embedding {
+  fill: var(--motif-accent);
+  opacity: 0.85;
+}
+
+.model-motif__embedding--soft {
+  opacity: 0.5;
+}
+
+.model-motif__embedding--faint {
+  opacity: 0.25;
+}
+
+/* The category label sits below the model's characteristic visual motif. */
+.card__overlay {
+  position: absolute;
+  z-index: 3;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 2.75rem clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 1.8vw, 1.5rem);
+  color: var(--paper-on-dark);
+  font-size: clamp(1.375rem, 2.1vw, 2rem);
+  font-weight: 450;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.card__overlay span {
+  display: block;
+}
+
+.card__overlay span + span {
+  color: rgb(255 255 255 / 70%);
+}
+
+.card__title {
+  margin: 1.1rem 0 0.45rem;
+  color: var(--ink);
+  font-size: 1.1875rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+.card__text {
+  max-width: 30rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+

@@ -1,0 +1,196 @@
+/* Responsive */
+
+/* Narrower laptops: the activity card gets the width its header needs. */
+@media (max-width: 1360px) {
+  .mosaic {
+    grid-template-columns: minmax(0, 4.6fr) minmax(0, 3.3fr) minmax(0, 4.1fr);
+  }
+
+  .app-shot.render-shot--cards {
+    --fade-x: 4.5rem;
+  }
+
+  .render-shot .rs-stack {
+    grid-template-columns: repeat(2, 17.5rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .section-top__title,
+  .section-top__intro,
+  .intro__copy,
+  .pulse,
+  .lined__row {
+    grid-template-columns: 1fr;
+  }
+
+  .lined__cell--code,
+  .lined__row--flip .lined__cell--code {
+    order: 0;
+    border-right: 0;
+    border-left: 0;
+  }
+
+  .lined__cell--code::after {
+    display: none;
+  }
+
+  .note {
+    grid-column: span 6;
+  }
+
+  .mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .story-card--tall {
+    --render-h: 21rem;
+    grid-row: auto;
+    grid-column: 1 / -1;
+  }
+
+  .story-card--wide {
+    --render-h: 13rem;
+    grid-column: 1 / -1;
+  }
+
+  .story-card:nth-child(3) {
+    grid-column: 1;
+  }
+
+  .story-card:nth-child(4) {
+    grid-column: 2;
+  }
+
+  .render-shot .rs-stack {
+    grid-template-columns: repeat(2, minmax(0, 22rem));
+  }
+
+
+  .carousel__track {
+    grid-auto-columns: calc((100% - var(--gap)) / 2);
+  }
+
+  .audience__media,
+  .audience__copy {
+    grid-column: 1 / -1;
+  }
+
+  .audience__copy {
+    padding-left: 0;
+  }
+
+  .cta__copy,
+  .cta__path {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer__column {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --header-height: 3.25rem;
+  }
+
+  .site-header__nav a:not(.site-header__cta) {
+    display: none;
+  }
+
+  .site-header__logo {
+    font-size: 1.25rem;
+  }
+
+  .site-header__logo img {
+    height: 1.35rem;
+  }
+
+  .hero--home {
+    --hero-logo-band: clamp(10rem, 48vw, 13rem);
+    min-height: clamp(30rem, 82svh, 40rem);
+  }
+
+  .hero__mark {
+    width: clamp(2.25rem, 9vw, 2.75rem);
+  }
+
+
+  /* Every grid child spans the full width on phones. */
+  .grid > * {
+    grid-column: 1 / -1;
+  }
+
+  .faq__label,
+  .content-section__title {
+    margin-bottom: 1.25rem;
+  }
+
+  .mosaic {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .story-card:nth-child(n) {
+    grid-column: 1;
+  }
+
+  .story-card--tall {
+    --render-h: 19rem;
+  }
+
+  .render-shot .rs-stack {
+    grid-template-columns: repeat(2, 17.5rem);
+  }
+
+  .app-shot.render-shot--sheet {
+    left: var(--inset-card);
+  }
+
+  .facts {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel__track {
+    grid-auto-columns: 84%;
+  }
+
+
+  .audience__media img {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .site-footer__column {
+    grid-column: span 6;
+  }
+
+  .site-footer__nav {
+    flex-direction: column;
+  }
+}
+
+/* The second project card would only show as a sliver on phones. */
+@media (max-width: 520px) {
+  .render-shot .rs-stack > .as-card:nth-child(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .stage {
+    height: 20rem;
+  }
+
+  .note {
+    grid-column: 1 / -1;
+  }
+}
+
+.block--wash .audience__item {
+  background: var(--paper);
+}

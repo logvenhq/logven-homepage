@@ -1,0 +1,139 @@
+/* A year of worker runs, drawn like the app's project activity card. It runs off the
+   right edge of the page and fades, Linear-style. */
+.pulse {
+  grid-column: 6 / -1;
+  margin-right: calc(-1 * var(--inset));
+  padding: 3.5rem 0 1.5rem 0.5rem;
+  overflow: hidden;
+  mask-image:
+    linear-gradient(to right, #000 62%, transparent 98%),
+    linear-gradient(to bottom, #000 80%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.pulse__card {
+  width: max-content;
+  border-radius: 0.5rem;
+  background: #f9f9fb;
+  box-shadow:
+    0 1px 3px rgb(15 20 35 / 4%),
+    0 4px 14px rgb(15 20 35 / 5%);
+}
+
+.pulse__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0.9rem 1rem 0;
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+
+.pulse__head b {
+  font-weight: 600;
+}
+
+.pulse__head span {
+  color: var(--quiet);
+  font-size: 0.75rem;
+}
+
+.pulse__body {
+  --cell: 14px;
+  --gap: 4px;
+  --label: 2rem;
+  --month: 1.35rem;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.pulse__grid {
+  display: grid;
+  grid-template-columns: var(--label) repeat(53, var(--cell));
+  grid-template-rows: var(--month) repeat(7, var(--cell));
+  gap: var(--gap);
+  color: var(--quiet);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.pulse__grid i {
+  border-radius: 3px;
+}
+
+.pulse__month {
+  grid-row: 1;
+  white-space: nowrap;
+}
+
+.pulse__weekday {
+  grid-column: 1;
+  align-self: center;
+}
+
+/* The hovered day, with the app's outline and tooltip. */
+.pulse__day--active {
+  outline: 1.5px solid var(--muted);
+  outline-offset: 1px;
+}
+
+.pulse__tip {
+  position: absolute;
+  top: calc(var(--month) + var(--gap) + (var(--row) - 2) * (var(--cell) + var(--gap)));
+  left: calc(1rem + var(--label) + var(--gap) + (var(--col) - 2) * (var(--cell) + var(--gap)) + var(--cell) / 2);
+  display: grid;
+  padding: 0.375rem 0.625rem;
+  border-radius: 6px;
+  color: var(--quiet);
+  background: #ffffff;
+  box-shadow:
+    0 10px 24px rgb(29 32 39 / 14%),
+    0 2px 6px rgb(29 32 39 / 8%);
+  font-size: 0.75rem;
+  line-height: 17px;
+  white-space: nowrap;
+  transform: translate(-50%, calc(-100% - 0.5rem));
+}
+
+.pulse__tip span:first-child {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.pulse__tip b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pulse__tip em {
+  color: #d4645a;
+  font-style: normal;
+}
+
+.pulse__legend {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+  padding: 0.85rem 1rem 1rem;
+  color: var(--quiet);
+  font-size: 0.75rem;
+}
+
+.pulse__legend i {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+}
+
+.pulse__legend i:first-child {
+  margin-left: 0.3rem;
+}
+
+.pulse__legend i:last-child {
+  margin-right: 0.3rem;
+}
+

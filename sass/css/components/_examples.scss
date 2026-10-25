@@ -1,0 +1,98 @@
+/* Examples: two rows of example workers drifting slowly over a dot field. */
+
+.block--dots {
+  background-color: var(--wash);
+}
+
+/* Vertical room inside the clipped area so the card shadows are not cut off. */
+.wall {
+  display: grid;
+  gap: 0.75rem;
+  overflow: hidden;
+  margin-block: -1.5rem;
+  padding-block: 1.5rem;
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+.wall__track {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: wall-left 90s linear infinite;
+}
+
+.wall__row--right .wall__track {
+  animation-name: wall-right;
+}
+
+.wall:hover .wall__track {
+  animation-play-state: paused;
+}
+
+@keyframes wall-left {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wall-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Spacing lives on the items, so half the track is exactly one full set. */
+.example {
+  display: grid;
+  flex: none;
+  align-content: start;
+  width: clamp(18rem, 25vw, 23rem);
+  margin-right: 0.75rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 0.5rem;
+  background: var(--paper-on-dark);
+  box-shadow:
+    0 1px 3px rgb(15 20 35 / 4%),
+    0 4px 14px rgb(15 20 35 / 5%);
+}
+
+.example__domain {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.7rem;
+  color: var(--quiet);
+  font-size: 0.8125rem;
+}
+
+.example__domain img {
+  width: 0.8125rem;
+  height: 0.8125rem;
+}
+
+.example__name {
+  margin: 0 0 0.3rem;
+  color: var(--ink);
+  font-size: 1.0625rem;
+  font-weight: 450;
+  letter-spacing: -0.01em;
+}
+
+.example__text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.example__trigger {
+  justify-self: start;
+  margin-top: 0.85rem;
+}
+

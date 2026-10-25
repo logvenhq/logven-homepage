@@ -1,0 +1,34 @@
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero__matrix {
+    opacity: 0.45;
+  }
+
+  .hero__mark::before {
+    display: none;
+  }
+
+  .hero__logo,
+  .logos--marquee .logos__list,
+  .wall__track,
+  [data-reveal-text].is-visible {
+    animation: none;
+  }
+
+  [data-reveal-text] {
+    opacity: 1;
+    transform: none;
+  }
+}
+

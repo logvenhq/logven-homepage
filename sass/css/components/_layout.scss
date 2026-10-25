@@ -1,0 +1,15 @@
+/* Layout */
+
+.container {
+  width: 100%;
+  max-width: calc(90rem + 2 * var(--inset));
+  margin-inline: auto;
+  padding-inline: var(--inset);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+}
+

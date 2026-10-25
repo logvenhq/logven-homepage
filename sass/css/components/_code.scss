@@ -1,0 +1,283 @@
+/* Code: an ElevenLabs-style frame of hairlines. Rules run the full width of the page,
+   verticals mark the frame and its centre, and a small dot sits on each crossing. */
+
+.block--lined {
+  overflow: hidden;
+  padding-block: 0;
+}
+
+.lined {
+  position: relative;
+  border-inline: 1px solid var(--line);
+}
+
+.lined__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem;
+  padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.25rem, 3vw, 2.5rem) clamp(2rem, 3.5vw, 3rem);
+}
+
+.lined__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lined__row:last-child {
+  margin-bottom: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+/* The horizontal rule, extended to both edges of the page. */
+.lined__row::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  content: "";
+  background: var(--line);
+  transform: translateX(-50%);
+}
+
+.lined__row:last-child::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  content: "";
+  background: var(--line);
+  transform: translateX(-50%);
+}
+
+.lined__cell {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.lined__cell--code {
+  padding: clamp(0.75rem, 1.2vw, 1rem);
+  border-left: 1px solid var(--line);
+}
+
+/* Dots on the crossings: left edge, centre and right edge of each rule. */
+.lined__cell::before,
+.lined__cell--code::after {
+  position: absolute;
+  z-index: 1;
+  top: -1px;
+  width: 3px;
+  height: 3px;
+  content: "";
+  border-radius: 50%;
+  background: var(--quiet);
+}
+
+.lined__cell::before {
+  left: -2px;
+}
+
+/* Alternate rows put the code on the left. */
+.lined__row--flip .lined__cell--code {
+  order: -1;
+  border-right: 1px solid var(--line);
+  border-left: 0;
+}
+
+.lined__row--flip .lined__cell:not(.lined__cell--code)::after {
+  position: absolute;
+  z-index: 1;
+  top: -2px;
+  right: -2px;
+  width: 3px;
+  height: 3px;
+  content: "";
+  border-radius: 50%;
+  background: var(--quiet);
+}
+
+.lined__cell--code::after {
+  right: -2px;
+}
+
+.code-row__title {
+  margin: 0 0 0.6rem;
+  color: var(--ink);
+  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.code-row__text {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+  margin: 2rem 0 0;
+}
+
+.facts dt {
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+
+.facts dd {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+/* Code card: the app's card, a slightly darker surface with its soft shadow and no border. */
+.code {
+  position: relative;
+  height: clamp(24rem, 32vw, 28.5rem);
+  overflow: hidden;
+  margin: 0;
+  border-radius: 0.5rem;
+  background: var(--hero);
+  box-shadow:
+    0 1px 3px rgb(15 20 35 / 4%),
+    0 4px 14px rgb(15 20 35 / 5%);
+}
+
+.code::after {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 9rem;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    rgb(244 245 247 / 18%) 28%,
+    rgb(244 245 247 / 72%) 68%,
+    var(--hero) 100%
+  );
+}
+
+.code__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0 0.5rem 0 1rem;
+  font-size: 0.875rem;
+}
+
+.code__file {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.code__tag {
+  margin-right: auto;
+  color: var(--quiet);
+  font-size: 0.75rem;
+}
+
+/* The app's micro button. */
+.code__copy {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-ctl);
+  color: var(--quiet);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease;
+}
+
+.code__copy:hover {
+  background: #e6e7eb;
+}
+
+.code__copy:active {
+  transform: scale(0.96);
+}
+
+.code__copy img {
+  width: 0.875rem;
+  height: 0.875rem;
+  opacity: 0.6;
+}
+
+.code__copy[data-copied] img {
+  opacity: 1;
+}
+
+.code__body {
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0.25rem 0 1rem;
+  color: var(--ink);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.6rem;
+  counter-reset: code-line;
+}
+
+.code__line {
+  position: relative;
+  display: block;
+  min-width: max-content;
+  padding: 0 1.25rem 0 3rem;
+  white-space: pre;
+}
+
+.code__line::before {
+  position: absolute;
+  left: 0;
+  width: 2.1rem;
+  color: #c8cad1;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  content: counter(code-line);
+  counter-increment: code-line;
+  user-select: none;
+}
+
+.code__keyword {
+  color: #7f6fdb;
+}
+
+.code__string {
+  color: #3f9a63;
+}
+
+.code__ctx {
+  color: #c98a2e;
+}
+
+.code__fn {
+  color: #4a80dc;
+}
+
+.code__const {
+  color: #d4645a;
+}
+
