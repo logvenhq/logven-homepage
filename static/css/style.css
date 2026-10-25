@@ -1090,14 +1090,27 @@ main > .hero:first-child {
 
 /* Code card: the app's card, a slightly darker surface with its soft shadow and no border. */
 .code {
+  position: relative;
   height: clamp(24rem, 32vw, 28.5rem);
   overflow: hidden;
   margin: 0;
   border-radius: 0.5rem;
-  background: #f4f5f7;
+  background: var(--hero);
   box-shadow:
     0 1px 3px rgb(15 20 35 / 4%),
     0 4px 14px rgb(15 20 35 / 5%);
+}
+
+.code::after {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4.5rem;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--hero) 88%);
 }
 
 .code__bar {
