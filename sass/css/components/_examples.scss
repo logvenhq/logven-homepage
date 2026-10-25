@@ -4,6 +4,11 @@
   background-color: var(--wash);
 }
 
+.examples__head {
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+  text-align: center;
+}
+
 /* Vertical room inside the clipped area so the card shadows are not cut off. */
 .wall {
   display: grid;

@@ -1,0 +1,82 @@
+/* Four stages along one timeline. */
+.grow {
+  row-gap: 2.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grow-step {
+  position: relative;
+  grid-column: span 3;
+  min-width: 0;
+}
+
+.grow-axis {
+  position: relative;
+  width: calc(100% + var(--gap));
+  height: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.grow-step:nth-child(4) .grow-axis { width: 100%; }
+
+.grow-axis::before {
+  position: absolute;
+  z-index: 1;
+  top: -3px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  content: "";
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 3px var(--paper);
+}
+
+.grow-axis::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: var(--shade-strong);
+}
+
+.grow-when {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0 0 0.4rem;
+  color: var(--quiet);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.grow-when span { color: var(--ink); }
+.grow-name { margin: 0 0 0.45rem; color: var(--ink); font-size: 1.125rem; font-weight: 400; letter-spacing: -0.012em; }
+.grow-text { max-width: 26rem; margin: 0; color: var(--muted); font-size: 0.9375rem; line-height: 1.6; text-wrap: pretty; }
+.grow-note { max-width: 40rem; margin: clamp(2.5rem, 4vw, 3.5rem) 0 0; color: var(--quiet); font-size: 0.875rem; line-height: 1.6; text-wrap: pretty; }
+.grow-note span { color: var(--text); }
+
+@media (max-width: 1024px) {
+  .grow-step { grid-column: span 6; }
+  .grow-step:nth-child(even) .grow-axis { width: 100%; }
+}
+
+@media (max-width: 760px) {
+  .grow { row-gap: 1.75rem; }
+  .grow-step { grid-column: 1 / -1; padding-left: 1.25rem; }
+  .grow-axis,
+  .grow-step:nth-child(n) .grow-axis {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: auto;
+    margin: 0;
+  }
+  .grow-step:not(:last-child) .grow-axis { bottom: -1.75rem; }
+  .grow-axis::before { top: 0; left: -3px; }
+  .grow-step:last-child .grow-axis { bottom: auto; height: 1px; }
+  .grow-step:last-child .grow-axis::after { display: none; }
+  .grow-step:last-child .grow-axis::before { top: -3px; left: -3px; }
+}

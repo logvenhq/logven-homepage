@@ -1,0 +1,80 @@
+/* Integrations: copy on the right; on the left a line grid that runs off the page's left edge,
+   with a few cells holding a tool's card. The grid is anchored to its right edge, so the cards
+   are placed by column counted from the right. */
+
+.int {
+  align-items: center;
+  row-gap: 2.5rem;
+}
+
+.int-art {
+  --int-cell: clamp(3rem, 4.2vw, 3.875rem);
+  --int-rows: 7;
+  // Distance from the viewport's left edge to the container's content edge.
+  --int-bleed: calc((100vw - min(100vw, 90rem + 2 * var(--inset))) / 2 + var(--inset));
+
+  grid-column: 1 / 6;
+  // Only five rows count towards the section's height; the rest of the grid overflows above and
+  // below and fades out, so the section stays compact.
+  display: flex;
+  align-items: center;
+  height: calc(var(--int-cell) * 5);
+  margin: 0 0 0 calc(-1 * var(--int-bleed));
+}
+
+.int-art .int-board {
+  flex: 1;
+}
+
+.int-copy {
+  display: grid;
+  grid-column: 7 / -1;
+  gap: 1.1rem;
+}
+
+.int-copy .block__body {
+  color: var(--muted);
+}
+
+.int-board {
+  display: grid;
+  grid-template-columns: repeat(24, var(--int-cell));
+  grid-template-rows: repeat(var(--int-rows), var(--int-cell));
+  justify-content: end;
+  overflow: hidden;
+  background-image:
+    linear-gradient(to right, var(--shade) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--shade) 1px, transparent 1px);
+  background-position: right -1px top;
+  background-size: var(--int-cell) var(--int-cell);
+  mask-image:
+    linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent),
+    linear-gradient(to right, transparent, #000 18%, #000 80%, transparent);
+  mask-composite: intersect;
+}
+
+.int-card {
+  display: grid;
+  place-items: center;
+  margin: 0.4375rem;
+  border-radius: 5px;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-soft);
+}
+
+.int-card img {
+  width: 46%;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .int-art,
+  .int-copy {
+    grid-column: 1 / -1;
+  }
+
+  .int-art {
+    --int-cell: clamp(2.75rem, 9vw, 3.5rem);
+    height: auto;
+  }
+}

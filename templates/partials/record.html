@@ -1,0 +1,22 @@
+{#- System of record: one tall card, a sibling of the CTA panel. The copy on the left; behind it a
+    contribution-style field of runs (record-grid.js) flows in from the right edge. -#}
+<div class="rec-card">
+  <div class="rec-field" data-record-grid aria-hidden="true">
+    <canvas></canvas>
+    <i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i>
+  </div>
+
+  <div class="grid rec">
+    <div class="rec-copy" data-record-clear>
+      <h2 id="record-title" class="block__title" data-reveal>A system of record for how work gets done</h2>
+      <p class="block__body rec-copy__body" data-reveal>Customers have CRM. Money has ERP. How the work itself gets done has never had a record: it lives in inboxes, spreadsheets and the memory of a few people. <span class="rec-copy__claim">Logven is that record.</span></p>
+      <dl class="rec-verbs" data-reveal>
+        <div class="rec-verbs__item"><dt>See how a department runs</dt><dd>Its processes, who owns them, how often they run and where the work slows down.</dd></div>
+        <div class="rec-verbs__item"><dt>Ask it questions</dt><dd>Answers come from the data, with the sheet and the run they were read from.</dd></div>
+        <div class="rec-verbs__item"><dt>Improve it like code</dt><dd>A change to a worker is reviewed as a diff and replayed on past runs before anyone approves it.</dd></div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<script src="{{ get_url(path='js/record-grid.js', cachebust=true) }}" defer></script>

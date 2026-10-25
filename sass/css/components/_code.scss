@@ -55,6 +55,7 @@
 
 .lined__cell {
   position: relative;
+  min-width: 0;
   padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 

@@ -1,0 +1,118 @@
+{# Control stays with you: four guarantees beside the audit trail of one value. #}
+<div class="grid trust">
+  <ul class="trust-list" role="list">
+    <li class="trust-list__item" data-reveal>
+      <svg class="trust-list__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 7.2a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8Z M3.5 13.5c.5-2.4 2.3-3.9 4.5-3.9s4 1.5 4.5 3.9"/></svg>
+      <h3 class="trust-list__title">People approve what matters</h3>
+      <p class="trust-list__text">Every worker, and every decision that carries weight, has a named approver.</p>
+    </li>
+    <li class="trust-list__item" data-reveal>
+      <svg class="trust-list__icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="4.5" cy="3.5" r="1.5"/><circle cx="4.5" cy="8" r="1.5"/><circle cx="4.5" cy="12.5" r="1.5"/><path d="M4.5 5v1.5 M4.5 9.5V11 M8.5 3.5h5 M8.5 8h5 M8.5 12.5h3.5"/></svg>
+      <h3 class="trust-list__title">Every step on the record</h3>
+      <p class="trust-list__text">Inputs, model calls, outputs and approvals are logged. Any value traces back to its source.</p>
+    </li>
+    <li class="trust-list__item" data-reveal>
+      <svg class="trust-list__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8a4.8 4.8 0 1 0 1.5-3.5 M4.6 2.2v2.5h2.5"/></svg>
+      <h3 class="trust-list__title">Reproducible by design</h3>
+      <p class="trust-list__text">The same inputs give the same results, so any past run can be replayed and checked.</p>
+    </li>
+    <li class="trust-list__item" data-reveal>
+      <svg class="trust-list__icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="4.5" rx="1"/><rect x="2.5" y="9" width="11" height="4.5" rx="1"/><path d="M5 4.75h.01 M5 11.25h.01 M8 4.75h3 M8 11.25h3"/></svg>
+      <h3 class="trust-list__title">Your data, your rules</h3>
+      <p class="trust-list__text">Data stays on your infrastructure, and the audit trail is ready when someone asks how a number was produced.</p>
+    </li>
+  </ul>
+
+  <div class="trust-stage" data-reveal>
+    <div class="app-shot trust-shot" aria-hidden="true">
+      <div class="trust-shot__bar">
+        <span class="as-cube as-cube--sheets as-cube--14"></span>
+        <span class="trust-shot__crumbs">
+          <span class="as-ink as-medium">Emissions register</span>
+          <span class="trust-shot__slash">/</span>
+          <span class="trust-shot__crumb">Stack E2</span>
+          <span class="trust-shot__slash">/</span>
+          <span class="trust-shot__crumb">NOx</span>
+        </span>
+        <span class="as-badge as-badge--green">Approved</span>
+        <span class="as-micro"><span class="as-i as-i--ellipsis as-i--16"></span></span>
+      </div>
+
+      <div class="trust-shot__value">
+        <div class="trust-shot__figure">
+          <span class="trust-shot__label">NOx · March filing</span>
+          <span class="trust-shot__number">48.2<span class="trust-shot__unit">mg/Nm³</span></span>
+          <span class="trust-shot__sub">Mean of 31 daily readings</span>
+        </div>
+        <div class="trust-shot__chart">
+          <span class="trust-shot__limit">Permit limit 100 mg/Nm³</span>
+          <span class="trust-shot__bars"><i style="height:46.7%"></i><i style="height:51.3%"></i><i style="height:46.8%"></i><i style="height:46.3%"></i><i style="height:42.6%"></i><i style="height:46.9%"></i><i style="height:54.9%"></i><i style="height:50.7%"></i><i style="height:54.4%"></i><i style="height:49.7%"></i><i style="height:50.6%"></i><i style="height:49.3%"></i><i style="height:38.2%"></i><i style="height:53.3%"></i><i style="height:51.2%"></i><i style="height:51.2%"></i><i style="height:38.1%"></i><i style="height:37.7%"></i><i style="height:42.9%"></i><i style="height:45.4%"></i><i style="height:50.0%"></i><i style="height:47.9%"></i><i style="height:51.3%"></i><i style="height:44.3%"></i><i style="height:50.1%"></i><i style="height:50.6%"></i><i style="height:44.2%"></i><i style="height:58.5%"></i><i style="height:51.5%"></i><i style="height:55.4%"></i><i style="height:42.2%"></i></span>
+          <span class="trust-shot__axis"><span>1 Mar</span><span>31 Mar</span></span>
+        </div>
+      </div>
+
+      <div class="trust-shot__head">
+        <span class="as-ink as-medium">Lineage</span>
+        <span class="as-faint as-tnum">5 steps</span>
+      </div>
+
+      <ol class="trust-steps">
+        <li class="trust-step">
+          <span class="trust-step__node">
+            <svg viewBox="0 0 16 16"><path d="M4 2.5h5.2L12 5.3V13a.5.5 0 0 1-.5.5h-7A.5.5 0 0 1 4 13V3a.5.5 0 0 1 .5-.5Z M9 2.5V5.5h3 M6 8.5h4 M6 10.5h3"/></svg>
+          </span>
+          <span class="trust-step__main">
+            <span class="trust-step__title">Lab report LR-0318.pdf</span>
+            <span class="trust-step__detail">Source · page 3, table 2 (scanned)</span>
+          </span>
+          <span class="trust-step__meta">31 Mar, 16:02:51</span>
+        </li>
+        <li class="trust-step">
+          <span class="trust-step__node"><span class="as-cube as-cube--workers as-cube--14"></span></span>
+          <span class="trust-step__main">
+            <span class="trust-step__title">Emissions filing <span class="as-badge as-badge--blue">Deterministic</span></span>
+            <span class="trust-step__detail">Worker · run #1,214 · revision 7</span>
+          </span>
+          <span class="trust-step__meta">1 Apr, 06:00:02</span>
+        </li>
+        <li class="trust-step">
+          <span class="trust-step__node"><span class="as-cube as-cube--models as-cube--14"></span></span>
+          <span class="trust-step__main">
+            <span class="trust-step__title"><span>Vision model<span class="trust-step__more"> · read scanned table</span></span> <span class="as-badge as-badge--orange">AI call</span></span>
+            <span class="trust-step__detail">vision-s, local · input and output logged</span>
+          </span>
+          <span class="trust-step__meta">06:00:04</span>
+        </li>
+        <li class="trust-step">
+          <span class="trust-step__node">
+            <svg viewBox="0 0 16 16"><path d="M3.5 8.4 6.4 11.2 12.5 4.8"/></svg>
+          </span>
+          <span class="trust-step__main">
+            <span class="trust-step__title">Checked against permit limit</span>
+            <span class="trust-step__detail">48.2 ≤ 100 mg/Nm³ · rule E2-NOX-M</span>
+          </span>
+          <span class="trust-step__meta">06:00:05</span>
+        </li>
+        <li class="trust-step">
+          <span class="trust-step__node trust-step__node--approved">
+            <svg viewBox="0 0 16 16"><path d="M8 7.2a2.4 2.4 0 1 0 0-4.8 2.4 2.4 0 0 0 0 4.8Z M3.5 13.5c.5-2.4 2.3-3.9 4.5-3.9s4 1.5 4.5 3.9"/></svg>
+          </span>
+          <span class="trust-step__main">
+            <span class="trust-step__title">Approved · Environmental lead</span>
+            <span class="trust-step__detail">Signed off for the March filing</span>
+          </span>
+          <span class="trust-step__meta">2 Apr, 09:14:37</span>
+        </li>
+      </ol>
+
+      <div class="trust-shot__foot">
+        <span class="trust-shot__hash">run 1214 · 9f3c21a7</span>
+        <span class="trust-shot__replayed"><svg viewBox="0 0 16 16"><path d="M3.5 8.4 6.4 11.2 12.5 4.8"/></svg>Replayed 14 Apr · identical result</span>
+        <span class="trust-shot__button">
+          <svg viewBox="0 0 16 16"><path d="M3.2 8a4.8 4.8 0 1 0 1.5-3.5 M4.6 2.2v2.5h2.5"/></svg>
+          Replay run
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

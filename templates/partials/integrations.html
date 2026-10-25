@@ -1,0 +1,13 @@
+{#- Integrations: a line grid that runs off the left edge of the page, with a few of its cells
+    taken by the tools Logven connects to. Each card: icon file, then its column (counted from the
+    grid's right edge, 1 = last column) and its row. #}
+{%- set cards = ["word 6 2", "excel 3 3", "teams 5 4", "outlook 8 3", "powerpoint 7 5", "sharepoint 2 5", "onedrive 4 6", "onenote 9 5"] %}
+<figure class="int-art" aria-hidden="true" data-reveal>
+  <div class="int-board">
+    {%- for card in cards %}{% set at = card | split(pat=" ") %}
+      <span class="int-card" style="grid-column-end: -{{ at[1] }}; grid-row: {{ at[2] }}">
+        <img src="{{ get_url(path='images/integrations/' ~ at[0] ~ '.svg') }}" alt="" width="48" height="48" loading="lazy" decoding="async">
+      </span>
+    {%- endfor %}
+  </div>
+</figure>

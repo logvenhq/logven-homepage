@@ -94,8 +94,9 @@
 }
 
 .card__media--decision {
-  --model-card-bg: #43246f;
+  --model-card-bg: #165b60;
   --model-card-image: url("../images/posts/model-decision.webp");
+  background-blend-mode: normal, luminosity;
 }
 
 .card__media--retrieval {

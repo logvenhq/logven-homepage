@@ -251,28 +251,13 @@
   box-shadow: var(--shadow-soft);
 }
 
-.render-shot .rs-activity::before {
-  position: absolute;
-  z-index: 4;
-  top: 74px;
-  right: 3.65rem;
-  color: var(--ink);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 17px;
-  content: "12 runs";
-}
-
-.render-shot .rs-activity::after {
+.render-shot .rs-activity__tip {
   position: absolute;
   z-index: 3;
   top: 68px;
   right: 3rem;
-  display: flex;
-  align-items: flex-end;
-  width: 9.75rem;
-  height: 3.625rem;
-  padding: 6px 9px;
+  display: grid;
+  padding: 6px 10px;
   border-radius: 6px;
   color: var(--quiet);
   background: var(--surface-raised);
@@ -280,7 +265,11 @@
   font-size: 12px;
   line-height: 17px;
   white-space: nowrap;
-  content: "Jun 18 · Worker activity";
+}
+
+.render-shot .rs-activity__tip b {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .render-shot .rs-activity__head {

@@ -1,0 +1,302 @@
+/* Alternatives: three approaches compared on five criteria, set like a sheet.
+   Four equal columns with the page gap line up with the 12-column grid (1, 4, 7, 10).
+   The approach columns share rows with the axis through subgrid; hairlines run across
+   the gaps, and Logven's column sits on a raised card that the lines pass under. */
+
+.alt-compare {
+  --alt-bleed: clamp(0.875rem, 1.4vw, 1.25rem);
+  --alt-lift: 1.25rem;
+  --alt-card: light-dark(var(--surface-raised), var(--mist));
+  --alt-card-line: light-dark(var(--line), var(--tint-strong));
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: auto repeat(5, auto);
+  column-gap: var(--gap);
+  padding-top: var(--alt-lift);
+  padding-bottom: var(--alt-lift);
+}
+
+.alt-axis,
+.alt-option {
+  display: grid;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  min-width: 0;
+}
+
+.alt-axis {
+  grid-column: 1;
+}
+
+.alt-list {
+  display: grid;
+  grid-row: 2 / -1;
+  grid-template-rows: subgrid;
+  margin: 0;
+}
+
+/* Header row */
+
+.alt-head {
+  align-self: end;
+  padding-bottom: 1.25rem;
+}
+
+.alt-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.1875rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+}
+
+.alt-logo {
+  flex: none;
+  width: 0.8rem;
+  height: 0.875rem;
+  background: currentColor;
+  -webkit-mask: url("../images/app/mark.svg") center / contain no-repeat;
+  mask: url("../images/app/mark.svg") center / contain no-repeat;
+}
+
+.alt-verdict {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+/* The key sits in the empty top-left cell, on the header's baseline. */
+.alt-legend {
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  grid-row: 1;
+  grid-column: 1;
+  align-self: end;
+  gap: 0.35rem 1rem;
+  margin: 0;
+  padding-bottom: 1.25rem;
+  color: var(--quiet);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.alt-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Rows */
+
+.alt-axis__label,
+.alt-item {
+  position: relative;
+  padding: 1rem 0 1.15rem;
+}
+
+/* The row rule spans the column and the gap after it. */
+.alt-axis__label::before,
+.alt-item::before {
+  position: absolute;
+  top: 0;
+  right: calc(-1 * var(--gap));
+  left: 0;
+  height: 1px;
+  content: "";
+  background: var(--line);
+}
+
+.alt-axis__label:last-child::after,
+.alt-item:last-child::after {
+  position: absolute;
+  right: calc(-1 * var(--gap));
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: var(--line);
+}
+
+.alt-axis__label {
+  color: var(--ink);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.alt-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.alt-value {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* Logven: the same rows on a raised card. */
+
+.alt-option--logven {
+  position: relative;
+  isolation: isolate;
+}
+
+.alt-option--logven::before {
+  position: absolute;
+  z-index: -1;
+  inset: calc(-1 * var(--alt-lift)) calc(-1 * var(--alt-bleed));
+  content: "";
+  border-radius: var(--radius);
+  background: var(--alt-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.alt-option--logven .alt-item::before,
+.alt-option--logven .alt-item:last-child::after {
+  right: calc(-1 * var(--alt-bleed));
+  left: calc(-1 * var(--alt-bleed));
+  background: var(--alt-card-line);
+}
+
+.alt-option--logven .alt-value {
+  color: var(--ink);
+}
+
+/* Marks: the app's status icon. A ring, filled for strong, half for partial, empty for weak. */
+
+.alt-mark {
+  position: relative;
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.3rem;
+  border: 1.25px solid currentColor;
+  border-radius: 50%;
+}
+
+.alt-mark::after {
+  position: absolute;
+  inset: 1.25px;
+  content: "";
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.alt-mark--strong {
+  color: var(--badge-green-text);
+}
+
+.alt-mark--partial {
+  color: var(--badge-orange-text);
+}
+
+.alt-mark--partial::after {
+  clip-path: inset(0 0 0 50%);
+}
+
+.alt-mark--weak {
+  color: var(--badge-red-text);
+}
+
+.alt-mark--weak::after {
+  display: none;
+}
+
+.alt-legend .alt-mark {
+  margin-top: 0;
+}
+
+/* Narrow laptops and tablets: the key stacks in its cell rather than wrapping unevenly. */
+
+@media (max-width: 1024px) {
+  .alt-legend {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+
+/* Phones: the approaches stack, each with its own criteria, Logven last on its card. */
+
+@media (max-width: 760px) {
+  .alt-compare {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    row-gap: 2.25rem;
+    padding-block: 0;
+  }
+
+  .alt-legend,
+  .alt-option {
+    grid-row: auto;
+    grid-column: 1;
+  }
+
+  .alt-legend {
+    flex-direction: row;
+    gap: 0.35rem 1rem;
+    padding-bottom: 0;
+  }
+
+  .alt-axis {
+    display: none;
+  }
+
+  .alt-option,
+  .alt-list {
+    display: block;
+  }
+
+  .alt-head {
+    padding-bottom: 0.85rem;
+  }
+
+  .alt-item {
+    padding: 0.7rem 0 0.8rem;
+  }
+
+  .alt-item::before,
+  .alt-item:last-child::after {
+    right: 0;
+  }
+
+  .alt-label {
+    position: static;
+    display: block;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    margin-bottom: 0.2rem;
+    color: var(--quiet);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .alt-option--logven {
+    padding: 1.1rem var(--alt-bleed) 0.15rem;
+  }
+
+  .alt-option--logven::before {
+    inset: 0;
+  }
+
+  .alt-option--logven .alt-item:last-child::after {
+    display: none;
+  }
+}

@@ -1,0 +1,111 @@
+{#
+  Alternatives: custom software, AI agents and Logven compared on five criteria.
+  Each approach is a column with its own description list, so it reads on its own
+  and stacks on phones. On wider screens the columns share rows through subgrid and
+  a decorative axis column names the criteria. The marks are the app's status icon:
+  full for strong, half for partial, an empty ring for weak.
+#}
+<div class="alt-compare">
+  <p class="alt-legend" data-reveal>
+    <span class="alt-legend__item"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span>Strong</span>
+    <span class="alt-legend__item"><span class="alt-mark alt-mark--partial" aria-hidden="true"></span>Partial</span>
+    <span class="alt-legend__item"><span class="alt-mark alt-mark--weak" aria-hidden="true"></span>Weak</span>
+  </p>
+
+  <div class="alt-axis" aria-hidden="true" data-reveal>
+    <span class="alt-axis__head"></span>
+    <span class="alt-axis__label">Where it starts</span>
+    <span class="alt-axis__label">When the work changes</span>
+    <span class="alt-axis__label">Same input twice</span>
+    <span class="alt-axis__label">Checking a result</span>
+    <span class="alt-axis__label">Where it runs</span>
+  </div>
+
+  <article class="alt-option alt-option--custom" aria-labelledby="alt-custom" data-reveal>
+    <header class="alt-head">
+      <h3 class="alt-name" id="alt-custom">Custom software</h3>
+      <p class="alt-verdict">Reliable, but rigid</p>
+    </header>
+    <dl class="alt-list">
+      <div class="alt-item">
+        <dt class="alt-label">Where it starts</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--weak" aria-hidden="true"></span><span><span class="visually-hidden">Weak. </span>A complete specification, months before anything runs</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">When the work changes</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--weak" aria-hidden="true"></span><span><span class="visually-hidden">Weak. </span>A new project, and a bigger maintenance bill</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Same input twice</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span><span><span class="visually-hidden">Strong. </span>Same output</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Checking a result</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--partial" aria-hidden="true"></span><span><span class="visually-hidden">Partial. </span>Possible, if it was documented</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Where it runs</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--partial" aria-hidden="true"></span><span><span class="visually-hidden">Partial. </span>Wherever it was built</span></dd>
+      </div>
+    </dl>
+  </article>
+
+  <article class="alt-option alt-option--agents" aria-labelledby="alt-agents" data-reveal>
+    <header class="alt-head">
+      <h3 class="alt-name" id="alt-agents">AI agents</h3>
+      <p class="alt-verdict">Flexible, but unpredictable</p>
+    </header>
+    <dl class="alt-list">
+      <div class="alt-item">
+        <dt class="alt-label">Where it starts</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span><span><span class="visually-hidden">Strong. </span>A prompt</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">When the work changes</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span><span><span class="visually-hidden">Strong. </span>Adapts instantly</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Same input twice</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--weak" aria-hidden="true"></span><span><span class="visually-hidden">Weak. </span>Possibly a different answer</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Checking a result</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--weak" aria-hidden="true"></span><span><span class="visually-hidden">Weak. </span>Hard to reproduce or audit</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Where it runs</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--partial" aria-hidden="true"></span><span><span class="visually-hidden">Partial. </span>Usually an external API</span></dd>
+      </div>
+    </dl>
+  </article>
+
+  <article class="alt-option alt-option--logven" aria-labelledby="alt-logven" data-reveal>
+    <header class="alt-head">
+      <h3 class="alt-name" id="alt-logven"><span class="alt-logo" aria-hidden="true"></span>Logven</h3>
+      <p class="alt-verdict">Flexible and reliable</p>
+    </header>
+    <dl class="alt-list">
+      <div class="alt-item">
+        <dt class="alt-label">Where it starts</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span><span><span class="visually-hidden">Strong. </span>The work as it is done today</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">When the work changes</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span><span><span class="visually-hidden">Strong. </span>Workers are updated from the work; housekeeping keeps them consolidated</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Same input twice</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span><span><span class="visually-hidden">Strong. </span>Same output, every time</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Checking a result</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span><span><span class="visually-hidden">Strong. </span>Every step logged and traceable to its source</span></dd>
+      </div>
+      <div class="alt-item">
+        <dt class="alt-label">Where it runs</dt>
+        <dd class="alt-value"><span class="alt-mark alt-mark--strong" aria-hidden="true"></span><span><span class="visually-hidden">Strong. </span>Your own infrastructure, with small private models</span></dd>
+      </div>
+    </dl>
+  </article>
+
+</div>

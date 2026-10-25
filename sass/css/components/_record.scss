@@ -1,0 +1,107 @@
+/* System of record: one tall card, a sibling of the CTA panel, on the same surface as the outcome cards. The copy
+   sits on the left; behind it a field of small squares in the activity scale (record-grid.js) flows
+   in from the right edge and fades out before the text. */
+
+.rec-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  container: rec / inline-size;
+  padding: clamp(2rem, 4.5vw, 4.5rem) clamp(1.25rem, 3.5vw, 3.5rem);
+  border-radius: var(--radius);
+  background-color: var(--hero);
+}
+
+.rec-field {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rec-field canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Colour sources for the canvas: an empty square, then the activity scale. */
+.rec-field i {
+  display: none;
+}
+
+.rec-field [data-level="0"] { color: var(--tint); }
+.rec-field [data-level="1"] { color: var(--activity-1); }
+.rec-field [data-level="2"] { color: var(--activity-2); }
+.rec-field [data-level="3"] { color: var(--activity-3); }
+.rec-field [data-level="4"] { color: var(--activity-4); }
+
+.rec {
+  align-items: center;
+  min-height: clamp(28rem, 38vw, 34rem);
+}
+
+.rec-copy {
+  display: grid;
+  grid-column: 1 / 6;
+  gap: 1.1rem;
+}
+
+.rec-copy .block__title {
+  margin-bottom: 0.4rem;
+}
+
+.rec-copy__body {
+  color: var(--muted);
+}
+
+.rec-copy__claim {
+  color: var(--ink);
+}
+
+.rec-verbs {
+  display: grid;
+  margin: 0.9rem 0 0;
+}
+
+.rec-verbs__item {
+  padding-block: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.rec-verbs__item:last-child {
+  padding-bottom: 0;
+}
+
+.rec-verbs dt {
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+
+.rec-verbs dd {
+  max-width: 30rem;
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* Narrow cards: the copy spans the card and the field becomes a band underneath it. */
+@container rec (max-width: 1024px) {
+  .rec {
+    min-height: 0;
+    padding-bottom: 12rem;
+  }
+
+  .rec-copy {
+    grid-column: 1 / -1;
+    max-width: 36rem;
+  }
+}
+
+@container rec (max-width: 520px) {
+  .rec {
+    padding-bottom: 9rem;
+  }
+}
