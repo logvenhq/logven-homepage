@@ -311,7 +311,7 @@
         <ul class="carousel__track" role="list" data-carousel-track>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media">
+              <div class="card__media card__media--language">
                 <pre class="model-motif model-motif--code" aria-hidden="true"><span><span class="code__keyword">const</span> result = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">llm</span>({</span><span>  model: <span class="code__string">"gemma-3-12b"</span>,</span><span>  input: report,</span><span>  output_shape: { supplier, date, status },</span><span>});</span><span> </span><span><span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.sheets.<span class="code__fn">create_record</span>(</span><span>  <span class="code__string">"supplier_reports"</span>, result</span><span>);</span><span> </span><span><span class="code__keyword">return</span> { status: <span class="code__string">"complete"</span>, record: result.id };</span></pre>
                 <p class="card__overlay"><span>Language.</span><span>Documents stay local.</span></p>
               </div>
@@ -321,7 +321,7 @@
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media">
+              <div class="card__media card__media--vision">
                 <div class="model-motif model-motif--vision" aria-hidden="true">
                   <span class="model-motif__object model-motif__object--a" data-label="part A"></span>
                   <span class="model-motif__object model-motif__object--b" data-label="part B"></span>
@@ -335,7 +335,7 @@
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media">
+              <div class="card__media card__media--timeseries">
                 <svg class="model-motif model-motif--chart" aria-hidden="true" viewBox="0 0 400 250">
                   <path class="model-motif__range" d="M292 91C330 64 357 58 416 27V126C369 128 334 111 292 91Z"/>
                   <path class="model-motif__actual" d="M-16 132 5 127 23 135 42 105 59 113 78 79 95 88 112 58 131 73 148 69 166 96 184 88 202 116 220 109 238 80 256 91 274 70 292 91"/>
@@ -350,7 +350,7 @@
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media">
+              <div class="card__media card__media--decision">
                 <svg class="model-motif model-motif--decision" aria-hidden="true" viewBox="0 0 400 250">
                   <path class="model-motif__branch" d="M-20 104H38C92 104 96 158 150 158M150 52C208 52 212 28 270 28H420M150 158C208 158 212 148 270 148H420M150 158C208 158 212 214 270 214H420"/>
                   <path class="model-motif__route" d="M-20 104H38C92 104 96 52 150 52S212 92 270 92H420"/>
@@ -367,7 +367,7 @@
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media">
+              <div class="card__media card__media--retrieval">
                 <svg class="model-motif model-motif--retrieval" aria-hidden="true" viewBox="0 0 400 250">
                   <g class="model-motif__embedding model-motif__embedding--faint">
                     <circle cx="-7" cy="42" r="2.5"/><circle cx="12" cy="86" r="2"/>

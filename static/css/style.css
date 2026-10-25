@@ -1747,21 +1747,42 @@ main > .hero:first-child {
 }
 
 .card__media {
+  --model-card-bg: #3f6fc9;
   position: relative;
   isolation: isolate;
   overflow: hidden;
   aspect-ratio: 16 / 10;
   border-radius: var(--radius);
-  background-color: var(--hero);
-  background-image: radial-gradient(rgb(29 32 39 / 7%) 1px, transparent 1.3px);
+  background-color: var(--model-card-bg);
+  background-image: radial-gradient(rgb(255 255 255 / 20%) 1px, transparent 1.3px);
   background-size: 16px 16px;
+}
+
+.card__media--language {
+  --model-card-bg: #a86f22;
+}
+
+.card__media--vision {
+  --model-card-bg: #208da3;
+}
+
+.card__media--timeseries {
+  --model-card-bg: #367d5c;
+}
+
+.card__media--decision {
+  --model-card-bg: #3f6fc9;
+}
+
+.card__media--retrieval {
+  --model-card-bg: #b95f55;
 }
 
 .card__media::after {
   position: absolute;
   z-index: 2;
   inset: 38% 0 0;
-  background: linear-gradient(to bottom, transparent, var(--hero) 60%);
+  background: linear-gradient(to bottom, transparent, var(--model-card-bg) 60%);
   content: "";
   pointer-events: none;
 }
@@ -1769,27 +1790,25 @@ main > .hero:first-child {
 /* Each illustration shares the media's 8:5 canvas. Paths can continue past
    its edges, while the fade keeps the label clear at every card width. */
 .model-motif {
-  --motif-accent: #4a80dc;
-  --motif-tint: rgb(74 128 220 / 10%);
+  --motif-accent: #ffffff;
+  --motif-tint: rgb(255 255 255 / 12%);
   position: absolute;
   z-index: 1;
   inset: 0;
   width: 100%;
   height: 100%;
   margin: 0;
-  color: var(--ink);
+  color: var(--paper-on-dark);
   pointer-events: none;
 }
 
 .model-motif--code {
-  --motif-accent: #b57b28;
-  --motif-tint: rgb(181 123 40 / 8%);
   inset: -4% -12% -10% -7%;
   width: auto;
   height: auto;
   overflow: hidden;
   padding: clamp(1rem, 2vw, 1.5rem) 0 5rem;
-  background: rgb(255 255 255 / 38%);
+  background: transparent;
   color: var(--motif-accent);
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: clamp(0.68rem, 0.9vw, 0.86rem);
@@ -1809,21 +1828,11 @@ main > .hero:first-child {
 }
 
 .model-motif--code .code__ctx {
-  color: #cf9440;
+  color: rgb(255 255 255 / 76%);
 }
 
 .model-motif--code .code__string {
-  color: #8f611f;
-}
-
-.model-motif--chart {
-  --motif-accent: #43916c;
-  --motif-tint: rgb(67 145 108 / 10%);
-}
-
-.model-motif--retrieval {
-  --motif-accent: #cd7065;
-  --motif-tint: rgb(205 112 101 / 6%);
+  color: rgb(255 255 255 / 58%);
 }
 
 .model-motif path,
@@ -1832,7 +1841,6 @@ main > .hero:first-child {
 }
 
 .model-motif--vision {
-  --motif-accent: #2b9fb6;
   inset: -8% -5%;
   width: auto;
   height: auto;
@@ -1842,7 +1850,7 @@ main > .hero:first-child {
   position: absolute;
   border: 1px solid var(--motif-accent);
   border-radius: 2px;
-  background: rgb(43 159 182 / 3%);
+  background: rgb(255 255 255 / 4%);
 }
 
 .model-motif__object::before {
@@ -1851,7 +1859,7 @@ main > .hero:first-child {
   left: -1px;
   padding: 0.12rem 0.32rem;
   border-radius: 2px 2px 0 0;
-  color: var(--paper-on-dark);
+  color: var(--model-card-bg);
   background: var(--motif-accent);
   font-size: clamp(0.45rem, 0.58vw, 0.55rem);
   line-height: 0.75rem;
@@ -1880,7 +1888,7 @@ main > .hero:first-child {
   left: 0;
   height: 1px;
   background: var(--motif-accent);
-  box-shadow: 0 0 0.5rem rgb(43 159 182 / 60%);
+  box-shadow: 0 0 0.5rem rgb(255 255 255 / 50%);
 }
 
 .model-motif__range {
@@ -1903,18 +1911,18 @@ main > .hero:first-child {
 }
 
 .model-motif__branch {
-  stroke: #c8cad1;
+  stroke: rgb(255 255 255 / 28%);
   stroke-width: 1.25;
 }
 
 .model-motif__point {
-  fill: var(--hero);
-  stroke: #b4b7bf;
+  fill: var(--model-card-bg);
+  stroke: rgb(255 255 255 / 48%);
   stroke-width: 1.25;
 }
 
 .model-motif__point.is-selected {
-  fill: var(--hero);
+  fill: var(--model-card-bg);
   stroke: var(--motif-accent);
   stroke-width: 1.75;
 }
@@ -1925,7 +1933,7 @@ main > .hero:first-child {
 
 .model-motif__check {
   fill: none;
-  stroke: #fff;
+  stroke: var(--model-card-bg);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.5;
@@ -1951,7 +1959,7 @@ main > .hero:first-child {
   inset: auto 0 0;
   margin: 0;
   padding: 2.75rem clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 1.8vw, 1.5rem);
-  color: var(--ink);
+  color: var(--paper-on-dark);
   font-size: clamp(1.375rem, 2.1vw, 2rem);
   font-weight: 450;
   line-height: 1.04;
@@ -1963,7 +1971,7 @@ main > .hero:first-child {
 }
 
 .card__overlay span + span {
-  color: var(--muted);
+  color: rgb(255 255 255 / 70%);
 }
 
 .card__title {
