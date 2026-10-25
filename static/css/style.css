@@ -1754,7 +1754,7 @@ main > .hero:first-child {
   aspect-ratio: 16 / 10;
   border-radius: var(--radius);
   background-color: var(--model-card-bg);
-  background-image: radial-gradient(rgb(255 255 255 / 20%) 1px, transparent 1.3px);
+  background-image: radial-gradient(rgb(255 255 255 / 10%) 1px, transparent 1.3px);
   background-size: 16px 16px;
 }
 
