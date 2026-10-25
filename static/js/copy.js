@@ -4,7 +4,12 @@
     if (!source || !navigator.clipboard) return;
 
     button.addEventListener("click", async () => {
-      await navigator.clipboard.writeText(source.innerText);
+      try {
+        await navigator.clipboard.writeText(source.innerText);
+      } catch {
+        // Leave the control ready to retry if clipboard access is denied.
+        return;
+      }
       button.dataset.copied = "";
       window.setTimeout(() => delete button.dataset.copied, 1400);
     });

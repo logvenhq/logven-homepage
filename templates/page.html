@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page.title }} — {{ config.title }}{% endblock title %}
-{% block description %}{{ page.description | default(value=config.description) }}{% endblock description %}
-
 {% block content %}
   {% if page.extra.model_hero %}
     <section class="hero hero--page hero--model card__media card__media--{{ page.extra.model_hero.style }}" aria-labelledby="page-title">

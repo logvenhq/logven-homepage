@@ -1,29 +1,40 @@
 # Logven Homepage
 
-A focused, one-page marketing site built with [Zola](https://www.getzola.org/) and Sass-compiled CSS.
+Logven's marketing site, built with [Zola](https://www.getzola.org/) and Sass. It includes the homepage, company and engagement pages, and five model pages. No Node.js dependencies are needed to build or serve it.
 
 ## Local development
+
+Install Zola (validated with 0.22.1), then run:
 
 ```sh
 zola serve
 ```
 
-The site is available at `http://127.0.0.1:1111`.
+Open `http://127.0.0.1:1111`. Zola watches content, templates, styles and static assets for changes.
 
 ## Production build
 
 ```sh
+zola check
 zola build
 ```
 
-Generated files are written to `public/`.
+The complete deployable site is written to `public/`, which is generated and excluded from Git. Deploy that directory to a static host; the production URL is configured in `zola.toml`.
+
+To package the build for delivery:
+
+```sh
+tar -czf /tmp/logven-homepage.tar.gz -C public .
+```
 
 ## Structure
 
-- `templates/` contains the shared page shell (`base.html`), the homepage (`index.html`), the
-  inner-page template (`page.html`) and the FAQ and call-to-action partials.
-- `content/` holds the homepage FAQ and the inner pages, whose sections live in front matter.
-- `sass/css/style.scss` is the single stylesheet entry point. Its partials are ordered tokens → base → layout → components → responsive → reduced motion → app-shot styles; Zola compiles them to `/css/style.css`.
-- `static/js/` contains the hero grid animation and the scroll reveal, both loaded from `base.html`.
+- `templates/base.html` contains the shared navigation, footer, appearance controls and page metadata. `index.html` renders the homepage and `page.html` renders inner pages.
+- `templates/partials/` contains the homepage illustrations, FAQ and shared call to action.
+- `content/` holds page copy and sections in TOML front matter, including the homepage FAQ.
+- `sass/css/style.scss` imports the stylesheet partials in cascade order. Zola compiles them to `/css/style.css`.
+- `static/js/` contains the theme controls, header and reveal behavior, plus homepage carousel, copy controls and animations. Homepage interactions load through the homepage's script block.
 - `static/fonts/` contains the self-hosted Geist variable font.
-- `static/images/` and `static/brand/` contain Logven's existing visual assets.
+- `static/images/` and `static/brand/` contain the images and icons used by the site. Assets in `static/` are copied directly into the build.
+
+The site supports system, light and dark appearance and reduced motion. Its content and navigation also work without JavaScript.

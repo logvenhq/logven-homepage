@@ -66,18 +66,8 @@
     grid-template-columns: repeat(2, minmax(0, 22rem));
   }
 
-
   .carousel__track {
-    grid-auto-columns: calc((100% - var(--gap)) / 2);
-  }
-
-  .audience__media,
-  .audience__copy {
-    grid-column: 1 / -1;
-  }
-
-  .audience__copy {
-    padding-left: 0;
+    grid-auto-columns: calc((100% - var(--carousel-gap)) / 2);
   }
 
   .cta__copy,
@@ -112,14 +102,12 @@
   }
 
   .hero--home {
-    --hero-logo-band: clamp(10rem, 48vw, 13rem);
     min-height: clamp(30rem, 82svh, 40rem);
   }
 
   .hero__mark {
     width: clamp(2.25rem, 9vw, 2.75rem);
   }
-
 
   /* Every grid child spans the full width on phones. */
   .grid > * {
@@ -159,12 +147,6 @@
     grid-auto-columns: 84%;
   }
 
-
-  .audience__media img {
-    min-height: 0;
-    aspect-ratio: 4 / 3;
-  }
-
   .site-footer__column {
     grid-column: span 6;
   }
@@ -189,8 +171,4 @@
   .note {
     grid-column: 1 / -1;
   }
-}
-
-.block--wash .audience__item {
-  background: var(--paper);
 }

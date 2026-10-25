@@ -99,12 +99,11 @@
     const scene = SCENES[name];
     const cols = new Map();
     const locks = new Set();
-    const stats = { stages: 0, stalls: 0 };
     const lane = new Set(scene.line ? [...RETURN, ...LINE].map(([i, j]) => key(i, j)) : []);
     const crews = Array.from({ length: scene.crews }, (_, n) => ({ n, cycle: n, cubes: [], upcoming: null, holdUntil: -1 }));
     const cubes = Array.from({ length: scene.crews * scene.size + scene.ambient }, (_, id) => {
       const crew = crews[Math.floor(id / scene.size)] || null;
-      const c = { id, crew, i: 0, j: 0, k: 0, dir: [1, 0], plan: [], slot: null, move: null, next: 0, blocked: 0, away: false };
+      const c = { crew, i: 0, j: 0, k: 0, dir: [1, 0], plan: [], slot: null, move: null, next: 0, blocked: 0, away: false };
       if (crew) crew.cubes.push(c);
       return c;
     });
@@ -197,7 +196,6 @@
       crew.cubes.forEach((c) => Object.assign(c, { slot: null, plan: RETURN.map(([i, j], n) => ({ i, j, queue: n > 0 })) }));
     };
     const advance = (crew) => {
-      stats.stages += 1;
       crew.holdUntil = -1;
       if (scene.line) return crew.stage.kind === "reset" ? produce(crew, shape(crew)) : reset(crew);
       if (scene.scatter && crew.stage.kind === "build") return scatter(crew, shape(crew));
@@ -340,7 +338,7 @@
         if (crew.cubes.some((c) => c.move || c.plan.length)) {
           crew.holdUntil = -1;
           // Safety valve: a stage that somehow cannot finish just moves on.
-          if (now - crew.stage.start > 90000 && (stats.stalls += 1)) advance(crew);
+          if (now - crew.stage.start > 90000) advance(crew);
         } else if (crew.holdUntil < 0) crew.holdUntil = now + crew.stage.hold;
         else if (now >= crew.holdUntil) advance(crew);
       });
@@ -373,7 +371,7 @@
       put(Object.assign(strollers[n], { i, j })),
     );
 
-    return { cubes, crews, update, view, stats, get now() { return now; } };
+    return { cubes, update, view };
   };
 
   const project = ([i, j, k]) => [
@@ -441,8 +439,6 @@
     };
 
     render();
-    if (reduceMotion.matches) return;
-
     let [visible, running, request, last] = [false, false, 0, 0];
     const tick = (time) => {
       sim.update(Math.min(time - last, 50));
@@ -453,8 +449,9 @@
 
     // Animate only while the card is on screen and the tab is visible.
     const sync = () => {
-      if (running === (visible && !document.hidden)) return;
-      running = !running;
+      const shouldRun = visible && !document.hidden && !reduceMotion.matches;
+      if (running === shouldRun) return;
+      running = shouldRun;
       cancelAnimationFrame(request);
       if (running) request = requestAnimationFrame((time) => tick((last = time)));
     };
@@ -463,6 +460,7 @@
       sync();
     }).observe(svg);
     document.addEventListener("visibilitychange", sync);
+    reduceMotion.addEventListener("change", sync);
   };
 
   document.querySelectorAll("svg[data-cubes]").forEach(build);

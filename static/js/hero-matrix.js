@@ -5,6 +5,7 @@
   if (!canvas) return;
 
   const context = canvas.getContext("2d");
+  if (!context) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const initialDensity = 0.16;
 

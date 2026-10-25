@@ -16,7 +16,6 @@
   }
 
   .hero__logo,
-  .logos--marquee .logos__list,
   .wall__track,
   [data-reveal-text].is-visible {
     animation: none;
@@ -27,4 +26,3 @@
     transform: none;
   }
 }
-

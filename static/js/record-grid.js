@@ -11,6 +11,7 @@
   const copy = card.querySelector("[data-record-clear]");
   const swatches = [...field.querySelectorAll("[data-level]")];
   const context = canvas.getContext("2d");
+  if (!context) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const fadeDuration = 1600;
 

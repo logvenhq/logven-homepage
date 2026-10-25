@@ -19,16 +19,11 @@
 .app-shot {
   /* Neutral scale and semantic roles match the app's light/dark theme tokens. */
   --n0: light-dark(#ffffff, #18191c);
-  --n25: light-dark(#fcfcfd, #202125);
-  --n50: light-dark(#f9f9fb, #1c1d21);
   --n100: light-dark(#f4f5f7, #1e1f23);
   --n150: light-dark(#eeeff2, #242529);
   --n160: light-dark(#e9eaee, #26272b);
-  --n175: light-dark(#e2e3e8, #2b2c31);
-  --n200: light-dark(#d9dbe0, #323338);
   --n500: light-dark(#c8cad1, #48494f);
   --n550: light-dark(#b4b7bf, #606168);
-  --n600: light-dark(#9b9ea8, #77787f);
   --n700: light-dark(#83868f, #8d8e96);
   --n725: light-dark(#6b6e78, #a6a8b0);
   --n750: light-dark(#545862, #bfc1c8);
@@ -648,7 +643,6 @@
 .app-shot .as-badge--blue { background: var(--badge-blue-surface); color: var(--badge-blue-text); }
 .app-shot .as-badge--green { background: var(--badge-green-surface); color: var(--badge-green-text); }
 .app-shot .as-badge--orange { background: var(--badge-orange-surface); color: var(--badge-orange-text); }
-.app-shot .as-badge--red { background: var(--badge-red-surface); color: var(--badge-red-text); }
 
 /* Project cards (card.css) */
 .app-shot .as-cards {

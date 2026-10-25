@@ -411,29 +411,6 @@
       </div>
     </section>
 
-    {% if config.extra.show_partners %}
-      {% set partners = config.extra.partners %}
-      {% if partners | length >= 5 %}{% set passes = 2 %}{% else %}{% set passes = 1 %}{% endif %}
-      <section class="logos{% if passes > 1 %} logos--marquee{% endif %}" aria-labelledby="logos-title">
-        <p id="logos-title" class="eyebrow" data-reveal>Developed in collaboration with</p>
-        <div class="logos__viewport" data-reveal>
-          <ul class="logos__list" role="list">
-            {% for pass in range(end=passes) %}
-              {% for partner in partners %}
-                <li class="logos__item"{% if pass > 0 %} aria-hidden="true"{% endif %}>
-                  {% if partner.logo %}
-                    <img src="{{ get_url(path=partner.logo) }}" alt="{{ partner.name }}">
-                  {% else %}
-                    <span class="logo-mark">{{ partner.name }}</span>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            {% endfor %}
-          </ul>
-        </div>
-      </section>
-    {% endif %}
-
     <section id="principles" class="block" aria-labelledby="principles-title">
       <div class="container grid principles">
         <h2 id="principles-title" class="principles__statement" data-reveal>Accountable by design</h2>
@@ -473,3 +450,10 @@
 
   {% include "partials/cta.html" %}
 {% endblock content %}
+
+{% block scripts %}
+  <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/cubes.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/copy.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/record-grid.js', cachebust=true) }}" defer></script>
+{% endblock scripts %}
