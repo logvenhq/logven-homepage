@@ -1735,7 +1735,197 @@ main > .hero:first-child {
   pointer-events: none;
 }
 
-/* The category label sits below a real product-style model card. */
+.model-motif {
+  position: absolute;
+  z-index: 1;
+  right: -0.75rem;
+  bottom: 44%;
+  width: 74%;
+  height: 44%;
+  margin: 0;
+  color: var(--ink);
+  transition: transform 600ms var(--ease-out);
+}
+
+.card:hover .model-motif {
+  transform: translateY(-0.2rem);
+}
+
+.model-motif--code {
+  overflow: hidden;
+  padding: 0.75rem 0 0.85rem;
+  border-radius: var(--radius) 0 0 var(--radius);
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 1px 3px rgb(15 20 35 / 4%), 0 4px 14px rgb(15 20 35 / 5%);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(0.52rem, 0.68vw, 0.67rem);
+  line-height: clamp(1.05rem, 1.4vw, 1.35rem);
+  mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
+}
+
+.model-motif--code > span {
+  display: block;
+  min-width: max-content;
+  padding-right: 1rem;
+  white-space: pre;
+}
+
+.model-motif--code i {
+  display: inline-block;
+  width: 2.25rem;
+  padding-right: 0.65rem;
+  color: #c8cad1;
+  font-style: normal;
+  text-align: right;
+}
+
+.model-motif__line--active {
+  background: #edf3fd;
+}
+
+.model-motif__line--active i {
+  color: #4a80dc;
+}
+
+.model-motif--vision {
+  right: 2%;
+  width: 68%;
+  height: 48%;
+}
+
+.model-motif__object {
+  position: absolute;
+  border: 1px solid #4a80dc;
+  border-radius: 2px;
+  background: rgb(74 128 220 / 3%);
+}
+
+.model-motif__object::before {
+  position: absolute;
+  top: -1rem;
+  left: -1px;
+  padding: 0.12rem 0.32rem;
+  border-radius: 2px 2px 0 0;
+  color: var(--paper-on-dark);
+  background: #4a80dc;
+  font-size: clamp(0.45rem, 0.58vw, 0.55rem);
+  line-height: 0.75rem;
+  content: attr(data-label);
+}
+
+.model-motif__object--a {
+  top: 23%;
+  left: 7%;
+  width: 38%;
+  height: 65%;
+}
+
+.model-motif__object--b {
+  top: 12%;
+  right: 8%;
+  width: 30%;
+  height: 72%;
+}
+
+.model-motif__scan {
+  position: absolute;
+  z-index: 1;
+  top: 56%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: #4a80dc;
+  box-shadow: 0 0 0.5rem rgb(74 128 220 / 60%);
+}
+
+.model-motif--chart {
+  right: -1%;
+  width: 76%;
+  height: 46%;
+  overflow: visible;
+}
+
+.model-motif__actual,
+.model-motif__forecast {
+  fill: none;
+  stroke: #4a80dc;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.model-motif__forecast {
+  stroke-dasharray: 5 6;
+}
+
+.model-motif--chart circle {
+  fill: #4a80dc;
+}
+
+.model-motif--decision {
+  right: 3%;
+  display: grid;
+  width: 66%;
+  height: auto;
+  gap: 0.45rem;
+}
+
+.model-motif--decision span {
+  display: flex;
+  align-items: center;
+  min-height: clamp(1.75rem, 2.6vw, 2.25rem);
+  padding: 0 0.7rem;
+  border-radius: var(--radius-ctl);
+  color: var(--muted);
+  background: rgb(255 255 255 / 72%);
+  font-size: clamp(0.6rem, 0.78vw, 0.75rem);
+}
+
+.model-motif--decision span:first-child {
+  color: #4a80dc;
+  background: #edf3fd;
+}
+
+.model-motif--decision b {
+  margin-left: auto;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+}
+
+.model-motif--retrieval {
+  right: 1%;
+  display: grid;
+  width: 70%;
+  height: auto;
+  color: var(--muted);
+  font-size: clamp(0.55rem, 0.72vw, 0.7rem);
+}
+
+.model-motif--retrieval div {
+  margin-bottom: 0.25rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-ctl);
+  color: var(--ink);
+  background: rgb(255 255 255 / 72%);
+}
+
+.model-motif--retrieval > span {
+  display: flex;
+  align-items: center;
+  min-height: clamp(1.55rem, 2.2vw, 1.9rem);
+  padding: 0 0.45rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.model-motif--retrieval b {
+  margin-left: auto;
+  color: var(--quiet);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The category label sits below the model's characteristic visual motif. */
 .card__overlay {
   position: absolute;
   z-index: 3;
