@@ -1738,28 +1738,20 @@ main > .hero:first-child {
 .model-motif {
   position: absolute;
   z-index: 1;
-  right: -0.75rem;
-  bottom: 44%;
-  width: 74%;
-  height: 44%;
+  inset: -8% -5%;
+  width: auto;
+  height: auto;
   margin: 0;
   color: var(--ink);
-  transition: transform 600ms var(--ease-out);
-}
-
-.card:hover .model-motif {
-  transform: translateY(-0.2rem);
 }
 
 .model-motif--code {
   overflow: hidden;
-  padding: 0.75rem 0 0.85rem;
-  border-radius: var(--radius) 0 0 var(--radius);
-  background: rgb(255 255 255 / 88%);
-  box-shadow: 0 1px 3px rgb(15 20 35 / 4%), 0 4px 14px rgb(15 20 35 / 5%);
+  padding: clamp(1.1rem, 2vw, 1.6rem) 0 5rem;
+  background: rgb(255 255 255 / 38%);
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-size: clamp(0.52rem, 0.68vw, 0.67rem);
-  line-height: clamp(1.05rem, 1.4vw, 1.35rem);
+  font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+  line-height: clamp(1.35rem, 1.8vw, 1.7rem);
   mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
 }
 
@@ -1772,8 +1764,8 @@ main > .hero:first-child {
 
 .model-motif--code i {
   display: inline-block;
-  width: 2.25rem;
-  padding-right: 0.65rem;
+  width: 3rem;
+  padding-right: 0.8rem;
   color: #c8cad1;
   font-style: normal;
   text-align: right;
@@ -1785,12 +1777,6 @@ main > .hero:first-child {
 
 .model-motif__line--active i {
   color: #4a80dc;
-}
-
-.model-motif--vision {
-  right: 2%;
-  width: 68%;
-  height: 48%;
 }
 
 .model-motif__object {
@@ -1814,23 +1800,23 @@ main > .hero:first-child {
 }
 
 .model-motif__object--a {
-  top: 23%;
-  left: 7%;
-  width: 38%;
-  height: 65%;
+  top: 25%;
+  left: 13%;
+  width: 34%;
+  height: 40%;
 }
 
 .model-motif__object--b {
-  top: 12%;
-  right: 8%;
-  width: 30%;
-  height: 72%;
+  top: 14%;
+  right: 14%;
+  width: 29%;
+  height: 48%;
 }
 
 .model-motif__scan {
   position: absolute;
   z-index: 1;
-  top: 56%;
+  top: 45%;
   right: 0;
   left: 0;
   height: 1px;
@@ -1839,9 +1825,6 @@ main > .hero:first-child {
 }
 
 .model-motif--chart {
-  right: -1%;
-  width: 76%;
-  height: 46%;
   overflow: visible;
 }
 
@@ -1859,70 +1842,90 @@ main > .hero:first-child {
   stroke-dasharray: 5 6;
 }
 
-.model-motif--chart circle {
-  fill: #4a80dc;
-}
-
 .model-motif--decision {
-  right: 3%;
-  display: grid;
-  width: 66%;
-  height: auto;
-  gap: 0.45rem;
+  overflow: visible;
 }
 
-.model-motif--decision span {
-  display: flex;
-  align-items: center;
-  min-height: clamp(1.75rem, 2.6vw, 2.25rem);
-  padding: 0 0.7rem;
-  border-radius: var(--radius-ctl);
-  color: var(--muted);
-  background: rgb(255 255 255 / 72%);
-  font-size: clamp(0.6rem, 0.78vw, 0.75rem);
+.model-motif__connector {
+  fill: none;
+  stroke: #b4b7bf;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
 }
 
-.model-motif--decision span:first-child {
-  color: #4a80dc;
-  background: #edf3fd;
+.model-motif__node rect {
+  fill: rgb(255 255 255 / 60%);
+  stroke: #b4b7bf;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
-.model-motif--decision b {
-  margin-left: auto;
+.model-motif__node text {
+  fill: var(--muted);
+  font-family: "Geist", system-ui, sans-serif;
+  font-size: 11px;
+  text-anchor: middle;
+}
+
+.model-motif__node--root rect,
+.model-motif__node.is-selected rect {
+  fill: #edf3fd;
+  stroke: #4a80dc;
+}
+
+.model-motif__node--root text,
+.model-motif__node.is-selected text {
+  fill: #4a80dc;
   font-weight: 550;
-  font-variant-numeric: tabular-nums;
 }
 
 .model-motif--retrieval {
-  right: 1%;
-  display: grid;
-  width: 70%;
-  height: auto;
-  color: var(--muted);
-  font-size: clamp(0.55rem, 0.72vw, 0.7rem);
+  overflow: visible;
 }
 
-.model-motif--retrieval div {
-  margin-bottom: 0.25rem;
-  padding: 0.5rem 0.65rem;
-  border-radius: var(--radius-ctl);
-  color: var(--ink);
-  background: rgb(255 255 255 / 72%);
+.model-motif__query rect {
+  fill: rgb(255 255 255 / 58%);
+  stroke: #b4b7bf;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
-.model-motif--retrieval > span {
-  display: flex;
-  align-items: center;
-  min-height: clamp(1.55rem, 2.2vw, 1.9rem);
-  padding: 0 0.45rem;
-  border-bottom: 1px solid var(--line);
+.model-motif__query circle,
+.model-motif__query path {
+  fill: none;
+  stroke: #4a80dc;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
 }
 
-.model-motif--retrieval b {
-  margin-left: auto;
-  color: var(--quiet);
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
+.model-motif__query text,
+.model-motif__document text {
+  fill: var(--muted);
+  font-family: "Geist", system-ui, sans-serif;
+  font-size: 11px;
+}
+
+.model-motif__document rect {
+  fill: rgb(255 255 255 / 42%);
+  stroke: #b4b7bf;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.model-motif__document path {
+  fill: none;
+  stroke: #83868f;
+  stroke-linecap: round;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.model-motif__document text {
+  fill: #4a80dc;
+  text-anchor: middle;
 }
 
 /* The category label sits below the model's characteristic visual motif. */
