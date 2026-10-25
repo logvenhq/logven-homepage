@@ -2,8 +2,10 @@
 title = "Vision models"
 description = "Explore image and document workflows that can connect visual evidence to the operational records your team already uses."
 
-[extra]
-heading = "Vision models beside the work."
+[extra.model_hero]
+style = "vision"
+title = "Vision."
+subtitle = "Images stay on-site."
 
 [[extra.sections]]
 title = "A practical example"

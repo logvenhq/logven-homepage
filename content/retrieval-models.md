@@ -2,8 +2,10 @@
 title = "Retrieval models"
 description = "Make internal documents and records easier to search through workflows that can return relevant source material for review."
 
-[extra]
-heading = "Retrieval across private company knowledge."
+[extra.model_hero]
+style = "retrieval"
+title = "Retrieval."
+subtitle = "Knowledge stays private."
 
 [[extra.sections]]
 title = "A practical example"

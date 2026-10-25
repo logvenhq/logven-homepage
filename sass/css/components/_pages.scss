@@ -93,3 +93,19 @@
   font-weight: inherit;
 }
 
+.hero--model {
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+
+.hero--model .hero__title {
+  color: var(--paper-on-dark);
+}
+
+.hero--model .hero__title span {
+  display: block;
+}
+
+.hero--model .hero__title span + span {
+  color: rgb(255 255 255 / 70%);
+}

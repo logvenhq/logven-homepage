@@ -2,8 +2,10 @@
 title = "Language models"
 description = "Use language models for document-heavy work, with source files and outputs handled inside the environment your team controls."
 
-[extra]
-heading = "Language models where the paperwork lives."
+[extra.model_hero]
+style = "language"
+title = "Language."
+subtitle = "Processes stay local."
 
 [[extra.sections]]
 title = "A practical example"

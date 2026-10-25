@@ -2,8 +2,10 @@
 title = "Decision models"
 description = "Use models to compare options and surface trade-offs while keeping business rules and approvals visible to the people responsible."
 
-[extra]
-heading = "Decision models under your control."
+[extra.model_hero]
+style = "decision"
+title = "Decisions."
+subtitle = "Control stays with you."
 
 [[extra.sections]]
 title = "A practical example"

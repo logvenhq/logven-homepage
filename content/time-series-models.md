@@ -2,8 +2,10 @@
 title = "Time-series models"
 description = "Bring operational readings into workflows that can examine trends, flag unusual patterns and help teams decide what to inspect."
 
-[extra]
-heading = "Time-series models close to the equipment."
+[extra.model_hero]
+style = "timeseries"
+title = "Time series."
+subtitle = "Telemetry stays inside."
 
 [[extra.sections]]
 title = "A practical example"
