@@ -1,35 +1,85 @@
-/* Tokens */
-
+/* Light and dark values mirror the Logven app's neutral scale and semantic roles. */
 :root {
-  /* The Logven app's palette: warm-neutral greys, one blue for primary actions. */
-  --ink: #1d2027;
-  --text: #545862;
-  --muted: #6b6e78;
-  --quiet: #83868f;
+  color-scheme: light dark;
+
+  --ink: light-dark(#1d2027, #eceef3);
+  --text: light-dark(#545862, #bfc1c8);
+  --muted: light-dark(#6b6e78, #a6a8b0);
+  --quiet: light-dark(#83868f, #8d8e96);
   --primary: #2383e2;
   --primary-hover: #2e8ded;
+  --interactive: #2383e2;
 
-  /* Surfaces, lightest to darkest. Objects are set apart by shade, not by outlines. */
-  --paper: #ffffff;
-  --wash: #f7f7f9;
-  --hero: #f4f5f7;
-  --mist: #eeeff2;
-  --line: #e9eaee;
-  --shade: #e2e3e8;
-  --shade-strong: #d9dbe0;
-  --tint: rgb(29 32 39 / 6%);
-  --tint-strong: rgb(29 32 39 / 10%);
+  --paper: light-dark(#ffffff, #18191c);
+  --wash: light-dark(#f7f7f9, #1e1f23);
+  --hero: light-dark(#f4f5f7, #1e1f23);
+  --mist: light-dark(#eeeff2, #242529);
+  --line: light-dark(#e9eaee, color-mix(in srgb, #242529 75%, #1e1f23));
+  --shade: light-dark(#e2e3e8, #2b2c31);
+  --shade-strong: light-dark(#d9dbe0, #323338);
+  --column: light-dark(#f9f9fb, #202125);
+  --well: light-dark(#f4f5f7, #242529);
+  --surface-raised: light-dark(#ffffff, #2b2c31);
+  --control-hover: light-dark(#e6e7eb, #323338);
   --paper-on-dark: #ffffff;
+  --ink-on-light: #1d2027;
+  --light-button-hover: #f4f5f7;
 
-  /* One side inset and one column gap shared by header, hero, sections and footer. */
-  --inset: clamp(1.25rem, 4.4vw, 5rem);
-  --gap: clamp(1rem, 2vw, 2rem);
-  --header-height: 3.5rem;
+  --tint: light-dark(rgb(29 32 39 / 6%), rgb(236 238 243 / 6%));
+  --tint-strong: light-dark(rgb(29 32 39 / 10%), rgb(236 238 243 / 10%));
+  --shadow-soft:
+    0 1px 3px light-dark(rgb(15 20 35 / 0.04), rgb(0 0 0 / 0.1)),
+    0 4px 14px light-dark(rgb(15 20 35 / 0.05), rgb(0 0 0 / 0.1));
+  --shadow-raised:
+    0 10px 24px light-dark(rgb(29 32 39 / 14%), rgb(0 0 0 / 38%)),
+    0 2px 6px light-dark(rgb(29 32 39 / 8%), rgb(0 0 0 / 24%));
+  --shadow-app-shot:
+    0 1px 3px light-dark(rgb(15 20 35 / 5%), rgb(0 0 0 / 28%)),
+    0 1.5rem 3.5rem light-dark(rgb(15 20 35 / 8%), rgb(0 0 0 / 42%));
+  --shadow-app-shot-raised:
+    0 1px 3px light-dark(rgb(15 20 35 / 5%), rgb(0 0 0 / 32%)),
+    0 1.5rem 3.5rem light-dark(rgb(15 20 35 / 12%), rgb(0 0 0 / 48%));
+
+  --activity-0: light-dark(#e9eaee, #26272b);
+  --activity-1: light-dark(#cfe0fa, #233756);
+  --activity-2: light-dark(#9fc2f4, #2f5690);
+  --activity-3: light-dark(#6a9be8, #4a80dc);
+  --activity-4: light-dark(#3f6fc9, #8db8f2);
+  --hero-matrix: light-dark(#7797bc, #77787f);
+  --status-orange: light-dark(#f5b467, #f5c27e);
+
+  --code-keyword: light-dark(#7f6fdb, #c4bbf8);
+  --code-string: light-dark(#3f9a63, #a7e3b9);
+  --code-variable: light-dark(#c98a2e, #fad497);
+  --code-function: light-dark(#4a80dc, #a9cbf7);
+  --code-attribute: light-dark(#d4645a, #f19a91);
+  --code-line-number: light-dark(#c8cad1, #48494f);
+  --code-highlight: light-dark(#edf3fd, #1c2a40);
+  --code-highlight-text: light-dark(#4a80dc, #a9cbf7);
+
+  --badge-blue-surface: light-dark(#e8effc, #22324a);
+  --badge-blue-text: light-dark(#4a80dc, #a9cbf7);
+  --badge-green-surface: light-dark(#e6f7eb, #213628);
+  --badge-green-text: light-dark(#3f9a63, #a7e3b9);
+  --badge-orange-surface: light-dark(#fdf0dc, #403221);
+  --badge-orange-text: light-dark(#c98a2e, #fad497);
+  --badge-red-surface: light-dark(#fce8e6, #382320);
+  --badge-red-text: light-dark(#c95a50, #f4aaa3);
+
   --radius: 0.5rem;
   --radius-ctl: 5px;
   --announcement-height: 2.25rem;
-
+  --inset: clamp(1.25rem, 4.4vw, 5rem);
+  --gap: clamp(1rem, 2vw, 2rem);
+  --header-height: 3.5rem;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-flight: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+html.light {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}

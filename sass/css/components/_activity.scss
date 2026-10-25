@@ -14,10 +14,9 @@
 .pulse__card {
   width: max-content;
   border-radius: 0.5rem;
-  background: #f9f9fb;
+  background: var(--column);
   box-shadow:
-    0 1px 3px rgb(15 20 35 / 4%),
-    0 4px 14px rgb(15 20 35 / 5%);
+    var(--shadow-soft);
 }
 
 .pulse__head {
@@ -87,10 +86,9 @@
   padding: 0.375rem 0.625rem;
   border-radius: 6px;
   color: var(--quiet);
-  background: #ffffff;
+  background: var(--surface-raised);
   box-shadow:
-    0 10px 24px rgb(29 32 39 / 14%),
-    0 2px 6px rgb(29 32 39 / 8%);
+    var(--shadow-raised);
   font-size: 0.75rem;
   line-height: 17px;
   white-space: nowrap;
@@ -108,7 +106,7 @@
 }
 
 .pulse__tip em {
-  color: #d4645a;
+  color: var(--code-attribute);
   font-style: normal;
 }
 

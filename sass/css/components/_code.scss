@@ -149,8 +149,7 @@
   border-radius: 0.5rem;
   background: var(--hero);
   box-shadow:
-    0 1px 3px rgb(15 20 35 / 4%),
-    0 4px 14px rgb(15 20 35 / 5%);
+    var(--shadow-soft);
 }
 
 .code::after {
@@ -162,13 +161,7 @@
   height: 9rem;
   content: "";
   pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent 0,
-    rgb(244 245 247 / 18%) 28%,
-    rgb(244 245 247 / 72%) 68%,
-    var(--hero) 100%
-  );
+  background: linear-gradient(to bottom, transparent, var(--hero));
 }
 
 .code__bar {
@@ -212,20 +205,24 @@
 }
 
 .code__copy:hover {
-  background: #e6e7eb;
+  background: var(--control-hover);
 }
 
 .code__copy:active {
   transform: scale(0.96);
 }
 
-.code__copy img {
+.code__copy-icon {
+  display: block;
   width: 0.875rem;
   height: 0.875rem;
+  background: currentColor;
+  -webkit-mask: url("../images/blocks/copy.svg") center / contain no-repeat;
+  mask: url("../images/blocks/copy.svg") center / contain no-repeat;
   opacity: 0.6;
 }
 
-.code__copy[data-copied] img {
+.code__copy[data-copied] .code__copy-icon {
   opacity: 1;
 }
 
@@ -253,7 +250,7 @@
   position: absolute;
   left: 0;
   width: 2.1rem;
-  color: #c8cad1;
+  color: var(--code-line-number);
   font-variant-numeric: tabular-nums;
   text-align: right;
   content: counter(code-line);
@@ -262,22 +259,22 @@
 }
 
 .code__keyword {
-  color: #7f6fdb;
+  color: var(--code-keyword);
 }
 
 .code__string {
-  color: #3f9a63;
+  color: var(--code-string);
 }
 
 .code__ctx {
-  color: #c98a2e;
+  color: var(--code-variable);
 }
 
 .code__fn {
-  color: #4a80dc;
+  color: var(--code-function);
 }
 
 .code__const {
-  color: #d4645a;
+  color: var(--code-attribute);
 }
 

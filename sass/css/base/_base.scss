@@ -52,7 +52,7 @@ button {
 }
 
 :focus-visible {
-  outline: 1px solid currentColor;
+  outline: 2px solid var(--interactive);
   outline-offset: 3px;
 }
 
@@ -64,7 +64,7 @@ button {
   padding: 0.6rem 0.85rem;
   transform: translateY(-150%);
   border-radius: var(--radius);
-  color: var(--paper-on-dark);
+  color: var(--paper);
   background: var(--ink);
   font-size: 0.75rem;
   text-decoration: none;

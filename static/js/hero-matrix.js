@@ -6,10 +6,10 @@
 
   const context = canvas.getContext("2d");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const colors = ["92, 124, 165", "108, 140, 180", "132, 158, 192"];
   const initialDensity = 0.16;
 
   let cells = [];
+  let matrixColor = "";
   let cellSize = 18;
   let columns = 0;
   let rows = 0;
@@ -40,7 +40,6 @@
         row: Math.floor(index / columns),
         revealedAt: Infinity,
         strength: 0.09 + Math.random() * 0.14,
-        color: colors[Math.floor(Math.random() * colors.length)],
         wakeX: 0,
         wakeY: 0,
         wakeInfluence: 0,
@@ -59,7 +58,13 @@
     cycleOpacity = 1;
   };
 
+  const refreshColor = () => {
+    const channels = getComputedStyle(canvas).color.match(/[\d.]+/g);
+    if (channels?.length >= 3) matrixColor = channels.slice(0, 3).join(", ");
+  };
+
   const resize = () => {
+    refreshColor();
     const bounds = canvas.getBoundingClientRect();
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
@@ -138,9 +143,9 @@
       const opacity = cell.strength * easedFade * cycleOpacity * (1 + cell.wakeInfluence * 0.18);
       const gradient = context.createLinearGradient(x, y, x + cellSize, y + cellSize);
 
-      gradient.addColorStop(0, `rgba(${cell.color}, ${opacity * 0.68})`);
-      gradient.addColorStop(0.52, `rgba(${cell.color}, ${opacity})`);
-      gradient.addColorStop(1, `rgba(${cell.color}, ${opacity * 0.78})`);
+      gradient.addColorStop(0, `rgba(${matrixColor}, ${opacity * 0.68})`);
+      gradient.addColorStop(0.52, `rgba(${matrixColor}, ${opacity})`);
+      gradient.addColorStop(1, `rgba(${matrixColor}, ${opacity * 0.78})`);
       context.fillStyle = gradient;
       context.fillRect(x, y, cellSize, cellSize);
     });
@@ -201,6 +206,10 @@
     if (animationName !== "hero-logo-entrance") return;
     flightIsActive = false;
     flightSettledAt = performance.now();
+  });
+  document.addEventListener("logven:themechange", () => {
+    refreshColor();
+    draw(performance.now());
   });
   reduceMotion.addEventListener("change", () => {
     resize();

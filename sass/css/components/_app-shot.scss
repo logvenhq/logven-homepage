@@ -17,57 +17,48 @@
 }
 
 .app-shot {
-  /* Neutral scale */
-  --n0: #ffffff;
-  --n50: #f9f9fb;
-  --n100: #f4f5f7;
-  --n150: #eeeff2;
-  --n160: #e9eaee;
-  --n175: #e2e3e8;
-  --n500: #c8cad1;
-  --n550: #b4b7bf;
-  --n700: #83868f;
-  --n725: #6b6e78;
-  --n750: #545862;
-  --n950: #1d2027;
+  /* Neutral scale and semantic roles match the app's light/dark theme tokens. */
+  --n0: light-dark(#ffffff, #18191c);
+  --n25: light-dark(#fcfcfd, #202125);
+  --n50: light-dark(#f9f9fb, #1c1d21);
+  --n100: light-dark(#f4f5f7, #1e1f23);
+  --n150: light-dark(#eeeff2, #242529);
+  --n160: light-dark(#e9eaee, #26272b);
+  --n175: light-dark(#e2e3e8, #2b2c31);
+  --n200: light-dark(#d9dbe0, #323338);
+  --n500: light-dark(#c8cad1, #48494f);
+  --n550: light-dark(#b4b7bf, #606168);
+  --n600: light-dark(#9b9ea8, #77787f);
+  --n700: light-dark(#83868f, #8d8e96);
+  --n725: light-dark(#6b6e78, #a6a8b0);
+  --n750: light-dark(#545862, #bfc1c8);
+  --n950: light-dark(#1d2027, #eceef3);
 
-  /* Ink */
   --ink: var(--n950);
   --ink-body: var(--n750);
   --ink-soft: var(--n725);
   --ink-faint: var(--n700);
   --ink-mist: var(--n500);
 
-  /* Surfaces and dividers */
   --page: var(--n0);
-  --column: var(--n50);
+  --column: light-dark(#f9f9fb, #202125);
   --well: var(--n100);
   --well-subtle: var(--n100);
   --sidebar-border: var(--n160);
   --sidebar-project-open: var(--n150);
   --menu-item-selected: var(--n160);
   --row-divider: var(--n160);
-  --primary: #2383e2;
 
-  /* Activity scale */
-  --activity-0: var(--n160);
-  --activity-1: #cfe0fa;
-  --activity-2: #9fc2f4;
-  --activity-3: #6a9be8;
-  --activity-4: #3f6fc9;
 
   --radius-card: 8px;
   --radius-ctl: 5px;
-  --shadow-soft: 0 1px 3px rgb(15 20 35 / 0.04), 0 4px 14px rgb(15 20 35 / 0.05);
 
   position: absolute;
   overflow: hidden;
   container-type: inline-size;
   border-radius: var(--radius-card);
   background: var(--page);
-  box-shadow:
-    0 1px 3px rgb(15 20 35 / 5%),
-    0 1.5rem 3.5rem rgb(15 20 35 / 8%);
+  box-shadow: var(--shadow-app-shot);
   color: var(--ink);
   font-family: "Geist", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
@@ -95,9 +86,7 @@
   width: 56.89%;
   margin-top: 7%;
   aspect-ratio: 1280 / 800;
-  box-shadow:
-    0 1px 3px rgb(15 20 35 / 5%),
-    0 1.5rem 3.5rem rgb(15 20 35 / 12%);
+  box-shadow: var(--shadow-app-shot-raised);
 }
 
 .app-shot *,
@@ -618,7 +607,7 @@
   font-weight: 500;
 }
 
-.app-shot .as-tone-orange { color: #f5b467; }
+.app-shot .as-tone-orange { color: var(--status-orange); }
 
 .app-shot .as-status-icon {
   display: block;
@@ -656,10 +645,10 @@
   background: currentColor;
 }
 
-.app-shot .as-badge--blue { background: #e8effc; color: #4a80dc; }
-.app-shot .as-badge--green { background: #e6f7eb; color: #3f9a63; }
-.app-shot .as-badge--orange { background: #fdf0dc; color: #c98a2e; }
-.app-shot .as-badge--red { background: #fce8e6; color: #c95a50; }
+.app-shot .as-badge--blue { background: var(--badge-blue-surface); color: var(--badge-blue-text); }
+.app-shot .as-badge--green { background: var(--badge-green-surface); color: var(--badge-green-text); }
+.app-shot .as-badge--orange { background: var(--badge-orange-surface); color: var(--badge-orange-text); }
+.app-shot .as-badge--red { background: var(--badge-red-surface); color: var(--badge-red-text); }
 
 /* Project cards (card.css) */
 .app-shot .as-cards {
@@ -783,7 +772,7 @@
   padding: 0 12px;
   border-radius: var(--radius-ctl);
   background: var(--primary);
-  color: #ffffff;
+  color: var(--paper-on-dark);
   font-size: 13px;
   font-weight: 500;
 }

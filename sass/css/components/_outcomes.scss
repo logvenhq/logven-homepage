@@ -22,7 +22,7 @@
 
 .story-card,
 .block--dots {
-  background-image: radial-gradient(rgb(29 32 39 / 7%) 1px, transparent 1.3px);
+  background-image: radial-gradient(var(--tint-strong) 1px, transparent 1.3px);
   background-size: 16px 16px;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .app-shot.render-shot .as-card {
-  background: #ffffff;
+  background: var(--surface-raised);
 }
 
 /* Engineers get back to engineering: two project cards, the second one lower. */
@@ -130,8 +130,8 @@
   --fade-y: 62%;
   left: 20%;
   border-radius: 8px 0 0 0;
-  background: #ffffff;
-  box-shadow: 0 1px 3px rgb(15 20 35 / 4%), 0 4px 14px rgb(15 20 35 / 5%);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-soft);
 }
 
 .render-shot .rs-sheet-title {
@@ -155,8 +155,8 @@
 .render-shot .rs-code {
   position: relative;
   border-radius: 8px 0 0 0;
-  background: #ffffff;
-  box-shadow: 0 1px 3px rgb(15 20 35 / 4%), 0 4px 14px rgb(15 20 35 / 5%);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-soft);
 }
 
 .render-shot .rs-code__bar {
@@ -176,8 +176,8 @@
   margin: 0;
   padding: 8px 0 12px;
   overflow: hidden;
-  border-top: 1px solid #e9eaee;
-  color: #1d2027;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: 12px;
   line-height: 22px;
@@ -194,17 +194,17 @@
   display: inline-block;
   width: 3rem;
   padding-right: 12px;
-  color: #c8cad1;
+  color: var(--code-line-number);
   font-style: normal;
   text-align: right;
 }
 
 .render-shot .rs-line--hit {
-  background: #edf3fd;
+  background: var(--code-highlight);
 }
 
 .render-shot .rs-line--hit i {
-  color: #4a80dc;
+  color: var(--code-highlight-text);
 }
 
 /* Sits just under the highlighted line (second line: 40px bar, 9px, 2 x 22px). */
@@ -215,20 +215,20 @@
   display: grid;
   padding: 6px 10px;
   border-radius: 6px;
-  background: #ffffff;
-  box-shadow: 0 10px 24px rgb(29 32 39 / 14%), 0 2px 6px rgb(29 32 39 / 8%);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-raised);
   font-size: 12px;
   line-height: 17px;
   white-space: nowrap;
 }
 
 .render-shot .rs-pop b {
-  color: #1d2027;
+  color: var(--ink);
   font-weight: 600;
 }
 
 .render-shot .rs-pop span {
-  color: #83868f;
+  color: var(--quiet);
 }
 
 /* Work you can see: the app's activity card, heatmap running off the right edge. */
@@ -247,8 +247,8 @@
 .render-shot .rs-activity {
   position: relative;
   border-radius: 8px 0 0 0;
-  background: #ffffff;
-  box-shadow: 0 1px 3px rgb(15 20 35 / 4%), 0 4px 14px rgb(15 20 35 / 5%);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-soft);
 }
 
 .render-shot .rs-activity::before {
@@ -256,7 +256,7 @@
   z-index: 4;
   top: 74px;
   right: 3.65rem;
-  color: #1d2027;
+  color: var(--ink);
   font-size: 12px;
   font-weight: 600;
   line-height: 17px;
@@ -274,9 +274,9 @@
   height: 3.625rem;
   padding: 6px 9px;
   border-radius: 6px;
-  color: #83868f;
-  background: #ffffff;
-  box-shadow: 0 10px 24px rgb(29 32 39 / 14%), 0 2px 6px rgb(29 32 39 / 8%);
+  color: var(--quiet);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-raised);
   font-size: 12px;
   line-height: 17px;
   white-space: nowrap;
@@ -308,7 +308,7 @@
   margin-left: auto;
   align-items: center;
   gap: 4px;
-  color: #83868f;
+  color: var(--quiet);
   font-size: 12px;
 }
 
@@ -329,7 +329,7 @@
   gap: 3px;
   padding: 0 0 16px 16px;
   overflow: hidden;
-  color: #83868f;
+  color: var(--quiet);
   font-size: 12px;
   line-height: 1;
   mask-image: linear-gradient(to right, #000 calc(100% - 5rem), transparent);
@@ -350,9 +350,9 @@
   align-self: center;
 }
 
-.render-shot .rs-a0 { background: #e9eaee; }
-.render-shot .rs-a1 { background: #cfe0fa; }
-.render-shot .rs-a2 { background: #9fc2f4; }
-.render-shot .rs-a3 { background: #6a9be8; }
-.render-shot .rs-a4 { background: #3f6fc9; }
+.render-shot .rs-a0 { background: var(--activity-0); }
+.render-shot .rs-a1 { background: var(--activity-1); }
+.render-shot .rs-a2 { background: var(--activity-2); }
+.render-shot .rs-a3 { background: var(--activity-3); }
+.render-shot .rs-a4 { background: var(--activity-4); }
 

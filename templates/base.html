@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f8fafc">
+    <meta name="theme-color" content="#ffffff">
     <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
     <meta name="robots" content="index,follow">
     <meta property="og:site_name" content="{{ config.title }}">
@@ -25,6 +25,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path='favicon-16x16.png') }}">
     <link rel="icon" href="{{ get_url(path='favicon.ico') }}" sizes="any">
     <link rel="manifest" href="{{ get_url(path='site.webmanifest') }}">
+    <script src="{{ get_url(path='js/theme.js', cachebust=true) }}"></script>
     <link rel="stylesheet" href="{{ get_url(path='css/style.css', cachebust=true) }}">
     <title>{% block title %}{{ config.title }} — {{ config.extra.tagline }}{% endblock title %}</title>
   </head>
@@ -90,6 +91,12 @@
         <div class="site-footer__nav">
           <span>© {{ now() | date(format="%Y") }} Logven</span>
           <a href="mailto:info@logven.com">Contact us: info@logven.com</a>
+          <fieldset class="theme-control" data-theme-control>
+            <legend class="visually-hidden">Appearance</legend>
+            <label><input type="radio" name="appearance" value="system" checked><span>System</span></label>
+            <label><input type="radio" name="appearance" value="light"><span>Light</span></label>
+            <label><input type="radio" name="appearance" value="dark"><span>Dark</span></label>
+          </fieldset>
         </div>
       </div>
     </footer>

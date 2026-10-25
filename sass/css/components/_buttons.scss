@@ -52,12 +52,12 @@
 }
 
 .button--light {
-  color: var(--ink);
+  color: var(--ink-on-light);
   background: var(--paper-on-dark);
 }
 
 .button--light:hover {
-  background: var(--hero);
+  background: var(--light-button-hover);
 }
 
 .text-link {

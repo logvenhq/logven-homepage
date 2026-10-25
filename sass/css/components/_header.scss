@@ -127,3 +127,13 @@ main > .hero:first-child {
   transform: scale(0.96);
 }
 
+
+html.dark .site-header__logo img {
+  filter: brightness(0) invert(1);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .site-header__logo img {
+    filter: brightness(0) invert(1);
+  }
+}
