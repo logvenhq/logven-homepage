@@ -137,3 +137,12 @@ html.dark .site-header__logo img {
     filter: brightness(0) invert(1);
   }
 }
+
+.site-header--model:not(.is-scrolled) {
+  --ink: var(--ink-on-light);
+  --text: var(--ink-on-light);
+}
+
+.site-header--model:not(.is-scrolled) .site-header__logo img {
+  filter: brightness(0);
+}

@@ -32,9 +32,11 @@
     {% set home = get_url(path="@/_index.md") %}
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
+    {% if current_path == '/' %}
     <a class="announcement" href="{{ get_url(path='@/start-a-pilot.md') }}">Now running paid pilots with engineering and operations teams <span aria-hidden="true">→</span></a>
+    {% endif %}
 
-    <header class="site-header" data-site-header>
+    <header class="site-header{% if page is defined and page.extra.model_hero %} site-header--model{% endif %}" data-site-header>
       <div class="site-header__inner">
         <a class="site-header__logo" href="{{ home }}" aria-label="Logven home"><img src="{{ get_url(path='brand/hero-logo.svg') }}" alt="" width="114" height="125"><span>Logven</span></a>
         <nav class="site-header__nav" aria-label="Primary">
