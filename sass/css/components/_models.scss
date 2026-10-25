@@ -104,8 +104,7 @@
   --model-card-image: url("../images/posts/model-retrieval.webp");
 }
 
-/* Each illustration shares the media's 8:5 canvas. Paths can continue past
-   its edges and are clipped to the card. */
+/* Each illustration shares the media's 8:5 canvas and fades clear of the label. */
 .model-motif {
   --motif-accent: #ffffff;
   --motif-tint: rgb(255 255 255 / 12%);
@@ -116,6 +115,7 @@
   height: 100%;
   margin: 0;
   color: var(--paper-on-dark);
+  mask-image: linear-gradient(to bottom, #000 35%, transparent 65%);
   pointer-events: none;
 }
 
