@@ -1476,9 +1476,40 @@ main > .hero:first-child {
 }
 
 .render-shot .rs-activity {
+  position: relative;
   border-radius: 8px 0 0 0;
   background: #ffffff;
   box-shadow: 0 1px 3px rgb(15 20 35 / 4%), 0 4px 14px rgb(15 20 35 / 5%);
+}
+
+.render-shot .rs-activity::before {
+  position: absolute;
+  z-index: 3;
+  top: 97px;
+  right: 5.7rem;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  background: #ffffff;
+  box-shadow: 2px 2px 3px rgb(29 32 39 / 5%);
+  content: "";
+}
+
+.render-shot .rs-activity::after {
+  position: absolute;
+  z-index: 3;
+  top: 68px;
+  right: 3rem;
+  padding: 6px 9px;
+  border-radius: 6px;
+  color: #1d2027;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgb(29 32 39 / 14%), 0 2px 6px rgb(29 32 39 / 8%);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 17px;
+  white-space: nowrap;
+  content: "Jun 18 · 12 runs";
 }
 
 .render-shot .rs-activity__head {
