@@ -1107,10 +1107,16 @@ main > .hero:first-child {
   right: 0;
   bottom: 0;
   left: 0;
-  height: 4.5rem;
+  height: 9rem;
   content: "";
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent, var(--hero) 88%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    rgb(244 245 247 / 18%) 28%,
+    rgb(244 245 247 / 72%) 68%,
+    var(--hero) 100%
+  );
 }
 
 .code__bar {
@@ -1711,31 +1717,32 @@ main > .hero:first-child {
 
 .card__media {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   aspect-ratio: 16 / 10;
   border-radius: var(--radius);
-  background: var(--hero);
+  background-color: var(--hero);
+  background-image: radial-gradient(rgb(29 32 39 / 7%) 1px, transparent 1.3px);
+  background-size: 16px 16px;
 }
 
-.card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1.2s var(--ease-out);
+.card__media::after {
+  position: absolute;
+  z-index: 2;
+  inset: 38% 0 0;
+  background: linear-gradient(to bottom, transparent, var(--hero) 60%);
+  content: "";
+  pointer-events: none;
 }
 
-.card:hover .card__image {
-  transform: scale(1.025);
-}
-
-/* Large white type on the generated backgrounds, second line dimmed, over a soft shade. */
+/* The category label sits below a real product-style model card. */
 .card__overlay {
   position: absolute;
+  z-index: 3;
   inset: auto 0 0;
   margin: 0;
-  padding: 3rem clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 1.8vw, 1.5rem);
-  color: var(--paper-on-dark);
-  background: linear-gradient(to top, rgb(10 14 30 / 30%), transparent);
+  padding: 2.75rem clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 1.8vw, 1.5rem);
+  color: var(--ink);
   font-size: clamp(1.375rem, 2.1vw, 2rem);
   font-weight: 450;
   line-height: 1.04;
@@ -1747,7 +1754,7 @@ main > .hero:first-child {
 }
 
 .card__overlay span + span {
-  opacity: 0.7;
+  color: var(--muted);
 }
 
 .card__title {

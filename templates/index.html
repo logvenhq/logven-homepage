@@ -238,8 +238,8 @@
       <div class="container grid audience">
         <figure class="audience__media" data-reveal>
           <img
-            src="{{ get_url(path='images/stories/pickawood-workshop.avif') }}"
-            alt="Two technicians working in an automated workshop"
+            src="{{ get_url(path='images/stories/greenhouse.avif') }}"
+            alt="A grower tending plants inside a greenhouse"
             width="1600"
             height="900"
             loading="lazy"
@@ -248,16 +248,16 @@
         </figure>
 
         <div class="audience__copy">
-          <h2 id="who-title" class="block__title" data-reveal>For the teams that run operations</h2>
+          <h2 id="who-title" class="block__title" data-reveal>Across technical industries</h2>
 
           <div class="audience__list">
             <div class="audience__item" data-reveal>
-              <h3 class="audience__title">Specialist teams</h3>
-              <p class="audience__text">Engineers, analysts and operators who spend their days moving data between PDFs, spreadsheets and systems. Logven takes on the preparation around their work, and keeps their expertise as workers that run.</p>
+              <h3 class="audience__title">Industry and infrastructure</h3>
+              <p class="audience__text">Manufacturing, aerospace, energy, construction and logistics teams use Logven to connect the documents, sensor data and systems their work depends on.</p>
             </div>
             <div class="audience__item" data-reveal>
-              <h3 class="audience__title">Department heads</h3>
-              <p class="audience__text">The people accountable for how a department runs. They get a current picture of how work actually gets done, and one place to standardise and improve it.</p>
+              <h3 class="audience__title">Science and the field</h3>
+              <p class="audience__text">Agriculture, environmental, laboratory and other technical teams use the same programmable model for work that happens beyond a desk.</p>
             </div>
           </div>
 
@@ -293,9 +293,9 @@
       <div class="container">
         <div class="block__head">
           <div class="block__head-copy">
-            <h2 id="models-title" class="block__title" data-reveal>Complex technical work, made simple</h2>
+            <h2 id="models-title" class="block__title" data-reveal>Your models, on your infrastructure</h2>
             <p class="block__body block__intro" data-reveal>
-              Logven brings the right kind of AI to each step of a process, from language and vision to time series and decisions. All of it runs on your own hardware, so your data never leaves the building.
+              Run language, vision, time-series, decision and retrieval models inside the environment you control. Sensitive documents, images and operational data stay on your premises, while your team decides what runs and when.
             </p>
           </div>
           <div class="carousel__controls">
@@ -312,51 +312,96 @@
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <img class="card__image" src="{{ get_url(path='images/posts/model-language.webp') }}" alt="" width="1400" height="934" loading="lazy" decoding="async">
-                <p class="card__overlay"><span>Language.</span><span>Reports, emails, specs.</span></p>
+                <div class="app-shot model-shot" aria-hidden="true">
+                  <div class="as-card model-shot__card">
+                    <div class="as-card-header">
+                      <div class="as-card-title"><span class="as-cube as-cube--models"></span><span>Language model</span></div>
+                      <span class="as-badge as-badge--green">Local</span>
+                    </div>
+                    <pre class="model-shot__code"><span><i>1</i><span class="code__keyword">const</span> result = <span class="code__keyword">await</span> ctx.<span class="code__fn">llm</span>({</span><span><i>2</i>  model: <span class="code__string">"gemma-3-12b"</span>,</span><span><i>3</i>  document: report,</span><span class="model-shot__line--active"><i>4</i>  output: { supplier, date, status }</span><span><i>5</i>});</span></pre>
+                  </div>
+                </div>
+                <p class="card__overlay"><span>Language.</span><span>Documents stay local.</span></p>
               </div>
-              <h3 class="card__title">Language models that read and write the paperwork</h3>
-              <p class="card__text">Turn emails, reports and specifications into structured data, and draft the documents that go back out.</p>
+              <h3 class="card__title">Language models where the paperwork lives</h3>
+              <p class="card__text">Read and write emails, reports and specifications without sending source documents to an external service.</p>
             </article>
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <img class="card__image" src="{{ get_url(path='images/posts/model-vision.webp') }}" alt="" width="1400" height="934" loading="lazy" decoding="async">
-                <p class="card__overlay"><span>Vision.</span><span>Scans, drawings, inspections.</span></p>
+                <div class="app-shot model-shot" aria-hidden="true">
+                  <div class="as-card model-shot__card">
+                    <div class="as-card-header">
+                      <div class="as-card-title"><span class="as-cube as-cube--models"></span><span>Inspection vision</span></div>
+                      <span class="as-badge as-badge--green">Local</span>
+                    </div>
+                    <div class="model-shot__vision">
+                      <div class="model-shot__frame"><span class="model-shot__object model-shot__object--a"></span><span class="model-shot__object model-shot__object--b"></span></div>
+                      <dl class="model-shot__facts"><div><dt>Finding</dt><dd>Within tolerance</dd></div><div><dt>Confidence</dt><dd>98%</dd></div><div><dt>Evidence</dt><dd>2 regions</dd></div></dl>
+                    </div>
+                  </div>
+                </div>
+                <p class="card__overlay"><span>Vision.</span><span>Images stay on-site.</span></p>
               </div>
-              <h3 class="card__title">Vision models for documents and the field</h3>
-              <p class="card__text">Read scanned forms, tables and technical drawings, and check inspection photos against what the process expects.</p>
+              <h3 class="card__title">Vision models beside the work</h3>
+              <p class="card__text">Process scanned forms, technical drawings and inspection photos within the same environment that stores them.</p>
             </article>
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <img class="card__image" src="{{ get_url(path='images/posts/model-timeseries.webp') }}" alt="" width="1400" height="934" loading="lazy" decoding="async">
-                <p class="card__overlay"><span>Time series.</span><span>Sensors, trends, anomalies.</span></p>
+                <div class="app-shot model-shot" aria-hidden="true">
+                  <div class="as-card model-shot__card">
+                    <div class="as-card-header">
+                      <div class="as-card-title"><span class="as-cube as-cube--models"></span><span>Load forecast</span></div>
+                      <span class="as-badge as-badge--blue">+12 hours</span>
+                    </div>
+                    <svg class="model-shot__chart" viewBox="0 0 360 116" preserveAspectRatio="none"><path class="model-shot__grid" d="M0 18H360M0 58H360M0 98H360"/><path class="model-shot__actual" d="M0 86C25 82 32 43 57 55S91 83 113 59s32-45 58-31 35 48 58 36 31-33 57-27"/><path class="model-shot__forecast" d="M286 37c24-5 39 11 74-12"/><circle cx="286" cy="37" r="4"/></svg>
+                    <div class="model-shot__legend"><span><i class="model-shot__key model-shot__key--solid"></i>Observed</span><span><i class="model-shot__key model-shot__key--dash"></i>Forecast</span></div>
+                  </div>
+                </div>
+                <p class="card__overlay"><span>Time series.</span><span>Telemetry stays inside.</span></p>
               </div>
-              <h3 class="card__title">Time-series models for plant and sensor data</h3>
-              <p class="card__text">Forecast load and demand, catch anomalies in readings, and flag drift long before it shows up in a report.</p>
+              <h3 class="card__title">Time-series models close to the equipment</h3>
+              <p class="card__text">Forecast and detect anomalies without routing production telemetry beyond your network.</p>
             </article>
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <img class="card__image" src="{{ get_url(path='images/posts/model-finetuned.webp') }}" alt="" width="1400" height="934" loading="lazy" decoding="async">
-                <p class="card__overlay"><span>Decisions.</span><span>Plans, schedules, what-ifs.</span></p>
+                <div class="app-shot model-shot" aria-hidden="true">
+                  <div class="as-card model-shot__card">
+                    <div class="as-card-header">
+                      <div class="as-card-title"><span class="as-cube as-cube--models"></span><span>Scenario comparison</span></div>
+                      <span class="as-badge as-badge--orange">Review</span>
+                    </div>
+                    <div class="model-shot__options"><div class="model-shot__option is-selected"><span>Plan A</span><b>Recommended</b><em>91%</em></div><div class="model-shot__option"><span>Plan B</span><b>Feasible</b><em>74%</em></div><div class="model-shot__option"><span>Hold</span><b>Baseline</b><em>38%</em></div></div>
+                  </div>
+                </div>
+                <p class="card__overlay"><span>Decisions.</span><span>Control stays with you.</span></p>
               </div>
-              <h3 class="card__title">Predictive models that help decide</h3>
-              <p class="card__text">JEPA-style world models learn how a process behaves, so Logven can compare scenarios and propose a next step for a person to approve.</p>
+              <h3 class="card__title">Decision models under your control</h3>
+              <p class="card__text">Compare plans and scenarios on your infrastructure, with people approving actions before anything changes.</p>
             </article>
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <img class="card__image" src="{{ get_url(path='images/posts/model-retrieval.webp') }}" alt="" width="1400" height="934" loading="lazy" decoding="async">
-                <p class="card__overlay"><span>Retrieval.</span><span>Every document, findable.</span></p>
+                <div class="app-shot model-shot" aria-hidden="true">
+                  <div class="as-card model-shot__card">
+                    <div class="as-card-header">
+                      <div class="as-card-title"><span class="as-cube as-cube--models"></span><span>Private knowledge</span></div>
+                      <span class="as-badge as-badge--green">Indexed</span>
+                    </div>
+                    <div class="model-shot__search"><span class="as-i as-i--text"></span><span>compressor threshold</span></div>
+                    <ol class="model-shot__results"><li><span>Test specification A-17</span><b>96%</b></li><li><span>Run 214 · vibration</span><b>91%</b></li><li><span>Reliability action 08</span><b>86%</b></li></ol>
+                  </div>
+                </div>
+                <p class="card__overlay"><span>Retrieval.</span><span>Knowledge stays private.</span></p>
               </div>
-              <h3 class="card__title">Search across everything the company knows</h3>
-              <p class="card__text">Embedding models index documents, records and past runs, so every answer points back to its source.</p>
+              <h3 class="card__title">Retrieval across private company knowledge</h3>
+              <p class="card__text">Index internal documents, records and past runs locally, so answers stay grounded without exposing the corpus.</p>
             </article>
           </li>
         </ul>
