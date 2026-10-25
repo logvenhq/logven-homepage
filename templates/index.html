@@ -312,11 +312,7 @@
           <li class="carousel__item">
             <article class="card" data-reveal>
               <div class="card__media">
-                <svg class="model-motif model-motif--code" aria-hidden="true" viewBox="0 0 400 250">
-                  <path class="model-motif__code-bracket" d="M58 28h-5q-12 0-12 12v35q0 16-13 18 13 2 13 18v35q0 12 12 12h5M342 28h5q12 0 12 12v35q0 16 13 18-13 2-13 18v35q0 12-12 12h-5"/>
-                  <path class="model-motif__code-token model-motif__code-accent" d="M86 52h132M86 136h196"/>
-                  <path class="model-motif__code-token" d="M110 80h190M110 108h142"/>
-                </svg>
+                <pre class="model-motif model-motif--code" aria-hidden="true"><span><span class="code__keyword">const</span> result = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">llm</span>({</span><span>  model: <span class="code__string">"gemma-3-12b"</span>,</span><span>  input: report,</span><span>  output_shape: { supplier, date, status },</span><span>});</span><span> </span><span><span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.sheets.<span class="code__fn">create_record</span>(</span><span>  <span class="code__string">"supplier_reports"</span>, result</span><span>);</span><span> </span><span><span class="code__keyword">return</span> { status: <span class="code__string">"complete"</span>, record: result.id };</span></pre>
                 <p class="card__overlay"><span>Language.</span><span>Documents stay local.</span></p>
               </div>
               <h3 class="card__title">Language models where the paperwork lives</h3>

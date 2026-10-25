@@ -1753,26 +1753,35 @@ main > .hero:first-child {
 .model-motif--code {
   --motif-accent: #b57b28;
   --motif-tint: rgb(181 123 40 / 8%);
+  inset: -4% -12% -10% -4%;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  padding: clamp(1rem, 2vw, 1.5rem) 0 5rem;
   background: rgb(255 255 255 / 38%);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(0.68rem, 0.9vw, 0.86rem);
+  line-height: clamp(1.35rem, 1.8vw, 1.7rem);
 }
 
-.model-motif__code-token {
-  fill: none;
-  stroke: #b4b7bf;
-  stroke-width: 3;
-  stroke-linecap: round;
+.model-motif--code > span {
+  display: block;
+  min-width: max-content;
+  padding-right: 2rem;
+  white-space: pre;
 }
 
-.model-motif__code-accent {
-  stroke: var(--motif-accent);
+.model-motif--code .code__keyword,
+.model-motif--code .code__fn {
+  color: var(--motif-accent);
 }
 
-.model-motif__code-bracket {
-  fill: none;
-  stroke: var(--motif-accent);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.model-motif--code .code__ctx {
+  color: #d09a4b;
+}
+
+.model-motif--code .code__string {
+  color: #956726;
 }
 
 .model-motif--chart {
