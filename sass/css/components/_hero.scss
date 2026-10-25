@@ -43,7 +43,7 @@
     clamp(2rem, 4.2vw, 3.5rem);
 }
 
-.hero--page::after {
+.hero--page:not(.hero--model)::after {
   position: absolute;
   z-index: 2;
   inset: 0;

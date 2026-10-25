@@ -104,17 +104,8 @@
   --model-card-image: url("../images/posts/model-retrieval.webp");
 }
 
-.card__media::after {
-  position: absolute;
-  z-index: 2;
-  inset: 38% 0 0;
-  background: linear-gradient(to bottom, transparent, var(--model-card-bg) 60%);
-  content: "";
-  pointer-events: none;
-}
-
 /* Each illustration shares the media's 8:5 canvas. Paths can continue past
-   its edges, while the fade keeps the label clear at every card width. */
+   its edges and are clipped to the card. */
 .model-motif {
   --motif-accent: #ffffff;
   --motif-tint: rgb(255 255 255 / 12%);
