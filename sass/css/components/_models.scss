@@ -278,6 +278,23 @@
   opacity: 0.25;
 }
 
+.card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card__link:focus-visible {
+  outline-offset: -2px;
+}
+
+.card__link:hover .card__title,
+.card__link:focus-visible .card__title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
 /* The category label sits below the model's characteristic visual motif. */
 .card__overlay {
   position: absolute;

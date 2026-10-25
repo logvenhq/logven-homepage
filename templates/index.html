@@ -224,101 +224,111 @@
         <ul class="carousel__track" role="list" data-carousel-track>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media card__media--language">
-                <pre class="model-motif model-motif--code" aria-hidden="true"><span><span class="code__keyword">const</span> result = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">llm</span>({</span><span>  model: <span class="code__string">"gemma-3-12b"</span>,</span><span>  input: report,</span><span>  output_shape: { supplier, date, status },</span><span>});</span><span> </span><span><span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.sheets.<span class="code__fn">create_record</span>(</span><span>  <span class="code__string">"supplier_reports"</span>, result</span><span>);</span><span> </span><span><span class="code__keyword">return</span> { status: <span class="code__string">"complete"</span>, record: result.id };</span></pre>
-                <p class="card__overlay"><span>Language.</span><span>Processes stay local.</span></p>
-              </div>
-              <h3 class="card__title">Language models where the paperwork lives</h3>
-              <p class="card__text">Read and write emails, reports and specifications without sending source documents to an external service.</p>
-            </article>
-          </li>
-          <li class="carousel__item">
-            <article class="card" data-reveal>
-              <div class="card__media card__media--vision">
-                <div class="model-motif model-motif--vision" aria-hidden="true">
-                  <span class="model-motif__object model-motif__object--a" data-label="part A"></span>
-                  <span class="model-motif__object model-motif__object--b" data-label="part B"></span>
-                  <span class="model-motif__scan"></span>
+              <a class="card__link" href="{{ get_url(path='@/language-models.md') }}" aria-labelledby="model-language-title">
+                <div class="card__media card__media--language">
+                  <pre class="model-motif model-motif--code" aria-hidden="true"><span><span class="code__keyword">const</span> result = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">llm</span>({</span><span>  model: <span class="code__string">"gemma-3-12b"</span>,</span><span>  input: report,</span><span>  output_shape: { supplier, date, status },</span><span>});</span><span> </span><span><span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.sheets.<span class="code__fn">create_record</span>(</span><span>  <span class="code__string">"supplier_reports"</span>, result</span><span>);</span><span> </span><span><span class="code__keyword">return</span> { status: <span class="code__string">"complete"</span>, record: result.id };</span></pre>
+                  <p class="card__overlay"><span>Language.</span><span>Processes stay local.</span></p>
                 </div>
-                <p class="card__overlay"><span>Vision.</span><span>Images stay on-site.</span></p>
-              </div>
-              <h3 class="card__title">Vision models beside the work</h3>
-              <p class="card__text">Process scanned forms, technical drawings and inspection photos within the same environment that stores them.</p>
+                <h3 class="card__title" id="model-language-title">Language models where the paperwork lives</h3>
+                <p class="card__text">Read and write emails, reports and specifications without sending source documents to an external service.</p>
+              </a>
             </article>
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media card__media--timeseries">
-                <svg class="model-motif model-motif--chart" aria-hidden="true" viewBox="0 0 400 250">
-                  <path class="model-motif__range" d="M292 91C330 64 357 58 416 27V126C369 128 334 111 292 91Z"/>
-                  <path class="model-motif__actual" d="M-16 132 5 127 23 135 42 105 59 113 78 79 95 88 112 58 131 73 148 69 166 96 184 88 202 116 220 109 238 80 256 91 274 70 292 91"/>
-                  <path class="model-motif__forecast" d="M292 91C330 78 357 88 416 65"/>
-                  <circle class="model-motif__point is-selected" cx="292" cy="91" r="4"/>
-                </svg>
-                <p class="card__overlay"><span>Time series.</span><span>Telemetry stays inside.</span></p>
-              </div>
-              <h3 class="card__title">Time-series models close to the equipment</h3>
-              <p class="card__text">Forecast and detect anomalies without routing production telemetry beyond your network.</p>
+              <a class="card__link" href="{{ get_url(path='@/vision-models.md') }}" aria-labelledby="model-vision-title">
+                <div class="card__media card__media--vision">
+                  <div class="model-motif model-motif--vision" aria-hidden="true">
+                    <span class="model-motif__object model-motif__object--a" data-label="part A"></span>
+                    <span class="model-motif__object model-motif__object--b" data-label="part B"></span>
+                    <span class="model-motif__scan"></span>
+                  </div>
+                  <p class="card__overlay"><span>Vision.</span><span>Images stay on-site.</span></p>
+                </div>
+                <h3 class="card__title" id="model-vision-title">Vision models beside the work</h3>
+                <p class="card__text">Process scanned forms, technical drawings and inspection photos within the same environment that stores them.</p>
+              </a>
             </article>
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media card__media--decision">
-                <svg class="model-motif model-motif--decision" aria-hidden="true" viewBox="0 0 400 250">
-                  <path class="model-motif__branch" d="M-20 104H38C92 104 96 158 150 158M150 52C208 52 212 28 270 28H420M150 158C208 158 212 148 270 148H420M150 158C208 158 212 214 270 214H420"/>
-                  <path class="model-motif__route" d="M-20 104H38C92 104 96 52 150 52S212 92 270 92H420"/>
-                  <g class="model-motif__point"><circle cx="270" cy="28" r="5"/><circle cx="150" cy="158" r="5"/><circle cx="270" cy="148" r="5"/><circle cx="270" cy="214" r="5"/></g>
-                  <g class="model-motif__point is-selected"><circle cx="38" cy="104" r="6"/><circle cx="150" cy="52" r="6"/><circle cx="270" cy="92" r="6"/></g>
-                  <circle class="model-motif__choice" cx="354" cy="92" r="12"/>
-                  <path class="model-motif__check" d="m349 92 3.5 3.5 6.5-7"/>
-                </svg>
-                <p class="card__overlay"><span>Decisions.</span><span>Control stays with you.</span></p>
-              </div>
-              <h3 class="card__title">Decision models under your control</h3>
-              <p class="card__text">Compare plans and scenarios on your infrastructure, with people approving actions before anything changes.</p>
+              <a class="card__link" href="{{ get_url(path='@/time-series-models.md') }}" aria-labelledby="model-timeseries-title">
+                <div class="card__media card__media--timeseries">
+                  <svg class="model-motif model-motif--chart" aria-hidden="true" viewBox="0 0 400 250">
+                    <path class="model-motif__range" d="M292 91C330 64 357 58 416 27V126C369 128 334 111 292 91Z"/>
+                    <path class="model-motif__actual" d="M-16 132 5 127 23 135 42 105 59 113 78 79 95 88 112 58 131 73 148 69 166 96 184 88 202 116 220 109 238 80 256 91 274 70 292 91"/>
+                    <path class="model-motif__forecast" d="M292 91C330 78 357 88 416 65"/>
+                    <circle class="model-motif__point is-selected" cx="292" cy="91" r="4"/>
+                  </svg>
+                  <p class="card__overlay"><span>Time series.</span><span>Telemetry stays inside.</span></p>
+                </div>
+                <h3 class="card__title" id="model-timeseries-title">Time-series models close to the equipment</h3>
+                <p class="card__text">Forecast and detect anomalies without routing production telemetry beyond your network.</p>
+              </a>
             </article>
           </li>
           <li class="carousel__item">
             <article class="card" data-reveal>
-              <div class="card__media card__media--retrieval">
-                <svg class="model-motif model-motif--retrieval" aria-hidden="true" viewBox="0 0 400 250">
-                  <g class="model-motif__embedding model-motif__embedding--faint">
-                    <circle cx="-7" cy="42" r="2.5"/><circle cx="12" cy="86" r="2"/>
-                    <circle cx="31" cy="25" r="2.5"/><circle cx="77" cy="32" r="2"/>
-                    <circle cx="106" cy="73" r="2.5"/><circle cx="122" cy="43" r="2"/>
-                    <circle cx="112" cy="128" r="2.5"/><circle cx="142" cy="99" r="2"/>
-                    <circle cx="169" cy="48" r="2.5"/><circle cx="199" cy="19" r="2"/>
-                    <circle cx="218" cy="132" r="2.5"/><circle cx="280" cy="24" r="2"/>
-                    <circle cx="307" cy="60" r="2.5"/><circle cx="288" cy="119" r="2"/>
-                    <circle cx="324" cy="143" r="2.5"/><circle cx="339" cy="28" r="2"/>
-                    <circle cx="380" cy="49" r="2.5"/><circle cx="411" cy="96" r="2"/>
-                    <circle cx="369" cy="180" r="2.5"/><circle cx="258" cy="176" r="2"/>
-                  </g>
-                  <g class="model-motif__embedding model-motif__embedding--soft">
-                    <circle cx="-3" cy="107" r="3"/><circle cx="22" cy="57" r="3.5"/>
-                    <circle cx="37" cy="119" r="3"/><circle cx="58" cy="57" r="3.5"/>
-                    <circle cx="84" cy="102" r="3"/><circle cx="75" cy="136" r="3.5"/>
-                    <circle cx="184" cy="85" r="3"/><circle cx="204" cy="49" r="3.5"/>
-                    <circle cx="232" cy="34" r="3"/><circle cx="257" cy="44" r="3.5"/>
-                    <circle cx="281" cy="74" r="3"/><circle cx="266" cy="103" r="3.5"/>
-                    <circle cx="234" cy="114" r="3"/><circle cx="206" cy="106" r="3.5"/>
-                    <circle cx="336" cy="89" r="3"/><circle cx="356" cy="65" r="3.5"/>
-                    <circle cx="391" cy="83" r="3"/><circle cx="405" cy="129" r="3.5"/>
-                    <circle cx="380" cy="153" r="3"/><circle cx="343" cy="128" r="3.5"/>
-                  </g>
-                  <g class="model-motif__embedding">
-                    <circle cx="24" cy="92" r="4"/><circle cx="44" cy="77" r="4.5"/>
-                    <circle cx="61" cy="100" r="4"/><circle cx="76" cy="78" r="4.5"/>
-                    <circle cx="208" cy="76" r="4"/><circle cx="225" cy="59" r="4.5"/>
-                    <circle cx="246" cy="77" r="5"/><circle cx="259" cy="62" r="4"/>
-                    <circle cx="228" cy="94" r="4"/><circle cx="363" cy="96" r="4.5"/>
-                    <circle cx="380" cy="114" r="4"/><circle cx="360" cy="128" r="4.5"/>
-                  </g>
-                </svg>
-                <p class="card__overlay"><span>Retrieval.</span><span>Knowledge stays private.</span></p>
-              </div>
-              <h3 class="card__title">Retrieval across private company knowledge</h3>
-              <p class="card__text">Index internal documents, records and past runs locally, so answers stay grounded without exposing the corpus.</p>
+              <a class="card__link" href="{{ get_url(path='@/decision-models.md') }}" aria-labelledby="model-decision-title">
+                <div class="card__media card__media--decision">
+                  <svg class="model-motif model-motif--decision" aria-hidden="true" viewBox="0 0 400 250">
+                    <path class="model-motif__branch" d="M-20 104H38C92 104 96 158 150 158M150 52C208 52 212 28 270 28H420M150 158C208 158 212 148 270 148H420M150 158C208 158 212 214 270 214H420"/>
+                    <path class="model-motif__route" d="M-20 104H38C92 104 96 52 150 52S212 92 270 92H420"/>
+                    <g class="model-motif__point"><circle cx="270" cy="28" r="5"/><circle cx="150" cy="158" r="5"/><circle cx="270" cy="148" r="5"/><circle cx="270" cy="214" r="5"/></g>
+                    <g class="model-motif__point is-selected"><circle cx="38" cy="104" r="6"/><circle cx="150" cy="52" r="6"/><circle cx="270" cy="92" r="6"/></g>
+                    <circle class="model-motif__choice" cx="354" cy="92" r="12"/>
+                    <path class="model-motif__check" d="m349 92 3.5 3.5 6.5-7"/>
+                  </svg>
+                  <p class="card__overlay"><span>Decisions.</span><span>Control stays with you.</span></p>
+                </div>
+                <h3 class="card__title" id="model-decision-title">Decision models under your control</h3>
+                <p class="card__text">Compare plans and scenarios on your infrastructure, with people approving actions before anything changes.</p>
+              </a>
+            </article>
+          </li>
+          <li class="carousel__item">
+            <article class="card" data-reveal>
+              <a class="card__link" href="{{ get_url(path='@/retrieval-models.md') }}" aria-labelledby="model-retrieval-title">
+                <div class="card__media card__media--retrieval">
+                  <svg class="model-motif model-motif--retrieval" aria-hidden="true" viewBox="0 0 400 250">
+                    <g class="model-motif__embedding model-motif__embedding--faint">
+                      <circle cx="-7" cy="42" r="2.5"/><circle cx="12" cy="86" r="2"/>
+                      <circle cx="31" cy="25" r="2.5"/><circle cx="77" cy="32" r="2"/>
+                      <circle cx="106" cy="73" r="2.5"/><circle cx="122" cy="43" r="2"/>
+                      <circle cx="112" cy="128" r="2.5"/><circle cx="142" cy="99" r="2"/>
+                      <circle cx="169" cy="48" r="2.5"/><circle cx="199" cy="19" r="2"/>
+                      <circle cx="218" cy="132" r="2.5"/><circle cx="280" cy="24" r="2"/>
+                      <circle cx="307" cy="60" r="2.5"/><circle cx="288" cy="119" r="2"/>
+                      <circle cx="324" cy="143" r="2.5"/><circle cx="339" cy="28" r="2"/>
+                      <circle cx="380" cy="49" r="2.5"/><circle cx="411" cy="96" r="2"/>
+                      <circle cx="369" cy="180" r="2.5"/><circle cx="258" cy="176" r="2"/>
+                    </g>
+                    <g class="model-motif__embedding model-motif__embedding--soft">
+                      <circle cx="-3" cy="107" r="3"/><circle cx="22" cy="57" r="3.5"/>
+                      <circle cx="37" cy="119" r="3"/><circle cx="58" cy="57" r="3.5"/>
+                      <circle cx="84" cy="102" r="3"/><circle cx="75" cy="136" r="3.5"/>
+                      <circle cx="184" cy="85" r="3"/><circle cx="204" cy="49" r="3.5"/>
+                      <circle cx="232" cy="34" r="3"/><circle cx="257" cy="44" r="3.5"/>
+                      <circle cx="281" cy="74" r="3"/><circle cx="266" cy="103" r="3.5"/>
+                      <circle cx="234" cy="114" r="3"/><circle cx="206" cy="106" r="3.5"/>
+                      <circle cx="336" cy="89" r="3"/><circle cx="356" cy="65" r="3.5"/>
+                      <circle cx="391" cy="83" r="3"/><circle cx="405" cy="129" r="3.5"/>
+                      <circle cx="380" cy="153" r="3"/><circle cx="343" cy="128" r="3.5"/>
+                    </g>
+                    <g class="model-motif__embedding">
+                      <circle cx="24" cy="92" r="4"/><circle cx="44" cy="77" r="4.5"/>
+                      <circle cx="61" cy="100" r="4"/><circle cx="76" cy="78" r="4.5"/>
+                      <circle cx="208" cy="76" r="4"/><circle cx="225" cy="59" r="4.5"/>
+                      <circle cx="246" cy="77" r="5"/><circle cx="259" cy="62" r="4"/>
+                      <circle cx="228" cy="94" r="4"/><circle cx="363" cy="96" r="4.5"/>
+                      <circle cx="380" cy="114" r="4"/><circle cx="360" cy="128" r="4.5"/>
+                    </g>
+                  </svg>
+                  <p class="card__overlay"><span>Retrieval.</span><span>Knowledge stays private.</span></p>
+                </div>
+                <h3 class="card__title" id="model-retrieval-title">Retrieval across private company knowledge</h3>
+                <p class="card__text">Index internal documents, records and past runs locally, so answers stay grounded without exposing the corpus.</p>
+              </a>
             </article>
           </li>
         </ul>
