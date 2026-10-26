@@ -26,12 +26,6 @@ body = [
 ]
 
 [[extra.sections]]
-title = "Who we are"
-body = [
-  "**Logven was founded by Michelangelo Gubinelli and Paolo Sguazzabia.** We are based in Italy, and we build Logven with engineering teams, on their real workflows and data.",
-]
-
-[[extra.sections]]
 title = "Contact"
 body = [
   "**Write to us at [info@logven.com](mailto:info@logven.com).** Every engagement starts with a paid pilot on one team’s real work.",
