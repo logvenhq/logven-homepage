@@ -4,6 +4,15 @@
 
   if (!header) return;
 
+  const homeHero = document.querySelector(".hero--home");
+  if (announcement && homeHero) {
+    const updateAnnouncementHeight = () => {
+      homeHero.style.setProperty("--announcement-height", `${announcement.offsetHeight}px`);
+    };
+    updateAnnouncementHeight();
+    new ResizeObserver(updateAnnouncementHeight).observe(announcement);
+  }
+
   // Transparent only until the header pins below the announcement, so nothing ever slides underneath the nav.
   const update = () => {
     const offset = announcement ? announcement.offsetHeight : 0;

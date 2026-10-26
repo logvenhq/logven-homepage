@@ -223,7 +223,8 @@
   }
 
   .hero--home {
-    min-height: clamp(30rem, 82svh, 40rem);
+    /* The navigation overlays the hero; only the announcement sits above it. */
+    min-height: calc(100dvh - var(--announcement-height));
   }
 
   .hero__mark {
