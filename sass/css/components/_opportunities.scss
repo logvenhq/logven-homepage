@@ -1,0 +1,203 @@
+/* Opportunities: two lanes of runs across the same handover, before and with Logven, edge to edge of
+   the page; three opportunities below. The lanes are drawn in the activity squares used across the
+   page, blue for the first team and a soft purple scale (after the code keyword colour) for the second. Both share one seam,
+   which stays in view at every width. */
+
+.opp-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: clamp(0.5rem, 1.5vw, 1.25rem) 0 0;
+  overflow: hidden;
+}
+
+/* Lane names sit on the first line of each lane's top padding, level with the team names. */
+.opp-lane {
+  position: relative;
+  z-index: 1;
+  height: 1rem;
+  margin-top: 0;
+  margin-bottom: -1rem;
+  color: var(--quiet);
+  font-size: 0.8125rem;
+  line-height: 1rem;
+}
+
+.opp-lane:has(+ .opp-band--with) {
+  color: var(--ink);
+}
+
+.opp-band {
+  --cell: clamp(0.75rem, 1.05vw, 0.9375rem);
+  --g: clamp(0.25rem, 0.35vw, 0.3125rem);
+  --seam: 52;
+  --seam-at: 56%;
+  --team-1: light-dark(#e7e0fb, color-mix(in srgb, #8b7ae6 26%, var(--paper)));
+  --team-2: light-dark(#c9baf5, color-mix(in srgb, #8b7ae6 50%, var(--paper)));
+  --team-3: light-dark(#a391ea, #9e8ff0);
+  --team-4: light-dark(#7f6fdb, #c4bbf8);
+  position: relative;
+  left: calc(var(--seam-at) - var(--seam) * (var(--cell) + var(--g)));
+  width: max-content;
+  padding-top: 2.25rem;
+}
+
+.opp-band--before {
+  padding-bottom: 1.75rem;
+}
+
+.opp-band--before .opp-band__cells {
+  opacity: 0.5;
+}
+
+.opp-band__cells {
+  display: flex;
+  gap: var(--g);
+  opacity: 0.85;
+}
+
+.opp-band__cells span {
+  display: grid;
+  gap: var(--g);
+}
+
+.opp-band__cells i {
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 32%;
+}
+
+.opp-band .a0,
+.opp-band .b0 { background: var(--tint); }
+.opp-band .a1 { background: var(--activity-1); }
+.opp-band .a2 { background: var(--activity-2); }
+.opp-band .a3 { background: var(--activity-3); }
+.opp-band .a4 { background: var(--activity-4); }
+.opp-band .b1 { background: var(--team-1); }
+.opp-band .b2 { background: var(--team-2); }
+.opp-band .b3 { background: var(--team-3); }
+.opp-band .b4 { background: var(--team-4); }
+
+/* As the band comes into view, the squares appear one by one from left to right, with no pause at
+   the handover. */
+[data-reveal-text].opp-stage {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal-text].opp-stage.is-visible {
+  animation: none;
+}
+
+[data-reveal-text] .opp-band__cells i {
+  opacity: 0;
+  transform: scale(0.3);
+}
+
+[data-reveal-text].is-visible .opp-band__cells i {
+  animation: opp-cell 260ms var(--ease-out) both;
+  animation-delay: calc(150ms + var(--d));
+}
+
+@keyframes opp-cell {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The seam: a hairline between the two owners' columns, names either side. */
+.opp-band__owners {
+  position: absolute;
+  inset: 0 auto 0 calc(var(--seam) * (var(--cell) + var(--g)) - var(--g) / 2);
+  width: 1px;
+  background: var(--shade-strong);
+}
+
+.opp-band--with .opp-band__owners {
+  background: linear-gradient(to bottom, var(--shade-strong) 70%, transparent);
+}
+
+.opp-band__owners span {
+  position: absolute;
+  top: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.opp-band__owners span:first-child {
+  right: 0.75rem;
+}
+
+.opp-band__owners span:last-child {
+  left: 0.75rem;
+}
+
+.opp-band__owners span::before {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: var(--activity-3);
+  content: "";
+}
+
+.opp-band__owners span:last-child::before {
+  background: var(--team-3);
+}
+
+.opp-stage__caption {
+  margin-top: 1.25rem;
+  color: var(--quiet);
+  font-size: 0.8125rem;
+}
+
+/* The three opportunities. */
+
+.opps {
+  row-gap: 2rem;
+  margin: clamp(2rem, 3.5vw, 3rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.opp {
+  grid-column: span 4;
+}
+
+.opp__index {
+  margin: 0 0 0.6rem;
+  color: var(--quiet);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.opp h3 {
+  margin: 0 0 0.4rem;
+  color: var(--ink);
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  font-weight: 450;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.opp p:last-child {
+  max-width: 26rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+@media (max-width: 760px) {
+  .opp-band {
+    --seam-at: 50%;
+  }
+
+  .opp {
+    grid-column: 1 / -1;
+  }
+}
