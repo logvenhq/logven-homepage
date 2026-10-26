@@ -1,0 +1,64 @@
+<section id="open-models" class="block open-models" aria-labelledby="open-models-title">
+  <div class="container">
+    <div class="block__head">
+      <div class="block__head-copy">
+        <h2 id="open-models-title" class="block__title" data-reveal>Open models, chosen for the work</h2>
+      </div>
+      <div class="carousel__controls">
+        <button class="carousel__button" type="button" data-carousel-prev aria-label="Previous">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="carousel__button" type="button" data-carousel-next aria-label="Next">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 3.5 11 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <ul class="carousel__track" role="list" data-carousel-track>
+      <li class="carousel__item open-models__card open-models__card--gemma" data-reveal>
+        <span class="open-models__watermark" aria-hidden="true"></span>
+        <p class="open-models__byline">
+          <span class="open-models__mark" aria-hidden="true"></span>
+          <span class="open-models__caption"><strong>Gemma</strong><span>Language &amp; reasoning</span></span>
+        </p>
+      </li>
+
+      <li class="carousel__item open-models__card open-models__card--mistral" data-reveal>
+        <span class="open-models__watermark" aria-hidden="true"></span>
+        <p class="open-models__byline">
+          <span class="open-models__mark" aria-hidden="true"></span>
+          <span class="open-models__caption"><strong>Mistral</strong><span>Documents &amp; vision</span></span>
+        </p>
+      </li>
+
+      <li class="carousel__item open-models__card open-models__card--nvidia" data-reveal>
+        <span class="open-models__watermark" aria-hidden="true"></span>
+        <p class="open-models__byline">
+          <span class="open-models__mark" aria-hidden="true"></span>
+          <span class="open-models__caption"><strong>NVIDIA Nemotron</strong><span>Search &amp; reranking</span></span>
+        </p>
+      </li>
+
+      <li class="carousel__item open-models__card open-models__card--ibm" data-reveal>
+        <span class="open-models__watermark" aria-hidden="true"></span>
+        <p class="open-models__byline">
+          <span class="open-models__mark" aria-hidden="true"></span>
+          <span class="open-models__caption"><strong>IBM Granite</strong><span>Retrieval &amp; forecasting</span></span>
+        </p>
+      </li>
+
+      <li class="carousel__item open-models__card open-models__card--liquid" data-reveal>
+        <span class="open-models__watermark" aria-hidden="true"></span>
+        <p class="open-models__byline">
+          <span class="open-models__mark" aria-hidden="true"></span>
+          <span class="open-models__caption"><strong>Liquid AI</strong><span>Efficient local inference</span></span>
+        </p>
+      </li>
+    </ul>
+
+    <div class="open-models__foot" data-reveal>
+      <p>Logven runs its models <strong>where your data already lives</strong>. The weights, the outputs and the bill stay with you.</p>
+      <a class="open-models__link" href="{{ get_url(path='@/start-a-pilot.md') }}">Start a pilot <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>

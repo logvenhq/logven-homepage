@@ -1,0 +1,178 @@
+/* Open models: a carousel of cards, each in the colours of a model family. The marks are decoration only. */
+.open-models__card {
+  --card-ink: #ffffff;
+  --card-muted: rgb(255 255 255 / 74%);
+  --card-rule: rgb(255 255 255 / 24%);
+  --watermark: rgb(255 255 255 / 16%);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: clamp(18rem, 24vw, 22rem);
+  padding: clamp(1.5rem, 2.4vw, 2.25rem);
+  overflow: hidden;
+  border-radius: 0.625rem;
+  color: var(--card-ink);
+}
+
+.open-models__card--gemma {
+  --card-ink: var(--ink-on-light);
+  --card-muted: rgb(29 32 39 / 62%);
+  --card-rule: rgb(29 32 39 / 12%);
+  --watermark: rgb(255 255 255 / 55%);
+  --mark: url("../images/models/gemma-spark.svg");
+  background: linear-gradient(160deg, #cfe1fd 0%, #dfe7fc 55%, #e9ecfb 100%);
+}
+
+.open-models__card--mistral {
+  --watermark: rgb(255 255 255 / 14%);
+  --mark: url("../images/models/mistral.svg");
+  background: linear-gradient(165deg, #ffaf01 0%, #ff8204 42%, #e61300 100%);
+}
+
+.open-models__card--nvidia {
+  --card-ink: #10140a;
+  --card-muted: rgb(16 20 10 / 66%);
+  --card-rule: rgb(16 20 10 / 16%);
+  --watermark: rgb(255 255 255 / 22%);
+  --mark: url("../images/models/nvidia.svg");
+  background: linear-gradient(165deg, #8ccc1a 0%, #76b900 100%);
+}
+
+.open-models__card--liquid {
+  --watermark: rgb(255 255 255 / 7%);
+  --mark: url("../images/models/liquid-ai-drop.svg");
+  background:
+    radial-gradient(120% 90% at 100% 0%, #2c2e36 0%, transparent 60%),
+    #111216;
+}
+
+.open-models__card--ibm {
+  --watermark: rgb(255 255 255 / 13%);
+  --mark: url("../images/models/ibm-dark.svg");
+  background: linear-gradient(165deg, #2a76ff 0%, #0f62fe 55%, #0043ce 100%);
+}
+
+.open-models__watermark {
+  position: absolute;
+  z-index: -1;
+  top: 20%;
+  right: -6%;
+  bottom: 26%;
+  width: 62%;
+  background: var(--watermark);
+  mask: var(--mark) right center / contain no-repeat;
+  transition: translate 900ms var(--ease-out);
+}
+
+.open-models__card--liquid .open-models__watermark {
+  right: -8%;
+}
+
+.open-models__card--ibm .open-models__watermark {
+  top: 30%;
+  right: -10%;
+  bottom: 34%;
+  width: 80%;
+}
+
+.open-models__byline {
+  display: flex;
+  align-items: center;
+  gap: 1.125rem;
+  margin: 0;
+}
+
+.open-models__mark {
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--card-ink);
+  mask: var(--mark) center / contain no-repeat;
+}
+
+.open-models__card--ibm .open-models__mark {
+  width: 3.25rem;
+}
+
+.open-models__caption {
+  display: grid;
+  gap: 0.125rem;
+  padding-left: 1.125rem;
+  border-left: 1px solid var(--card-rule);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.open-models__caption strong {
+  color: var(--card-ink);
+  font-weight: 500;
+}
+
+.open-models__caption span {
+  color: var(--card-muted);
+}
+
+.open-models__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  margin-top: 2rem;
+  padding-inline: clamp(1.5rem, 2.4vw, 2.25rem);
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.open-models__foot p {
+  max-width: 44rem;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.open-models__foot strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.open-models__link {
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.open-models__link span {
+  display: inline-block;
+  transition: translate 300ms var(--ease-out);
+}
+
+.open-models__link:hover {
+  color: var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .open-models__link:hover span {
+    translate: 0.2rem 0;
+  }
+
+  .open-models__card:hover .open-models__watermark {
+    translate: -0.75rem 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .open-models__foot {
+    padding-inline: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .open-models__watermark,
+  .open-models__link span {
+    transition: none;
+  }
+}
