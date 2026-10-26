@@ -5,11 +5,11 @@ template = "index.html"
 # Rendered in the FAQ section of the homepage.
 [[extra.faq]]
 question = "What is Logven?"
-answer = "The programmable model of your company. Teams turn the way they work into sheets and workers: structured data, and code that AI writes and people approve. Together they form one living model of the company, running on your own hardware."
+answer = "The programmable model of your operations. Teams turn the way they work into sheets and workers: structured data, and code that AI writes and people approve. Together they form one living model of your operations, running on your own hardware."
 
 [[extra.faq]]
-question = "What does “a programmable model of the company” mean?"
-answer = "A model you can run, not just read. Its state is everything the company knows, held as structured sheets. Its functions are everything the company does, held as workers. Because it is built from the work itself, it stays current, and you can query it, test changes on it and improve it the way you would improve software."
+question = "What does “a programmable model of your operations” mean?"
+answer = "A model you can run, not just read. Its state is the data your operations rely on, held as structured sheets. Its functions are the steps your teams carry out, held as workers. Because it is built from the work itself, it stays current, and you can query it, test changes on it and improve it the way you would improve software."
 
 [[extra.faq]]
 question = "Is it reliable enough for real operations?"
@@ -25,7 +25,7 @@ answer = "Yes. Logven runs on your own hardware or in your own cloud tenant. Its
 
 [[extra.faq]]
 question = "Who uses Logven day to day?"
-answer = "Specialist teams build and run workers on their own work. Department heads and leadership use the model of the company to see how work actually flows, to standardise it and to improve it."
+answer = "Specialist teams build and run workers on their own work. Department heads and leadership use the model of your operations to see how work actually flows, to standardise it and to improve it."
 
 [[extra.faq]]
 question = "What does a pilot involve?"

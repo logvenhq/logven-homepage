@@ -17,8 +17,8 @@ body = [
 [[extra.sections]]
 title = "Leadership"
 body = [
-  "**Department heads and executives** accountable for how the organisation runs.",
-  "**See** the company as it actually works: every process, every dependency, kept current by the work itself.",
+  "**Department heads and executives** accountable for how operations run.",
+  "**See** your operations as they actually work: every process, every dependency, kept current by the work itself.",
   "**Standardise** processes and data in one shared model, instead of a different spreadsheet in every team.",
   "**Improve** the model, test changes on past runs, and the work improves with it.",
 ]
@@ -27,6 +27,6 @@ body = [
 title = "Where it fits"
 body = [
   "**Engineering, operations, quality, compliance and the back office:** teams whose work runs on documents, data and repeatable steps.",
-  "It starts with one team and grows across the company, one workflow at a time.",
+  "It starts with one team and grows across your operations, one workflow at a time.",
 ]
 +++

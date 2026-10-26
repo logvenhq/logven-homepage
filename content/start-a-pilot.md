@@ -3,7 +3,7 @@ title = "Start a pilot"
 description = "A paid pilot on one team’s real processes and data."
 
 [extra]
-heading = "Start with one team. End with a model of the company."
+heading = "Start with one team. End with a model of your operations."
 hide_cta = true
 action = { label = "Start a pilot", href = "mailto:info@logven.com?subject=Logven%20pilot" }
 
@@ -17,7 +17,7 @@ body = [
 [[extra.sections]]
 title = "After the pilot"
 body = [
-  "**Logven goes into production for that team,** under an annual licence priced per team, not per employee. Each new team builds on the same model of the company.",
+  "**Logven goes into production for that team,** under an annual licence priced per team, not per employee. Each new team builds on the same model of your operations.",
   "Custom integrations and fine-tuning of Logven’s models for your domain are available as add-ons.",
 ]
 

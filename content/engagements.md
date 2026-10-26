@@ -1,6 +1,6 @@
 +++
 title = "Engagements"
-description = "Every engagement starts with a paid pilot on real work, then grows with the company."
+description = "Every engagement starts with a paid pilot on real work, then grows across your operations."
 
 [extra]
 heading = "Start with one team."
@@ -20,13 +20,13 @@ body = [
 [[extra.sections]]
 title = "Growth"
 body = [
-  "**Every new team builds on the same model.** New workers reuse the sheets that already exist, so the model of the company grows one workflow at a time instead of one project at a time.",
+  "**Every new team builds on the same model.** New workers reuse the sheets that already exist, so the model of your operations grows one workflow at a time instead of one project at a time.",
 ]
 
 [[extra.sections]]
 title = "Annual licence"
 body = [
-  "**Priced per team, not per employee,** so the model can grow across the company without per-seat friction.",
+  "**Priced per team, not per employee,** so the model can grow across your operations without per-seat friction.",
 ]
 
 [[extra.sections]]

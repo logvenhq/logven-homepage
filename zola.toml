@@ -1,6 +1,6 @@
 base_url = "https://logven.com"
 title = "Logven"
-description = "Logven is the programmable model of your company. Teams model and automate their processes with language, vision, time-series and decision models running on your own hardware, and Logven connects them into one model you can query and change like software."
+description = "Logven is the programmable model of your operations. Teams model and automate their processes with language, vision, time-series and decision models running on your own hardware, and Logven connects them into one model you can query and change like software."
 default_language = "en"
 
 # Sass compiles to the single /css/style.css asset.
@@ -14,4 +14,4 @@ minify_html = true
 smart_punctuation = true
 
 [extra]
-tagline = "The programmable model of your company"
+tagline = "The programmable model of your operations"

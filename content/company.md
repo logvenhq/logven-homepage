@@ -1,14 +1,14 @@
 +++
 title = "Company"
-description = "Logven turns the everyday work of technical teams into reliable software, and assembles it into a programmable model of how a company runs."
+description = "Logven turns the everyday work of technical teams into reliable software, and assembles it into a programmable model of your operations."
 
 [extra]
-heading = "We are building the computable company."
+heading = "We are building computable operations."
 
 [[extra.sections]]
 title = "Why Logven"
 body = [
-  "**Every company already runs as a program.** It is just written in emails, spreadsheets, PDFs and the heads of a few specialists.",
+  "**Your operations already run as a program.** It is just written in emails, spreadsheets, PDFs and the heads of a few specialists.",
   "Because that program is implicit, it cannot be tested, reproduced or improved. The people who carry it spend much of their week on work that does not need their expertise, and when they leave, the process leaves with them.",
 ]
 
