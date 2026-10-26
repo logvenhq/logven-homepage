@@ -49,7 +49,6 @@
         <a class="site-header__logo" href="{{ home }}" aria-label="Logven home"><img src="{{ get_url(path='brand/hero-logo.svg') }}" alt="" width="114" height="125"><span>Logven</span></a>
         <nav class="site-header__nav" aria-label="Primary">
           <div class="site-header__links" id="primary-navigation">
-          <a href="{{ home }}#how-it-works">Product</a>
           <a href="{{ get_url(path='@/who-its-for.md') }}"{% if current_path == '/who-its-for/' %} aria-current="page"{% endif %}>Who it’s for</a>
           <a href="{{ get_url(path='@/engagements.md') }}"{% if current_path == '/engagements/' %} aria-current="page"{% endif %}>Engagements</a>
           <a href="{{ get_url(path='@/company.md') }}"{% if current_path == '/company/' %} aria-current="page"{% endif %}>Company</a>
@@ -78,18 +77,31 @@
           <nav class="site-footer__column" aria-labelledby="footer-product">
             <h2 id="footer-product" class="eyebrow">Product</h2>
             <ul role="list">
-              <li><a href="{{ home }}#product">Overview</a></li>
               <li><a href="{{ home }}#how-it-works">How it works</a></li>
+              <li><a href="{{ home }}#inside">Inside the product</a></li>
+              <li><a href="{{ home }}#models">Models</a></li>
+              <li><a href="{{ home }}#integrations">Integrations</a></li>
               <li><a href="{{ home }}#faq">FAQ</a></li>
+            </ul>
+          </nav>
+
+          <nav class="site-footer__column" aria-labelledby="footer-models">
+            <h2 id="footer-models" class="eyebrow">Models</h2>
+            <ul role="list">
+              <li><a href="{{ get_url(path='@/language-models.md') }}"{% if current_path == '/language-models/' %} aria-current="page"{% endif %}>Language</a></li>
+              <li><a href="{{ get_url(path='@/vision-models.md') }}"{% if current_path == '/vision-models/' %} aria-current="page"{% endif %}>Vision</a></li>
+              <li><a href="{{ get_url(path='@/time-series-models.md') }}"{% if current_path == '/time-series-models/' %} aria-current="page"{% endif %}>Time series</a></li>
+              <li><a href="{{ get_url(path='@/decision-models.md') }}"{% if current_path == '/decision-models/' %} aria-current="page"{% endif %}>Decision</a></li>
+              <li><a href="{{ get_url(path='@/retrieval-models.md') }}"{% if current_path == '/retrieval-models/' %} aria-current="page"{% endif %}>Retrieval</a></li>
             </ul>
           </nav>
 
           <nav class="site-footer__column" aria-labelledby="footer-company">
             <h2 id="footer-company" class="eyebrow">Company</h2>
             <ul role="list">
-              <li><a href="{{ get_url(path='@/who-its-for.md') }}">Who it’s for</a></li>
-              <li><a href="{{ get_url(path='@/engagements.md') }}">Engagements</a></li>
-              <li><a href="{{ get_url(path='@/company.md') }}">About Logven</a></li>
+              <li><a href="{{ get_url(path='@/company.md') }}"{% if current_path == '/company/' %} aria-current="page"{% endif %}>About Logven</a></li>
+              <li><a href="{{ get_url(path='@/who-its-for.md') }}"{% if current_path == '/who-its-for/' %} aria-current="page"{% endif %}>Who it’s for</a></li>
+              <li><a href="{{ get_url(path='@/engagements.md') }}"{% if current_path == '/engagements/' %} aria-current="page"{% endif %}>Engagements</a></li>
             </ul>
           </nav>
 
@@ -97,14 +109,13 @@
             <h2 id="footer-contact" class="eyebrow">Contact</h2>
             <ul role="list">
               <li><a href="mailto:info@logven.com">info@logven.com</a></li>
-              <li><a href="{{ get_url(path='@/start-a-pilot.md') }}">Start a pilot</a></li>
+              <li><a href="{{ get_url(path='@/start-a-pilot.md') }}"{% if current_path == '/start-a-pilot/' %} aria-current="page"{% endif %}>Start a pilot</a></li>
             </ul>
           </nav>
         </div>
 
         <div class="site-footer__nav">
           <span>© {{ now() | date(format="%Y") }} Logven</span>
-          <a href="mailto:info@logven.com">Contact us: info@logven.com</a>
           <fieldset class="theme-control" data-theme-control>
             <legend class="visually-hidden">Appearance</legend>
             <label><input type="radio" name="appearance" value="system" checked><span>System</span></label>
