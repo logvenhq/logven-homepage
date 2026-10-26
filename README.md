@@ -34,7 +34,7 @@ tar -czf /tmp/logven-homepage.tar.gz -C public .
 - `content/` holds page copy and sections in TOML front matter, including the homepage FAQ.
 - `sass/css/style.scss` imports the stylesheet partials in cascade order. Zola compiles them to `/css/style.css`.
 - `static/js/` contains the theme controls, header and reveal behavior, plus homepage carousel, copy controls and animations. Homepage interactions load through the homepage's script block.
-- `static/fonts/` contains the self-hosted Geist variable font.
+- `static/fonts/` contains the original Geist variable font and a Latin WOFF2 subset covering the site's text, punctuation, arrows and subscripts. The site preloads and serves WOFF2; the original TTF is kept as the conversion source.
 - `static/images/` and `static/brand/` contain the images and icons used by the site. Assets in `static/` are copied directly into the build.
 
 The site supports system, light and dark appearance and reduced motion. Its content and navigation also work without JavaScript.

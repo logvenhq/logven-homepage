@@ -1,4 +1,6 @@
 (() => {
+  // Reserve the enhanced mobile navigation layout before the first paint.
+  document.documentElement.classList.add("js");
   const storageKey = "logven-appearance";
   const themeColor = document.querySelector('meta[name="theme-color"]');
   const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");

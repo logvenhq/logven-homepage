@@ -94,7 +94,7 @@
   }
 
   /* All destinations stay available without JavaScript. */
-  .site-header:not(.has-menu) .site-header__inner {
+  html:not(.js) .site-header__inner {
     height: auto;
     min-height: var(--header-height);
     flex-wrap: wrap;
@@ -102,16 +102,16 @@
     gap: 0.5rem;
   }
 
-  .site-header:not(.has-menu) .site-header__nav {
+  html:not(.js) .site-header__nav {
     flex-wrap: wrap;
   }
 
-  .site-header:not(.has-menu) .site-header__links {
+  html:not(.js) .site-header__links {
     flex-wrap: wrap;
     gap: 0.25rem 1rem;
   }
 
-  .has-menu .site-header__links {
+  .js .site-header__links {
     position: absolute;
     top: 100%;
     right: var(--inset);
@@ -133,7 +133,7 @@
       visibility 200ms;
   }
 
-  .has-menu.is-menu-open .site-header__links {
+  .js .is-menu-open .site-header__links {
     visibility: visible;
     opacity: 1;
     transform: none;
@@ -154,7 +154,7 @@
     background: var(--tint);
   }
 
-  .site-header__menu:not([hidden]) {
+  .js .site-header__menu {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -168,6 +168,10 @@
     font-size: 0.875rem;
     cursor: pointer;
     transition: background-color 200ms ease;
+  }
+
+  .js .site-header__menu[hidden] {
+    visibility: hidden;
   }
 
   .site-header__menu:hover,

@@ -195,23 +195,37 @@
     }
   };
 
-  readColors();
-
+  let initialized = false;
   const resizeObserver = new ResizeObserver(build);
-  resizeObserver.observe(card);
-  resizeObserver.observe(copy);
+  const initialize = () => {
+    if (initialized) return;
+    initialized = true;
+    readColors();
+    resizeObserver.observe(card);
+    resizeObserver.observe(copy);
+  };
+
+  const buildObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    initialize();
+    buildObserver.disconnect();
+  }, { rootMargin: "200px" });
+  buildObserver.observe(card);
 
   new IntersectionObserver(([entry]) => {
     isVisible = entry.isIntersecting;
+    if (isVisible) initialize();
     start();
   }).observe(card);
 
   document.addEventListener("visibilitychange", start);
   document.addEventListener("logven:themechange", () => {
+    if (!initialized) return;
     readColors();
     drawAll();
   });
   reduceMotion.addEventListener("change", () => {
+    if (!initialized) return;
     drawAll();
     start();
   });

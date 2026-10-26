@@ -463,5 +463,13 @@
     reduceMotion.addEventListener("change", sync);
   };
 
-  document.querySelectorAll("svg[data-cubes]").forEach(build);
+  // Build the simulations as their illustrations approach the viewport.
+  const buildObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      buildObserver.unobserve(entry.target);
+      build(entry.target);
+    });
+  }, { rootMargin: "200px" });
+  document.querySelectorAll("svg[data-cubes]").forEach((svg) => buildObserver.observe(svg));
 })();

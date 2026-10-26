@@ -17,37 +17,12 @@
 
   if (!textElements.length) return;
 
-  const pendingRevealTimers = new Map();
   const viewportHeight = window.innerHeight;
-  const initialElements = [];
-  const laterElements = [];
-
-  textElements.forEach((element) => {
-    element.dataset.revealText = "";
-    const isInFirstViewport = element.getBoundingClientRect().top < viewportHeight;
-    (isInFirstViewport ? initialElements : laterElements).push(element);
-  });
-
-  initialElements.forEach((element, index) => {
-    const timer = window.setTimeout(() => {
-      reveal(element);
-      pendingRevealTimers.delete(element);
-    }, 600 + index * 120);
-
-    pendingRevealTimers.set(element, timer);
-  });
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      pendingRevealTimers.forEach((timer, element) => {
-        window.clearTimeout(timer);
-        reveal(element);
-      });
-      pendingRevealTimers.clear();
-    },
-    { once: true, passive: true },
-  );
+  // Read every position before changing styles: interleaving these operations
+  // forced a full layout for each element. Keep the first viewport visible.
+  const laterElements = textElements.filter((element) => element.getBoundingClientRect().top >= viewportHeight);
+  laterElements.forEach((element) => { element.dataset.revealText = ""; });
+  const pendingRevealTimers = new Set();
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -55,7 +30,11 @@
         .filter((entry) => entry.isIntersecting)
         .forEach((entry, index) => {
           revealObserver.unobserve(entry.target);
-          window.setTimeout(() => reveal(entry.target), index * 90);
+          const timer = window.setTimeout(() => {
+            reveal(entry.target);
+            pendingRevealTimers.delete(timer);
+          }, index * 90);
+          pendingRevealTimers.add(timer);
         });
     },
     { rootMargin: "0px 0px -8%" },
