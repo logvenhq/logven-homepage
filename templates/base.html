@@ -48,11 +48,14 @@
       <div class="site-header__inner">
         <a class="site-header__logo" href="{{ home }}" aria-label="Logven home"><img src="{{ get_url(path='brand/hero-logo.svg') }}" alt="" width="114" height="125"><span>Logven</span></a>
         <nav class="site-header__nav" aria-label="Primary">
+          <div class="site-header__links" id="primary-navigation">
           <a href="{{ home }}#how-it-works">Product</a>
-          <a href="{{ get_url(path='@/who-its-for.md') }}">Who it’s for</a>
-          <a href="{{ get_url(path='@/engagements.md') }}">Engagements</a>
-          <a href="{{ get_url(path='@/company.md') }}">Company</a>
-          <a class="site-header__cta" href="{{ get_url(path='@/start-a-pilot.md') }}">Start a pilot</a>
+          <a href="{{ get_url(path='@/who-its-for.md') }}"{% if current_path == '/who-its-for/' %} aria-current="page"{% endif %}>Who it’s for</a>
+          <a href="{{ get_url(path='@/engagements.md') }}"{% if current_path == '/engagements/' %} aria-current="page"{% endif %}>Engagements</a>
+          <a href="{{ get_url(path='@/company.md') }}"{% if current_path == '/company/' %} aria-current="page"{% endif %}>Company</a>
+          </div>
+          <a class="site-header__cta" href="{{ get_url(path='@/start-a-pilot.md') }}"{% if current_path == '/start-a-pilot/' %} aria-current="page"{% endif %}>Start a pilot</a>
+          <button class="site-header__menu" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle hidden><span data-menu-label>Menu</span><span class="site-header__menu-icon" aria-hidden="true"></span></button>
         </nav>
       </div>
     </header>

@@ -35,6 +35,19 @@
   font-weight: inherit;
 }
 
+.content-section__copy a {
+  text-decoration-color: var(--shade-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+
+.content-section__copy a:hover,
+.content-section__copy a:focus-visible {
+  color: var(--interactive);
+  text-decoration-color: currentColor;
+}
+
 .hero--model {
   aspect-ratio: auto;
   border-radius: 0;

@@ -100,6 +100,13 @@
     linear-gradient(to right, #000 calc(100% - var(--fade-x)), transparent),
     linear-gradient(to bottom, #000 var(--fade-y), transparent);
   mask-composite: intersect;
+  transition: transform 500ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .story-card:hover .app-shot.render-shot {
+    transform: translateY(-4px);
+  }
 }
 
 .app-shot.render-shot .as-card {
@@ -128,6 +135,8 @@
 .app-shot.render-shot--sheet {
   --fade-x: 5rem;
   --fade-y: 62%;
+  --page: var(--surface-raised);
+  --row-divider: var(--tint-strong);
   left: 20%;
   border-radius: 8px 0 0 0;
   background: var(--surface-raised);

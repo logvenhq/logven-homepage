@@ -11,6 +11,13 @@
   overflow: hidden;
   border-radius: 0.5rem;
   background: var(--paper);
+  transition: box-shadow 300ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .blocks__item:hover {
+    box-shadow: var(--shadow-soft);
+  }
 }
 
 .blocks__art {

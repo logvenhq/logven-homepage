@@ -25,4 +25,16 @@
     opacity: 1;
     transform: none;
   }
+
+  /* Keep state feedback, with stationary cards and controls. */
+  .int-card,
+  .int-card img,
+  .card__link .model-motif,
+  .example,
+  .story-card:hover .app-shot.render-shot,
+  .faq__question .faq__icon,
+  .text-link span,
+  .announcement span {
+    transform: none !important;
+  }
 }

@@ -17,6 +17,7 @@
 }
 
 .faq__item:hover,
+.faq__item:focus-within,
 .faq__item[open] {
   background: var(--hero);
 }
@@ -53,6 +54,17 @@
   width: 0.7rem;
   height: 0.7rem;
   color: var(--muted);
+  transition: color 200ms ease, transform 250ms var(--ease-out);
+}
+
+.faq__question:hover .faq__icon,
+.faq__question:focus-visible .faq__icon {
+  color: var(--interactive);
+  transform: scale(1.15);
+}
+
+.faq__question:active .faq__icon {
+  transform: scale(0.9);
 }
 
 .faq__icon::before,

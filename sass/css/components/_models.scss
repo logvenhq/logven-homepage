@@ -78,6 +78,20 @@
   background-size: 16px 16px, cover;
 }
 
+.card__link .model-motif {
+  transition: transform 500ms var(--ease-out);
+}
+
+.card__link:focus-visible .card__media {
+  box-shadow: inset 0 0 0 2px var(--paper-on-dark);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card__link:hover .model-motif {
+    transform: scale(1.04);
+  }
+}
+
 .card__media--language {
   --model-card-bg: #a86f22;
   --model-card-image: url("../images/posts/model-language.webp");

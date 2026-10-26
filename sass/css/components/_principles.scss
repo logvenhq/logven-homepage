@@ -1,18 +1,24 @@
-/* Principles: one statement, then four beliefs in a ruled row. */
+/* Principles: four beliefs, each led by a centered, colored icon. */
+
+.block--principles {
+  padding-block: clamp(4rem, 7.5vw, 7rem);
+}
 
 .principles {
   row-gap: 1.25rem;
 }
 
 .principles__statement {
-  grid-column: 1 / 10;
+  grid-column: 1 / -1;
+  justify-self: center;
   max-width: 18em;
-  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+  margin: 0 0 clamp(3rem, 5vw, 4.5rem);
   color: var(--ink);
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 400;
   line-height: 1.04;
   letter-spacing: -0.035em;
+  text-align: center;
   text-wrap: balance;
 }
 
@@ -27,20 +33,41 @@
 }
 
 .principles__item {
+  --principle-surface: var(--badge-blue-surface);
+  --principle-color: var(--badge-blue-text);
   display: grid;
   align-content: start;
   gap: 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
+  padding-inline: 0.5rem;
+  text-align: center;
+}
+
+.principles__item:nth-child(2) {
+  --principle-surface: var(--badge-orange-surface);
+  --principle-color: var(--badge-orange-text);
+}
+
+.principles__item:nth-child(3) {
+  --principle-surface: var(--badge-red-surface);
+  --principle-color: var(--badge-red-text);
+}
+
+.principles__item:nth-child(4) {
+  --principle-surface: var(--badge-green-surface);
+  --principle-color: var(--badge-green-text);
 }
 
 .principles__icon {
-  width: 1rem;
-  height: 1rem;
-  margin-top: 0.2rem;
+  justify-self: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 0.9rem;
+  padding: 0.875rem;
+  border-radius: 50%;
+  background: var(--principle-surface);
   fill: none;
-  stroke: var(--quiet);
-  stroke-width: 1.2;
+  stroke: var(--principle-color);
+  stroke-width: 1;
   stroke-linecap: round;
   stroke-linejoin: round;
 }

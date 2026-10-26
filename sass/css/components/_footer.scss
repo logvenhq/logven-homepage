@@ -64,13 +64,19 @@
 .site-footer__nav a {
   color: var(--text);
   font-size: 0.9375rem;
-  text-decoration: none;
-  transition: color 200ms ease;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
 }
 
 .site-footer__column a:hover,
-.site-footer__nav a:hover {
-  color: var(--muted);
+.site-footer__nav a:hover,
+.site-footer__column a:focus-visible,
+.site-footer__nav a:focus-visible {
+  color: var(--ink);
+  text-decoration-color: currentColor;
 }
 
 .site-footer__nav {
