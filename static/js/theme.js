@@ -17,7 +17,8 @@
     }
   };
 
-  let mode = readMode();
+  // Light only for now while the footer switcher is hidden; restore with `let mode = readMode();`.
+  let mode = "light";
 
   const updateThemeColor = () => {
     const isDark = mode === "dark" || (mode === "system" && systemTheme.matches);
