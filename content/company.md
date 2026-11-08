@@ -25,12 +25,6 @@ body = [
 ]
 
 [[extra.sections]]
-title = "Who we are"
-body = [
-  "**Michelangelo Gubinelli and Paolo Sguazzabia founded Logven.** Michelangelo studies mathematics at the University of Pisa and has built custom software for businesses. Paolo holds a master’s in machine learning and has fifteen years of experience in consulting.",
-]
-
-[[extra.sections]]
 title = "Contact"
 body = [
   "**Write to us at [info@logven.com](mailto:info@logven.com).**",
