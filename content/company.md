@@ -1,33 +1,38 @@
 +++
 title = "Company"
-description = "Logven turns the everyday work of technical teams into reliable software, and assembles it into a programmable model of your operations."
+description = "Logven makes operations computable."
 
 [extra]
-heading = "We are building computable operations."
+heading = "Companies run on processes that nobody has written down."
 
 [[extra.sections]]
 title = "Why Logven"
 body = [
-  "**Your operations already run as a program.** It is just written in emails, spreadsheets, PDFs and the heads of a few specialists.",
-  "Because that program is implicit, it cannot be tested, reproduced or improved. The people who carry it spend much of their week on work that does not need their expertise, and when they leave, the process leaves with them.",
+  "**Most processes live in emails, spreadsheets and a few people’s heads.** Nobody can test or improve them, and when people leave, the process leaves with them.",
 ]
 
 [[extra.sections]]
 title = "What we are building"
 body = [
-  "**A system of record for how work gets done.** CRM did it for customers and ERP for money. Logven does it for operations: it learns how the work is done, unifies the data behind it and turns repeatable processes into deterministic, traceable software.",
-  "**AI builds the software; the software runs the work.** AI stays only where real ambiguity remains, so companies get the flexibility of AI with the reliability of code.",
+  "**A system of record for how work gets done.** CRM did it for customers and ERP for finance. Logven does it for operations.",
+  "**Code handles the routine, and people make the judgements.** Models are used only where a step needs interpretation.",
 ]
 
 [[extra.sections]]
-title = "What we believe"
+title = "How we build"
 body = [
-  "**Expertise is not computable. Everything else can be.** People stay in the loop and approve what matters. The rest should run the same way every time, on infrastructure the company controls.",
+  "**We build Logven with the teams who use it,** in the energy and public sectors, on their real workflows.",
+]
+
+[[extra.sections]]
+title = "Who we are"
+body = [
+  "**Michelangelo Gubinelli and Paolo Sguazzabia founded Logven.** Michelangelo studies mathematics at the University of Pisa and has built custom software for businesses. Paolo holds a master’s in machine learning and has fifteen years of experience in consulting.",
 ]
 
 [[extra.sections]]
 title = "Contact"
 body = [
-  "**Write to us at [info@logven.com](mailto:info@logven.com).** Every engagement starts with a paid pilot on one team’s real work.",
+  "**Write to us at [info@logven.com](mailto:info@logven.com).**",
 ]
 +++

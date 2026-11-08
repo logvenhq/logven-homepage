@@ -70,8 +70,7 @@
     grid-auto-columns: calc((100% - var(--carousel-gap)) / 2);
   }
 
-  .cta__copy,
-  .cta__path {
+  .cta__copy {
     grid-column: 1 / -1;
   }
 

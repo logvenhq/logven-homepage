@@ -1,4 +1,4 @@
-/* System of record: one tall card, a sibling of the CTA panel, on the same surface as the outcome cards. The copy
+/* System of record: one wide card, a sibling of the CTA panel, on the same surface as the outcome cards. The copy
    sits on the left; behind it a field of small squares in the activity scale (record-grid.js) flows
    in from the right edge and fades out before the text. */
 
@@ -38,7 +38,7 @@
 
 .rec {
   align-items: center;
-  min-height: clamp(28rem, 38vw, 34rem);
+  min-height: clamp(16rem, 22vw, 20rem);
 }
 
 .rec-copy {
@@ -57,34 +57,6 @@
 
 .rec-copy__claim {
   color: var(--ink);
-}
-
-.rec-verbs {
-  display: grid;
-  margin: 0.9rem 0 0;
-}
-
-.rec-verbs__item {
-  padding-block: 1rem;
-  border-top: 1px solid var(--line);
-}
-
-.rec-verbs__item:last-child {
-  padding-bottom: 0;
-}
-
-.rec-verbs dt {
-  color: var(--ink);
-  font-size: 0.9375rem;
-}
-
-.rec-verbs dd {
-  max-width: 30rem;
-  margin: 0.3rem 0 0;
-  color: var(--muted);
-  font-size: 0.875rem;
-  line-height: 1.55;
-  text-wrap: pretty;
 }
 
 /* Narrow cards: the copy spans the card and the field becomes a band underneath it. */

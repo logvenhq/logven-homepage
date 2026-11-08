@@ -1,33 +1,33 @@
 +++
 title = "Retrieval models"
-description = "Make internal documents and records easier to search through workflows that can return relevant source material for review."
+description = "Retrieval models search your documents and show the source behind every answer."
 
 [extra.model_hero]
 style = "retrieval"
 title = "Retrieval."
-subtitle = "Knowledge stays private."
+subtitle = "Every answer points to its source."
 
 [[extra.sections]]
 title = "A practical example"
 body = [
-  "A service engineer could ask which earlier maintenance notes mention a recurring fault code. A retrieval workflow could find relevant passages and show their source records so the engineer can check the context."
+  "A specialist asks which maintenance notes mention a fault code. The answer links to the source records."
 ]
 
 [[extra.sections]]
-title = "Ground answers in company records"
+title = "How it fits the workflow"
 body = [
-  "A worker can retrieve relevant material from an approved collection, pass those passages to a language model, and return an answer with references to the underlying records. Sheets can track the source documents and the resulting review task."
+  "A worker searches an approved collection and returns an answer with references."
 ]
 
 [[extra.sections]]
-title = "Respect deployment boundaries"
+title = "Where it runs"
 body = [
-  "A pilot can be designed around the sources, models and infrastructure your team approves. Collection scope, permissions, update cadence and retention should follow the controls established for the source material."
+  "The collection and its permissions follow the rules you already have."
 ]
 
 [[extra.sections]]
-title = "Start with a useful question"
+title = "How to start"
 body = [
-  "Choose a document collection and a recurring question, then test results against examples your team can judge. Review whether the cited material is relevant and sufficient before considering a broader collection or audience."
+  "Pick one document collection and one common question, and check the answers with your team."
 ]
 +++

@@ -42,7 +42,7 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     {% if current_path == '/' %}
-    <a class="announcement" href="{{ get_url(path='@/start-a-pilot.md') }}">Now running paid pilots with engineering and operations teams <span aria-hidden="true">→</span></a>
+    <a class="announcement" href="{{ get_url(path='@/start-a-pilot.md') }}">We are running pilots with specialised teams <span aria-hidden="true">→</span></a>
     {% endif %}
 
     <header class="site-header{% if page is defined and page.extra.model_hero %} site-header--model{% endif %}" data-site-header>
@@ -53,6 +53,7 @@
           <a href="{{ get_url(path='@/who-its-for.md') }}"{% if current_path == '/who-its-for/' %} aria-current="page"{% endif %}>Who it’s for</a>
           <a href="{{ get_url(path='@/engagements.md') }}"{% if current_path == '/engagements/' %} aria-current="page"{% endif %}>Engagements</a>
           <a href="{{ get_url(path='@/company.md') }}"{% if current_path == '/company/' %} aria-current="page"{% endif %}>Company</a>
+          <a href="{{ home }}#pricing">Pricing</a>
           </div>
           <a class="site-header__cta" href="{{ get_url(path='@/start-a-pilot.md') }}"{% if current_path == '/start-a-pilot/' %} aria-current="page"{% endif %}>Start a pilot</a>
           <button class="site-header__menu" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle hidden><span data-menu-label>Menu</span><span class="site-header__menu-icon" aria-hidden="true"></span></button>
@@ -72,7 +73,7 @@
               <img src="{{ get_url(path='brand/hero-logo.svg') }}" alt="" width="114" height="125">
               <span>Logven</span>
             </a>
-            <p>{{ config.extra.tagline }}. Built from real work, running on your hardware.</p>
+            <p>Logven makes operations computable. It is built from the work your teams already do and runs on your own infrastructure.</p>
           </div>
 
           <nav class="site-footer__column" aria-labelledby="footer-product">
@@ -82,6 +83,7 @@
               <li><a href="{{ home }}#inside">Inside the product</a></li>
               <li><a href="{{ home }}#models">Models</a></li>
               <li><a href="{{ home }}#integrations">Integrations</a></li>
+              <li><a href="{{ home }}#pricing">Pricing</a></li>
               <li><a href="{{ home }}#faq">FAQ</a></li>
             </ul>
           </nav>

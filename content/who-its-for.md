@@ -1,32 +1,31 @@
 +++
 title = "Who it’s for"
-description = "Logven is built for enterprise and medium-to-large companies: for the people who do the work, and the people accountable for how it runs."
+description = "Logven is for the people who do the work and the people accountable for how it runs."
 
 [extra]
-heading = "One model, two reasons to care."
+heading = "Logven is built for two groups of people."
 
 [[extra.sections]]
-title = "Specialist teams"
+title = "Specialised teams"
 body = [
-  "**Engineers, analysts and operators** who spend their days moving data between documents, spreadsheets and systems.",
-  "**The repetitive work runs on its own.** Extraction, updates, checks and reports become workers that run the same way every time.",
-  "**Expertise stays in the company.** How the team works is kept as sheets and workers, not in one person’s head or inbox.",
-  "**AI only where it helps.** Workers call language, vision or time-series models for the steps that need judgement, and plain code does the rest.",
+  "**Specialised teams in every department** who spend their week moving data between systems.",
+  "**Routine work runs without them.** Extraction, checks and reports become workers.",
+  "**Know-how stays in the company.** It lives in sheets and workers, not in one person’s inbox.",
+  "**They keep their way of working.** Logven only takes over the preparation around it.",
 ]
 
 [[extra.sections]]
 title = "Leadership"
 body = [
-  "**Department heads and executives** accountable for how operations run.",
-  "**See** your operations as they actually work: every process, every dependency, kept current by the work itself.",
-  "**Standardise** processes and data in one shared model, instead of a different spreadsheet in every team.",
-  "**Improve** the model, test changes on past runs, and the work improves with it.",
+  "**Department heads and executives** who are accountable for operations.",
+  "**See** how your operations actually work.",
+  "**Standardise** processes and data in one shared model.",
+  "**Improve** a process by testing changes on past runs first.",
 ]
 
 [[extra.sections]]
 title = "Where it fits"
 body = [
-  "**Engineering, operations, quality, compliance and the back office:** teams whose work runs on documents, data and repeatable steps.",
-  "It starts with one team and grows across your operations, one workflow at a time.",
+  "**Engineering, operations, quality, compliance and the back office.** Any team that works with documents, data and repeatable steps.",
 ]
 +++

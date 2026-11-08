@@ -1,33 +1,33 @@
 +++
 title = "Time-series models"
-description = "Bring operational readings into workflows that can examine trends, flag unusual patterns and help teams decide what to inspect."
+description = "Time-series models watch sensor readings and flag unusual patterns."
 
 [extra.model_hero]
 style = "timeseries"
 title = "Time series."
-subtitle = "Telemetry stays inside."
+subtitle = "Sensor data never leaves your network."
 
 [[extra.sections]]
 title = "A practical example"
 body = [
-  "A maintenance team could track vibration readings for a pump and review when recent measurements depart from its usual pattern. A forecast can be one input to inspection planning, alongside operating context and technician judgement."
+  "A team tracks vibration on a pump. The model flags when readings drift from the usual pattern."
 ]
 
 [[extra.sections]]
-title = "From readings to a worker"
+title = "How it fits the workflow"
 body = [
-  "Readings can be kept in sheets with timestamps and asset identifiers. A worker can select a time window, call a suitable forecasting or anomaly model, and save a summary or review task to the relevant asset record."
+  "Readings live in sheets. A worker runs the model and adds a review task to the asset’s record."
 ]
 
 [[extra.sections]]
-title = "Run near the data"
+title = "Where it runs"
 body = [
-  "A pilot can be scoped to models that fit your deployment and data-handling requirements. Keeping telemetry in your controlled environment can help avoid routing operational readings to an unrelated external service."
+  "Telemetry stays in your environment."
 ]
 
 [[extra.sections]]
-title = "Begin with one signal"
+title = "How to start"
 body = [
-  "Select an asset, a useful historical interval and a clear review question. Compare model outputs with known events and the team’s normal checks before using them to inform an operational workflow."
+  "Choose one asset and one clear question, and compare the output with known events."
 ]
 +++

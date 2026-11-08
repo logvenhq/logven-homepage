@@ -4,6 +4,11 @@
   padding-bottom: clamp(2.5rem, 4.5vw, 4rem);
 }
 
+/* When the page ends on a washed section (pricing on the homepage), keep the same gap above the panel. */
+.story:has(> .block--wash:last-child) + .cta-wrap {
+  padding-top: clamp(2.5rem, 4.5vw, 4rem);
+}
+
 .cta {
   position: relative;
   isolation: isolate;
@@ -58,43 +63,5 @@
   line-height: 1.06;
   letter-spacing: -0.032em;
   text-wrap: balance;
-}
-
-.cta__path {
-  display: grid;
-  grid-column: 8 / -1;
-  align-self: end;
-  gap: 0.375rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.cta__path li {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  padding: 0.85rem 1rem;
-  border-radius: var(--radius);
-  background: rgb(255 255 255 / 9%);
-  font-size: 0.9375rem;
-  line-height: 1.45;
-  backdrop-filter: blur(6px);
-}
-
-.cta__path span {
-  grid-row: span 2;
-  color: rgb(255 255 255 / 50%);
-  font-size: 0.8125rem;
-  font-variant-numeric: tabular-nums;
-  padding-top: 0.1rem;
-}
-
-.cta__path strong {
-  font-weight: 450;
-}
-
-.cta__path em {
-  color: rgb(255 255 255 / 68%);
-  font-style: normal;
 }
 

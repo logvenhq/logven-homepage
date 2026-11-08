@@ -1,33 +1,33 @@
 +++
 title = "Vision models"
-description = "Explore image and document workflows that can connect visual evidence to the operational records your team already uses."
+description = "Vision models read images and scans and link them to your records."
 
 [extra.model_hero]
 style = "vision"
 title = "Vision."
-subtitle = "Images stay on-site."
+subtitle = "Images never leave the site."
 
 [[extra.sections]]
 title = "A practical example"
 body = [
-  "An inspection team could submit a photo of a component alongside its asset record. A vision model might identify visible labels or features and return candidate observations for an inspector to check."
+  "An inspector uploads a photo of a component. A vision model suggests observations for the inspector to check."
 ]
 
 [[extra.sections]]
-title = "Connect evidence to records"
+title = "How it fits the workflow"
 body = [
-  "A worker can associate an image with a sheet record, request a structured description, and save the proposed observations to the inspection workflow. Validation rules and human review can handle missing or ambiguous details."
+  "The worker saves the suggestions to the inspection record. A person handles anything unclear."
 ]
 
 [[extra.sections]]
-title = "Keep images in your environment"
+title = "Where it runs"
 body = [
-  "The pilot can use the models and deployment environment selected with your team. Images and extracted observations can be handled within that environment, following the storage and access controls you set."
+  "Images stay in your environment and follow your access rules."
 ]
 
 [[extra.sections]]
-title = "Pilot on a bounded task"
+title = "How to start"
 body = [
-  "Start with one image type and a small set of examples, such as a particular inspection photo or scanned form. Review model suggestions against your team’s decisions and use that evidence to shape the next step."
+  "Start with one type of image and compare the suggestions with your team’s decisions."
 ]
 +++
