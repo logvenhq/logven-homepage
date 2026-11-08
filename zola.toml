@@ -1,6 +1,6 @@
 base_url = "https://logven.com"
 title = "Logven"
-description = "Logven makes operations computable. Teams describe the work they already do, Logven turns it into programs that a person approves, and the result is a model of your operations that runs on your own infrastructure."
+description = "Logven makes operations computable. Your team describes the work it already does, and Logven turns it into approved programs that run on your own infrastructure."
 default_language = "en"
 
 # Sass compiles to the single /css/style.css asset.

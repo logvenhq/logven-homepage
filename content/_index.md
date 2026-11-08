@@ -5,37 +5,37 @@ template = "index.html"
 # Rendered in the FAQ section of the homepage.
 [[extra.faq]]
 question = "What is Logven?"
-answer = "Logven makes a company’s operations computable. Teams describe their work, and Logven turns it into sheets for the data and workers for the steps."
+answer = "Logven turns the way your company works into software that runs. Your team describes the work, and Logven builds sheets for the data and workers for the steps."
 
 [[extra.faq]]
 question = "What does “computable operations” mean?"
-answer = "Your operations exist as a model a computer can run. You can query it, test changes on it and improve it like software."
+answer = "It means your operations exist as a model a computer can run. You can query it, test changes on it and improve it the way you’d improve software."
 
 [[extra.faq]]
 question = "Is it reliable enough for real operations?"
-answer = "Yes. Rules run as ordinary code and give the same result every time. When a model is used, its answer is checked and recorded, and people approve the decisions that matter."
+answer = "Yes. Rules run as plain code and give the same result every time. When a step uses a model, its answer is checked and logged, and people approve the decisions that matter."
 
 [[extra.faq]]
 question = "Does it get harder to maintain as it grows?"
-answer = "No. Logven suggests clean-ups in the background, and a person approves each one."
+answer = "No. Logven suggests clean-ups as it goes, and a person approves each one."
 
 [[extra.faq]]
 question = "Does it run on our own infrastructure?"
-answer = "Yes, on your own hardware or cloud. The models are small enough to run privately, so your data never leaves."
+answer = "Yes, on your own hardware or in your own cloud. The models are small enough to run privately, so your data never leaves."
 
 [[extra.faq]]
 question = "Who uses Logven day to day?"
-answer = "Specialised teams run their own work in it. Managers use the model to see and improve how work flows."
+answer = "Specialised teams run their daily work in it. Managers use the model to see how work flows and where to improve it."
 
 [[extra.faq]]
 question = "What does a pilot involve?"
-answer = "A paid pilot on one workflow with one team and its real data. We write the plan with you and review progress every week."
+answer = "It’s a paid pilot on one workflow, with one team and its real data. We write the plan together and check in every week."
 
 [[extra.faq]]
 question = "How much does it cost?"
-answer = "Pro is €399 a month for 15 seats. Business is €899 a month for 30 seats, plus €30 per extra seat. Enterprise is priced with you. Prices exclude VAT, and monthly billing adds €100 a month."
+answer = "Pro is €399 a month for 15 seats. Business is €899 a month for 30 seats, plus €30 for each extra seat. Enterprise is priced with you. Prices exclude VAT, and monthly billing adds €100 a month."
 
 [[extra.faq]]
 question = "Can Logven connect to our existing tools?"
-answer = "Yes. Custom integrations and model tuning for your domain are available as add-ons."
+answer = "Yes. We can build custom integrations and tune the models for your field as add-ons."
 +++
