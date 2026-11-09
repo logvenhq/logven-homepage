@@ -2,31 +2,31 @@
 :root {
   color-scheme: light dark;
 
-  --ink: light-dark(#1d2027, #eceef3);
-  --text: light-dark(#545862, #bfc1c8);
-  --muted: light-dark(#6b6e78, #a6a8b0);
-  --quiet: light-dark(#6b6e78, #a6a8b0);
+  --ink: light-dark(#1d2027, #eeeeef);
+  --text: light-dark(#545862, #c1c1c2);
+  --muted: light-dark(#6b6e78, #a8a8a9);
+  --quiet: light-dark(#6b6e78, #a8a8a9);
   --primary: #3458c6;
   --primary-hover: #3c64d7;
   --interactive: #3458c6;
 
-  --paper: light-dark(#ffffff, #18191c);
-  --wash: light-dark(#f7f7f9, #1e1f23);
-  --hero: light-dark(#f4f5f7, #1e1f23);
-  --mist: light-dark(#eeeff2, #242529);
-  --line: light-dark(#e9eaee, color-mix(in srgb, #242529 75%, #1e1f23));
-  --shade: light-dark(#e2e3e8, #2b2c31);
-  --shade-strong: light-dark(#d9dbe0, #323338);
-  --column: light-dark(#f9f9fb, #202125);
-  --well: light-dark(#f4f5f7, #242529);
-  --surface-raised: light-dark(#ffffff, #2b2c31);
-  --control-hover: light-dark(#e6e7eb, #323338);
+  --paper: light-dark(#ffffff, #191919);
+  --wash: light-dark(#f7f7f9, #1f1f20);
+  --hero: light-dark(#f4f5f7, #1f1f20);
+  --mist: light-dark(#eeeff2, #252526);
+  --line: light-dark(#e9eaee, color-mix(in srgb, #252526 75%, #1f1f20));
+  --shade: light-dark(#e2e3e8, #2c2c2d);
+  --shade-strong: light-dark(#d9dbe0, #333334);
+  --column: light-dark(#f9f9fb, #212122);
+  --well: light-dark(#f4f5f7, #252526);
+  --surface-raised: light-dark(#ffffff, #2c2c2d);
+  --control-hover: light-dark(#e6e7eb, #333334);
   --paper-on-dark: #ffffff;
   --ink-on-light: #1d2027;
   --light-button-hover: #f4f5f7;
 
-  --tint: light-dark(rgb(29 32 39 / 6%), rgb(236 238 243 / 6%));
-  --tint-strong: light-dark(rgb(29 32 39 / 10%), rgb(236 238 243 / 10%));
+  --tint: light-dark(rgb(29 32 39 / 6%), rgb(238 238 239 / 6%));
+  --tint-strong: light-dark(rgb(29 32 39 / 10%), rgb(238 238 239 / 10%));
   --shadow-soft:
     0 1px 3px light-dark(rgb(15 20 35 / 0.04), rgb(0 0 0 / 0.1)),
     0 4px 14px light-dark(rgb(15 20 35 / 0.05), rgb(0 0 0 / 0.1));
@@ -40,12 +40,12 @@
     0 1px 3px light-dark(rgb(15 20 35 / 5%), rgb(0 0 0 / 32%)),
     0 1.5rem 3.5rem light-dark(rgb(15 20 35 / 12%), rgb(0 0 0 / 48%));
 
-  --activity-0: light-dark(#e9eaee, #26272b);
+  --activity-0: light-dark(#e9eaee, #272728);
   --activity-1: light-dark(#cfe0fa, #233756);
   --activity-2: light-dark(#9fc2f4, #2f5690);
   --activity-3: light-dark(#6a9be8, #4a80dc);
   --activity-4: light-dark(#3f6fc9, #8db8f2);
-  --hero-matrix: light-dark(#7797bc, #77787f);
+  --hero-matrix: light-dark(#7797bc, #787879);
   --status-orange: light-dark(#f5b467, #f5c27e);
 
   --code-keyword: light-dark(#7f6fdb, #c4bbf8);
@@ -53,7 +53,7 @@
   --code-variable: light-dark(#c98a2e, #fad497);
   --code-function: light-dark(#4a80dc, #a9cbf7);
   --code-attribute: light-dark(#d4645a, #f19a91);
-  --code-line-number: light-dark(#c8cad1, #48494f);
+  --code-line-number: light-dark(#c8cad1, #49494a);
   --code-highlight: light-dark(#edf3fd, #1c2a40);
   --code-highlight-text: light-dark(#4a80dc, #a9cbf7);
 

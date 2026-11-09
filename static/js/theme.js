@@ -17,12 +17,12 @@
     }
   };
 
-  // Light only for now while the footer switcher is hidden; restore with `let mode = readMode();`.
-  let mode = "light";
+  // Follow the OS while the footer switcher is hidden; restore with `let mode = readMode();`.
+  let mode = "system";
 
   const updateThemeColor = () => {
     const isDark = mode === "dark" || (mode === "system" && systemTheme.matches);
-    if (themeColor) themeColor.content = isDark ? "#18191c" : "#ffffff";
+    if (themeColor) themeColor.content = isDark ? "#191919" : "#ffffff";
   };
 
   const applyMode = () => {
