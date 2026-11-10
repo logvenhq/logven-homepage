@@ -11,14 +11,14 @@
       const storedMode = window.localStorage.getItem(storageKey);
       if (validModes.has(storedMode)) return storedMode;
       window.localStorage.removeItem(storageKey);
-      return "system";
+      return "light";
     } catch {
-      return "system";
+      return "light";
     }
   };
 
-  // Follow the OS while the footer switcher is hidden; restore with `let mode = readMode();`.
-  let mode = "system";
+  // Light by default while the footer switcher is hidden; restore with `let mode = readMode();`.
+  let mode = "light";
 
   const updateThemeColor = () => {
     const isDark = mode === "dark" || (mode === "system" && systemTheme.matches);

@@ -76,13 +76,3 @@
 .text-link:hover span {
   transform: translateX(0.2em);
 }
-
-.text-link--light {
-  color: rgb(255 255 255 / 82%);
-  transition: color 200ms ease;
-}
-
-.text-link--light:hover {
-  color: var(--paper-on-dark);
-}
-

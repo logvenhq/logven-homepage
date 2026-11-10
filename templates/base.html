@@ -50,9 +50,6 @@
         <a class="site-header__logo" href="{{ home }}" aria-label="Logven home"><img src="{{ get_url(path='brand/hero-logo.svg') }}" alt="" width="114" height="125"><span>Logven</span></a>
         <nav class="site-header__nav" aria-label="Primary">
           <div class="site-header__links" id="primary-navigation">
-          <a href="{{ get_url(path='@/who-its-for.md') }}"{% if current_path == '/who-its-for/' %} aria-current="page"{% endif %}>Who it’s for</a>
-          <a href="{{ get_url(path='@/engagements.md') }}"{% if current_path == '/engagements/' %} aria-current="page"{% endif %}>Engagements</a>
-          <a href="{{ get_url(path='@/company.md') }}"{% if current_path == '/company/' %} aria-current="page"{% endif %}>Company</a>
           <a href="{{ home }}#pricing">Pricing</a>
           </div>
           <a class="site-header__cta" href="{{ get_url(path='@/start-a-pilot.md') }}"{% if current_path == '/start-a-pilot/' %} aria-current="page"{% endif %}>Start a pilot</a>
@@ -102,9 +99,7 @@
           <nav class="site-footer__column" aria-labelledby="footer-company">
             <h2 id="footer-company" class="eyebrow">Company</h2>
             <ul role="list">
-              <li><a href="{{ get_url(path='@/company.md') }}"{% if current_path == '/company/' %} aria-current="page"{% endif %}>About Logven</a></li>
-              <li><a href="{{ get_url(path='@/who-its-for.md') }}"{% if current_path == '/who-its-for/' %} aria-current="page"{% endif %}>Who it’s for</a></li>
-              <li><a href="{{ get_url(path='@/engagements.md') }}"{% if current_path == '/engagements/' %} aria-current="page"{% endif %}>Engagements</a></li>
+              <li><a href="{{ home }}#pricing">Pricing</a></li>
             </ul>
           </nav>
 
@@ -119,11 +114,11 @@
 
         <div class="site-footer__nav">
           <span>© {{ now() | date(format="%Y") }} Logven</span>
-          {# Appearance switcher hidden for now; the site follows the system theme (see static/js/theme.js).
+          {# Appearance switcher hidden for now; the site uses the light theme (see static/js/theme.js).
           <fieldset class="theme-control" data-theme-control>
             <legend class="visually-hidden">Appearance</legend>
-            <label><input type="radio" name="appearance" value="system" checked><span>System</span></label>
-            <label><input type="radio" name="appearance" value="light"><span>Light</span></label>
+            <label><input type="radio" name="appearance" value="system"><span>System</span></label>
+            <label><input type="radio" name="appearance" value="light" checked><span>Light</span></label>
             <label><input type="radio" name="appearance" value="dark"><span>Dark</span></label>
           </fieldset>
           #}
