@@ -16,7 +16,7 @@
   const COLORS = {
     sheets: ["#A7E3B9", "#3FA46A", "#6CCB8E"],
     workers: ["#A9CBF7", "#4A80DC", "#6FA6EE"],
-    models: ["#FCC48C", "#E5761C", "#F99A45"],
+    models: ["#FCBE8C", "#E56C1C", "#F99145"],
   };
 
   const DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]];
