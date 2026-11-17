@@ -20,8 +20,8 @@ body = [
 ]
 
 [[extra.sections]]
-title = "Brand"
+title = "Design system"
 body = [
-  "**Logos and brand files are on the [brand page](/brand/).**",
+  "**Logos, brand files and design tokens are on the [design system page](/design-system/).**",
 ]
 +++

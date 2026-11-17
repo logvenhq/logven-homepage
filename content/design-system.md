@@ -1,10 +1,11 @@
 +++
-title = "Brand"
+title = "Design system"
 description = "The Logven logo, colours and type, how to use them, and how to pair them with a partner's logo."
 template = "brand.html"
+aliases = ["/brand/"]
 
 [extra]
-heading = "Brand guidelines"
+heading = "Design system"
 
 donts = [
   { kind = "recolour", text = "Change the logo’s colour." },

@@ -42,7 +42,7 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     {% if current_path == '/' %}
-    <a class="announcement" href="{{ get_url(path='@/contact.md') }}">We're running pilots with specialised teams <span aria-hidden="true">→</span></a>
+    <a class="announcement" href="{{ get_url(path='@/contact.md') }}">We're running pilots on real team data <span aria-hidden="true">→</span></a>
     {% endif %}
 
     <header class="site-header{% if page is defined and page.extra.model_hero %} site-header--model{% endif %}" data-site-header>
@@ -99,7 +99,7 @@
             <h2 id="footer-company" class="eyebrow">Company</h2>
             <ul role="list">
               <li><a href="{{ home }}#pricing">Pricing</a></li>
-              <li><a href="{{ get_url(path='@/brand.md') }}"{% if current_path == '/brand/' %} aria-current="page"{% endif %}>Brand</a></li>
+              <li><a href="{{ get_url(path='@/design-system.md') }}"{% if current_path == '/design-system/' %} aria-current="page"{% endif %}>Design system</a></li>
             </ul>
           </nav>
 
