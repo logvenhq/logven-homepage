@@ -89,12 +89,6 @@
   stroke-width: 1;
 }
 
-.badge__packet {
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-
 /* Below wide laptops the copy comes first and the badges sit in a row under it. */
 @media (max-width: 1100px) {
   .intro--flip .intro__copy,
