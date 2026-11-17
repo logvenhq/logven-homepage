@@ -277,7 +277,7 @@
   }
 }
 
-/* The second project card would only show as a sliver on phones. */
+/* The second operation card would only show as a sliver on phones. */
 @media (max-width: 520px) {
   .render-shot .rs-stack > .as-card:nth-child(2) {
     display: none;

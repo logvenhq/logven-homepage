@@ -1,0 +1,51 @@
+{#- The Hot-Fire Test Campaign grid from a sheet view (sheets/records/_index.html.erb). Set sheet_rows before including. -#}
+{%- set kinds = ["text", "text", "date", "number", "number", "number", "enum", "bool"] -%}
+{%- set names = ["test_ref", "engine", "test_date", "duration_seconds", "peak_pressure_kpa", "vibration_mm_s", "result", "review_required"] -%}
+{%- set records = [
+  "HF-298|AE Four|15 Sep 2026|400|982.2|8.4|nominal|No",
+  "HF-297|AE Five|12 Sep 2026|403|979.5|6.9|nominal|No",
+  "HF-296|AE Four|10 Sep 2026|413|983.9|10.2|watch|Yes",
+  "HF-295|AE Five|8 Sep 2026|409|980.1|7.1|nominal|No",
+  "HF-294|AE Four|5 Sep 2026|405|982.7|8.9|nominal|No",
+  "HF-293|AE Five|3 Sep 2026|411|980.4|7.3|nominal|No",
+  "HF-292|AE Four|1 Sep 2026|398|984.4|12.1|anomaly|Yes",
+  "HF-291|AE Five|29 Aug 2026|407|979.9|6.8|nominal|No",
+  "HF-290|AE Four|27 Aug 2026|414|983.6|9.8|watch|Yes",
+  "HF-289|AE Five|25 Aug 2026|402|980.6|7.0|nominal|No",
+  "HF-288|AE Four|22 Aug 2026|409|983.1|9.1|watch|Yes",
+  "HF-287|AE Five|20 Aug 2026|404|980.9|7.4|nominal|No",
+  "HF-286|AE Five|18 Aug 2026|410|980.3|7.1|nominal|No",
+  "HF-285|AE Five|15 Aug 2026|406|979.8|6.9|nominal|No",
+  "HF-284|AE Four|14 Aug 2026|397|984.2|11.8|anomaly|Yes",
+  "HF-283|AE Four|12 Aug 2026|401|984.0|10.6|watch|Yes",
+  "HF-282|AE Four|10 Aug 2026|415|983.8|9.4|watch|Yes",
+  "HF-281|AE Four|7 Aug 2026|419|983.0|8.1|nominal|No",
+  "HF-280|AE Four|4 Aug 2026|408|982.1|7.6|nominal|No",
+  "HF-279|AE Four|2 Aug 2026|412|981.4|7.2|nominal|No"
+] -%}
+<div class="as-grid">
+  <div class="as-gh as-gh--center"><span class="as-check"></span></div>
+  <div class="as-gh as-gh--center"><span class="as-i as-i--id"></span></div>
+  {%- for name in names %}
+  <div class="as-gh"><span class="as-i as-i--{{ kinds[loop.index0] }}"></span><span class="as-truncate">{{ name }}</span></div>
+  {%- endfor %}
+  <div class="as-gh"><span class="as-i as-i--plus"></span><span>Add column</span></div>
+  {%- for record in records | slice(end=sheet_rows) %}
+  {%- set values = record | split(pat="|") %}
+  <div class="as-rc"><span class="as-check"></span></div>
+  <div class="as-rn">{{ 21 - loop.index }}</div>
+  {%- for value in values %}
+  {%- set kind = kinds[loop.index0] %}
+  {%- if kind == "number" %}
+  <div class="as-cell as-cell--number"><span class="as-mono">{{ value }}</span></div>
+  {%- elif kind == "enum" %}
+  <div class="as-cell"><span class="as-dot as-dot--{{ value }}"></span>{{ value }}</div>
+  {%- elif kind == "bool" %}
+  <div class="as-cell"><span class="as-tag">{{ value }}</span></div>
+  {%- else %}
+  <div class="as-cell">{{ value }}</div>
+  {%- endif %}
+  {%- endfor %}
+  <div class="as-cell as-cell--end"></div>
+  {%- endfor %}
+</div>

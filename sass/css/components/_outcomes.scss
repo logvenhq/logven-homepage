@@ -113,7 +113,7 @@
   background: var(--surface-raised);
 }
 
-/* Engineers get back to engineering: two project cards, the second one lower. */
+/* Engineers get back to engineering: two operation cards, the second one lower. */
 .app-shot.render-shot--cards {
   --fade-x: 7rem;
   --fade-y: 66%;
@@ -150,10 +150,6 @@
   padding: 14px 16px 6px;
   font-size: 16px;
   font-weight: 600;
-}
-
-.app-shot.render-shot--sheet .as-grid {
-  padding-bottom: 0;
 }
 
 /* Every number, traceable: code with one line highlighted and its value in a popover. */
