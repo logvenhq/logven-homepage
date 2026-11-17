@@ -132,8 +132,8 @@ main > .hero:first-child {
   transition: color 200ms ease;
 }
 
-.site-header__nav a:hover,
-.site-header__nav a[aria-current="page"] {
+.site-header__links a:hover,
+.site-header__links a[aria-current="page"] {
   color: var(--ink);
 }
 
