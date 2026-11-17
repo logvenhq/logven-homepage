@@ -21,6 +21,13 @@ html {
   scroll-padding-top: var(--header-height);
 }
 
+/* Sizes are in rem, so this sets the scale of the whole site above phone widths. */
+@media (min-width: 761px) {
+  html {
+    font-size: 90%;
+  }
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -52,8 +59,8 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--interactive);
-  outline-offset: 3px;
+  outline: 0.125rem solid var(--interactive);
+  outline-offset: 0.1875rem;
 }
 
 .skip-link {

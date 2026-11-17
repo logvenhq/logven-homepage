@@ -6,9 +6,9 @@
   --text: light-dark(#545862, #c1c1c2);
   --muted: light-dark(#6b6e78, #a8a8a9);
   --quiet: light-dark(#6b6e78, #a8a8a9);
-  --primary: #3458c6;
-  --primary-hover: #3c64d7;
-  --interactive: #3458c6;
+  --primary: #1856f3;
+  --primary-hover: #3067f4;
+  --interactive: #1856f3;
 
   --paper: light-dark(#ffffff, #191919);
   --wash: light-dark(#f7f7f9, #1f1f20);
@@ -28,16 +28,16 @@
   --tint: light-dark(rgb(29 32 39 / 6%), rgb(238 238 239 / 6%));
   --tint-strong: light-dark(rgb(29 32 39 / 10%), rgb(238 238 239 / 10%));
   --shadow-soft:
-    0 1px 3px light-dark(rgb(15 20 35 / 0.04), rgb(0 0 0 / 0.1)),
-    0 4px 14px light-dark(rgb(15 20 35 / 0.05), rgb(0 0 0 / 0.1));
+    0 1px 0.1875rem light-dark(rgb(15 20 35 / 0.04), rgb(0 0 0 / 0.1)),
+    0 0.25rem 0.875rem light-dark(rgb(15 20 35 / 0.05), rgb(0 0 0 / 0.1));
   --shadow-raised:
-    0 10px 24px light-dark(rgb(29 32 39 / 14%), rgb(0 0 0 / 38%)),
-    0 2px 6px light-dark(rgb(29 32 39 / 8%), rgb(0 0 0 / 24%));
+    0 0.625rem 1.5rem light-dark(rgb(29 32 39 / 14%), rgb(0 0 0 / 38%)),
+    0 0.125rem 0.375rem light-dark(rgb(29 32 39 / 8%), rgb(0 0 0 / 24%));
   --shadow-app-shot:
-    0 1px 3px light-dark(rgb(15 20 35 / 5%), rgb(0 0 0 / 28%)),
+    0 1px 0.1875rem light-dark(rgb(15 20 35 / 5%), rgb(0 0 0 / 28%)),
     0 1.5rem 3.5rem light-dark(rgb(15 20 35 / 8%), rgb(0 0 0 / 42%));
   --shadow-app-shot-raised:
-    0 1px 3px light-dark(rgb(15 20 35 / 5%), rgb(0 0 0 / 32%)),
+    0 1px 0.1875rem light-dark(rgb(15 20 35 / 5%), rgb(0 0 0 / 32%)),
     0 1.5rem 3.5rem light-dark(rgb(15 20 35 / 12%), rgb(0 0 0 / 48%));
 
   --activity-0: light-dark(#e9eaee, #272728);
@@ -66,7 +66,7 @@
   --badge-red-text: light-dark(#c95a50, #f4aaa3);
 
   --radius: 0.5rem;
-  --radius-ctl: 5px;
+  --radius-ctl: 0.3125rem;
   --announcement-height: 2.25rem;
   --inset: clamp(1.25rem, 4.4vw, 5rem);
   --gap: clamp(1rem, 2vw, 2rem);

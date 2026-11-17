@@ -33,7 +33,7 @@
   align-items: center;
   min-height: 2rem;
   padding-inline: 0.75rem;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
   color: var(--text);
   font-size: 0.8125rem;
   font-weight: 500;
@@ -52,8 +52,8 @@
 }
 
 .theme-control input:focus-visible + span {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: 0.125rem solid var(--interactive);
+  outline-offset: 0.125rem;
 }
 
 .visually-hidden {

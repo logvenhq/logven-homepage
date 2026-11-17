@@ -69,7 +69,9 @@
     const bounds = canvas.getBoundingClientRect();
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
-    cellSize = bounds.width < 600 ? 14 : 18;
+    // Follows the root size, which is 90% on wider screens.
+    const unit = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16;
+    cellSize = (bounds.width / unit < 600 ? 14 : 18) * unit;
     columns = Math.ceil(bounds.width / cellSize);
     rows = Math.ceil(bounds.height / cellSize);
     canvas.width = Math.round(bounds.width * pixelRatio);

@@ -60,7 +60,7 @@
 }
 
 /* Narrow cards: the copy spans the card and the field becomes a band underneath it. */
-@container rec (max-width: 1024px) {
+@container rec (max-width: 64rem) {
   .rec {
     min-height: 0;
     padding-bottom: 12rem;
@@ -72,7 +72,7 @@
   }
 }
 
-@container rec (max-width: 520px) {
+@container rec (max-width: 32.5rem) {
   .rec {
     padding-bottom: 9rem;
   }

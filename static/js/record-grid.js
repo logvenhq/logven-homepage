@@ -64,9 +64,11 @@
 
     width = bounds.width;
     height = bounds.height;
-    size = bounds.width < 700 ? 7 : 9;
-    radius = 2;
-    const gap = 3;
+    // Follows the root size, which is 90% on wider screens.
+    const unit = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16;
+    size = (bounds.width / unit < 700 ? 7 : 9) * unit;
+    radius = 2 * unit;
+    const gap = 3 * unit;
     const pitch = size + gap;
 
     canvas.width = Math.round(width * pixelRatio);
@@ -75,8 +77,8 @@
 
     // Where the field begins: clear of the copy's right edge, or of its foot on phones.
     const start = isBand
-      ? copyBounds.bottom - bounds.top + 28
-      : copyBounds.right - bounds.left + Math.min(96, width * 0.07);
+      ? copyBounds.bottom - bounds.top + 28 * unit
+      : copyBounds.right - bounds.left + Math.min(96 * unit, width * 0.07);
     const end = isBand ? height : width;
 
     // Anchor to the right and top edges, part of a square past each, so the field bleeds off.

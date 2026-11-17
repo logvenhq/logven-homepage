@@ -85,7 +85,7 @@
   padding-top: 0.35rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 810px) {
   .plan {
     grid-column: 1 / -1;
   }
@@ -150,8 +150,8 @@
 }
 
 .billing-switch input:focus-visible + span {
-  outline: 2px solid var(--interactive);
-  outline-offset: 2px;
+  outline: 0.125rem solid var(--interactive);
+  outline-offset: 0.125rem;
 }
 
 .pricing [data-billing="monthly"],

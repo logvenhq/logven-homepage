@@ -1,7 +1,7 @@
 /* Responsive */
 
 /* Narrower laptops: the activity card gets the width its header needs. */
-@media (max-width: 1360px) {
+@media (max-width: 1224px) {
   .mosaic {
     grid-template-columns: minmax(0, 4.6fr) minmax(0, 3.3fr) minmax(0, 4.1fr);
   }
@@ -15,7 +15,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 922px) {
   .section-top__title,
   .section-top__intro,
   .intro__copy,
@@ -201,7 +201,7 @@
   }
 
   .site-header__menu-icon::after {
-    transform: translateY(3px);
+    transform: translateY(0.1875rem);
   }
 
   [aria-expanded="true"] .site-header__menu-icon::before {
