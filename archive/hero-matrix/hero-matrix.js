@@ -37,18 +37,18 @@
         column: index % columns,
         row: Math.floor(index / columns),
         revealedAt: Infinity,
-        strength: 0.09 + Math.random() * 0.14,
+        strength: 0.025 + Math.random() * 0.045,
       })),
     );
 
     const initialCellCount = seedInitialGrid ? Math.floor(cells.length * initialDensity) : 0;
 
     cells.slice(0, initialCellCount).forEach((cell) => {
-      cell.revealedAt = now - 650;
+      cell.revealedAt = now - 2400;
     });
 
     nextCell = initialCellCount;
-    nextRevealAt = now + 350;
+    nextRevealAt = now + 900;
     cycleEndsAt = Infinity;
     cycleOpacity = 1;
   };
@@ -89,8 +89,9 @@
     cells.forEach((cell) => {
       if (cell.revealedAt > time) return;
 
-      const fadeIn = Math.min((time - cell.revealedAt) / 650, 1);
-      const easedFade = 1 - (1 - fadeIn) ** 3;
+      const fadeIn = Math.min((time - cell.revealedAt) / 2400, 1);
+      // A slow, symmetric ease, so squares surface rather than pop.
+      const easedFade = fadeIn * fadeIn * (3 - 2 * fadeIn);
       const restingX = cell.column * cellSize;
       const restingY = cell.row * cellSize;
       const x = restingX;
@@ -113,20 +114,20 @@
     }
 
     if (nextCell < cells.length && time >= nextRevealAt) {
-      const batchSize = Math.max(1, Math.round(cells.length / 400));
+      const batchSize = Math.max(1, Math.round(cells.length / 1100));
 
       for (let count = 0; count < batchSize && nextCell < cells.length; count += 1) {
-        cells[nextCell].revealedAt = time + count * 45;
+        cells[nextCell].revealedAt = time + count * 320;
         nextCell += 1;
       }
 
-      nextRevealAt = time + 260 + Math.random() * 220;
+      nextRevealAt = time + 1100 + Math.random() * 900;
 
-      if (nextCell === cells.length) cycleEndsAt = time + 2400;
+      if (nextCell === cells.length) cycleEndsAt = time + 6000;
     }
 
     if (time >= cycleEndsAt) {
-      cycleOpacity = Math.max(0, 1 - (time - cycleEndsAt) / 1400);
+      cycleOpacity = Math.max(0, 1 - (time - cycleEndsAt) / 3200);
 
       if (cycleOpacity === 0) createCells();
     }

@@ -1,0 +1,33 @@
+/* Archived from sass/css/components/_hero.scss. Not compiled. */
+
+/* Colour token, from sass/css/base/_tokens.scss:
+   --hero-matrix: light-dark(#7797bc, #787879); */
+
+/* The squares thin out towards the title so the type sits on clear ground. */
+.hero__matrix {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  color: var(--hero-matrix);
+  mask-image: linear-gradient(to bottom, #000 30%, rgb(0 0 0 / 35%) 72%, transparent 96%);
+}
+
+/* The page overlay fades the complete matrix and its background into the story. */
+.hero--page .hero__matrix {
+  mask-image: none;
+}
+
+/* On the homepage the squares frame the centred copy and clear away behind it. */
+.hero--home .hero__matrix {
+  mask-image: radial-gradient(ellipse 58% 52% at 50% 100%, transparent 0, rgb(0 0 0 / 30%) 55%, #000 100%);
+}
+
+/* Reduced motion, from sass/css/components/_motion.scss:
+@media (prefers-reduced-motion: reduce) {
+  .hero__matrix {
+    opacity: 0.45;
+  }
+} */

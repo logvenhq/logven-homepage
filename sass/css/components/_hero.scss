@@ -6,7 +6,7 @@
   display: grid;
   align-content: end;
   overflow: hidden;
-  background: var(--hero);
+  background: var(--hero-surface);
 }
 
 .hero--home {
@@ -52,28 +52,6 @@
   background: linear-gradient(to bottom, transparent 70%, var(--paper));
 }
 
-/* The squares thin out towards the title so the type sits on clear ground. */
-.hero__matrix {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  color: var(--hero-matrix);
-  mask-image: linear-gradient(to bottom, #000 30%, rgb(0 0 0 / 35%) 72%, transparent 96%);
-}
-
-/* The page overlay fades the complete matrix and its background into the story. */
-.hero--page .hero__matrix {
-  mask-image: none;
-}
-
-/* On the homepage the squares frame the centred copy and clear away behind it. */
-.hero--home .hero__matrix {
-  mask-image: radial-gradient(ellipse 58% 52% at 50% 100%, transparent 0, rgb(0 0 0 / 30%) 55%, #000 100%);
-}
-
 .hero__content {
   position: relative;
   z-index: 3;
@@ -103,4 +81,133 @@
 
 .hero .actions {
   margin-top: 0.5rem;
+}
+
+/* Ledger: columns of team figures that drift right to left above the homepage title. */
+.hero--home {
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-content: stretch;
+}
+
+.ledger {
+  position: relative;
+  z-index: 2;
+  min-height: 13rem;
+  margin: clamp(1.25rem, 4vh, 3rem) calc(-1 * var(--inset)) clamp(2.5rem, 7vh, 5rem);
+  padding-inline: var(--inset);
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--inset),
+    #000 calc(100% - var(--inset)),
+    transparent
+  );
+}
+
+.ledger__col {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: var(--ledger-col, 25%);
+  padding: 0.1rem 0.75rem;
+  opacity: 0;
+  transition: opacity 2s var(--ease-out) calc(var(--i, 0) * 110ms);
+  will-change: transform;
+}
+
+/* Hairline rule. The script sets its height: it draws in on entrance and
+   shortens towards the sides of the hero. */
+.ledger__rule {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--shade-strong);
+  transform: scaleY(0);
+  will-change: transform;
+}
+
+.ledger.is-ready .ledger__col {
+  opacity: 1;
+}
+
+.ledger__label,
+.ledger__index {
+  will-change: transform;
+  color: var(--muted);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.ledger__index {
+  align-self: end;
+  color: var(--quiet);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.7;
+}
+
+.ledger__figure {
+  display: grid;
+  align-self: center;
+  justify-items: start;
+  gap: 0.3rem;
+  will-change: transform;
+}
+
+.ledger__value {
+  display: flex;
+  color: var(--ink);
+  font-size: clamp(1.625rem, 2.5vw, 2.375rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* One wheel per digit; the edges fade so passing digits blur into the rule. */
+.ledger__digit {
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent, #000 19%, #000 81%, transparent);
+}
+
+.ledger__strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform;
+}
+
+.ledger__strip > span {
+  height: 1.2em;
+}
+
+.ledger__caption {
+  color: var(--text);
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+@media (max-width: 40rem) {
+  .ledger {
+    min-height: 11rem;
+  }
+
+  .ledger__col {
+    padding-inline: 0.6rem;
+  }
+
+  .ledger__caption {
+    font-size: 0.8125rem;
+  }
 }
