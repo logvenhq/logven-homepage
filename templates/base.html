@@ -48,7 +48,7 @@
 
     <header class="site-header{% if page is defined and page.extra.model_hero %} site-header--model{% endif %}" data-site-header>
       <div class="site-header__inner">
-        <a class="site-header__logo" href="{{ home }}" aria-label="Logven home"><img src="{{ get_url(path='brand/logven-lockup.svg') }}" alt="" width="480" height="161"></a>
+        <a class="site-header__logo" href="{{ home }}" aria-label="Logven home">{% include "partials/logo.html" %}</a>
         <nav class="site-header__nav" aria-label="Primary">
           <div class="site-header__links" id="primary-navigation">
           <a href="{{ home }}#pricing">Pricing</a>
@@ -63,7 +63,7 @@
       {% block content %}{% endblock content %}
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" data-header-dark>
       <div class="container">
         <div class="grid site-footer__grid">
           <div class="site-footer__brand">

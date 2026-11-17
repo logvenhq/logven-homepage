@@ -1,0 +1,279 @@
+/*
+ * How it works: connectors on the left feed hair-thin grey wires into the data lake's black
+ * sphere, and wires fan out from it into the company model on the right. Each source has one
+ * hue from the hero's spectrum; the entities show the hues of the sources they're built from.
+ * Plain HTML and SVG in templates/index.html. The wires stretch to fit (non-scaling strokes),
+ * so both lists use fixed row heights that the wire coordinates match:
+ *   sources: 7 rows of 2rem with 1rem gaps = 20rem, centres every 45 of 300 units from 15;
+ *   entities: 4 rows of 4.25rem with 1rem gaps = 20rem, centres every 78.75 units from 31.875.
+ * Soft packets travel along the wires, in towards the sphere and out to the model.
+ */
+
+.system {
+  --system-height: 20rem;
+  --peach: #eea684;
+  --pink: #e48bc0;
+  --violet: #9583ef;
+  --blue: #5c82f0;
+  --sky: #5ab8ea;
+  --mint: #6fcfc2;
+  --sun: #e6c95f;
+  display: grid;
+  grid-template-columns: 10.5rem minmax(4rem, 1fr) 4.875rem minmax(4rem, 1fr) 17rem;
+  /* An explicit row, so the stretched wires can't size it from their aspect ratio. */
+  grid-template-rows: var(--system-height);
+  align-items: center;
+  margin-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.system__sources,
+.system__model {
+  display: grid;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.system__sources {
+  grid-template-rows: repeat(7, 2rem);
+  row-gap: 1rem;
+}
+
+.system__model {
+  grid-template-rows: repeat(4, 4.25rem);
+  row-gap: 1rem;
+}
+
+.system__source {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.8125rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.system__dot {
+  flex: none;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background: var(--dot, var(--shade-strong));
+}
+
+.system__dot--peach { --dot: var(--peach); }
+.system__dot--pink { --dot: var(--pink); }
+.system__dot--violet { --dot: var(--violet); }
+.system__dot--blue { --dot: var(--blue); }
+.system__dot--sky { --dot: var(--sky); }
+.system__dot--mint { --dot: var(--mint); }
+.system__dot--sun { --dot: var(--sun); }
+
+.system__wires {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.system__wire,
+.system__packet {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.system__wire {
+  stroke: var(--shade);
+  stroke-width: 1;
+}
+
+/* A packet in the source's hue drifting along its wire into the sphere. system.js stacks a few
+   translucent dashes of growing length that share one head, so each packet fades out towards
+   its tail. Until the script has measured the wires, the packets stay hidden. */
+.system__packet {
+  stroke: var(--packet, var(--ink));
+  stroke-width: 1.5;
+  stroke-dasharray: 0 1;
+  opacity: 0;
+  visibility: hidden;
+  animation: system-packet 6.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: calc(var(--i) * -0.9s);
+}
+
+.system.is-drawn .system__packet {
+  visibility: visible;
+}
+
+.system__packet--peach { --packet: var(--peach); }
+.system__packet--pink { --packet: var(--pink); }
+.system__packet--violet { --packet: var(--violet); }
+.system__packet--blue { --packet: var(--blue); }
+.system__packet--sky { --packet: var(--sky); }
+.system__packet--mint { --packet: var(--mint); }
+.system__packet--sun { --packet: var(--sun); }
+
+/* Out of the sphere the packets are the site's ink, a beat after the ones coming in. */
+.system__wires--out .system__packet {
+  --packet: color-mix(in srgb, var(--ink) 55%, white);
+  animation-delay: calc(var(--i) * -1.6s - 3.2s);
+}
+
+@keyframes system-packet {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: var(--tail, 0px);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  78% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: calc(var(--tail, 0px) - var(--packet-length, 100px));
+  }
+}
+
+.system__hub {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.system__hub-label {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.system__sphere {
+  display: block;
+  width: 4.875rem;
+  height: 4.875rem;
+  overflow: visible;
+}
+
+.system__core {
+  fill: var(--ink);
+}
+
+.system__fringe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lake-fringe 24s linear infinite;
+}
+
+.system__entity {
+  display: grid;
+  align-content: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.system__entity-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.system__entity-name {
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 450;
+}
+
+.system__entity-count {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.system__entity-from {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.system__entity-from span {
+  margin-left: 0.35rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .system__packet {
+    display: none;
+  }
+
+  .system__fringe {
+    animation: none;
+  }
+}
+
+/* Narrower screens: the wires drop out. Sources wrap as a row of chips, the sphere sits
+   between them and the model, and the entities form a two-column grid. */
+@media (max-width: 960px) {
+  .system {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    justify-items: center;
+    gap: 1.75rem;
+    }
+
+  .system__wires {
+    display: none;
+  }
+
+  .system__sources {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 34rem;
+    height: auto;
+  }
+
+  .system__source {
+    height: 2rem;
+  }
+
+  .system__sphere {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .system__model {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: 4.25rem;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 36rem;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .system__model {
+    grid-template-columns: 1fr;
+  }
+}

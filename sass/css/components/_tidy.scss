@@ -1,0 +1,220 @@
+/*
+ * Housekeeping: the same hairlines as the connectors, before and after a night's check. Wires
+ * come in from the left edge unevenly spaced: one crosses into its own lane, two copies merge,
+ * one nobody uses fades out dashed. A thin spectral line is the check; past it the wires run
+ * on as even lanes, where everything moves at one speed and the automated lanes carry trains of
+ * black dots. static/js/tidy.js draws it at the size it's shown and places the notes on their
+ * hairline ticks. Without the script, or below 720px, the notes are a plain list.
+ */
+
+.tidy {
+  --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
+  --peach: #eea684;
+  --pink: #e48bc0;
+  --violet: #9583ef;
+  --blue: #5c82f0;
+  --sky: #5ab8ea;
+  --mint: #6fcfc2;
+  --sun: #e6c95f;
+  position: relative;
+  height: clamp(17rem, 24vw, 21rem);
+  margin: clamp(0.5rem, 2vw, 1.5rem) calc(-1 * var(--bleed)) 0;
+}
+
+.tidy__art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  /* The wires come out of the page on the left rather than starting at its edge. */
+  mask-image: linear-gradient(to right, transparent, #000 calc(var(--bleed) + 2rem));
+}
+
+.tidy__wire {
+  fill: none;
+  stroke: var(--shade);
+  stroke-width: 1;
+}
+
+.tidy__wire--stale {
+  stroke-dasharray: 3 4;
+}
+
+.tidy__ring {
+  fill: var(--paper);
+  stroke: color-mix(in srgb, var(--ink) 30%, white);
+  stroke-width: 1;
+  stroke-dasharray: 2.5 2.5;
+}
+
+.tidy__port {
+  fill: color-mix(in srgb, var(--ink) 28%, white);
+}
+
+.tidy__tick {
+  fill: none;
+  stroke: var(--shade-strong);
+  stroke-width: 1;
+}
+
+.tidy__anchor {
+  fill: var(--ink);
+}
+
+.tidy__hue--peach { --hue: var(--peach); }
+.tidy__hue--pink { --hue: var(--pink); }
+.tidy__hue--violet { --hue: var(--violet); }
+.tidy__hue--blue { --hue: var(--blue); }
+.tidy__hue--sky { --hue: var(--sky); }
+.tidy__hue--mint { --hue: var(--mint); }
+.tidy__hue--sun { --hue: var(--sun); }
+
+/* Before the check: one packet per wire in its hue, each at its own pace. */
+.tidy__packet {
+  fill: none;
+  stroke: var(--hue);
+  stroke-width: 1.5;
+  stroke-opacity: 0.26;
+  opacity: 0;
+  animation: tidy-packet var(--duration) cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes tidy-packet {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: var(--tail);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: calc(var(--tail) - var(--length));
+  }
+}
+
+/* After the check: evenly spaced packets in ink, all at one speed. */
+.tidy__beat {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 60%, white);
+  stroke-width: 1.5;
+  stroke-opacity: 0.22;
+  animation: tidy-beat var(--duration) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes tidy-beat {
+  from {
+    stroke-dashoffset: var(--tail);
+  }
+
+  to {
+    stroke-dashoffset: calc(var(--tail) - var(--period));
+  }
+}
+
+/* Automated lanes: a steady train of black dots, the colour of everything Logven runs. */
+.tidy__dots {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  animation: tidy-dots var(--duration) linear infinite;
+}
+
+@keyframes tidy-dots {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: calc(-1 * var(--period));
+  }
+}
+
+/* Notes, in the hero ledger's small type, sitting on the end of their tick. */
+.tidy__marks {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.tidy.is-wide.is-drawn .tidy__marks {
+  visibility: visible;
+}
+
+.tidy__mark {
+  position: absolute;
+  padding-left: 0.6rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.tidy__mark[data-side="above"] {
+  transform: translateY(-0.1rem);
+}
+
+.tidy__mark[data-side="below"] {
+  transform: translateY(0.1rem);
+}
+
+.tidy__mark b {
+  margin-left: 0.35rem;
+  color: var(--ink);
+  font-weight: 450;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tidy__packet,
+  .tidy__beat,
+  .tidy__dots {
+    animation: none;
+  }
+
+  .tidy__packet {
+    display: none;
+  }
+}
+
+/* Narrow screens and no script: the drawing stays, and the notes become a list under it. */
+.tidy:not(.is-wide) {
+  height: auto;
+}
+
+.tidy:not(.is-wide) .tidy__art {
+  position: relative;
+  height: 13rem;
+}
+
+.tidy:not(.is-wide) .tidy__marks {
+  position: static;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem var(--bleed) 0;
+  visibility: visible;
+}
+
+.tidy:not(.is-wide) .tidy__mark {
+  position: static;
+  padding: 0;
+  white-space: normal;
+}
+
+.tidy:not(.is-wide) .tidy__mark--check {
+  display: none;
+}

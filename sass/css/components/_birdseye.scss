@@ -1,0 +1,304 @@
+/*
+ * Birdseye: the management view, set at night like the code section above it. A centred title,
+ * then the data lake seen from above (static/js/birdseye.js): a white sphere with the spectrum
+ * as a corona, hairline rings spreading out from it, faint spokes for the departments, and soft
+ * packets orbiting along the rings. A few figures sit on hairline ticks, like the hero
+ * ledger. People never appear: the smallest unit is a team.
+ */
+
+.birdseye {
+  overflow: hidden;
+  padding-block: clamp(5rem, 9vw, 8.5rem) clamp(4rem, 7vw, 6.5rem);
+  background: var(--night);
+  color: var(--night-text);
+}
+
+/* Title block: centred and quiet. */
+.birdseye__head {
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.birdseye__eyebrow {
+  margin: 0;
+  color: var(--night-muted);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.birdseye__title {
+  margin: 0;
+  color: var(--night-ink);
+  /* The usual section title size (.block__title). */
+  font-size: clamp(1.75rem, 2.7vw, 2.625rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.birdseye__title strong {
+  font-weight: 500;
+}
+
+.birdseye__lede {
+  max-width: 38rem;
+  margin: 0.25rem 0 0;
+  color: var(--night-text);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.birdseye__privacy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.25rem 0 0;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--night-line);
+  border-radius: 999px;
+  color: var(--night-text);
+  font-size: 0.8125rem;
+}
+
+.birdseye__privacy-dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, #f7b89c, #ed9bcc, #a38ff5, #5c82f0, #6ec7f5, #a6ede6, #f5e8a6, #f7b89c);
+}
+
+/* The lake from above, full bleed. birdseye.js draws the rings, spokes and orbits at the size
+   they're shown; the sphere and its corona are centred here. */
+.birdseye__figure {
+  --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
+  --sphere: 4.5rem;
+  position: relative;
+  height: clamp(22rem, 32vw, 30rem);
+  margin: clamp(1.5rem, 4vw, 3rem) calc(-1 * var(--bleed)) 0;
+}
+
+.birdseye__art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* The rings dissolve towards the edges rather than stopping at them. */
+  mask-image: radial-gradient(ellipse 50% 50% at center, #000 35%, transparent 100%);
+}
+
+.birdseye__spoke {
+  fill: none;
+  stroke: #212226;
+  stroke-width: 1;
+}
+
+.birdseye__ring {
+  fill: none;
+  stroke: #2a2b30;
+  stroke-width: 1;
+}
+
+.birdseye__ring--inner {
+  stroke: #34363c;
+}
+
+/* Orbiting packets: stacked translucent dashes sharing one head, so each fades to its tail.
+   The dash pattern repeats once per packet, so the loop is seamless. */
+.birdseye__packet {
+  fill: none;
+  stroke-width: 1.5;
+  animation: birdseye-orbit var(--duration) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes birdseye-orbit {
+  from {
+    stroke-dashoffset: var(--tail);
+  }
+
+  to {
+    stroke-dashoffset: calc(var(--tail) - var(--period));
+  }
+}
+
+.birdseye__tick {
+  fill: none;
+  stroke: #3a3c42;
+  stroke-width: 1;
+}
+
+.birdseye__anchor {
+  fill: var(--night-ink);
+}
+
+/* The data lake's sphere, white on night, with the full spectrum as a slowly turning corona. */
+.birdseye__sphere {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--sphere);
+  height: var(--sphere);
+  transform: translate(-50%, -50%);
+}
+
+.birdseye__core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.birdseye__corona {
+  position: absolute;
+  inset: -0.3rem;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #f7b89c, #ed9bcc, #a38ff5, #5c82f0, #6ec7f5, #a6ede6, #f5e8a6, #f7b89c);
+  filter: blur(0.45rem);
+  opacity: 0.75;
+  animation: lake-fringe 30s linear infinite;
+}
+
+/* Figures, set like the hero ledger: a small label, a light number and a caption. */
+.birdseye__figures {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.birdseye__figure.is-wide.is-drawn .birdseye__figures {
+  visibility: visible;
+}
+
+.birdseye__figure-item {
+  position: absolute;
+  display: grid;
+  gap: 0.2rem;
+  padding-left: 0.7rem;
+  white-space: nowrap;
+}
+
+.birdseye__team {
+  color: var(--night-muted);
+  font-size: 0.6875rem;
+  letter-spacing: 0.01em;
+}
+
+.birdseye__value {
+  color: var(--night-ink);
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.birdseye__caption {
+  color: var(--night-text);
+  font-size: 0.8125rem;
+}
+
+/* Narrow screens and no script: the figures sit in a grid under the drawing. */
+.birdseye__figure:not(.is-wide) {
+  height: auto;
+}
+
+.birdseye__figure:not(.is-wide) .birdseye__art {
+  position: relative;
+  height: 18rem;
+}
+
+.birdseye__figure:not(.is-wide) .birdseye__sphere {
+  top: 9rem;
+}
+
+.birdseye__figure:not(.is-wide) .birdseye__figures {
+  position: static;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1rem;
+  padding: 1.5rem var(--bleed) 0;
+  visibility: visible;
+}
+
+.birdseye__figure:not(.is-wide) .birdseye__figure-item {
+  position: static;
+  padding: 0;
+  white-space: normal;
+}
+
+/* Four notes in a hairline frame, like the code section's. */
+.birdseye__notes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--night-line);
+}
+
+.birdseye__note {
+  padding: clamp(1.25rem, 2.2vw, 1.75rem) clamp(1rem, 2vw, 1.75rem) 0;
+  border-left: 1px solid var(--night-line);
+}
+
+.birdseye__note:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.birdseye__note-name {
+  margin: 0 0 0.4rem;
+  color: var(--night-ink);
+  font-size: 1rem;
+  font-weight: 450;
+}
+
+.birdseye__note-text {
+  margin: 0;
+  color: var(--night-text);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birdseye__packet,
+  .birdseye__corona {
+    animation: none;
+  }
+
+}
+
+@media (max-width: 960px) {
+  .birdseye__notes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 1.75rem;
+  }
+
+  .birdseye__note:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .birdseye__notes {
+    grid-template-columns: 1fr;
+    border-top: 0;
+  }
+
+  .birdseye__note {
+    padding: 1.25rem 0 0;
+    border-top: 1px solid var(--night-line);
+    border-left: 0;
+  }
+}

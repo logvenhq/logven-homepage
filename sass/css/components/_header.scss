@@ -78,9 +78,30 @@ main > .hero:first-child {
   align-items: center;
 }
 
-.site-header__logo img {
+.site-header__logo svg {
+  display: block;
   width: auto;
   height: 2.25rem;
+  overflow: visible;
+}
+
+/* The lockup's own colours; over dark sections they switch (below). */
+.logo__word {
+  fill: var(--logo-word, #151515);
+  transition: fill 300ms ease;
+}
+
+.logo__stop {
+  transition: stop-color 300ms ease, stop-opacity 300ms ease;
+}
+
+.logo__stop--top {
+  stop-color: var(--logo-star-top, #245be7);
+}
+
+.logo__stop--bottom {
+  stop-color: var(--logo-star-bottom, #acc3ff);
+  stop-opacity: var(--logo-star-fade, 1);
 }
 
 .site-header__nav {
@@ -145,6 +166,26 @@ main > .hero:first-child {
   --text: var(--ink-on-light);
 }
 
-.site-header--model:not(.is-scrolled) .site-header__logo img {
+.site-header--model:not(.is-scrolled) .site-header__logo svg {
   filter: brightness(0);
+}
+
+/* Over a dark section (site-header.js marks it): a light wordmark and links, and the star's
+   gradient runs from blue into transparent instead of into pale blue. */
+.site-header.is-dark {
+  --logo-word: var(--night-ink);
+  --logo-star-top: #4f7ff0;
+  --logo-star-bottom: #4f7ff0;
+  --logo-star-fade: 0;
+}
+
+.site-header.is-dark .site-header__nav > a,
+.site-header.is-dark .site-header__menu,
+.site-header.is-dark:not(.is-menu-open) .site-header__links a {
+  color: var(--night-text);
+}
+
+.site-header.is-dark .site-header__nav > a:hover,
+.site-header.is-dark:not(.is-menu-open) .site-header__links a:hover {
+  color: var(--night-ink);
 }

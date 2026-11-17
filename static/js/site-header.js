@@ -13,10 +13,19 @@
     new ResizeObserver(updateAnnouncementHeight).observe(announcement);
   }
 
+  // Sections with a dark background: while one sits behind the header, the header goes light.
+  const darkSections = document.querySelectorAll("[data-header-dark]");
+
   // Transparent only until the header pins below the announcement, so nothing ever slides underneath the nav.
   const update = () => {
     const offset = announcement ? announcement.offsetHeight : 0;
     header.classList.toggle("is-scrolled", window.scrollY > offset + 8);
+    const line = header.getBoundingClientRect().top + header.offsetHeight / 2;
+    const dark = [...darkSections].some((section) => {
+      const { top, bottom } = section.getBoundingClientRect();
+      return top <= line && bottom > line;
+    });
+    header.classList.toggle("is-dark", dark);
   };
 
   window.addEventListener("scroll", update, { passive: true });

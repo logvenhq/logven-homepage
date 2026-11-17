@@ -77,6 +77,84 @@
       </div>
     </section>
 
+    <section id="how-it-works" class="block" aria-labelledby="system-title">
+      <div class="container">
+        <div class="grid section-top">
+          <div class="section-top__title">
+            <h2 id="system-title" class="block__title" data-reveal>Connect every system. Get <strong>one model of your company</strong>.</h2>
+          </div>
+          <p class="block__body section-top__intro" data-reveal>
+            Connectors pull data in from the tools your teams already use. Logven puts it together across teams and models it into one company-wide system: every customer, order, supplier and machine, linked to the records behind it.
+          </p>
+        </div>
+        {%- set sources = section.extra.sources %}
+        {%- set entities = section.extra.entities %}
+        <div class="system" aria-hidden="true" data-system data-reveal>
+          <ul class="system__sources" role="list">
+            {%- for source in sources %}
+            <li class="system__source"><i class="system__dot system__dot--{{ source.hue }}"></i>{{ source.name }}</li>
+            {%- endfor %}
+          </ul>
+          <svg class="system__wires" viewBox="0 0 100 300" preserveAspectRatio="none" focusable="false">
+            {%- for source in sources %}
+            {%- set y = 15 + loop.index0 * 45 %}
+            <path class="system__wire" data-y="{{ y / 300 }} 0.5" d="M0 {{ y }}C55 {{ y }} 45 150 100 150"/>
+            <path class="system__packet system__packet--{{ source.hue }}" style="--i: {{ loop.index0 }}" data-y="{{ y / 300 }} 0.5" d="M0 {{ y }}C55 {{ y }} 45 150 100 150"/>
+            {%- endfor %}
+          </svg>
+          <div class="system__hub">
+            <svg class="system__sphere" viewBox="21 21 78 78" focusable="false">
+              <defs>
+                <linearGradient id="system-spectrum" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f7b89c"/><stop offset="0.17" stop-color="#ed9bcc"/><stop offset="0.34" stop-color="#a38ff5"/><stop offset="0.5" stop-color="#5c82f0"/><stop offset="0.66" stop-color="#6ec7f5"/><stop offset="0.83" stop-color="#a6ede6"/><stop offset="1" stop-color="#f5e8a6"/></linearGradient>
+                <linearGradient id="system-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="0.3" stop-color="#fff"/><stop offset="0.55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+                <mask id="system-top" maskContentUnits="objectBoundingBox"><rect width="1" height="1" fill="url(#system-fade)"/></mask>
+                <filter id="system-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+              </defs>
+              <g transform="translate(0 -3)" mask="url(#system-top)"><circle class="system__fringe" cx="60" cy="60" r="39" fill="url(#system-spectrum)" filter="url(#system-blur)"/></g>
+              <circle class="system__core" cx="60" cy="60" r="38"/>
+            </svg>
+            <span class="system__hub-label">Data lake</span>
+          </div>
+          <svg class="system__wires system__wires--out" viewBox="0 0 100 300" preserveAspectRatio="none" focusable="false">
+            {%- for entity in entities %}
+            {%- set y = 31.875 + loop.index0 * 78.75 %}
+            <path class="system__wire" data-y="0.5 {{ y / 300 }}" d="M0 150C55 150 45 {{ y }} 100 {{ y }}"/>
+            <path class="system__packet" style="--i: {{ loop.index0 }}" data-y="0.5 {{ y / 300 }}" d="M0 150C55 150 45 {{ y }} 100 {{ y }}"/>
+            {%- endfor %}
+          </svg>
+          <ul class="system__model" role="list">
+            {%- for entity in entities %}
+            <li class="system__entity">
+              <span class="system__entity-head"><span class="system__entity-name">{{ entity.name }}</span><span class="system__entity-count">{{ entity.records }}</span></span>
+              <span class="system__entity-from">
+                {%- for hue in entity.hues %}<i class="system__dot system__dot--{{ hue }}"></i>{% endfor %}
+                <span>{{ entity.from | join(sep=" · ") }}</span>
+              </span>
+            </li>
+            {%- endfor %}
+          </ul>
+        </div>
+        <div class="grid notes">
+          <div class="note" data-reveal>
+            <h3 class="note__name">Connectors for what you use</h3>
+            <p class="note__text">ERP, CRM, databases, shared drives, email and machine data. If a connector is missing, we build it.</p>
+          </div>
+          <div class="note" data-reveal>
+            <h3 class="note__name">Put together across teams</h3>
+            <p class="note__text">The customer that sales, finance and support each keep becomes one record, not three versions.</p>
+          </div>
+          <div class="note" data-reveal>
+            <h3 class="note__name">Modelled, not just stored</h3>
+            <p class="note__text">Logven works out how your data fits together. Open a supplier and see every order, invoice and email behind it.</p>
+          </div>
+          <div class="note" data-reveal>
+            <h3 class="note__name">Always current</h3>
+            <p class="note__text">Connectors keep syncing, so the model shows today’s data, not last quarter’s export.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="models" class="block" aria-labelledby="models-title">
       <div class="container">
         <div class="block__head">
@@ -166,34 +244,44 @@
       <div class="container">
         <div class="grid section-top">
           <div class="section-top__title">
-            <h2 id="housekeeping-title" class="block__title" data-reveal>It <strong>stays tidy</strong> as it grows</h2>
+            <h2 id="housekeeping-title" class="block__title" data-reveal>It <strong>stays tidy</strong>, and it <strong>gets better</strong> as it grows.</h2>
           </div>
           <p class="block__body section-top__intro" data-reveal>
-            Data lakes rarely get messy all at once. A sheet ends up in the wrong process, a worker quietly stops being useful. Every night Logven looks over the whole workspace and tells you what to tidy, so nobody has to go looking.
+            Data lakes rarely get messy all at once. A sheet ends up in the wrong process, two teams keep the same list, a worker quietly stops being useful. Every night Logven looks over the whole workspace, tells you what to tidy and spots the work your teams keep repeating. Nothing changes until you accept it.
           </p>
         </div>
+        <figure class="tidy" aria-hidden="true" data-tidy data-reveal>
+          <svg class="tidy__art" data-tidy-art focusable="false"></svg>
+          <ul class="tidy__marks" role="list">
+            <li class="tidy__mark" data-mark="moved">A sheet filed under the wrong process <b>Moved</b></li>
+            <li class="tidy__mark" data-mark="merged">The same list, kept by two teams <b>Merged</b></li>
+            <li class="tidy__mark" data-mark="flagged">A worker unused for nine days <b>Flagged</b></li>
+            <li class="tidy__mark tidy__mark--check" data-mark="check">Nightly check</li>
+            <li class="tidy__mark" data-mark="automated">A task repeated every week <b>Automated</b></li>
+          </ul>
+        </figure>
         <div class="grid notes">
           <div class="note" data-reveal>
             <h3 class="note__name">Everything in its place</h3>
             <p class="note__text">Sheets that work together belong in the same process. Logven spots the ones that sit apart and suggests where they fit.</p>
           </div>
           <div class="note" data-reveal>
+            <h3 class="note__name">One copy of everything</h3>
+            <p class="note__text">When two teams keep the same list, Logven finds both and suggests merging them into one.</p>
+          </div>
+          <div class="note" data-reveal>
             <h3 class="note__name">Nothing forgotten</h3>
             <p class="note__text">A worker that hasn’t run in a week, a board nobody opens, a sheet whose data goes nowhere: each one is flagged.</p>
           </div>
           <div class="note" data-reveal>
-            <h3 class="note__name">You make the call</h3>
-            <p class="note__text">Every finding comes with its reason. Accept a move, or dismiss it and it won’t come back. Nothing is removed for you.</p>
-          </div>
-          <div class="note" data-reveal>
-            <h3 class="note__name">Easier to trust</h3>
-            <p class="note__text">When everything left is something you meant to keep, people believe what they find.</p>
+            <h3 class="note__name">Repeated work, spotted</h3>
+            <p class="note__text">Steps your team repeats every week come back as a suggested automation. Approve it, and it runs as code.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="code" class="block block--lined" aria-labelledby="code-title">
+    <section id="code" class="block block--lined" aria-labelledby="code-title" data-header-dark>
       <div class="container">
         <div class="lined">
           <div class="lined__head">
@@ -270,6 +358,45 @@
       </div>
     </section>
 
+    <section id="birdseye" class="block birdseye" aria-labelledby="birdseye-title" data-header-dark>
+      <div class="container">
+        <header class="birdseye__head">
+          <p class="birdseye__eyebrow" data-reveal>For management</p>
+          <h2 id="birdseye-title" class="birdseye__title" data-reveal><strong>Birdseye</strong> view</h2>
+          <p class="birdseye__lede" data-reveal>The whole company, from above. Birdseye maps how your company is structured from the work your teams already do, and lets you analyse and chart all of your data, with its patterns and its activity.</p>
+          <p class="birdseye__privacy" data-reveal><span class="birdseye__privacy-dot"></span>Teams, never individuals. Groups under five are combined.</p>
+        </header>
+        <figure class="birdseye__figure" aria-hidden="true" data-birdseye data-reveal>
+          <svg class="birdseye__art" data-birdseye-art focusable="false"></svg>
+          <div class="birdseye__sphere"><span class="birdseye__corona"></span><span class="birdseye__core"></span></div>
+          <ul class="birdseye__figures" role="list">
+            <li class="birdseye__figure-item" data-at="-148 5"><span class="birdseye__team">Finance</span><span class="birdseye__value">9.4 days</span><span class="birdseye__caption">to close the month</span></li>
+            <li class="birdseye__figure-item" data-at="-32 4"><span class="birdseye__team">Sales to Finance</span><span class="birdseye__value">2.1 days</span><span class="birdseye__caption">average handover wait</span></li>
+            <li class="birdseye__figure-item" data-at="28 5"><span class="birdseye__team">Plant</span><span class="birdseye__value">+18%</span><span class="birdseye__caption">activity this month</span></li>
+            <li class="birdseye__figure-item" data-at="152 4"><span class="birdseye__team">Across teams</span><span class="birdseye__value">214</span><span class="birdseye__caption">datasets in use</span></li>
+          </ul>
+        </figure>
+        <div class="birdseye__notes">
+          <div class="birdseye__note" data-reveal>
+            <h3 class="birdseye__note-name">The shape of your company</h3>
+            <p class="birdseye__note-text">Departments, teams and the processes between them, drawn from the work itself rather than an org chart nobody updates.</p>
+          </div>
+          <div class="birdseye__note" data-reveal>
+            <h3 class="birdseye__note-name">Every dataset, one place</h3>
+            <p class="birdseye__note-text">Filter, compare and chart anything in the data lake, from sales by region to sensor readings by line.</p>
+          </div>
+          <div class="birdseye__note" data-reveal>
+            <h3 class="birdseye__note-name">Patterns and activity</h3>
+            <p class="birdseye__note-text">Seasonal peaks, slowdowns and the handovers where work waits, spotted before they turn into problems.</p>
+          </div>
+          <div class="birdseye__note" data-reveal>
+            <h3 class="birdseye__note-name">Private by design</h3>
+            <p class="birdseye__note-text">Activity is counted by team, never tracked by person. Access follows roles, and the data never leaves your control.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="faq" class="block" aria-labelledby="faq-title">
       <div class="container grid">
         <h2 id="faq-title" class="block__title faq__label" data-reveal>Questions</h2>
@@ -297,4 +424,7 @@
   <script src="{{ get_url(path='js/ribbon.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/ledger.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/system.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/tidy.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/birdseye.js', cachebust=true) }}" defer></script>
 {% endblock scripts %}
