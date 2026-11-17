@@ -22,11 +22,19 @@
   margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
+/* Titles are set light, with their keywords in <strong>. */
+.hero__title strong,
+.block__title strong,
+.cta__title strong,
+.page-head__title strong {
+  font-weight: 600;
+}
+
 .block__title {
   margin: 0;
   color: var(--ink);
   font-size: clamp(1.75rem, 2.7vw, 2.625rem);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;

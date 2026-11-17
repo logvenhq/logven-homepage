@@ -5,7 +5,7 @@ template = "contact.html"
 aliases = ["/start-a-pilot/"]
 
 [extra]
-heading = "Talk to us"
+heading = "**Talk** to us"
 lede = "Write to us about a pilot, pricing or anything else. A founder reads every message and replies."
 email = "info@logven.com"
 

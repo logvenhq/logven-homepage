@@ -55,6 +55,7 @@
 
 .hero--model .hero__title {
   color: var(--paper-on-dark);
+  font-weight: 400;
 }
 
 .hero--model .hero__title span {
@@ -81,7 +82,7 @@
   margin: 0;
   color: var(--ink);
   font-size: clamp(1.875rem, 3.1vw, 3.125rem);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.08;
   letter-spacing: -0.03em;
   text-wrap: balance;

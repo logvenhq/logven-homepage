@@ -6,7 +6,7 @@
   <section class="contact" aria-labelledby="page-title">
     <div class="container grid contact__grid">
       <div class="contact__intro">
-        <h1 id="page-title" class="page-head__title">{{ c.heading }}</h1>
+        <h1 id="page-title" class="page-head__title">{{ c.heading | markdown(inline=true) | safe }}</h1>
         <p class="page-head__lede">{{ c.lede }}</p>
 
         <div class="contact__email">
