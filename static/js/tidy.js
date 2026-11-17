@@ -44,9 +44,9 @@
   const r = (value) => Math.round(value * 10) / 10;
 
   // A packet: translucent dashes of growing length sharing one head, so it fades to its tail.
-  const packet = (d, className, style) => {
+  const packet = (parent, d, className, style) => {
     TAILS.forEach((tail) => {
-      const path = el("path", { d, class: className });
+      const path = el("path", { d, class: className }, parent);
       path.style.cssText = style(tail);
       path.style.setProperty("--tail", `${tail}px`);
     });
@@ -85,8 +85,9 @@
     ).setAttribute("stdDeviation", 3);
 
     const wires = el("g", { class: "tidy__wires" });
-    const ticks = el("g", { class: "tidy__ticks" });
     const packets = el("g");
+    // Ticks and their dots sit above the wires and packets.
+    const ticks = el("g", { class: "tidy__ticks" });
 
     // Incoming wires, from the window edge into their lanes.
     WIRES.forEach((wire) => {
@@ -105,7 +106,7 @@
         probe.remove();
         return value;
       })();
-      packet(visible, `tidy__packet tidy__hue--${wire.hue}`, (tail) =>
+      packet(packets, visible, `tidy__packet tidy__hue--${wire.hue}`, (tail) =>
         `stroke-dasharray:${tail} ${length + 200};--length:${r(length + 40)}px;--duration:${wire.duration}s;--delay:-${wire.delay}s`,
       );
     });
@@ -127,7 +128,7 @@
       } else {
         const period = 230;
         const offset = (index * 71) % period;
-        packet(d, "tidy__beat", (tail) =>
+        packet(packets, d, "tidy__beat", (tail) =>
           `stroke-dasharray:${tail} ${period - tail};--period:${period}px;--duration:${period / SPEED}s;--delay:-${r(offset / SPEED)}s`,
         );
       }
@@ -147,9 +148,12 @@
         mark.removeAttribute("style");
         return;
       }
-      if (!["check", "flagged"].includes(name)) el("circle", { cx: x, cy: y, r: 2.5, class: "tidy__anchor" }, ticks);
+      // The hairline goes down first so the dot sits on top of it; at the flagged ring it
+      // starts from the ring's edge rather than its centre.
       const end = Y(to);
-      el("path", { d: `M${x} ${y}L${x} ${end}`, class: "tidy__tick" }, ticks);
+      const start = name === "flagged" ? y + Math.sign(end - y) * 4.5 : y;
+      el("path", { d: `M${x} ${start}L${x} ${end}`, class: "tidy__tick" }, ticks);
+      if (!["check", "flagged"].includes(name)) el("circle", { cx: x, cy: y, r: 2.5, class: "tidy__anchor" }, ticks);
       const above = end < y;
       mark.style.left = `${x}px`;
       mark.style.top = above ? `${end}px` : "";
