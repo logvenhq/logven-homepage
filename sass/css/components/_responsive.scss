@@ -226,6 +226,11 @@
     min-height: calc(100dvh - var(--announcement-height));
   }
 
+  /* On phones the hero drops its paragraph so the ledger animation gets the height. */
+  .hero--home .hero__lede {
+    display: none;
+  }
+
   /* Every grid child spans the full width on phones. */
   .grid > * {
     grid-column: 1 / -1;
