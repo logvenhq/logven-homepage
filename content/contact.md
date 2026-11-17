@@ -18,10 +18,4 @@ title = "Pilots"
 body = [
   "**Tell us which team and data you want to start with.** A pilot is paid and runs with one team on its real data. See [pricing](/#pricing).",
 ]
-
-[[extra.sections]]
-title = "Design system"
-body = [
-  "**Logos, brand files and design tokens are on the [design system page](/design-system/).**",
-]
 +++
