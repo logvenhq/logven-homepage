@@ -75,17 +75,14 @@
   text-decoration-color: currentColor;
 }
 
-/* The viewBox is the word's measured ink box, so it spans the content width edge to edge. */
+/* The official wordmark from the lockup (without the star). The viewBox is its measured ink
+   box, so it spans the content width edge to edge. */
 .site-footer__wordmark {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
   fill: color-mix(in srgb, var(--night) 93%, white);
-  font-family: inherit;
-  font-size: 400px;
-  font-weight: 500;
-  letter-spacing: -18px;
   user-select: none;
   pointer-events: none;
 }
