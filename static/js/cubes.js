@@ -656,7 +656,9 @@
     const defs = element("defs", {});
     (tidy ? Object.keys(COLORS) : [name]).forEach((kind) => {
       const symbol = element("g", { id: ref(kind) });
-      COLORS[kind].forEach((fill, index) => symbol.append(element("path", { d: FACES[index], fill })));
+      // The housekeeping scene keeps its kinds for grouping but draws every cube in blue.
+      const fills = tidy ? COLORS.workers : COLORS[kind];
+      fills.forEach((fill, index) => symbol.append(element("path", { d: FACES[index], fill })));
       defs.append(symbol);
     });
     svg.append(defs);
