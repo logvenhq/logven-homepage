@@ -42,7 +42,9 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     {% if current_path == '/' %}
+    {#- Announcement bar, hidden for now. To show it again, uncomment it and set --announcement-height in _tokens.scss back to 2.25rem.
     <a class="announcement" href="{{ get_url(path='@/contact.md') }}">We're running pilots on real team data <span aria-hidden="true">→</span></a>
+    -#}
     {% endif %}
 
     <header class="site-header{% if page is defined and page.extra.model_hero %} site-header--model{% endif %}" data-site-header>

@@ -67,7 +67,8 @@
 
   --radius: 0.5rem;
   --radius-ctl: 0.3125rem;
-  --announcement-height: 2.25rem;
+  /* 2.25rem while the announcement bar in base.html is shown. */
+  --announcement-height: 0rem;
   --inset: clamp(1.25rem, 4.4vw, 5rem);
   --gap: clamp(1rem, 2vw, 2rem);
   --header-height: 3.5rem;
