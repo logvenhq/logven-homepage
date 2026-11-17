@@ -149,8 +149,6 @@
   font-weight: 500;
 }
 
-.app-shot .as-cube--boards { background-image: url("../images/blocks/boards_cube.svg"); }
-
 /* Narrow screens: the panel keeps Placement and In use and the lists drop the review
    link, then the reason, and the header gives its room to the lists. */
 @container (max-width: 48rem) {

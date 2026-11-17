@@ -171,12 +171,12 @@
 }
 
 .app-shot .as-cube--16,
-.app-shot .as-cube--nav { width: 16px; height: 16px; }
 .app-shot .as-cube--14 { width: 14px; height: 14px; }
 
 .app-shot .as-cube--workspace { background-image: url("../images/app/workspace.svg"); }
 .app-shot .as-cube--workers { background-image: url("../images/blocks/workers_cube.svg"); }
 .app-shot .as-cube--sheets { background-image: url("../images/blocks/sheets_cube.svg"); }
+.app-shot .as-cube--boards { background-image: url("../images/blocks/boards_cube.svg"); }
 
 /* Utilities */
 
@@ -191,8 +191,6 @@
 .app-shot .as-faint { color: var(--ink-faint); }
 .app-shot .as-medium { font-weight: 500; }
 .app-shot .as-caption { font-size: 12px; }
-.app-shot .as-end { justify-self: end; }
-
 /* App frame (layout.css: .app-frame, .app-header, .app-content) */
 
 .app-shot .as-frame {
@@ -392,13 +390,6 @@
   flex-shrink: 0;
   color: var(--ink-mist);
   font-weight: 400;
-}
-
-.app-shot .as-header-actions {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  margin-left: auto;
 }
 
 .app-shot .as-mascot {

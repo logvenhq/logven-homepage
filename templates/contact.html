@@ -24,7 +24,7 @@
         </ul>
       </div>
 
-      <aside class="contact__pilot" aria-labelledby="pilot-title">
+      <section class="contact__pilot" aria-labelledby="pilot-title">
         <h2 id="pilot-title" class="contact__pilot-title">{{ pilot.title }}</h2>
         <p class="contact__pilot-body">{{ pilot.body }}</p>
         <ol class="contact__steps" role="list">
@@ -35,7 +35,7 @@
         <div class="actions">
           <a class="button" href="mailto:{{ c.email }}?subject={{ pilot.subject | urlencode_strict }}&amp;body={{ pilot.mail_body | urlencode_strict }}">Email us about a pilot</a>
         </div>
-      </aside>
+      </section>
     </div>
   </section>
 {% endblock content %}
