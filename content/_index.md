@@ -5,27 +5,31 @@ template = "index.html"
 # Rendered in the FAQ section of the homepage.
 [[extra.faq]]
 question = "What is Logven?"
-answer = "Logven turns the way your company works into software that runs. Your team describes the work, and Logven builds sheets for the data and workers for the steps."
+answer = "Logven gives each person simple tools for their data work. In the background, it builds one central data lake from that work."
 
 [[extra.faq]]
-question = "What does “computable operations” mean?"
-answer = "It means your operations exist as a model a computer can run. You can query it, test changes on it and improve it the way you’d improve software."
+question = "What’s a data lake?"
+answer = "It’s one organised place for the data your teams work with. Reports, measurements, emails and spreadsheets end up clean and connected."
 
 [[extra.faq]]
-question = "Is it reliable enough for real operations?"
-answer = "Yes. Rules run as plain code and give the same result every time. When a step uses a model, its answer is checked and logged, and people approve the decisions that matter."
+question = "How long does setup take?"
+answer = "There’s no month-long setup. Each person starts on their own work right away, and the data lake grows from there."
+
+[[extra.faq]]
+question = "Can we rely on the results?"
+answer = "Yes. Automations run as plain code and give the same result every time. Model steps are checked and logged, and every number traces back to its source."
 
 [[extra.faq]]
 question = "Does it get harder to maintain as it grows?"
-answer = "No. Logven suggests clean-ups as it goes, and a person approves each one."
+answer = "No. Logven keeps the data lake organised as it grows, so nobody has to maintain it by hand."
 
 [[extra.faq]]
-question = "Does it run on our own infrastructure?"
-answer = "Yes, on your own hardware or in your own cloud. The models are small enough to run privately, so your data never leaves."
+question = "Where does it run?"
+answer = "On your own servers, or in the cloud with European data residency. The models are small and private, so your data stays in your control."
 
 [[extra.faq]]
 question = "Who uses Logven day to day?"
-answer = "Specialised teams run their daily work in it. Managers use the model to see how work flows and where to improve it."
+answer = "Teams use it for their daily data work. Managers use the data lake to see what’s there and make decisions."
 
 [[extra.faq]]
 question = "What does a pilot involve?"

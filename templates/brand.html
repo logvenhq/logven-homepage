@@ -21,32 +21,6 @@
   </section>
 
   <div class="story">
-    <section class="block" aria-labelledby="in-use-title">
-      <div class="container">
-        <div class="block__head">
-          <h2 id="in-use-title" class="block__title" data-reveal>Quiet, precise, mostly ink and paper.</h2>
-          <div class="carousel__controls">
-            <button class="carousel__button" type="button" data-carousel-prev aria-label="Previous">
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <button class="carousel__button" type="button" data-carousel-next aria-label="Next">
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 3.5 11 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-        </div>
-        <ul class="carousel__track brand-gallery" role="list" data-carousel-track>
-          {% for shot in page.extra.shots %}
-            <li class="carousel__item">
-              <figure class="brand-shot" data-reveal>
-                <img src="{{ get_url(path='images/brand/' ~ shot.file ~ '.webp') }}" alt="{{ shot.label }} with the Logven logo" width="1536" height="1024" loading="lazy" decoding="async">
-                <figcaption>{{ shot.label }}</figcaption>
-              </figure>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </section>
-
     <section id="logo" class="block" aria-labelledby="logo-title">
       <div class="container">
         <div class="grid section-top">
@@ -247,6 +221,5 @@
 {% endblock content %}
 
 {% block scripts %}
-  <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/copy.js', cachebust=true) }}" defer></script>
 {% endblock scripts %}

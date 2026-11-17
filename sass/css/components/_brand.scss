@@ -1,6 +1,6 @@
-/* Brand page: logo, colour, type, partnerships and downloads. Dark panels share the CTA panel's colour. */
+/* Brand page: logo, colour, type, partnerships and downloads. Dark tiles and panels use ink. */
 
-$brand-night: #1e2731;
+$brand-night: var(--ink-on-light);
 
 .brand-link {
   text-decoration-color: var(--shade-strong);
@@ -13,27 +13,6 @@ $brand-night: #1e2731;
 .brand-link:focus-visible {
   color: var(--interactive);
   text-decoration-color: currentColor;
-}
-
-/* In use: the generated mockups, in the shared carousel. */
-
-.brand-shot {
-  margin: 0;
-}
-
-.brand-shot img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  border-radius: var(--radius);
-  background: var(--mist);
-}
-
-.brand-shot figcaption {
-  margin-top: 0.75rem;
-  color: var(--muted);
-  font-size: 0.9375rem;
 }
 
 /* Logo tiles */

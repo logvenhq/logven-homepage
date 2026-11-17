@@ -12,8 +12,8 @@
       >
     </div>
     <div class="hero__content">
-      <h1 id="hero-title" class="hero__title" data-reveal>Logven makes your operations computable.</h1>
-      <p class="hero__lede" data-reveal>Your teams tells Logven how the work gets done. Logven turns it into a programmable model, observable and optimisable, on your own servers.</p>
+      <h1 id="hero-title" class="hero__title" data-reveal>Centralise your team’s data work.</h1>
+      <p class="hero__lede" data-reveal>Your teams organise their data work their own way. Logven turns it into one central data lake, keeps it tidy and shows you all the data you have, even the data you didn’t know about.</p>
       <div class="actions" data-reveal>
         <a class="button" href="{{ get_url(path='@/start-a-pilot.md') }}">Start a pilot</a>
         <a class="button button--tint" href="#how-it-works">How it works</a>
@@ -24,17 +24,17 @@
     <section id="product" class="block" aria-labelledby="problem-title">
       <div class="container grid intro">
         <div class="intro__copy">
-          <h2 id="problem-title" class="block__title" data-reveal>Most of your processes aren’t written down anywhere.</h2>
+          <h2 id="problem-title" class="block__title" data-reveal>Before every decision, someone spends days gathering data.</h2>
           <p class="block__body" data-reveal>
-            They live in inboxes, spreadsheets and the heads of a few people who can never take a holiday.
+            It’s spread across people, files, spreadsheets and emails, and nobody can see how it fits together. Most companies don’t even know what data they already have.
           </p>
           <p class="block__body" data-reveal>
-            Logven writes each one down as data and steps. Then a computer can run it, and your team can make it better.
+            Search tools and AI assistants find pieces of it, but you can’t rely on the answers. Data platforms only work once someone has shaped the data and loaded it by hand.
           </p>
         </div>
         <div class="pulse" aria-hidden="true" data-reveal>
           <div class="pulse__card">
-            <p class="pulse__head"><b>Activity</b><span>Worker runs across operations, past year</span></p>
+            <p class="pulse__head"><b>Activity</b><span>Data collected across your teams, past year</span></p>
             <div class="pulse__body">
               <div class="pulse__grid"><span class="pulse__month" style="grid-column:2 / span 4">Nov</span>{#- -#}
                 <span class="pulse__month" style="grid-column:6 / span 4">Dec</span><span class="pulse__month" style="grid-column:11 / span 4">Jan</span>{#- -#}
@@ -106,7 +106,7 @@
                 {%- endfor -%}
                 {%- endfor -%}
               </div>
-              <span class="pulse__tip" style="--col:22;--row:5"><span><b>23 runs</b><em>1 failed</em></span><span>Wednesday, 2 April</span></span>
+              <span class="pulse__tip" style="--col:22;--row:5"><span><b>23 records</b><em>2 new sources</em></span><span>Wednesday, 2 April</span></span>
             </div>
             <p class="pulse__legend">Less<i class="activity__day--0"></i><i class="activity__day--1">{#- -#}
               </i><i class="activity__day--2"></i><i class="activity__day--3"></i><i class="activity__day--4">{#- -#}
@@ -121,49 +121,41 @@
       <div class="container">
         <div class="grid section-top">
           <div class="section-top__title">
-            <h2 id="blocks-title" class="block__title" data-reveal>Every company comes down to two things: what it knows and what it does.</h2>
+            <h2 id="blocks-title" class="block__title" data-reveal>Logven starts with the people doing the work.</h2>
           </div>
           <p class="block__body section-top__intro" data-reveal>
-            We call the first one state and the second one functions. Put them together and you have a working model of your company.
+            There’s no month-long setup and no data project before you see value.
           </p>
         </div>
         <div class="grid blocks">
           <article class="blocks__item" data-reveal>
             <div class="blocks__art"><svg class="cubes" data-cubes="sheets" viewBox="-103 -50 220 132" aria-hidden="true"></svg></div>
             <div class="blocks__copy">
-              <h3 class="blocks__name"><img src="{{ get_url(path='images/blocks/sheets_cube.svg') }}" alt="" width="14" height="14">State</h3>
-              <p class="blocks__text">Your data lives in sheets. Every process reads and writes the same copy.</p>
-            </div>
-          </article>
-          <article class="blocks__item" data-reveal>
-            <div class="blocks__art"><svg class="cubes" data-cubes="workers" viewBox="-103 -50 220 132" aria-hidden="true"></svg></div>
-            <div class="blocks__copy">
-              <h3 class="blocks__name"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Functions</h3>
-              <p class="blocks__text">Each process becomes a function with clear rules. A worker runs it.</p>
+              <h3 class="blocks__name"><img src="{{ get_url(path='images/blocks/sheets_cube.svg') }}" alt="" width="14" height="14">Tools for each person</h3>
+              <p class="blocks__text">Everyone gets simple tools to organise and speed up their own data work. It’s as easy to pick up as Notion.</p>
             </div>
           </article>
           <article class="blocks__item" data-reveal>
             <div class="blocks__art"><svg class="cubes" data-cubes="models" viewBox="-103 -50 220 132" aria-hidden="true"></svg></div>
             <div class="blocks__copy">
-              <h3 class="blocks__name"><img src="{{ get_url(path='images/blocks/models_cube.svg') }}" alt="" width="14" height="14">The model</h3>
-              <p class="blocks__text">You can see which process touches which data and who’s responsible for it.</p>
+              <h3 class="blocks__name"><img src="{{ get_url(path='images/blocks/models_cube.svg') }}" alt="" width="14" height="14">One data lake</h3>
+              <p class="blocks__text">Logven turns every report, measurement, email and spreadsheet your team touches into clean, connected data. The structure grows from the work itself.</p>
+            </div>
+          </article>
+          <article class="blocks__item" data-reveal>
+            <div class="blocks__art"><svg class="cubes" data-cubes="workers" viewBox="-103 -50 220 132" aria-hidden="true"></svg></div>
+            <div class="blocks__copy">
+              <h3 class="blocks__name"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Automation</h3>
+              <p class="blocks__text">When a task repeats, your team hands it to Logven. Over time it becomes reliable, traceable software.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="how-it-grows" class="block" aria-labelledby="growth-title">
+    <section id="system-of-record" class="block" aria-labelledby="record-title">
       <div class="container">
-        <div class="grid section-top">
-          <div class="section-top__title">
-            <h2 id="growth-title" class="block__title" data-reveal>You start with one task and grow from there.</h2>
-          </div>
-          <p class="block__body section-top__intro" data-reveal>
-            No long setup or back-and-forth with IT. The data model takes shape from everyday work.
-          </p>
-        </div>
-        {% include "partials/growth.html" %}
+        {% include "partials/record.html" %}
       </div>
     </section>
 
@@ -188,359 +180,17 @@
           </div>
           <div class="note" data-reveal>
             <h3 class="note__name"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Workers</h3>
-            <p class="note__text">Workers do the job, using your data and your tools.</p>
+            <p class="note__text">Workers run the tasks your team hands over.</p>
           </div>
           <div class="note" data-reveal>
             <h3 class="note__name"><img src="{{ get_url(path='images/blocks/boards_cube.svg') }}" alt="" width="14" height="14">Boards</h3>
-            <p class="note__text">Boards turn raw data into live, flexible analysis.</p>
+            <p class="note__text">Boards turn your data into live analysis.</p>
           </div>
           <div class="note" data-reveal>
             <h3 class="note__name"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Processes</h3>
-            <p class="note__text">A process bundles the sheets, workers and boards behind one job.</p>
+            <p class="note__text">A process groups the sheets, workers and boards behind one job.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="code" class="block block--lined" aria-labelledby="code-title">
-      <div class="container">
-        <div class="lined">
-          <div class="lined__head">
-            <h2 id="code-title" class="block__title" data-reveal>Every process is written as a program.</h2>
-            <a class="button button--tint button--small" href="{{ get_url(path='@/start-a-pilot.md') }}">How a pilot works</a>
-          </div>
-          <div class="lined__row">
-            <div class="lined__cell">
-              <div class="code-row__copy">
-            <h3 class="code-row__title" data-reveal>It does what you approved, every single time.</h3>
-            <p class="code-row__text" data-reveal>Your team describes the process and Logven drafts a worker. Someone approves it, and from then on it runs the same way every time.</p>
-            <dl class="facts" data-reveal>
-              <div><dt>It follows the approved steps.</dt><dd>The same rules run in the same order on every run.</dd></div>
-              <div><dt>It only sees what it needs.</dt><dd>Each worker gets access to specific data and tools, and nothing else.</dd></div>
-              <div>
-                <dt>Every run leaves a record.</dt>
-                <dd>Inputs, outputs and calls to other systems are logged. You can trace any result back to the step that produced it.</dd>
-              </div>
-              <div><dt>Changes need a sign-off.</dt><dd>Every change is a new version, and it can’t run until someone approves it.</dd></div>
-            </dl>
-          </div>
-            </div>
-            <div class="lined__cell lined__cell--code">
-              <figure class="code" data-reveal>
-            <figcaption class="code__bar">
-              <span class="code__file"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Vibration trend</span>
-              <span class="code__tag">Worker</span>
-              <button class="code__copy" type="button" data-copy="code-worker" aria-label="Copy code">{#- -#}
-              <span class="code__copy-icon" aria-hidden="true"></span></button>
-            </figcaption>
-            <pre class="code__body"><code id="code-worker"><span class="code__line"><span class="code__keyword">async</span> <span class="code__keyword">function</span> <span class="code__fn">run</span>(input, <span class="code__ctx">ctx</span>) {</span>{#- -#}{#- -#}
-            <span class="code__line">  <span class="code__keyword">const</span> tests = <span class="code__ctx">ctx</span>.sheets</span>{#- -#}{#- -#}
-            <span class="code__line">    .<span class="code__fn">list_records</span>(<span class="code__string">"hot_fire_test_campaign"</span>)</span>{#- -#}{#- -#}
-            <span class="code__line">    .<span class="code__fn">filter</span>((test) =&gt; test.engine === input.engine);</span>{#- -#}{#- -#}
-            <span class="code__line"> </span><span class="code__line">  <span class="code__keyword">const</span> readings = tests.<span class="code__fn">map</span>((test) =&gt; test.vibration_mm_s);</span>{#- -#}{#- -#}
-            <span class="code__line">  <span class="code__keyword">const</span> slope = <span class="code__fn">leastSquaresSlope</span>(readings);</span>{#- -#}{#- -#}
-            <span class="code__line"> </span><span class="code__line">  <span class="code__keyword">if</span> (readings.<span class="code__fn">at</span>(-1) &lt;= <span class="code__const">LIMIT_MM_S</span>) {</span>{#- -#}{#- -#}
-            <span class="code__line">    <span class="code__keyword">return</span> { status: <span class="code__string">"stable"</span>, slope };</span>{#- -#}{#- -#}
-            <span class="code__line">  }</span></code></pre>
-          </figure>
-            </div>
-          </div>
-          <div class="lined__row lined__row--flip">
-            <div class="lined__cell">
-              <div class="code-row__copy">
-            <h3 class="code-row__title" data-reveal>Some steps need a model. The worker keeps it on a short leash.</h3>
-            <p class="code-row__text" data-reveal>Reading a supplier’s PDF is a good example. The worker asks the model, checks what comes back and decides what to do with it.</p>
-            <dl class="facts" data-reveal>
-              <div><dt>A model gets one step.</dt><dd>It never runs the whole process.</dd></div>
-              <div><dt>Answers get checked.</dt><dd>If an answer comes back in the wrong shape, the worker throws it out.</dd></div>
-              <div><dt>The rules live in code.</dt><dd>Calculations, business rules and the order of steps are never handed to a model.</dd></div>
-              <div><dt>Every call is saved.</dt><dd>Each request and its answer are stored with the run.</dd></div>
-            </dl>
-          </div>
-            </div>
-            <div class="lined__cell lined__cell--code">
-              <figure class="code" data-reveal>
-            <figcaption class="code__bar">
-              <span class="code__file"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Vibration trend</span>
-              <span class="code__tag">Worker with model steps</span>
-              <button class="code__copy" type="button" data-copy="code-ai" aria-label="Copy code"><span class="code__copy-icon" aria-hidden="true">{#- -#}
-              </span></button>
-            </figcaption>
-            <pre class="code__body"><code id="code-ai"><span class="code__line"><span class="code__keyword">const</span> forecast = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">forecast</span>({</span>{#- -#}{#- -#}
-            <span class="code__line">  model: <span class="code__string">"timestral"</span>,</span><span class="code__line">  series: readings,</span>{#- -#}{#- -#}
-            <span class="code__line">  horizon: 10,</span><span class="code__line">});</span><span class="code__line"> </span>{#- -#}{#- -#}
-            <span class="code__line"><span class="code__keyword">const</span> gauge = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">vision</span>({</span>{#- -#}{#- -#}
-            <span class="code__line">  model: <span class="code__string">"pixtral-12b"</span>,</span>{#- -#}{#- -#}
-            <span class="code__line">  image: input.gauge_photo,</span><span class="code__line">  output_shape: { reading_mm_s: <span class="code__string">"number"</span> },</span>{#- -#}{#- -#}
-            <span class="code__line">});</span><span class="code__line"> </span><span class="code__line">{#- -#}{#- -#}
-            <span class="code__keyword">const</span> { evidence } = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">llm</span>({</span>{#- -#}{#- -#}
-            <span class="code__line">  model: <span class="code__string">"gemma-3-12b"</span>,</span>{#- -#}{#- -#}
-            <span class="code__line">  input: { readings, forecast, gauge },</span><span class="code__line">  output_shape: { evidence: <span class="code__string">"string"</span> },</span>{#- -#}{#- -#}
-            <span class="code__line">});</span></code></pre>
-          </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="alternatives" class="block" aria-labelledby="alternatives-title">
-      <div class="container">
-        <div class="grid section-top">
-          <div class="section-top__title">
-            <h2 id="alternatives-title" class="block__title" data-reveal>How Logven compares with custom software and agents</h2>
-          </div>
-          <p class="block__body section-top__intro" data-reveal>
-            Custom software is dependable, but every change takes months. Agents change in minutes, but you never quite know what they’ll do. Logven gives you the dependability and the speed.
-          </p>
-        </div>
-        {% include "partials/alternatives.html" %}
-      </div>
-    </section>
-
-    <section id="models" class="block" aria-labelledby="models-title">
-      <div class="container">
-        <div class="block__head">
-          <div class="block__head-copy">
-            <h2 id="models-title" class="block__title" data-reveal>The models run on your own infrastructure.</h2>
-            <p class="block__body block__intro" data-reveal>
-              Pick from a catalogue of models for different jobs and run them on your own hardware. Your data never leaves the building.
-            </p>
-          </div>
-          <div class="carousel__controls">
-            <button class="carousel__button" type="button" data-carousel-prev aria-label="Previous">
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>{#- -#}
-              </svg>
-            </button>
-            <button class="carousel__button" type="button" data-carousel-next aria-label="Next">
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 3.5 11 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>{#- -#}
-              </svg>
-            </button>
-          </div>
-        </div>
-        <ul class="carousel__track" role="list" data-carousel-track>
-          <li class="carousel__item">
-            <article class="card" data-reveal>
-              <a class="card__link" href="{{ get_url(path='@/language-models.md') }}" aria-labelledby="model-language-title">
-                <div class="card__media card__media--language">
-                  <pre class="model-motif model-motif--code" aria-hidden="true"><span><span class="code__keyword">const</span> result = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">llm</span>({</span>{#- -#}{#- -#}
-                  <span>  model: <span class="code__string">"gemma-3-12b"</span>,</span><span>  input: report,</span>{#- -#}{#- -#}
-                  <span>  output_shape: { supplier, date, status },</span><span>});</span><span> </span>{#- -#}{#- -#}
-                  <span><span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.sheets.<span class="code__fn">create_record</span>(</span>{#- -#}{#- -#}
-                  <span>  <span class="code__string">"supplier_reports"</span>, result</span><span>);</span>{#- -#}{#- -#}
-                  <span> </span><span><span class="code__keyword">return</span> { status: <span class="code__string">"complete"</span>, record: result.id };</span>{#- -#}
-                  </pre>
-                  <p class="card__overlay"><span>Language.</span><span>Reads and writes text.</span></p>
-                </div>
-                <h3 class="card__title" id="model-language-title">Language models for documents and email</h3>
-                <p class="card__text">They read and write emails, reports and specs. Nothing gets sent to an outside service.</p>
-              </a>
-            </article>
-          </li>
-          <li class="carousel__item">
-            <article class="card" data-reveal>
-              <a class="card__link" href="{{ get_url(path='@/vision-models.md') }}" aria-labelledby="model-vision-title">
-                <div class="card__media card__media--vision">
-                  <div class="model-motif model-motif--vision" aria-hidden="true">
-                    <span class="model-motif__object model-motif__object--a" data-label="part A"></span>
-                    <span class="model-motif__object model-motif__object--b" data-label="part B"></span>
-                    <span class="model-motif__scan"></span>
-                  </div>
-                  <p class="card__overlay"><span>Vision.</span><span>Turns images into data.</span></p>
-                </div>
-                <h3 class="card__title" id="model-vision-title">Vision models for drawings, forms and photos</h3>
-                <p class="card__text">They read scanned forms, technical drawings and inspection photos right where those files are stored.</p>
-              </a>
-            </article>
-          </li>
-          <li class="carousel__item">
-            <article class="card" data-reveal>
-              <a class="card__link" href="{{ get_url(path='@/time-series-models.md') }}" aria-labelledby="model-timeseries-title">
-                <div class="card__media card__media--timeseries">
-                  <svg class="model-motif model-motif--chart" aria-hidden="true" viewBox="0 0 400 250">
-                    <path class="model-motif__range" d="M292 91C330 64 357 58 416 27V126C369 128 334 111 292 91Z"/>
-                    <path class="model-motif__actual" d="M-16 132 5 127 23 135 42 105 59 113 78 79 95 88 112 58 131 73 148 69 166 96 184 88 202 116 220 109 238 80 256 91 274 70 292 91"/>
-                    <path class="model-motif__forecast" d="M292 91C330 78 357 88 416 65"/>
-                    <circle class="model-motif__point is-selected" cx="292" cy="91" r="4"/>
-                  </svg>
-                  <p class="card__overlay"><span>Time series.</span><span>Forecasts what comes next.</span></p>
-                </div>
-                <h3 class="card__title" id="model-timeseries-title">Time-series models for sensor data</h3>
-                <p class="card__text">They forecast readings and spot anomalies, and your telemetry never leaves your network.</p>
-              </a>
-            </article>
-          </li>
-          <li class="carousel__item">
-            <article class="card" data-reveal>
-              <a class="card__link" href="{{ get_url(path='@/decision-models.md') }}" aria-labelledby="model-decision-title">
-                <div class="card__media card__media--decision">
-                  <svg class="model-motif model-motif--decision" aria-hidden="true" viewBox="0 0 400 250">
-                    <path class="model-motif__branch" d="M-20 104H38C92 104 96 158 150 158M150 52C208 52 212 28 270 28H420M150 158C208 158 212 148 270 148H420M150 158C208 158 212 214 270 214H420"/>
-                    <path class="model-motif__route" d="M-20 104H38C92 104 96 52 150 52S212 92 270 92H420"/>
-                    <g class="model-motif__point"><circle cx="270" cy="28" r="5"/><circle cx="150" cy="158" r="5"/>{#- -#}
-                    <circle cx="270" cy="148" r="5"/><circle cx="270" cy="214" r="5"/></g>
-                    <g class="model-motif__point is-selected"><circle cx="38" cy="104" r="6"/><circle cx="150" cy="52" r="6"/>{#- -#}
-                    <circle cx="270" cy="92" r="6"/></g>
-                    <circle class="model-motif__choice" cx="354" cy="92" r="12"/>
-                    <path class="model-motif__check" d="m349 92 3.5 3.5 6.5-7"/>
-                  </svg>
-                  <p class="card__overlay"><span>Decisions.</span><span>Weighs up the options.</span></p>
-                </div>
-                <h3 class="card__title" id="model-decision-title">Decision models for planning</h3>
-                <p class="card__text">They compare plans and scenarios on your hardware. Nothing changes until a person approves it.</p>
-              </a>
-            </article>
-          </li>
-          <li class="carousel__item">
-            <article class="card" data-reveal>
-              <a class="card__link" href="{{ get_url(path='@/retrieval-models.md') }}" aria-labelledby="model-retrieval-title">
-                <div class="card__media card__media--retrieval">
-                  <svg class="model-motif model-motif--retrieval" aria-hidden="true" viewBox="0 0 400 250">
-                    <g class="model-motif__embedding model-motif__embedding--faint">
-                      <circle cx="-7" cy="42" r="2.5"/><circle cx="12" cy="86" r="2"/>
-                      <circle cx="31" cy="25" r="2.5"/><circle cx="77" cy="32" r="2"/>
-                      <circle cx="106" cy="73" r="2.5"/><circle cx="122" cy="43" r="2"/>
-                      <circle cx="112" cy="128" r="2.5"/><circle cx="142" cy="99" r="2"/>
-                      <circle cx="169" cy="48" r="2.5"/><circle cx="199" cy="19" r="2"/>
-                      <circle cx="218" cy="132" r="2.5"/><circle cx="280" cy="24" r="2"/>
-                      <circle cx="307" cy="60" r="2.5"/><circle cx="288" cy="119" r="2"/>
-                      <circle cx="324" cy="143" r="2.5"/><circle cx="339" cy="28" r="2"/>
-                      <circle cx="380" cy="49" r="2.5"/><circle cx="411" cy="96" r="2"/>
-                      <circle cx="369" cy="180" r="2.5"/><circle cx="258" cy="176" r="2"/>
-                    </g>
-                    <g class="model-motif__embedding model-motif__embedding--soft">
-                      <circle cx="-3" cy="107" r="3"/><circle cx="22" cy="57" r="3.5"/>
-                      <circle cx="37" cy="119" r="3"/><circle cx="58" cy="57" r="3.5"/>
-                      <circle cx="84" cy="102" r="3"/><circle cx="75" cy="136" r="3.5"/>
-                      <circle cx="184" cy="85" r="3"/><circle cx="204" cy="49" r="3.5"/>
-                      <circle cx="232" cy="34" r="3"/><circle cx="257" cy="44" r="3.5"/>
-                      <circle cx="281" cy="74" r="3"/><circle cx="266" cy="103" r="3.5"/>
-                      <circle cx="234" cy="114" r="3"/><circle cx="206" cy="106" r="3.5"/>
-                      <circle cx="336" cy="89" r="3"/><circle cx="356" cy="65" r="3.5"/>
-                      <circle cx="391" cy="83" r="3"/><circle cx="405" cy="129" r="3.5"/>
-                      <circle cx="380" cy="153" r="3"/><circle cx="343" cy="128" r="3.5"/>
-                    </g>
-                    <g class="model-motif__embedding">
-                      <circle cx="24" cy="92" r="4"/><circle cx="44" cy="77" r="4.5"/>
-                      <circle cx="61" cy="100" r="4"/><circle cx="76" cy="78" r="4.5"/>
-                      <circle cx="208" cy="76" r="4"/><circle cx="225" cy="59" r="4.5"/>
-                      <circle cx="246" cy="77" r="5"/><circle cx="259" cy="62" r="4"/>
-                      <circle cx="228" cy="94" r="4"/><circle cx="363" cy="96" r="4.5"/>
-                      <circle cx="380" cy="114" r="4"/><circle cx="360" cy="128" r="4.5"/>
-                    </g>
-                  </svg>
-                  <p class="card__overlay"><span>Retrieval.</span><span>Finds what you need.</span></p>
-                </div>
-                <h3 class="card__title" id="model-retrieval-title">Retrieval models for company knowledge</h3>
-                <p class="card__text">They search your documents, records and past runs locally. Every answer shows where it came from.</p>
-              </a>
-            </article>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="examples" class="block block--dots" aria-labelledby="examples-title">
-      <div class="container">
-        <div class="examples__head">
-          <h2 id="examples-title" class="block__title" data-reveal>Work that runs on Logven</h2>
-        </div>
-      </div>
-      <div class="wall" data-reveal>
-        <div class="wall__row wall__row--left">
-          <ul class="wall__track" role="list">
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Reliability engineering</p>{#- -#}
-              <h3 class="example__name">Vibration trend per engine</h3><p class="example__text">Fits a least-squares slope over hot-fire vibration readings and opens a reliability action when the latest test exceeds 4.8 mm/s.</p>{#- -#}
-              <span class="example__trigger tag">After each test</span>
-            </li>
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Test engineering</p>{#- -#}
-              <h3 class="example__name">Telemetry anomaly screen</h3><p class="example__text">Runs a rolling z-score over 50 Hz sensor channels and flags excursions beyond 3σ, tagged with run ID and channel.</p>{#- -#}
-              <span class="example__trigger tag">On new telemetry file</span>
-            </li>
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Quality</p>{#- -#}
-              <h3 class="example__name">NCR from inspection photos</h3><p class="example__text">Reads gauge photos with a vision model, checks them against drawing tolerances and drafts the non-conformance report.</p>{#- -#}
-              <span class="example__trigger tag">On new inspection</span>
-            </li>
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Procurement</p>{#- -#}
-              <h3 class="example__name">Lead-time drift</h3><p class="example__text">Parses supplier confirmations, updates promised dates and flags parts that push the build plan past its gate.</p>{#- -#}
-              <span class="example__trigger tag">On new PDF</span>
-            </li>
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Process engineering</p>{#- -#}
-              <h3 class="example__name">SPC control limits</h3><p class="example__text">Recomputes X̄–R control limits per line and alerts on Western Electric rule violations with the offending samples.</p>{#- -#}
-              <span class="example__trigger tag">Every shift</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Reliability engineering</p>{#- -#}
-              <h3 class="example__name">Vibration trend per engine</h3><p class="example__text">Fits a least-squares slope over hot-fire vibration readings and opens a reliability action when the latest test exceeds 4.8 mm/s.</p>{#- -#}
-              <span class="example__trigger tag">After each test</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Test engineering</p>{#- -#}
-              <h3 class="example__name">Telemetry anomaly screen</h3><p class="example__text">Runs a rolling z-score over 50 Hz sensor channels and flags excursions beyond 3σ, tagged with run ID and channel.</p>{#- -#}
-              <span class="example__trigger tag">On new telemetry file</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Quality</p>{#- -#}
-              <h3 class="example__name">NCR from inspection photos</h3><p class="example__text">Reads gauge photos with a vision model, checks them against drawing tolerances and drafts the non-conformance report.</p>{#- -#}
-              <span class="example__trigger tag">On new inspection</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Procurement</p>{#- -#}
-              <h3 class="example__name">Lead-time drift</h3><p class="example__text">Parses supplier confirmations, updates promised dates and flags parts that push the build plan past its gate.</p>{#- -#}
-              <span class="example__trigger tag">On new PDF</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Process engineering</p>{#- -#}
-              <h3 class="example__name">SPC control limits</h3><p class="example__text">Recomputes X̄–R control limits per line and alerts on Western Electric rule violations with the offending samples.</p>{#- -#}
-              <span class="example__trigger tag">Every shift</span>
-            </li>
-          </ul>
-        </div>
-        <div class="wall__row wall__row--right">
-          <ul class="wall__track" role="list">
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Environmental compliance</p>{#- -#}
-              <h3 class="example__name">Emissions filing</h3><p class="example__text">Extracts lab values from PDF reports, normalises to mg/Nm³ at 11% O₂, checks permit limits and drafts the filing.</p>{#- -#}
-              <span class="example__trigger tag">Monthly</span>
-            </li>
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Maintenance</p>{#- -#}
-              <h3 class="example__name">Work order scheduling</h3><p class="example__text">Plans the week from MTBF, spare-part stock and shift calendars, and holds conflicts for a planner to resolve.</p>{#- -#}
-              <span class="example__trigger tag">Nightly</span>
-            </li>
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Energy</p>{#- -#}
-              <h3 class="example__name">Load forecast</h3><p class="example__text">A time-series model forecasts 15-minute load for the next 48 hours and writes it to the dispatch sheet.</p>{#- -#}
-              <span class="example__trigger tag">Every 15 minutes</span>
-            </li>
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Document control</p>{#- -#}
-              <h3 class="example__name">Drawing revision check</h3><p class="example__text">Compares BOM revisions against released drawings and lists mismatched part numbers before release.</p>{#- -#}
-              <span class="example__trigger tag">On new revision</span>
-            </li>
-            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Test engineering</p>{#- -#}
-              <h3 class="example__name">Campaign report</h3><p class="example__text">Aggregates every run in the campaign, regenerates the trend plots and writes the weekly report for review.</p>{#- -#}
-              <span class="example__trigger tag">Weekly</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Environmental compliance</p>{#- -#}
-              <h3 class="example__name">Emissions filing</h3><p class="example__text">Extracts lab values from PDF reports, normalises to mg/Nm³ at 11% O₂, checks permit limits and drafts the filing.</p>{#- -#}
-              <span class="example__trigger tag">Monthly</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Maintenance</p>{#- -#}
-              <h3 class="example__name">Work order scheduling</h3><p class="example__text">Plans the week from MTBF, spare-part stock and shift calendars, and holds conflicts for a planner to resolve.</p>{#- -#}
-              <span class="example__trigger tag">Nightly</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Energy</p>{#- -#}
-              <h3 class="example__name">Load forecast</h3><p class="example__text">A time-series model forecasts 15-minute load for the next 48 hours and writes it to the dispatch sheet.</p>{#- -#}
-              <span class="example__trigger tag">Every 15 minutes</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Document control</p>{#- -#}
-              <h3 class="example__name">Drawing revision check</h3><p class="example__text">Compares BOM revisions against released drawings and lists mismatched part numbers before release.</p>{#- -#}
-              <span class="example__trigger tag">On new revision</span>
-            </li>
-            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Test engineering</p>{#- -#}
-              <h3 class="example__name">Campaign report</h3><p class="example__text">Aggregates every run in the campaign, regenerates the trend plots and writes the weekly report for review.</p>{#- -#}
-              <span class="example__trigger tag">Weekly</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="system-of-record" class="block" aria-labelledby="record-title">
-      <div class="container">
-        {% include "partials/record.html" %}
       </div>
     </section>
 
@@ -548,7 +198,7 @@
       <div class="container">
         <div class="grid section-top">
           <div class="section-top__title">
-            <h2 id="outcomes-title" class="block__title" data-reveal>What changes for your team</h2>
+            <h2 id="outcomes-title" class="block__title" data-reveal>What you get</h2>
           </div>
           <p class="block__body section-top__intro" data-reveal>
             Your team spends less time chasing data, and everyone works from the same numbers. In one pilot, a team running 36 geothermal plants cut the time per run by about 99%.
@@ -627,8 +277,8 @@
               </div>
             </div>
             <div class="story-card__caption">
-              <h3>Your experts get to do expert work</h3>
-              <p>Logven collects and prepares the data. Your engineers spend their time deciding what to do with it.</p>
+              <h3>Your teams get their time back</h3>
+              <p>They spend less time gathering and reformatting data, and more on the work only they can do.</p>
             </div>
           </article>
           <article class="story-card story-card--wide" data-reveal>
@@ -797,8 +447,8 @@
               </div>
             </div>
             <div class="story-card__caption">
-              <h3>The whole company shares one state</h3>
-              <p>Every team reads and writes the same sheets, so a change in one place shows up everywhere.</p>
+              <h3>The company gets one data lake</h3>
+              <p>It’s shaped by your teams’ daily work, and it includes the data you didn’t know you had.</p>
             </div>
           </article>
           <article class="story-card" data-reveal>
@@ -891,22 +541,345 @@
               </div>
             </div>
             <div class="story-card__caption">
-              <h3>You know how the work is going</h3>
-              <p>Every run is logged, so slow steps and failures are easy to spot.</p>
+              <h3>Managers see the whole department</h3>
+              <p>They get an up-to-date view of the data, ready for decisions, without chasing anyone for it.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="integrations" class="block block--wash" aria-labelledby="integrations-title">
-      <div class="container grid int">
-        {% include "partials/integrations.html" %}
-        <div class="int-copy">
-          <h2 id="integrations-title" class="block__title" data-reveal>Bring all your data into one flow</h2>
-          <p class="block__body" data-reveal>
-            Logven connectors integrate the systems your teams already use into one shared operating context. Information moves where the work needs it, without manual handoffs, duplicate copies or constant context switching.
+    <section id="who-we-are" class="block block--wash" aria-labelledby="who-title">
+      <div class="container">
+        <div class="grid section-top">
+          <div class="section-top__title">
+            <h2 id="who-title" class="block__title" data-reveal>Who we are</h2>
+          </div>
+          <p class="block__body section-top__intro" data-reveal>
+            We’re a consultant who saw why data never makes it into company systems, and a designer who builds tools people actually use.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="models" class="block" aria-labelledby="models-title">
+      <div class="container">
+        <div class="block__head">
+          <div class="block__head-copy">
+            <h2 id="models-title" class="block__title" data-reveal>Your data stays yours.</h2>
+            <p class="block__body block__intro" data-reveal>
+              Logven runs on your own servers, or in the cloud with European data residency. It uses small, private AI models, so your data never leaves your control.
+            </p>
+          </div>
+          <div class="carousel__controls">
+            <button class="carousel__button" type="button" data-carousel-prev aria-label="Previous">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>{#- -#}
+              </svg>
+            </button>
+            <button class="carousel__button" type="button" data-carousel-next aria-label="Next">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 3.5 11 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>{#- -#}
+              </svg>
+            </button>
+          </div>
+        </div>
+        <ul class="carousel__track" role="list" data-carousel-track>
+          <li class="carousel__item">
+            <article class="card" data-reveal>
+              <a class="card__link" href="{{ get_url(path='@/language-models.md') }}" aria-labelledby="model-language-title">
+                <div class="card__media card__media--language">
+                  <pre class="model-motif model-motif--code" aria-hidden="true"><span><span class="code__keyword">const</span> result = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">llm</span>({</span>{#- -#}{#- -#}
+                  <span>  model: <span class="code__string">"gemma-3-12b"</span>,</span><span>  input: report,</span>{#- -#}{#- -#}
+                  <span>  output_shape: { supplier, date, status },</span><span>});</span><span> </span>{#- -#}{#- -#}
+                  <span><span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.sheets.<span class="code__fn">create_record</span>(</span>{#- -#}{#- -#}
+                  <span>  <span class="code__string">"supplier_reports"</span>, result</span><span>);</span>{#- -#}{#- -#}
+                  <span> </span><span><span class="code__keyword">return</span> { status: <span class="code__string">"complete"</span>, record: result.id };</span>{#- -#}
+                  </pre>
+                  <p class="card__overlay"><span>Language.</span><span>Reads and writes text.</span></p>
+                </div>
+                <h3 class="card__title" id="model-language-title">Language models for documents and email</h3>
+                <p class="card__text">They read and write emails, reports and specs. Nothing gets sent to an outside service.</p>
+              </a>
+            </article>
+          </li>
+          <li class="carousel__item">
+            <article class="card" data-reveal>
+              <a class="card__link" href="{{ get_url(path='@/vision-models.md') }}" aria-labelledby="model-vision-title">
+                <div class="card__media card__media--vision">
+                  <div class="model-motif model-motif--vision" aria-hidden="true">
+                    <span class="model-motif__object model-motif__object--a" data-label="part A"></span>
+                    <span class="model-motif__object model-motif__object--b" data-label="part B"></span>
+                    <span class="model-motif__scan"></span>
+                  </div>
+                  <p class="card__overlay"><span>Vision.</span><span>Turns images into data.</span></p>
+                </div>
+                <h3 class="card__title" id="model-vision-title">Vision models for drawings, forms and photos</h3>
+                <p class="card__text">They read scanned forms, technical drawings and inspection photos right where those files are stored.</p>
+              </a>
+            </article>
+          </li>
+          <li class="carousel__item">
+            <article class="card" data-reveal>
+              <a class="card__link" href="{{ get_url(path='@/time-series-models.md') }}" aria-labelledby="model-timeseries-title">
+                <div class="card__media card__media--timeseries">
+                  <svg class="model-motif model-motif--chart" aria-hidden="true" viewBox="0 0 400 250">
+                    <path class="model-motif__range" d="M292 91C330 64 357 58 416 27V126C369 128 334 111 292 91Z"/>
+                    <path class="model-motif__actual" d="M-16 132 5 127 23 135 42 105 59 113 78 79 95 88 112 58 131 73 148 69 166 96 184 88 202 116 220 109 238 80 256 91 274 70 292 91"/>
+                    <path class="model-motif__forecast" d="M292 91C330 78 357 88 416 65"/>
+                    <circle class="model-motif__point is-selected" cx="292" cy="91" r="4"/>
+                  </svg>
+                  <p class="card__overlay"><span>Time series.</span><span>Forecasts what comes next.</span></p>
+                </div>
+                <h3 class="card__title" id="model-timeseries-title">Time-series models for sensor data</h3>
+                <p class="card__text">They forecast readings and spot anomalies, and your telemetry never leaves your network.</p>
+              </a>
+            </article>
+          </li>
+          <li class="carousel__item">
+            <article class="card" data-reveal>
+              <a class="card__link" href="{{ get_url(path='@/decision-models.md') }}" aria-labelledby="model-decision-title">
+                <div class="card__media card__media--decision">
+                  <svg class="model-motif model-motif--decision" aria-hidden="true" viewBox="0 0 400 250">
+                    <path class="model-motif__branch" d="M-20 104H38C92 104 96 158 150 158M150 52C208 52 212 28 270 28H420M150 158C208 158 212 148 270 148H420M150 158C208 158 212 214 270 214H420"/>
+                    <path class="model-motif__route" d="M-20 104H38C92 104 96 52 150 52S212 92 270 92H420"/>
+                    <g class="model-motif__point"><circle cx="270" cy="28" r="5"/><circle cx="150" cy="158" r="5"/>{#- -#}
+                    <circle cx="270" cy="148" r="5"/><circle cx="270" cy="214" r="5"/></g>
+                    <g class="model-motif__point is-selected"><circle cx="38" cy="104" r="6"/><circle cx="150" cy="52" r="6"/>{#- -#}
+                    <circle cx="270" cy="92" r="6"/></g>
+                    <circle class="model-motif__choice" cx="354" cy="92" r="12"/>
+                    <path class="model-motif__check" d="m349 92 3.5 3.5 6.5-7"/>
+                  </svg>
+                  <p class="card__overlay"><span>Decisions.</span><span>Weighs up the options.</span></p>
+                </div>
+                <h3 class="card__title" id="model-decision-title">Decision models for planning</h3>
+                <p class="card__text">They compare plans and scenarios on your hardware. Nothing changes until a person approves it.</p>
+              </a>
+            </article>
+          </li>
+          <li class="carousel__item">
+            <article class="card" data-reveal>
+              <a class="card__link" href="{{ get_url(path='@/retrieval-models.md') }}" aria-labelledby="model-retrieval-title">
+                <div class="card__media card__media--retrieval">
+                  <svg class="model-motif model-motif--retrieval" aria-hidden="true" viewBox="0 0 400 250">
+                    <g class="model-motif__embedding model-motif__embedding--faint">
+                      <circle cx="-7" cy="42" r="2.5"/><circle cx="12" cy="86" r="2"/>
+                      <circle cx="31" cy="25" r="2.5"/><circle cx="77" cy="32" r="2"/>
+                      <circle cx="106" cy="73" r="2.5"/><circle cx="122" cy="43" r="2"/>
+                      <circle cx="112" cy="128" r="2.5"/><circle cx="142" cy="99" r="2"/>
+                      <circle cx="169" cy="48" r="2.5"/><circle cx="199" cy="19" r="2"/>
+                      <circle cx="218" cy="132" r="2.5"/><circle cx="280" cy="24" r="2"/>
+                      <circle cx="307" cy="60" r="2.5"/><circle cx="288" cy="119" r="2"/>
+                      <circle cx="324" cy="143" r="2.5"/><circle cx="339" cy="28" r="2"/>
+                      <circle cx="380" cy="49" r="2.5"/><circle cx="411" cy="96" r="2"/>
+                      <circle cx="369" cy="180" r="2.5"/><circle cx="258" cy="176" r="2"/>
+                    </g>
+                    <g class="model-motif__embedding model-motif__embedding--soft">
+                      <circle cx="-3" cy="107" r="3"/><circle cx="22" cy="57" r="3.5"/>
+                      <circle cx="37" cy="119" r="3"/><circle cx="58" cy="57" r="3.5"/>
+                      <circle cx="84" cy="102" r="3"/><circle cx="75" cy="136" r="3.5"/>
+                      <circle cx="184" cy="85" r="3"/><circle cx="204" cy="49" r="3.5"/>
+                      <circle cx="232" cy="34" r="3"/><circle cx="257" cy="44" r="3.5"/>
+                      <circle cx="281" cy="74" r="3"/><circle cx="266" cy="103" r="3.5"/>
+                      <circle cx="234" cy="114" r="3"/><circle cx="206" cy="106" r="3.5"/>
+                      <circle cx="336" cy="89" r="3"/><circle cx="356" cy="65" r="3.5"/>
+                      <circle cx="391" cy="83" r="3"/><circle cx="405" cy="129" r="3.5"/>
+                      <circle cx="380" cy="153" r="3"/><circle cx="343" cy="128" r="3.5"/>
+                    </g>
+                    <g class="model-motif__embedding">
+                      <circle cx="24" cy="92" r="4"/><circle cx="44" cy="77" r="4.5"/>
+                      <circle cx="61" cy="100" r="4"/><circle cx="76" cy="78" r="4.5"/>
+                      <circle cx="208" cy="76" r="4"/><circle cx="225" cy="59" r="4.5"/>
+                      <circle cx="246" cy="77" r="5"/><circle cx="259" cy="62" r="4"/>
+                      <circle cx="228" cy="94" r="4"/><circle cx="363" cy="96" r="4.5"/>
+                      <circle cx="380" cy="114" r="4"/><circle cx="360" cy="128" r="4.5"/>
+                    </g>
+                  </svg>
+                  <p class="card__overlay"><span>Retrieval.</span><span>Finds what you need.</span></p>
+                </div>
+                <h3 class="card__title" id="model-retrieval-title">Retrieval models for company knowledge</h3>
+                <p class="card__text">They search your documents, records and past runs locally. Every answer shows where it came from.</p>
+              </a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="code" class="block block--lined" aria-labelledby="code-title">
+      <div class="container">
+        <div class="lined">
+          <div class="lined__head">
+            <h2 id="code-title" class="block__title" data-reveal>Every automation is written as code.</h2>
+            <a class="button button--tint button--small" href="{{ get_url(path='@/start-a-pilot.md') }}">How a pilot works</a>
+          </div>
+          <div class="lined__row">
+            <div class="lined__cell">
+              <div class="code-row__copy">
+            <h3 class="code-row__title" data-reveal>It does what you approved, every time.</h3>
+            <p class="code-row__text" data-reveal>Your team describes the task and Logven drafts the code. Someone approves it, and from then on it runs the same way.</p>
+            <dl class="facts" data-reveal>
+              <div><dt>It follows the approved steps.</dt><dd>The same rules run in the same order on every run.</dd></div>
+              <div><dt>It only sees what it needs.</dt><dd>Each worker gets access to specific data and tools, and nothing else.</dd></div>
+              <div>
+                <dt>Every run leaves a record.</dt>
+                <dd>Inputs, outputs and calls to other systems are logged. You can trace any result back to the step that produced it.</dd>
+              </div>
+              <div><dt>Changes need a sign-off.</dt><dd>Every change is a new version, and it can’t run until someone approves it.</dd></div>
+            </dl>
+          </div>
+            </div>
+            <div class="lined__cell lined__cell--code">
+              <figure class="code" data-reveal>
+            <figcaption class="code__bar">
+              <span class="code__file"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Vibration trend</span>
+              <span class="code__tag">Worker</span>
+              <button class="code__copy" type="button" data-copy="code-worker" aria-label="Copy code">{#- -#}
+              <span class="code__copy-icon" aria-hidden="true"></span></button>
+            </figcaption>
+            <pre class="code__body"><code id="code-worker"><span class="code__line"><span class="code__keyword">async</span> <span class="code__keyword">function</span> <span class="code__fn">run</span>(input, <span class="code__ctx">ctx</span>) {</span>{#- -#}{#- -#}
+            <span class="code__line">  <span class="code__keyword">const</span> tests = <span class="code__ctx">ctx</span>.sheets</span>{#- -#}{#- -#}
+            <span class="code__line">    .<span class="code__fn">list_records</span>(<span class="code__string">"hot_fire_test_campaign"</span>)</span>{#- -#}{#- -#}
+            <span class="code__line">    .<span class="code__fn">filter</span>((test) =&gt; test.engine === input.engine);</span>{#- -#}{#- -#}
+            <span class="code__line"> </span><span class="code__line">  <span class="code__keyword">const</span> readings = tests.<span class="code__fn">map</span>((test) =&gt; test.vibration_mm_s);</span>{#- -#}{#- -#}
+            <span class="code__line">  <span class="code__keyword">const</span> slope = <span class="code__fn">leastSquaresSlope</span>(readings);</span>{#- -#}{#- -#}
+            <span class="code__line"> </span><span class="code__line">  <span class="code__keyword">if</span> (readings.<span class="code__fn">at</span>(-1) &lt;= <span class="code__const">LIMIT_MM_S</span>) {</span>{#- -#}{#- -#}
+            <span class="code__line">    <span class="code__keyword">return</span> { status: <span class="code__string">"stable"</span>, slope };</span>{#- -#}{#- -#}
+            <span class="code__line">  }</span></code></pre>
+          </figure>
+            </div>
+          </div>
+          <div class="lined__row lined__row--flip">
+            <div class="lined__cell">
+              <div class="code-row__copy">
+            <h3 class="code-row__title" data-reveal>Some steps need a model, and the code keeps it in check.</h3>
+            <p class="code-row__text" data-reveal>Reading a supplier’s PDF is a good example. The code asks the model, checks the answer and decides what to do with it.</p>
+            <dl class="facts" data-reveal>
+              <div><dt>A model gets one step.</dt><dd>It never runs the whole process.</dd></div>
+              <div><dt>Answers get checked.</dt><dd>If an answer comes back in the wrong shape, the code throws it out.</dd></div>
+              <div><dt>The rules live in code.</dt><dd>Calculations, business rules and the order of steps are never handed to a model.</dd></div>
+              <div><dt>Every call is saved.</dt><dd>Each request and its answer are stored with the run.</dd></div>
+            </dl>
+          </div>
+            </div>
+            <div class="lined__cell lined__cell--code">
+              <figure class="code" data-reveal>
+            <figcaption class="code__bar">
+              <span class="code__file"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Vibration trend</span>
+              <span class="code__tag">Worker with model steps</span>
+              <button class="code__copy" type="button" data-copy="code-ai" aria-label="Copy code"><span class="code__copy-icon" aria-hidden="true">{#- -#}
+              </span></button>
+            </figcaption>
+            <pre class="code__body"><code id="code-ai"><span class="code__line"><span class="code__keyword">const</span> forecast = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">forecast</span>({</span>{#- -#}{#- -#}
+            <span class="code__line">  model: <span class="code__string">"timestral"</span>,</span><span class="code__line">  series: readings,</span>{#- -#}{#- -#}
+            <span class="code__line">  horizon: 10,</span><span class="code__line">});</span><span class="code__line"> </span>{#- -#}{#- -#}
+            <span class="code__line"><span class="code__keyword">const</span> gauge = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">vision</span>({</span>{#- -#}{#- -#}
+            <span class="code__line">  model: <span class="code__string">"pixtral-12b"</span>,</span>{#- -#}{#- -#}
+            <span class="code__line">  image: input.gauge_photo,</span><span class="code__line">  output_shape: { reading_mm_s: <span class="code__string">"number"</span> },</span>{#- -#}{#- -#}
+            <span class="code__line">});</span><span class="code__line"> </span><span class="code__line">{#- -#}{#- -#}
+            <span class="code__keyword">const</span> { evidence } = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">llm</span>({</span>{#- -#}{#- -#}
+            <span class="code__line">  model: <span class="code__string">"gemma-3-12b"</span>,</span>{#- -#}{#- -#}
+            <span class="code__line">  input: { readings, forecast, gauge },</span><span class="code__line">  output_shape: { evidence: <span class="code__string">"string"</span> },</span>{#- -#}{#- -#}
+            <span class="code__line">});</span></code></pre>
+          </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="examples" class="block block--dots" aria-labelledby="examples-title">
+      <div class="container">
+        <div class="examples__head">
+          <h2 id="examples-title" class="block__title" data-reveal>Work that runs on Logven</h2>
+        </div>
+      </div>
+      <div class="wall" data-reveal>
+        <div class="wall__row wall__row--left">
+          <ul class="wall__track" role="list">
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Reliability engineering</p>{#- -#}
+              <h3 class="example__name">Vibration trend per engine</h3><p class="example__text">Fits a least-squares slope over hot-fire vibration readings and opens a reliability action when the latest test exceeds 4.8 mm/s.</p>{#- -#}
+              <span class="example__trigger tag">After each test</span>
+            </li>
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Test engineering</p>{#- -#}
+              <h3 class="example__name">Telemetry anomaly screen</h3><p class="example__text">Runs a rolling z-score over 50 Hz sensor channels and flags excursions beyond 3σ, tagged with run ID and channel.</p>{#- -#}
+              <span class="example__trigger tag">On new telemetry file</span>
+            </li>
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Quality</p>{#- -#}
+              <h3 class="example__name">NCR from inspection photos</h3><p class="example__text">Reads gauge photos with a vision model, checks them against drawing tolerances and drafts the non-conformance report.</p>{#- -#}
+              <span class="example__trigger tag">On new inspection</span>
+            </li>
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Procurement</p>{#- -#}
+              <h3 class="example__name">Lead-time drift</h3><p class="example__text">Parses supplier confirmations, updates promised dates and flags parts that push the build plan past its gate.</p>{#- -#}
+              <span class="example__trigger tag">On new PDF</span>
+            </li>
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Process engineering</p>{#- -#}
+              <h3 class="example__name">SPC control limits</h3><p class="example__text">Recomputes X̄–R control limits per line and alerts on Western Electric rule violations with the offending samples.</p>{#- -#}
+              <span class="example__trigger tag">Every shift</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Reliability engineering</p>{#- -#}
+              <h3 class="example__name">Vibration trend per engine</h3><p class="example__text">Fits a least-squares slope over hot-fire vibration readings and opens a reliability action when the latest test exceeds 4.8 mm/s.</p>{#- -#}
+              <span class="example__trigger tag">After each test</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Test engineering</p>{#- -#}
+              <h3 class="example__name">Telemetry anomaly screen</h3><p class="example__text">Runs a rolling z-score over 50 Hz sensor channels and flags excursions beyond 3σ, tagged with run ID and channel.</p>{#- -#}
+              <span class="example__trigger tag">On new telemetry file</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Quality</p>{#- -#}
+              <h3 class="example__name">NCR from inspection photos</h3><p class="example__text">Reads gauge photos with a vision model, checks them against drawing tolerances and drafts the non-conformance report.</p>{#- -#}
+              <span class="example__trigger tag">On new inspection</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Procurement</p>{#- -#}
+              <h3 class="example__name">Lead-time drift</h3><p class="example__text">Parses supplier confirmations, updates promised dates and flags parts that push the build plan past its gate.</p>{#- -#}
+              <span class="example__trigger tag">On new PDF</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Process engineering</p>{#- -#}
+              <h3 class="example__name">SPC control limits</h3><p class="example__text">Recomputes X̄–R control limits per line and alerts on Western Electric rule violations with the offending samples.</p>{#- -#}
+              <span class="example__trigger tag">Every shift</span>
+            </li>
+          </ul>
+        </div>
+        <div class="wall__row wall__row--right">
+          <ul class="wall__track" role="list">
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Environmental compliance</p>{#- -#}
+              <h3 class="example__name">Emissions filing</h3><p class="example__text">Extracts lab values from PDF reports, normalises to mg/Nm³ at 11% O₂, checks permit limits and drafts the filing.</p>{#- -#}
+              <span class="example__trigger tag">Monthly</span>
+            </li>
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Maintenance</p>{#- -#}
+              <h3 class="example__name">Work order scheduling</h3><p class="example__text">Plans the week from MTBF, spare-part stock and shift calendars, and holds conflicts for a planner to resolve.</p>{#- -#}
+              <span class="example__trigger tag">Nightly</span>
+            </li>
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Energy</p>{#- -#}
+              <h3 class="example__name">Load forecast</h3><p class="example__text">A time-series model forecasts 15-minute load for the next 48 hours and writes it to the dispatch sheet.</p>{#- -#}
+              <span class="example__trigger tag">Every 15 minutes</span>
+            </li>
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Document control</p>{#- -#}
+              <h3 class="example__name">Drawing revision check</h3><p class="example__text">Compares BOM revisions against released drawings and lists mismatched part numbers before release.</p>{#- -#}
+              <span class="example__trigger tag">On new revision</span>
+            </li>
+            <li class="example"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Test engineering</p>{#- -#}
+              <h3 class="example__name">Campaign report</h3><p class="example__text">Aggregates every run in the campaign, regenerates the trend plots and writes the weekly report for review.</p>{#- -#}
+              <span class="example__trigger tag">Weekly</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Environmental compliance</p>{#- -#}
+              <h3 class="example__name">Emissions filing</h3><p class="example__text">Extracts lab values from PDF reports, normalises to mg/Nm³ at 11% O₂, checks permit limits and drafts the filing.</p>{#- -#}
+              <span class="example__trigger tag">Monthly</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Maintenance</p>{#- -#}
+              <h3 class="example__name">Work order scheduling</h3><p class="example__text">Plans the week from MTBF, spare-part stock and shift calendars, and holds conflicts for a planner to resolve.</p>{#- -#}
+              <span class="example__trigger tag">Nightly</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Energy</p>{#- -#}
+              <h3 class="example__name">Load forecast</h3><p class="example__text">A time-series model forecasts 15-minute load for the next 48 hours and writes it to the dispatch sheet.</p>{#- -#}
+              <span class="example__trigger tag">Every 15 minutes</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Document control</p>{#- -#}
+              <h3 class="example__name">Drawing revision check</h3><p class="example__text">Compares BOM revisions against released drawings and lists mismatched part numbers before release.</p>{#- -#}
+              <span class="example__trigger tag">On new revision</span>
+            </li>
+            <li class="example" aria-hidden="true"><p class="example__domain"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Test engineering</p>{#- -#}
+              <h3 class="example__name">Campaign report</h3><p class="example__text">Aggregates every run in the campaign, regenerates the trend plots and writes the weekly report for review.</p>{#- -#}
+              <span class="example__trigger tag">Weekly</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

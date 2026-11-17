@@ -6,13 +6,6 @@ template = "brand.html"
 [extra]
 heading = "Brand guidelines"
 
-shots = [
-  { file = "stationery", label = "Stationery" },
-  { file = "report", label = "Reports" },
-  { file = "poster", label = "Posters" },
-  { file = "notebook", label = "Notebooks" },
-]
-
 donts = [
   { kind = "recolour", text = "Change the logo’s colour." },
   { kind = "stretch", text = "Stretch or squash it." },
