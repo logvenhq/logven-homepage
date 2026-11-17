@@ -74,17 +74,11 @@ main > .hero:first-child {
 .site-header__logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--ink);
-  font-size: 1.25rem;
-  font-weight: 450;
-  letter-spacing: -0.03em;
-  text-decoration: none;
 }
 
 .site-header__logo img {
   width: auto;
-  height: 1.35rem;
+  height: 1.47rem;
 }
 
 .site-header__nav {

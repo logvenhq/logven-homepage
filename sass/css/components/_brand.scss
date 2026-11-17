@@ -110,7 +110,7 @@ $brand-night: var(--ink-on-light);
 /* Clear space: the lockup inside a dashed margin one mark-width (x) wide. */
 .clearspace {
   --lockup-w: min(9rem, 70%);
-  --x: calc(var(--lockup-w) * 0.209);
+  --x: calc(var(--lockup-w) * 0.232);
   position: relative;
   width: calc(var(--lockup-w) + 2 * var(--x));
   padding: var(--x);
@@ -190,7 +190,7 @@ $brand-night: var(--ink-on-light);
 
 .logo-shape {
   display: block;
-  aspect-ratio: 4694 / 1107;
+  aspect-ratio: 4272 / 1162;
   background: var(--ink);
   mask: var(--logo) center / contain no-repeat;
 }
