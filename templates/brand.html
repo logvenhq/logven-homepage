@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% set kit = get_url(path='brand/logven-brand-kit.zip') %}
+  {% set lockup = get_url(path='brand/logven-lockup.svg') %}
+  {% set lockup_white = get_url(path='brand/logven-lockup-white.svg') %}
+  {% set mark = get_url(path='brand/logven-mark.svg') %}
+  {% set mark_white = get_url(path='brand/logven-mark-white.svg') %}
+
+  <section class="hero hero--page" aria-labelledby="page-title">
+    <canvas class="hero__matrix" data-hero-matrix aria-hidden="true"></canvas>
+
+    <div class="hero__content">
+      <h1 id="page-title" class="hero__title" data-reveal>{{ page.extra.heading }}</h1>
+      <p class="hero__lede" data-reveal>{{ page.description }}</p>
+      <div class="actions" data-reveal>
+        <a class="button" href="{{ kit }}" download>Download brand kit</a>
+        <a class="text-link" href="#partnerships">Partnerships <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="story">
+    <section class="block" aria-labelledby="in-use-title">
+      <div class="container">
+        <div class="block__head">
+          <h2 id="in-use-title" class="block__title" data-reveal>Quiet, precise, mostly ink and paper.</h2>
+          <div class="carousel__controls">
+            <button class="carousel__button" type="button" data-carousel-prev aria-label="Previous">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="carousel__button" type="button" data-carousel-next aria-label="Next">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 3.5 11 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <ul class="carousel__track brand-gallery" role="list" data-carousel-track>
+          {% for shot in page.extra.shots %}
+            <li class="carousel__item">
+              <figure class="brand-shot" data-reveal>
+                <img src="{{ get_url(path='images/brand/' ~ shot.file ~ '.webp') }}" alt="{{ shot.label }} with the Logven logo" width="1536" height="1024" loading="lazy" decoding="async">
+                <figcaption>{{ shot.label }}</figcaption>
+              </figure>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="logo" class="block" aria-labelledby="logo-title">
+      <div class="container">
+        <div class="grid section-top">
+          <div class="section-top__title">
+            <h2 id="logo-title" class="block__title" data-reveal>The logo</h2>
+          </div>
+          <p class="block__body section-top__intro" data-reveal>
+            The lockup pairs the mark with the Logven wordmark. Use it in ink on light backgrounds and in white on dark or photographic ones. The mark can stand alone when space is tight or the name is already nearby.
+          </p>
+        </div>
+
+        <div class="grid brand-tiles">
+          <figure class="brand-tile brand-tile--wide" data-reveal>
+            <div class="brand-tile__stage"><img class="brand-tile__lockup" src="{{ lockup }}" alt="Logven lockup in ink" width="469" height="111"></div>
+            <figcaption class="brand-tile__meta">
+              <span>Lockup, ink</span>
+              <span class="brand-tile__files"><a href="{{ lockup }}" download>SVG</a><a href="{{ get_url(path='brand/logven-lockup.png') }}" download>PNG</a></span>
+            </figcaption>
+          </figure>
+          <figure class="brand-tile brand-tile--wide brand-tile--dark" data-reveal>
+            <div class="brand-tile__stage"><img class="brand-tile__lockup" src="{{ lockup_white }}" alt="Logven lockup in white" width="469" height="111"></div>
+            <figcaption class="brand-tile__meta">
+              <span>Lockup, white</span>
+              <span class="brand-tile__files"><a href="{{ lockup_white }}" download>SVG</a><a href="{{ get_url(path='brand/logven-lockup-white.png') }}" download>PNG</a></span>
+            </figcaption>
+          </figure>
+
+          <figure class="brand-tile" data-reveal>
+            <div class="brand-tile__stage"><img class="brand-tile__mark" src="{{ mark }}" alt="Logven mark in ink" width="114" height="125"></div>
+            <figcaption class="brand-tile__meta">
+              <span>Mark, ink</span>
+              <span class="brand-tile__files"><a href="{{ mark }}" download>SVG</a><a href="{{ get_url(path='brand/logven-mark.png') }}" download>PNG</a></span>
+            </figcaption>
+          </figure>
+          <figure class="brand-tile brand-tile--dark" data-reveal>
+            <div class="brand-tile__stage"><img class="brand-tile__mark" src="{{ mark_white }}" alt="Logven mark in white" width="114" height="125"></div>
+            <figcaption class="brand-tile__meta">
+              <span>Mark, white</span>
+              <span class="brand-tile__files"><a href="{{ mark_white }}" download>SVG</a><a href="{{ get_url(path='brand/logven-mark-white.png') }}" download>PNG</a></span>
+            </figcaption>
+          </figure>
+          <figure class="brand-tile" data-reveal>
+            <div class="brand-tile__stage">
+              <div class="clearspace" aria-hidden="true">
+                <img src="{{ lockup }}" alt="" width="469" height="111">
+                <span class="clearspace__unit clearspace__unit--top">x</span>
+                <span class="clearspace__unit clearspace__unit--left">x</span>
+              </div>
+            </div>
+            <figcaption class="brand-tile__meta brand-tile__meta--note">
+              <span>Clear space</span>
+              <span>Keep at least the width of the mark (x) free on every side.</span>
+            </figcaption>
+          </figure>
+          <figure class="brand-tile" data-reveal>
+            <div class="brand-tile__stage brand-tile__stage--sizes" aria-hidden="true">
+              <img src="{{ lockup }}" alt="" width="85" height="20">
+              <img src="{{ mark }}" alt="" width="15" height="16">
+            </div>
+            <figcaption class="brand-tile__meta brand-tile__meta--note">
+              <span>Minimum size</span>
+              <span>The lockup at least 20px tall on screen (6 mm in print), and the mark at least 16px.</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <h3 class="brand-subhead" data-reveal>Please don’t</h3>
+        <ul class="grid brand-donts" role="list">
+          {% for dont in page.extra.donts %}
+            <li class="brand-dont" data-reveal>
+              <div class="brand-dont__stage">
+                <span class="logo-shape brand-dont__logo brand-dont__logo--{{ dont.kind }}" style="--logo: url('{{ lockup }}')" aria-hidden="true"></span>
+              </div>
+              <p class="brand-dont__text"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 4.5 7 7m0-7-7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>{{ dont.text }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="colour" class="block block--wash" aria-labelledby="colour-title">
+      <div class="container">
+        <div class="grid section-top">
+          <div class="section-top__title">
+            <h2 id="colour-title" class="block__title" data-reveal>Colour</h2>
+          </div>
+          <p class="block__body section-top__intro" data-reveal>
+            Logven is mostly ink on paper, with soft greys for structure. Use blue for actions and emphasis, never as a background for long text. Select a value to copy it.
+          </p>
+        </div>
+
+        <ul class="grid swatches" role="list">
+          {% for swatch in page.extra.swatches %}
+            <li class="swatch{% if swatch.primary | default(value=false) %} swatch--primary{% endif %}" data-reveal>
+              <span class="swatch__chip" style="--swatch: {{ swatch.hex }}"></span>
+              <span class="swatch__info">
+                <span class="swatch__name">{{ swatch.name }}</span>
+                <span class="swatch__role">{{ swatch.role }}</span>
+              </span>
+              <span class="swatch__values">
+                <button class="swatch__copy" type="button" data-copy="swatch-{{ swatch.id }}" aria-label="Copy {{ swatch.name }} hex value {{ swatch.hex }}"><span id="swatch-{{ swatch.id }}">{{ swatch.hex }}</span></button>
+                <span class="swatch__rgb">RGB {{ swatch.rgb }}</span>
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section id="type" class="block" aria-labelledby="type-title">
+      <div class="container">
+        <div class="grid section-top">
+          <div class="section-top__title">
+            <h2 id="type-title" class="block__title" data-reveal>Typography</h2>
+          </div>
+          <p class="block__body section-top__intro" data-reveal>
+            Everything is set in <a class="brand-link" href="https://vercel.com/font">Geist</a>. Headlines are light and tight, at weight 400 with −3% tracking. Hierarchy comes from size and colour rather than bold type.
+          </p>
+        </div>
+
+        <div class="grid type-specimens">
+          <div class="type-card type-card--glyphs" data-reveal>
+            <p class="type-card__aa" aria-hidden="true">Aa</p>
+            <div class="type-card__foot">
+              <p class="type-card__name">Geist</p>
+              <p class="type-card__weights"><span style="font-weight: 400">Regular 400</span><span style="font-weight: 450">Book 450</span><span style="font-weight: 500">Medium 500</span><span style="font-weight: 600">Semibold 600</span></p>
+              <p class="type-card__glyphs" aria-hidden="true">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 → €%&amp;?!</p>
+            </div>
+          </div>
+
+          <ol class="type-card type-scale" role="list" data-reveal>
+            {% for step in page.extra.type_scale %}
+              <li class="type-scale__row">
+                <span class="type-scale__meta">{{ step.role }}<span>{{ step.size }} px</span></span>
+                <span class="type-scale__sample type-scale__sample--{{ step.step }}">Computable operations</span>
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="partnerships" class="block brand-partners-wrap" aria-labelledby="partners-title">
+      <div class="container">
+        <div class="brand-partners">
+          <div class="brand-partners__copy">
+            <h2 id="partners-title" class="block__title" data-reveal>Brand partnerships</h2>
+            <p data-reveal>When the Logven lockup appears next to a partner’s logo, separate the two with a thin vertical rule and give them the same visual weight. Keep the clear space around each logo, show each one at a comfortable size in its approved colours, and don’t distort or alter either of them.</p>
+            <p data-reveal>Both companies approve co-branded material before it’s published. Send drafts to <a href="mailto:info@logven.com?subject=Co-branding%20review">info@logven.com</a>.</p>
+          </div>
+
+          <div class="brand-partners__figures">
+            {% for construction in [true, false] %}
+              <figure class="partner-lockup{% if construction %} partner-lockup--construction{% endif %}" data-reveal>
+                <div class="partner-lockup__grid" aria-hidden="true">
+                  {% if construction %}
+                    {% for row in [1, 2, 3] %}{% for col in [1, 2, 3, 4, 5, 6, 7] %}<span class="partner-lockup__cell" style="grid-area: {{ row }} / {{ col }}"></span>{% endfor %}{% endfor %}
+                    {% for col in [1, 3, 5, 7] %}<span class="partner-lockup__unit" style="grid-area: 2 / {{ col }}"></span>{% endfor %}
+                    <span class="partner-lockup__unit" style="grid-area: 1 / 2"></span>
+                    <span class="partner-lockup__unit" style="grid-area: 3 / 2"></span>
+                  {% endif %}
+                  <img class="partner-lockup__logo" src="{{ lockup_white }}" alt="" width="469" height="111">
+                  <span class="partner-lockup__rule"></span>
+                  <span class="partner-lockup__partner">Partner’s<br>logo</span>
+                </div>
+                <figcaption class="visually-hidden">{% if construction %}Construction: one unit of space on every side and on both sides of the rule.{% else %}The Logven lockup and a partner logo, separated by a vertical rule.{% endif %}</figcaption>
+              </figure>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="downloads" class="block" aria-labelledby="downloads-title">
+      <div class="container">
+        <div class="grid section-top">
+          <div class="section-top__title">
+            <h2 id="downloads-title" class="block__title" data-reveal>Downloads</h2>
+          </div>
+          <p class="block__body section-top__intro" data-reveal>
+            Always use these files rather than recreating the logo or setting the wordmark yourself. For press or anything else you can’t find here, email <a class="brand-link" href="mailto:info@logven.com">info@logven.com</a>.
+          </p>
+        </div>
+
+        <ul class="downloads" role="list">
+          {% for file in page.extra.downloads %}
+            <li class="downloads__row" data-reveal>
+              <span class="downloads__name">{{ file.name }}</span>
+              <span class="downloads__text">{{ file.text }}</span>
+              <span class="downloads__format">{{ file.format }}</span>
+              <a class="button button--tint button--small" href="{{ get_url(path=file.path) }}" download aria-label="Download {{ file.name }} ({{ file.format }})">Download</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </div>
+{% endblock content %}
+
+{% block scripts %}
+  <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/copy.js', cachebust=true) }}" defer></script>
+{% endblock scripts %}

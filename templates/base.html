@@ -100,6 +100,7 @@
             <h2 id="footer-company" class="eyebrow">Company</h2>
             <ul role="list">
               <li><a href="{{ home }}#pricing">Pricing</a></li>
+              <li><a href="{{ get_url(path='@/brand.md') }}"{% if current_path == '/brand/' %} aria-current="page"{% endif %}>Brand</a></li>
             </ul>
           </nav>
 

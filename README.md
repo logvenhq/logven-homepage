@@ -1,6 +1,6 @@
 # Logven Homepage
 
-Logven's marketing site, built with [Zola](https://www.getzola.org/) and Sass. It includes the homepage, the Start a pilot page and five model pages. No Node.js dependencies are needed to build or serve it.
+Logven's marketing site, built with [Zola](https://www.getzola.org/) and Sass. It includes the homepage, the Start a pilot page, five model pages and the brand guidelines page. No Node.js dependencies are needed to build or serve it.
 
 ## Local development
 
@@ -35,6 +35,6 @@ tar -czf /tmp/logven-homepage.tar.gz -C public .
 - `sass/css/style.scss` imports the stylesheet partials in cascade order. Zola compiles them to `/css/style.css`.
 - `static/js/` contains the theme controls, header and reveal behavior, plus homepage carousel, copy controls and animations. Homepage interactions load through the homepage's script block.
 - `static/fonts/` holds the Latin WOFF2 subset of Geist that the site preloads and serves. It covers the site's text, punctuation, arrows and subscripts. The original Geist variable TTF it was converted from lives in `fonts-src/`, outside `static/`, so it isn't deployed.
-- `static/images/` and `static/brand/` contain the images and icons used by the site. Assets in `static/` are copied directly into the build.
+- `static/images/` and `static/brand/` contain the images and icons used by the site. `static/brand/` also holds the downloads offered on `/brand/`: the logo files, the zipped brand kit and the design tokens, which come from `logvenhq/logven-identity`. Assets in `static/` are copied directly into the build.
 
 The site uses the light theme by default (the dark styles stay in place for when the appearance switcher returns) and supports reduced motion. Its content and navigation also work without JavaScript.
