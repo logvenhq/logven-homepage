@@ -48,7 +48,10 @@
   text-decoration-color: currentColor;
 }
 
+/* Model pages open on their model's ribbon. */
 .hero--model {
+  padding: calc(var(--header-height) + clamp(5rem, 10vw, 8rem)) var(--inset)
+    clamp(2rem, 4.2vw, 3.5rem);
   aspect-ratio: auto;
   border-radius: 0;
 }
@@ -66,19 +69,9 @@
   color: var(--muted);
 }
 
-/* Inner page header: plain title on paper under the sticky header. */
+/* Contact: the address and next steps on the left, a pilot brief on a washed card on the right. */
 
-.page-head {
-  padding-block: clamp(3rem, 6vw, 5rem) clamp(1rem, 2vw, 1.5rem);
-}
-
-.page-head .container {
-  display: grid;
-  justify-items: start;
-  gap: 1rem;
-}
-
-.page-head__title {
+.contact__title {
   margin: 0;
   color: var(--ink);
   font-size: clamp(1.875rem, 3.1vw, 3.125rem);
@@ -88,7 +81,7 @@
   text-wrap: balance;
 }
 
-.page-head__lede {
+.contact__lede {
   max-width: 36rem;
   margin: 0;
   color: var(--muted);
@@ -96,12 +89,6 @@
   line-height: 1.55;
   text-wrap: pretty;
 }
-
-.page-head__actions {
-  margin-top: 0.5rem;
-}
-
-/* Contact: the address and next steps on the left, a pilot brief on a washed card on the right. */
 
 .contact {
   padding-block: clamp(3rem, 6vw, 5rem) clamp(3.5rem, 6vw, 5rem);
@@ -148,6 +135,45 @@
 .contact__address a:focus-visible {
   color: var(--interactive);
   text-decoration-color: currentColor;
+}
+
+/* Copies the address (copy.js): the app's micro button. */
+.copy-button {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-ctl);
+  color: var(--night-muted);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease;
+}
+
+.copy-button:hover {
+  background: var(--night-line);
+}
+
+.copy-button:active {
+  transform: scale(0.96);
+}
+
+.copy-button__icon {
+  display: block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background: currentColor;
+  -webkit-mask: url("../images/blocks/copy.svg") center / contain no-repeat;
+  mask: url("../images/blocks/copy.svg") center / contain no-repeat;
+  opacity: 0.6;
+}
+
+.copy-button[data-copied] .copy-button__icon {
+  opacity: 1;
 }
 
 .contact__links,

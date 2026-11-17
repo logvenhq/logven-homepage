@@ -1,42 +1,10 @@
-/* Site header: transparent at the top of the page, paper once scrolled (site-header.js). */
-
-/* Announcement: one line in the primary blue above the header. It scrolls away; the header stays. */
-.announcement {
-  position: relative;
-  z-index: 51;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  min-height: var(--announcement-height);
-  padding: 0.45rem var(--inset);
-  color: var(--paper-on-dark);
-  background: var(--primary);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 150ms ease;
-}
-
-.announcement:hover {
-  background: var(--primary-hover);
-}
-
-.announcement span {
-  transition: transform 250ms var(--ease-out);
-}
-
-.announcement:hover span,
-.announcement:focus-visible span {
-  transform: translateX(0.2em);
-}
+/* Site header: transparent at the top of the page, with a soft blur once scrolled and light
+   type over dark sections (site-header.js). */
 
 .site-header {
   position: sticky;
   z-index: 50;
   top: 0;
-  transition: background-color 300ms ease;
 }
 
 /* The first hero slides up under the transparent header. */
@@ -110,22 +78,17 @@ main > .hero:first-child {
   gap: clamp(1.25rem, 2.6vw, 2.25rem);
 }
 
-.site-header__links {
-  display: flex;
-  align-items: center;
-  gap: inherit;
-}
-
-/* The header's "Start a pilot" sits outside the menu, so it stays visible on phones,
-   but reads as a link like Pricing. */
-.site-header__links a,
-.site-header__cta {
+/* Both links read the same, with a hairline that draws in on hover. */
+.site-header__nav a {
   position: relative;
   padding-block: 0.5rem;
+  color: var(--text);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: color 200ms ease;
 }
 
-.site-header__links a::after,
-.site-header__cta::after {
+.site-header__nav a::after {
   position: absolute;
   inset: auto 0 0.15rem;
   height: 1px;
@@ -136,31 +99,18 @@ main > .hero:first-child {
   transition: transform 250ms var(--ease-out);
 }
 
-.site-header__links a:hover::after,
-.site-header__links a:focus-visible::after,
-.site-header__cta:hover::after,
-.site-header__cta:focus-visible::after,
-.site-header__links a[aria-current="page"]::after {
-  transform: scaleX(1);
-}
-
-.site-header__menu {
-  display: none;
-}
-
-.site-header__nav a {
-  color: var(--text);
-  font-size: 0.9375rem;
-  text-decoration: none;
-  transition: color 200ms ease;
-}
-
-.site-header__links a:hover,
-.site-header__links a[aria-current="page"],
-.site-header__nav .site-header__cta:hover {
+.site-header__nav a:hover,
+.site-header__nav a[aria-current="page"] {
   color: var(--ink);
 }
 
+.site-header__nav a:hover::after,
+.site-header__nav a:focus-visible::after,
+.site-header__nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* Model pages: the header sits on the page's ribbon hero, so it starts in plain ink. */
 .site-header--model:not(.is-scrolled) {
   --ink: var(--ink-on-light);
   --text: var(--ink-on-light);
@@ -179,13 +129,10 @@ main > .hero:first-child {
   --logo-star-fade: 0;
 }
 
-.site-header.is-dark .site-header__nav > a,
-.site-header.is-dark .site-header__menu,
-.site-header.is-dark:not(.is-menu-open) .site-header__links a {
+.site-header.is-dark .site-header__nav a {
   color: var(--night-text);
 }
 
-.site-header.is-dark .site-header__nav > a:hover,
-.site-header.is-dark:not(.is-menu-open) .site-header__links a:hover {
+.site-header.is-dark .site-header__nav a:hover {
   color: var(--night-ink);
 }

@@ -149,8 +149,15 @@
   line-height: 1.55;
 }
 
-/* Code card: the app's card, a slightly darker surface with its soft shadow and no border. */
+/* Code card: a slightly raised night surface, with greyscale highlighting: keywords recede,
+   names and values carry the weight. */
 .code {
+  --code-keyword: #77797f;
+  --code-string: #9a9ca2;
+  --code-variable: #b9bbc0;
+  --code-function: #dcdcde;
+  --code-attribute: var(--night-ink);
+  --code-line-number: #4a4c52;
   position: relative;
   height: clamp(24rem, 32vw, 28.5rem);
   overflow: hidden;
@@ -193,45 +200,6 @@
   margin-right: auto;
   color: var(--night-muted);
   font-size: 0.75rem;
-}
-
-/* The app's micro button. */
-.code__copy {
-  display: inline-grid;
-  place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-ctl);
-  color: var(--night-muted);
-  background: transparent;
-  cursor: pointer;
-  transition:
-    background-color 150ms ease,
-    transform 150ms ease;
-}
-
-.code__copy:hover {
-  background: var(--night-line);
-}
-
-.code__copy:active {
-  transform: scale(0.96);
-}
-
-.code__copy-icon {
-  display: block;
-  width: 0.875rem;
-  height: 0.875rem;
-  background: currentColor;
-  -webkit-mask: url("../images/blocks/copy.svg") center / contain no-repeat;
-  mask: url("../images/blocks/copy.svg") center / contain no-repeat;
-  opacity: 0.6;
-}
-
-.code__copy[data-copied] .code__copy-icon {
-  opacity: 1;
 }
 
 .code__body {
@@ -284,15 +252,4 @@
 
 .code__const {
   color: var(--code-attribute);
-}
-
-
-/* Greyscale highlighting on dark: keywords recede, names and values carry the weight. */
-.code {
-  --code-keyword: #77797f;
-  --code-string: #9a9ca2;
-  --code-variable: #b9bbc0;
-  --code-function: #dcdcde;
-  --code-attribute: var(--night-ink);
-  --code-line-number: #4a4c52;
 }

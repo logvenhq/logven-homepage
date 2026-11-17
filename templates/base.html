@@ -40,21 +40,12 @@
     {% set home = get_url(path="@/_index.md") %}
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    {% if current_path == '/' %}
-    {#- Announcement bar, hidden for now. To show it again, uncomment it and set --announcement-height in _tokens.scss back to 2.25rem.
-    <a class="announcement" href="{{ get_url(path='@/contact.md') }}">We're running pilots on real team data <span aria-hidden="true">→</span></a>
-    -#}
-    {% endif %}
-
     <header class="site-header{% if page is defined and page.extra.model_hero %} site-header--model{% endif %}" data-site-header>
       <div class="site-header__inner">
         <a class="site-header__logo" href="{{ home }}" aria-label="Logven home">{% include "partials/logo.html" %}</a>
         <nav class="site-header__nav" aria-label="Primary">
-          <div class="site-header__links" id="primary-navigation">
           <a href="{{ home }}#pricing">Pricing</a>
-          </div>
-          <a class="site-header__cta" href="{{ get_url(path='@/contact.md') }}">Start a pilot</a>
-          <button class="site-header__menu" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle hidden><span data-menu-label>Menu</span><span class="site-header__menu-icon" aria-hidden="true"></span></button>
+          <a href="{{ get_url(path='@/contact.md') }}">Start a pilot</a>
         </nav>
       </div>
     </header>

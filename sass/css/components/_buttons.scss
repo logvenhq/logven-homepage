@@ -40,24 +40,8 @@
   background: var(--shade);
 }
 
-/* The header button's size, for secondary actions in section heads. */
-.button--small {
-  height: 2.125rem;
-  padding: 0 0.85rem;
-  font-size: 0.875rem;
-}
-
 .button--tint:hover {
   background: var(--shade-strong);
-}
-
-.button--light {
-  color: var(--ink-on-light);
-  background: var(--paper-on-dark);
-}
-
-.button--light:hover {
-  background: var(--light-button-hover);
 }
 
 .text-link {

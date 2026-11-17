@@ -13,10 +13,12 @@ The site sells one idea: **centralise your teams' data work.** Each person gets 
 ## Interaction design
 
 - Keep card containers stationary on hover, especially the model cards. Do not lift or translate the whole card.
-- Tool tiles are an exception: a small, smooth scale increase on hover is welcome, with no vertical movement and with soft corners and a faint border highlight.
-- Preserve the hover lift and shadow on the example cards in “Work that runs on Logven”; these are another exception to stationary card containers.
 - Preserve the original button interactions; do not add hover lifts or change their press effects.
-- Subtle movement of icons, illustrations, and other content inside a card is welcome.
-- Preserve tool tiles' surface colors on hover. Keep shading restrained; avoid large, dark shadows or pronounced elevation.
+- Subtle movement of illustrations and other content inside a card is welcome.
+- Keep shading restrained; avoid large, dark shadows or pronounced elevation.
 - Keep interactions understated and respect reduced motion.
-- In the outcomes mosaic, use the same raised surface colors for the table, code, activity, and project previews, including dark mode.
+
+## Graphics
+
+- Every section graphic uses one language: hair-thin grey lines and bands, the data lake's sphere with its spectral fringe, soft packets that fade to a gradient tail, and the hero's spectral ribbon. Black means something Logven made or runs. Small labels sit on hairline ticks, like the hero ledger.
+- No app mockups or dashboard-style diagrams.

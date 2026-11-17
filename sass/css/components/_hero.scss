@@ -9,8 +9,10 @@
   background: var(--hero-surface);
 }
 
+/* Homepage: the ribbon and ledger fill the top, the title sits below them. */
 .hero--home {
-  align-content: end;
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-content: stretch;
   min-height: clamp(36rem, 94svh, 57rem);
   padding: var(--header-height) var(--inset) clamp(2.75rem, 5.5vw, 4.5rem);
 }
@@ -36,20 +38,6 @@
   height: 2.125rem;
   padding: 0 0.85rem;
   font-size: 0.875rem;
-}
-
-.hero--page {
-  padding: calc(var(--header-height) + clamp(5rem, 10vw, 8rem)) var(--inset)
-    clamp(2rem, 4.2vw, 3.5rem);
-}
-
-.hero--page:not(.hero--model)::after {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-  background: linear-gradient(to bottom, transparent 70%, var(--paper));
 }
 
 .hero__content {
@@ -84,11 +72,6 @@
 }
 
 /* Ledger: columns of team figures that drift right to left above the homepage title. */
-.hero--home {
-  grid-template-rows: minmax(0, 1fr) auto;
-  align-content: stretch;
-}
-
 .ledger {
   position: relative;
   z-index: 2;

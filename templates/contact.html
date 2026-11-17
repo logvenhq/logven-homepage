@@ -6,14 +6,14 @@
   <section class="contact" aria-labelledby="page-title">
     <div class="container grid contact__grid">
       <div class="contact__intro">
-        <h1 id="page-title" class="page-head__title">{{ c.heading | markdown(inline=true) | safe }}</h1>
-        <p class="page-head__lede">{{ c.lede }}</p>
+        <h1 id="page-title" class="contact__title">{{ c.heading | markdown(inline=true) | safe }}</h1>
+        <p class="contact__lede">{{ c.lede }}</p>
 
         <div class="contact__email">
           <p class="eyebrow">Email</p>
           <div class="contact__address">
             <a id="contact-email" href="mailto:{{ c.email }}">{{ c.email }}</a>
-            <button class="code__copy" type="button" data-copy="contact-email" aria-label="Copy email address"><span class="code__copy-icon" aria-hidden="true"></span></button>
+            <button class="copy-button" type="button" data-copy="contact-email" aria-label="Copy email address"><span class="copy-button__icon" aria-hidden="true"></span></button>
           </div>
         </div>
 
