@@ -283,9 +283,12 @@
     });
   };
 
-  /* Rules over the ribbon: grey on the page, white where the ribbon passes behind them. */
+  /* Over the ribbon: the rules and the small labels at their ends are grey on the page and turn
+     white where the ribbon passes behind them. */
 
   const RULE = [217, 219, 224];
+  const SMALL_TEXT = [107, 110, 120];
+  const whiten = (rgb, white) => `rgb(${rgb.map((c) => Math.round(c + (255 - c) * white)).join(" ")})`;
   const RULE_SAMPLES = 24;
   const ribbonCanvas = root.parentElement.querySelector(".hero-ribbon canvas");
 
@@ -302,10 +305,16 @@
         const y = 1 - (rule.top + share * rule.height - box.top) / box.height;
         // The ribbon shows at a fraction of its strength, so a little cover is enough to go white.
         const white = smoothstep(0.06, 0.4, coverage(x, y));
-        const rgb = RULE.map((c) => Math.round(c + (255 - c) * white)).join(" ");
-        stops.push(`rgb(${rgb}) ${(share * 100).toFixed(1)}%`);
+        stops.push(`${whiten(RULE, white)} ${(share * 100).toFixed(1)}%`);
       }
       column.ruleEl.style.background = `linear-gradient(to bottom, ${stops.join(", ")})`;
+
+      [column.labelEl, column.indexEl].forEach((text) => {
+        const r = text.getBoundingClientRect();
+        if (!r.width) return;
+        const cover = coverage((r.left + r.width / 2 - box.left) / box.width, 1 - (r.top + r.height / 2 - box.top) / box.height);
+        text.style.color = whiten(SMALL_TEXT, smoothstep(0.06, 0.4, cover));
+      });
     });
   };
 

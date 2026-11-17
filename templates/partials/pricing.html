@@ -1,33 +1,39 @@
-{#- Pricing: three plan cards. Each price carries both
-  billing values; the switch in the section head (index.html) picks one via CSS :has. -#}
-<div class="grid plans">
-  <article class="plan" aria-labelledby="plan-pro" data-reveal>
-    <h3 class="plan__name" id="plan-pro">Pro</h3>
-    <p class="plan__price"><strong data-billing="annual">€399</strong><strong data-billing="monthly">€499</strong><span>a month, excl. VAT</span></p>
-    <dl class="plan__facts">
-      <div><dt>Seats</dt><dd>15</dd></div>
-      <div><dt>Billing</dt><dd><span data-billing="annual">Annual</span><span data-billing="monthly">Monthly</span></dd></div>
-    </dl>
-    <a class="text-link plan__action" href="{{ get_url(path='@/contact.md') }}">Start a pilot <span aria-hidden="true">→</span></a>
-  </article>
+{#- Pricing: three plan cards inset in one frame. Each price carries both billing values; the
+  switch in the section head (index.html) picks one via CSS :has. -#}
+<div class="plans" data-reveal>
+  <div class="plans__bar">
+    <p class="plans__note">Prices exclude VAT</p>
+  </div>
+  <div class="plans__grid">
+    <article class="plan" aria-labelledby="plan-pro">
+      <div class="plan__head"><h3 class="plan__name" id="plan-pro">Pro</h3><p class="plan__for">For one team</p></div>
+      <p class="plan__price"><strong data-billing="annual">€399</strong><strong data-billing="monthly">€499</strong><span>/month</span></p>
+      <dl class="plan__facts">
+        <div><dt>Seats</dt><dd>15</dd></div>
+        <div><dt>Billing</dt><dd><span data-billing="annual">Annual</span><span data-billing="monthly">Monthly</span></dd></div>
+      </dl>
+      <a class="text-link plan__action" href="{{ get_url(path='@/contact.md') }}">Start a pilot <span aria-hidden="true">→</span></a>
+    </article>
 
-  <article class="plan" aria-labelledby="plan-business" data-reveal>
-    <h3 class="plan__name" id="plan-business">Business</h3>
-    <p class="plan__price"><strong data-billing="annual">€899</strong><strong data-billing="monthly">€999</strong><span>a month, excl. VAT</span></p>
-    <dl class="plan__facts">
-      <div><dt>Seats</dt><dd>30, then €30 a month each</dd></div>
-      <div><dt>Billing</dt><dd><span data-billing="annual">Annual</span><span data-billing="monthly">Monthly</span></dd></div>
-    </dl>
-    <a class="text-link plan__action" href="{{ get_url(path='@/contact.md') }}">Start a pilot <span aria-hidden="true">→</span></a>
-  </article>
+    <article class="plan" aria-labelledby="plan-business">
+      <div class="plan__head"><h3 class="plan__name" id="plan-business">Business</h3><p class="plan__for">For several teams</p></div>
+      <p class="plan__price"><strong data-billing="annual">€899</strong><strong data-billing="monthly">€999</strong><span>/month</span></p>
+      <dl class="plan__facts">
+        <div><dt>Seats</dt><dd>30</dd></div>
+        <div><dt>Extra seats</dt><dd>€30/month each</dd></div>
+        <div><dt>Billing</dt><dd><span data-billing="annual">Annual</span><span data-billing="monthly">Monthly</span></dd></div>
+      </dl>
+      <a class="text-link plan__action" href="{{ get_url(path='@/contact.md') }}">Start a pilot <span aria-hidden="true">→</span></a>
+    </article>
 
-  <article class="plan" aria-labelledby="plan-enterprise" data-reveal>
-    <h3 class="plan__name" id="plan-enterprise">Enterprise</h3>
-    <p class="plan__price"><strong>Custom</strong></p>
-    <dl class="plan__facts">
-      <div><dt>Seats</dt><dd>Agreed with you</dd></div>
-      <div><dt>Billing</dt><dd>Agreed with you</dd></div>
-    </dl>
-    <a class="text-link plan__action" href="mailto:info@logven.com?subject=Logven%20Enterprise">Talk to us <span aria-hidden="true">→</span></a>
-  </article>
+    <article class="plan" aria-labelledby="plan-enterprise">
+      <div class="plan__head"><h3 class="plan__name" id="plan-enterprise">Enterprise</h3><p class="plan__for">For the whole company</p></div>
+      <p class="plan__price"><strong>Custom</strong></p>
+      <dl class="plan__facts">
+        <div><dt>Seats</dt><dd>Agreed with you</dd></div>
+        <div><dt>Billing</dt><dd>Agreed with you</dd></div>
+      </dl>
+      <a class="text-link plan__action" href="mailto:info@logven.com?subject=Logven%20Enterprise">Talk to us <span aria-hidden="true">→</span></a>
+    </article>
+  </div>
 </div>
