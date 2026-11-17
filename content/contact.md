@@ -15,7 +15,7 @@ links = [
 ]
 
 [extra.pilot]
-title = "Start a pilot"
+title = "Starting a pilot"
 body = "A pilot is paid and runs with one team on its real data. Tell us three things and we’ll come back with a plan."
 steps = [
   "The team that would start, and what they do.",

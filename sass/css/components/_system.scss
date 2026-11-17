@@ -206,17 +206,11 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* The dots of the sources each entity is built from. */
 .system__entity-from {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: var(--muted);
-  font-size: 0.75rem;
-  white-space: nowrap;
-}
-
-.system__entity-from span {
-  margin-left: 0.35rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

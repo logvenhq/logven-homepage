@@ -283,6 +283,36 @@
     });
   };
 
+  /* Rules over the ribbon: grey on the page, white where the ribbon passes behind them. */
+
+  const RULE = [217, 219, 224];
+  const RULE_SAMPLES = 24;
+  const ribbonCanvas = root.parentElement.querySelector(".hero-ribbon canvas");
+
+  const tintRules = (coverage) => {
+    const box = ribbonCanvas.getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    columns.forEach((column) => {
+      const rule = column.ruleEl.getBoundingClientRect();
+      if (!rule.height) return;
+      const x = (rule.left - box.left) / box.width;
+      const stops = [];
+      for (let i = 0; i < RULE_SAMPLES; i += 1) {
+        const share = i / (RULE_SAMPLES - 1);
+        const y = 1 - (rule.top + share * rule.height - box.top) / box.height;
+        // The ribbon shows at a fraction of its strength, so a little cover is enough to go white.
+        const white = smoothstep(0.06, 0.4, coverage(x, y));
+        const rgb = RULE.map((c) => Math.round(c + (255 - c) * white)).join(" ");
+        stops.push(`rgb(${rgb}) ${(share * 100).toFixed(1)}%`);
+      }
+      column.ruleEl.style.background = `linear-gradient(to bottom, ${stops.join(", ")})`;
+    });
+  };
+
+  if (ribbonCanvas) {
+    ribbonCanvas.addEventListener("ribbon:frame", (event) => tintRules(event.detail));
+  }
+
   const smoothstep = (edge0, edge1, value) => {
     const t = Math.max(0, Math.min(1, (value - edge0) / (edge1 - edge0)));
     return t * t * (3 - 2 * t);
@@ -368,6 +398,7 @@
         });
       });
       paint(time);
+      if (ribbonCanvas && ribbonCanvas.ribbonCoverage) tintRules(ribbonCanvas.ribbonCoverage);
       root.classList.add("is-ready");
       return;
     }

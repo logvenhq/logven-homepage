@@ -69,7 +69,13 @@
   color: var(--muted);
 }
 
-/* Contact: the address and next steps on the left, a pilot brief on a washed card on the right. */
+/* Contact: one quiet column. The title and line, the address large and light with its copy
+   button, the actions, then a hairline strip on starting a pilot whose three points are set like
+   the hero ledger: a thin rule, a small index and the text. */
+
+.contact {
+  padding-block: clamp(4rem, 8vw, 7rem) clamp(4rem, 7vw, 6rem);
+}
 
 .contact__title {
   margin: 0;
@@ -82,52 +88,31 @@
 }
 
 .contact__lede {
-  max-width: 36rem;
-  margin: 0;
+  max-width: 34rem;
+  margin: 1rem 0 0;
   color: var(--muted);
   font-size: 1.1875rem;
   line-height: 1.55;
   text-wrap: pretty;
 }
 
-.contact {
-  padding-block: clamp(3rem, 6vw, 5rem) clamp(3.5rem, 6vw, 5rem);
-}
-
-.contact__grid {
-  row-gap: 2.5rem;
-  align-items: start;
-}
-
-.contact__intro {
-  display: grid;
-  grid-column: 1 / 7;
-  justify-items: start;
-  gap: 1rem;
-}
-
-.contact__email {
-  display: grid;
-  gap: 0.35rem;
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
-}
-
 .contact__address {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
 }
 
 .contact__address a {
   color: var(--ink);
-  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
   text-decoration: underline;
-  text-decoration-color: var(--shade-strong);
+  text-decoration-color: var(--shade);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  text-underline-offset: 0.16em;
   transition: color 200ms ease, text-decoration-color 200ms ease;
 }
 
@@ -135,6 +120,10 @@
 .contact__address a:focus-visible {
   color: var(--interactive);
   text-decoration-color: currentColor;
+}
+
+.contact__actions {
+  margin-top: clamp(1.5rem, 2.5vw, 2rem);
 }
 
 /* Copies the address (copy.js): the app's micro button. */
@@ -146,7 +135,7 @@
   padding: 0;
   border: 0;
   border-radius: var(--radius-ctl);
-  color: var(--night-muted);
+  color: var(--muted);
   background: transparent;
   cursor: pointer;
   transition:
@@ -155,7 +144,7 @@
 }
 
 .copy-button:hover {
-  background: var(--night-line);
+  background: var(--tint);
 }
 
 .copy-button:active {
@@ -176,76 +165,63 @@
   opacity: 1;
 }
 
-.contact__links,
-.contact__steps {
-  list-style: none;
-}
-
-.contact__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin: 0.75rem 0 0;
-  padding: 0;
-}
-
 .contact__pilot {
-  display: grid;
-  grid-column: 8 / -1;
-  gap: 1rem;
-  padding: clamp(1.25rem, 2.4vw, 2rem);
-  border-radius: var(--radius);
-  background: var(--wash);
+  margin-top: clamp(4rem, 8vw, 6.5rem);
+  padding-top: clamp(1.5rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--line);
 }
 
-.contact__pilot-title {
-  margin: 0;
-  color: var(--ink);
-  font-size: 1.375rem;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-
-.contact__pilot-body {
+.contact__pilot-intro {
+  max-width: 40rem;
   margin: 0;
   color: var(--muted);
-  font-size: 1.125rem;
-  line-height: 1.55;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   text-wrap: pretty;
 }
 
+.contact__pilot-intro strong {
+  color: var(--ink);
+  font-weight: 450;
+}
+
 .contact__steps {
   display: grid;
-  gap: 0.75rem;
-  margin: 0.25rem 0 0.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem var(--gap);
+  margin: clamp(2rem, 3.5vw, 2.75rem) 0 0;
   padding: 0;
+  list-style: none;
 }
 
 .contact__steps li {
   display: grid;
-  grid-template-columns: 1.5rem 1fr;
-  gap: 0.75rem;
-  align-items: baseline;
+  align-content: start;
+  gap: 1.75rem;
+  min-height: 7.5rem;
+  padding: 0.1rem 1rem 0 0.75rem;
+  border-left: 1px solid var(--shade-strong);
   color: var(--ink);
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   line-height: 1.5;
+  text-wrap: pretty;
 }
 
-.contact__step-number {
-  display: inline-grid;
-  place-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  color: var(--muted);
-  background: var(--paper);
-  font-size: 0.8125rem;
+.contact__step-index {
+  color: var(--quiet);
+  font-size: 0.6875rem;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  opacity: 0.8;
 }
 
-@media (max-width: 922px) {
-  .contact__intro,
-  .contact__pilot {
-    grid-column: 1 / -1;
+@media (max-width: 760px) {
+  .contact__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__steps li {
+    min-height: 0;
+    gap: 0.75rem;
   }
 }

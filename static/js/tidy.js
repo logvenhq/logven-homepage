@@ -147,7 +147,7 @@
         mark.removeAttribute("style");
         return;
       }
-      if (!["check", "automated", "flagged"].includes(name)) el("circle", { cx: x, cy: y, r: 2.5, class: "tidy__anchor" }, ticks);
+      if (!["check", "flagged"].includes(name)) el("circle", { cx: x, cy: y, r: 2.5, class: "tidy__anchor" }, ticks);
       const end = Y(to);
       el("path", { d: `M${x} ${y}L${x} ${end}`, class: "tidy__tick" }, ticks);
       const above = end < y;
@@ -160,7 +160,6 @@
     note("merged", X(0.44), Y(LANES[2]), 0.02);
     note("flagged", X(STALE.end), staleY, 0.98);
     note("check", gate, Y(0.88), 0.98);
-    note("automated", X(0.78), Y(LANES[5]), 0.98);
 
     root.classList.add("is-drawn");
   };

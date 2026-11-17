@@ -2,7 +2,7 @@
 title = "Logven"
 template = "index.html"
 
-# "How it works": the connectors and the company model they feed. Hues match the hero's spectrum.
+# "How it works": the sources workers read and the company model they build. Hues match the hero's spectrum.
 [[extra.sources]]
 name = "ERP"
 hue = "peach"
@@ -34,25 +34,21 @@ hue = "sun"
 [[extra.entities]]
 name = "Customers"
 records = "1,284"
-from = ["CRM", "ERP", "Email"]
 hues = ["pink", "peach", "blue"]
 
 [[extra.entities]]
 name = "Orders"
 records = "48,210"
-from = ["ERP", "Spreadsheets", "PDFs"]
 hues = ["peach", "violet", "mint"]
 
 [[extra.entities]]
 name = "Suppliers"
 records = "312"
-from = ["ERP", "Email", "Shared drives"]
 hues = ["peach", "blue", "sky"]
 
 [[extra.entities]]
 name = "Machines"
 records = "86"
-from = ["Sensors", "Spreadsheets", "PDFs"]
 hues = ["sun", "violet", "mint"]
 
 # Rendered in the FAQ section of the homepage.
