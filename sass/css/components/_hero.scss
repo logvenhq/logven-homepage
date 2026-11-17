@@ -74,47 +74,6 @@
   mask-image: radial-gradient(ellipse 58% 52% at 50% 100%, transparent 0, rgb(0 0 0 / 30%) 55%, #000 100%);
 }
 
-.hero__mark {
-  position: absolute;
-  z-index: 3;
-  top: calc(var(--header-height) + clamp(8rem, 22vh, 13rem));
-  left: 50%;
-  width: clamp(2.5rem, 3.4vw, 3.1rem);
-  aspect-ratio: 114 / 125;
-  translate: -50% -50%;
-}
-
-/* hero-matrix.js listens for the hero-logo-entrance animation by name. */
-.hero__logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: auto;
-  transform: translate(-50%, -50%);
-  animation: hero-logo-entrance 2.1s var(--ease-flight) 220ms both;
-  filter:
-    drop-shadow(0 0.2rem 0.45rem rgb(71 91 115 / 18%))
-    drop-shadow(0 0.65rem 1.15rem rgb(91 118 149 / 12%));
-}
-
-@keyframes hero-logo-entrance {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, calc(-50% + clamp(8rem, 18vh, 11rem))) scale(0.78)
-      rotate(-3deg);
-  }
-
-  24% {
-    opacity: 0.65;
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
-  }
-}
-
 .hero__content {
   position: relative;
   z-index: 3;
@@ -144,21 +103,4 @@
 
 .hero .actions {
   margin-top: 0.5rem;
-}
-
-
-html.dark .hero__logo {
-  filter:
-    brightness(0) invert(1)
-    drop-shadow(0 0.2rem 0.45rem rgb(71 91 115 / 18%))
-    drop-shadow(0 0.65rem 1.15rem rgb(91 118 149 / 12%));
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .hero__logo {
-    filter:
-      brightness(0) invert(1)
-      drop-shadow(0 0.2rem 0.45rem rgb(71 91 115 / 18%))
-      drop-shadow(0 0.65rem 1.15rem rgb(91 118 149 / 12%));
-  }
 }

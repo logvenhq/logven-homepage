@@ -1,6 +1,5 @@
 (() => {
   const canvas = document.querySelector("[data-hero-matrix]");
-  const logo = document.querySelector(".hero__logo");
 
   if (!canvas) return;
 
@@ -20,8 +19,6 @@
   let cycleOpacity = 1;
   let animationFrame = 0;
   let isVisible = true;
-  let flightIsActive = false;
-  let flightSettledAt = -Infinity;
 
   const shuffle = (items) => {
     for (let index = items.length - 1; index > 0; index -= 1) {
@@ -41,9 +38,6 @@
         row: Math.floor(index / columns),
         revealedAt: Infinity,
         strength: 0.09 + Math.random() * 0.14,
-        wakeX: 0,
-        wakeY: 0,
-        wakeInfluence: 0,
       })),
     );
 
@@ -90,16 +84,6 @@
   const draw = (time) => {
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
-    const canvasBounds = canvas.getBoundingClientRect();
-    const logoBounds = logo?.getBoundingClientRect();
-    const wakeFade = flightIsActive ? 1 : Math.max(0, 1 - (time - flightSettledAt) / 1800);
-    const wakeCenter = logoBounds
-      ? {
-          x: logoBounds.left + logoBounds.width / 2 - canvasBounds.left,
-          y: logoBounds.top + logoBounds.height / 2 - canvasBounds.top,
-        }
-      : null;
-
     context.clearRect(0, 0, width, height);
 
     cells.forEach((cell) => {
@@ -109,41 +93,9 @@
       const easedFade = 1 - (1 - fadeIn) ** 3;
       const restingX = cell.column * cellSize;
       const restingY = cell.row * cellSize;
-      const centerX = restingX + cellSize / 2;
-      const centerY = restingY + cellSize / 2;
-      let targetWakeX = 0;
-      let targetWakeY = 0;
-      let targetWakeInfluence = 0;
-
-      if (wakeCenter && wakeFade > 0) {
-        const deltaX = centerX - wakeCenter.x;
-        const deltaY = centerY - wakeCenter.y;
-        const trailLength = 320;
-        const isInTrail = deltaY > -80 && deltaY < trailLength;
-        const trailWidth = 224;
-
-        if (isInTrail && Math.abs(deltaX) < trailWidth) {
-          const horizontalFalloff = 1 - Math.abs(deltaX) / trailWidth;
-          const verticalFalloff = 1 - Math.max(deltaY, 0) / trailLength;
-          const smoothHorizontal = horizontalFalloff ** 2 * (3 - 2 * horizontalFalloff);
-          const smoothVertical = verticalFalloff ** 2 * (3 - 2 * verticalFalloff);
-          const influence = smoothHorizontal * smoothVertical * wakeFade;
-          const direction = deltaX === 0 ? (cell.column % 2 ? 1 : -1) : Math.sign(deltaX);
-
-          targetWakeX = direction * cellSize * 0.38 * influence;
-          targetWakeY = cellSize * 0.08 * influence;
-          targetWakeInfluence = influence;
-        }
-      }
-
-      const wakeEase = targetWakeInfluence > 0 ? 0.025 : 0.008;
-      cell.wakeX += (targetWakeX - cell.wakeX) * wakeEase;
-      cell.wakeY += (targetWakeY - cell.wakeY) * wakeEase;
-      cell.wakeInfluence += (targetWakeInfluence - cell.wakeInfluence) * wakeEase;
-
-      const x = restingX + cell.wakeX;
-      const y = restingY + cell.wakeY;
-      const opacity = cell.strength * easedFade * cycleOpacity * (1 + cell.wakeInfluence * 0.18);
+      const x = restingX;
+      const y = restingY;
+      const opacity = cell.strength * easedFade * cycleOpacity;
       const gradient = context.createLinearGradient(x, y, x + cellSize, y + cellSize);
 
       gradient.addColorStop(0, `rgba(${matrixColor}, ${opacity * 0.68})`);
@@ -200,16 +152,6 @@
   new ResizeObserver(resize).observe(canvas);
   observer.observe(canvas);
   document.addEventListener("visibilitychange", start);
-  logo?.addEventListener("animationstart", ({ animationName }) => {
-    if (animationName !== "hero-logo-entrance") return;
-    flightIsActive = true;
-    flightSettledAt = Infinity;
-  });
-  logo?.addEventListener("animationend", ({ animationName }) => {
-    if (animationName !== "hero-logo-entrance") return;
-    flightIsActive = false;
-    flightSettledAt = performance.now();
-  });
   document.addEventListener("logven:themechange", () => {
     refreshColor();
     draw(performance.now());

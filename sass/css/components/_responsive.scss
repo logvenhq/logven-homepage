@@ -226,10 +226,6 @@
     min-height: calc(100dvh - var(--announcement-height));
   }
 
-  .hero__mark {
-    width: clamp(2.25rem, 9vw, 2.75rem);
-  }
-
   /* Every grid child spans the full width on phones. */
   .grid > * {
     grid-column: 1 / -1;
