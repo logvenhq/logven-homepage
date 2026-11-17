@@ -2,8 +2,7 @@
  * Birdseye: the management view, set at night like the code section above it. A centred title,
  * then the data lake seen from above (static/js/birdseye.js): a white sphere with the spectrum
  * as a corona, hairline rings spreading out from it, faint spokes for the departments, and soft
- * packets orbiting along the rings. A few figures sit on hairline ticks, like the hero
- * ledger. People never appear: the smallest unit is a team.
+ * packets orbiting along the rings. People never appear: the smallest unit is a team.
  */
 
 .birdseye {
@@ -129,16 +128,6 @@
   }
 }
 
-.birdseye__tick {
-  fill: none;
-  stroke: #3a3c42;
-  stroke-width: 1;
-}
-
-.birdseye__anchor {
-  fill: var(--night-ink);
-}
-
 /* The data lake's sphere, white on night, with the full spectrum as a slowly turning corona. */
 .birdseye__sphere {
   position: absolute;
@@ -166,76 +155,10 @@
   animation: lake-fringe 30s linear infinite;
 }
 
-/* Figures, set like the hero ledger: a small label, a light number and a caption. */
-.birdseye__figures {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-.birdseye__figure.is-wide.is-drawn .birdseye__figures {
-  visibility: visible;
-}
-
-.birdseye__figure-item {
-  position: absolute;
-  display: grid;
-  gap: 0.2rem;
-  padding-left: 0.7rem;
-  white-space: nowrap;
-}
-
-.birdseye__team {
-  color: var(--night-muted);
-  font-size: 0.6875rem;
-  letter-spacing: 0.01em;
-}
-
-.birdseye__value {
-  color: var(--night-ink);
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
-  font-weight: 300;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.birdseye__caption {
-  color: var(--night-text);
-  font-size: 0.8125rem;
-}
-
-/* Narrow screens and no script: the figures sit in a grid under the drawing. */
-.birdseye__figure:not(.is-wide) {
-  height: auto;
-}
-
-.birdseye__figure:not(.is-wide) .birdseye__art {
-  position: relative;
-  height: 18rem;
-}
-
-.birdseye__figure:not(.is-wide) .birdseye__sphere {
-  top: 9rem;
-}
-
-.birdseye__figure:not(.is-wide) .birdseye__figures {
-  position: static;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem 1rem;
-  padding: 1.5rem var(--bleed) 0;
-  visibility: visible;
-}
-
-.birdseye__figure:not(.is-wide) .birdseye__figure-item {
-  position: static;
-  padding: 0;
-  white-space: normal;
+@media (max-width: 760px) {
+  .birdseye__figure {
+    height: 18rem;
+  }
 }
 
 /* Four notes in a hairline frame, like the code section's. */

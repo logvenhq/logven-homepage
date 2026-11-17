@@ -1,14 +1,12 @@
 // Birdseye: the data lake seen from above. A white sphere sits in the middle with the spectrum
 // all round it as a corona; hair-thin rings spread out from it like water, and faint spokes mark
 // the company's departments. Soft packets in the hero's hues orbit along the rings, the inner
-// ones faster than the outer, so the activity settles into a pattern. A few figures sit on
-// hairline ticks, like the hero ledger's columns.
-// Drawn at the size it's shown; below 760px the figures become a grid under the drawing.
+// ones faster than the outer, so the activity settles into a pattern.
+// Drawn at the size it's shown.
 (() => {
   const root = document.querySelector("[data-birdseye]");
   if (!root) return;
   const svg = root.querySelector("[data-birdseye-art]");
-  const items = [...root.querySelectorAll("[data-at]")];
   const NS = "http://www.w3.org/2000/svg";
 
   // Ring radii, as shares of half the drawing's height.
@@ -76,30 +74,6 @@
       });
     });
 
-    // Ticks for the figures, from a dot on the ring out to the label.
-    const wide = W >= 760;
-    root.classList.toggle("is-wide", wide);
-    const ticks = el("g");
-    items.forEach((item) => {
-      if (!wide) {
-        item.removeAttribute("style");
-        return;
-      }
-      const [deg, ring] = item.dataset.at.split(" ").map(Number);
-      const a = (deg * Math.PI) / 180;
-      const r = RINGS[ring] * u;
-      const x = r1(cx + Math.cos(a) * r);
-      const y = r1(cy + Math.sin(a) * r);
-      const up = Math.sin(a) < 0;
-      const end = r1(up ? y - u * 0.22 : y + u * 0.22);
-      el("path", { class: "birdseye__tick", d: `M${x} ${y}L${x} ${end}` }, ticks);
-      el("circle", { class: "birdseye__anchor", cx: x, cy: y, r: 2.5 }, ticks);
-      item.style.left = `${x}px`;
-      item.style.top = up ? `${end}px` : "";
-      item.style.bottom = up ? "" : `${r1(H - end)}px`;
-      item.dataset.side = up ? "above" : "below";
-    });
-    root.classList.add("is-drawn");
   };
 
   new ResizeObserver(draw).observe(root);
