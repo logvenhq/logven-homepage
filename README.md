@@ -1,6 +1,6 @@
 # Logven Homepage
 
-The marketing site for [logven.com](https://logven.com). Logven centralises a team's data work: each person gets simple tools for their own data work, and Logven turns that work into one central data lake, keeps it organised and shows the data you need, including the data you didn't know you had. It runs on your own servers or in the cloud with European data residency, on small, private AI models.
+The marketing site for [logven.com](https://logven.com). Logven centralises teams' data work: each person gets simple tools for their own data work, and Logven turns that work into one central data lake, keeps it organised and shows the data you need, including the data you didn't know you had. It runs on your own servers or in the cloud with European data residency, on small, private AI models.
 
 The site is built with [Zola](https://www.getzola.org/) and Sass. It has the homepage, the contact page (`/start-a-pilot/` redirects there) and five model pages. No Node.js dependencies are needed to build or serve it.
 

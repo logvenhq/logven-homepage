@@ -1,6 +1,6 @@
 base_url = "https://logven.com"
 title = "Logven"
-description = "Logven turns your team’s data work into one central data lake, keeps it organised and runs on your own servers."
+description = "Logven turns your teams’ data work into one central data lake, keeps it organised and runs on your own servers."
 default_language = "en"
 
 # Sass compiles to the single /css/style.css asset.
@@ -14,4 +14,4 @@ minify_html = true
 smart_punctuation = true
 
 [extra]
-tagline = "Centralise your team’s data work"
+tagline = "Centralise your teams’ data work"
