@@ -1,0 +1,8 @@
+{#- Inner page header: a plain title and line on paper, no matrix. -#}
+<header class="page-head">
+  <div class="container">
+    <h1 id="page-title" class="page-head__title">{{ heading }}</h1>
+    {% if lede %}<p class="page-head__lede">{{ lede }}</p>{% endif %}
+    {% if actions %}<div class="actions page-head__actions">{{ actions | safe }}</div>{% endif %}
+  </div>
+</header>

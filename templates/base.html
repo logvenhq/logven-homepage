@@ -42,7 +42,7 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     {% if current_path == '/' %}
-    <a class="announcement" href="{{ get_url(path='@/start-a-pilot.md') }}">We're running pilots with specialised teams <span aria-hidden="true">→</span></a>
+    <a class="announcement" href="{{ get_url(path='@/contact.md') }}">We're running pilots with specialised teams <span aria-hidden="true">→</span></a>
     {% endif %}
 
     <header class="site-header{% if page is defined and page.extra.model_hero %} site-header--model{% endif %}" data-site-header>
@@ -52,7 +52,7 @@
           <div class="site-header__links" id="primary-navigation">
           <a href="{{ home }}#pricing">Pricing</a>
           </div>
-          <a class="site-header__cta" href="{{ get_url(path='@/start-a-pilot.md') }}"{% if current_path == '/start-a-pilot/' %} aria-current="page"{% endif %}>Start a pilot</a>
+          <a class="site-header__cta" href="{{ get_url(path='@/contact.md') }}">Start a pilot</a>
           <button class="site-header__menu" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle hidden><span data-menu-label>Menu</span><span class="site-header__menu-icon" aria-hidden="true"></span></button>
         </nav>
       </div>
@@ -107,7 +107,7 @@
             <h2 id="footer-contact" class="eyebrow">Contact</h2>
             <ul role="list">
               <li><a href="mailto:info@logven.com">info@logven.com</a></li>
-              <li><a href="{{ get_url(path='@/start-a-pilot.md') }}"{% if current_path == '/start-a-pilot/' %} aria-current="page"{% endif %}>Start a pilot</a></li>
+              <li><a href="{{ get_url(path='@/contact.md') }}"{% if current_path == '/contact/' %} aria-current="page"{% endif %}>Contact us</a></li>
             </ul>
           </nav>
         </div>
