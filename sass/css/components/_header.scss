@@ -67,7 +67,9 @@ main > .hero:first-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: calc(90rem + 2 * var(--inset));
   height: var(--header-height);
+  margin-inline: auto;
   padding-inline: var(--inset);
 }
 
