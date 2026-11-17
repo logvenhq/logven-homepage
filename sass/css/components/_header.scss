@@ -140,16 +140,6 @@ main > .hero:first-child {
   color: var(--ink);
 }
 
-html.dark .site-header__logo img {
-  filter: brightness(0) invert(1);
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .site-header__logo img {
-    filter: brightness(0) invert(1);
-  }
-}
-
 .site-header--model:not(.is-scrolled) {
   --ink: var(--ink-on-light);
   --text: var(--ink-on-light);

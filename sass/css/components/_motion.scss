@@ -11,7 +11,6 @@
     transition-duration: 0.01ms !important;
   }
 
-  .wall__track,
   [data-reveal-text].is-visible {
     animation: none;
   }
@@ -22,9 +21,7 @@
   }
 
   /* Keep state feedback, with stationary cards and controls. */
-  .card__link .model-motif,
-  .example,
-  .story-card:hover .app-shot.render-shot,
+  .card__ribbon,
   .faq__question .faq__icon,
   .text-link span,
   .announcement span {

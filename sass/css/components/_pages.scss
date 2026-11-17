@@ -54,7 +54,7 @@
 }
 
 .hero--model .hero__title {
-  color: var(--paper-on-dark);
+  color: var(--ink);
   font-weight: 400;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .hero--model .hero__title span + span {
-  color: rgb(255 255 255 / 70%);
+  color: var(--muted);
 }
 
 /* Inner page header: plain title on paper under the sticky header. */

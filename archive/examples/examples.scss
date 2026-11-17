@@ -1,7 +1,11 @@
+/* Archived from sass/css/components/_examples.scss, plus .tag from _product.scss. Not compiled. */
+
 /* Examples: two rows of example workers drifting slowly over a dot field. */
 
 .block--dots {
   background-color: var(--wash);
+  background-image: radial-gradient(var(--tint-strong) 1px, transparent 0.0813rem);
+  background-size: 1rem 1rem;
 }
 
 .examples__head {
@@ -108,3 +112,20 @@
   margin-top: 0.85rem;
 }
 
+/* From _product.scss: the trigger tag on each example. */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.1875rem;
+  color: var(--text);
+  background: var(--mist);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.0625rem;
+}
+
+/* From _motion.scss, inside @media (prefers-reduced-motion: reduce):
+  .wall__track { animation: none; }
+  .example { transform: none !important; }
+*/

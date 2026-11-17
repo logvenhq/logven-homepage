@@ -1,13 +1,4 @@
-/* Inside the product: the app recreations sit on a stage that fades into the section. */
-
-.stage {
-  position: relative;
-  height: clamp(24rem, 36vw, 32rem);
-  mask-image:
-    linear-gradient(to bottom, #000 50%, transparent 100%),
-    linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
-  mask-composite: intersect;
-}
+/* Notes: short titled paragraphs under a section's graphic. */
 
 .notes {
   row-gap: 2rem;
@@ -39,18 +30,6 @@
   color: var(--muted);
   font-size: 1.0625rem;
   line-height: 1.55;
-}
-
-.tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.125rem 0.375rem;
-  border-radius: 0.1875rem;
-  color: var(--text);
-  background: var(--mist);
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.0625rem;
 }
 
 .activity__day--0 {

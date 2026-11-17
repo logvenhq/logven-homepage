@@ -242,12 +242,3 @@
   opacity: 0.42;
 }
 
-html.dark .hero-ribbon canvas.is-ready {
-  opacity: 0.28;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .hero-ribbon canvas.is-ready {
-    opacity: 0.28;
-  }
-}

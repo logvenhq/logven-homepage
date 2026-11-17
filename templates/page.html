@@ -3,6 +3,9 @@
 {% block content %}
   {% if page.extra.model_hero %}
     <section class="hero hero--page hero--model card__media card__media--{{ page.extra.model_hero.style }}" aria-labelledby="page-title">
+      {%- set style = page.extra.model_hero.style %}
+      <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.36 0.34 0.52 1" aria-hidden="true"
+        data-ribbon-hue="{% if style == 'language' %}0.76{% elif style == 'vision' %}0.36{% elif style == 'timeseries' %}0.56{% elif style == 'decision' %}0.16{% else %}0.96{% endif %} 0.34"></canvas>
       <div class="hero__content">
         <h1 id="page-title" class="hero__title" data-reveal><span>{{ page.extra.model_hero.title }}</span><span>{{ page.extra.model_hero.subtitle }}</span></h1>
       </div>
@@ -33,3 +36,7 @@
     {% include "partials/cta.html" %}
   {% endif %}
 {% endblock content %}
+
+{% block scripts %}
+  <script src="{{ get_url(path='js/ribbon.js', cachebust=true) }}" defer></script>
+{% endblock scripts %}

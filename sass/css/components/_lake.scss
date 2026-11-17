@@ -1,0 +1,116 @@
+/*
+ * One data lake: a hair-thin grey line comes in from each edge of the window, structured data on
+ * the left and unstructured on the right, and flares only near the centre into a grey ring around
+ * a plain black sphere. The sphere's top edge catches the hero's spectrum, like a chromatic fringe.
+ * Plain SVG in templates/index.html. The grey outline is fixed; soft shades drift along it towards
+ * the centre, and the fringe turns slowly.
+ */
+
+.lake {
+  --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
+  position: relative;
+  height: clamp(10rem, 16vw, 15rem);
+  margin: 0 calc(-1 * var(--bleed));
+}
+
+.lake__art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* One grey for the lines and the ring, so they read as a single shape. */
+.lake__flow {
+  fill: color-mix(in srgb, var(--ink) 7%, white);
+}
+
+.lake__sphere {
+  fill: var(--ink);
+}
+
+/* The fringe turns slowly, so the colours along the top of the sphere drift. */
+.lake__fringe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lake-fringe 24s linear infinite;
+}
+
+@keyframes lake-fringe {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Soft shades drift in along the grey from both edges and fade as they reach the sphere,
+   like the problem section's bands. They're clipped to the grey shape, so its outline never moves. */
+.lake__pulse {
+  opacity: 0;
+  animation: lake-pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.lake__pulse--late {
+  animation-delay: -3.5s;
+}
+
+.lake__pulse--offset {
+  animation-delay: -1.75s;
+}
+
+.lake__pulse--offset.lake__pulse--late {
+  animation-delay: -5.25s;
+}
+
+@keyframes lake-pulse {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(860px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lake__fringe,
+  .lake__pulse {
+    animation: none;
+  }
+}
+
+/* The title and paragraph sit centred under the graphic. */
+.lake-copy {
+  display: grid;
+  justify-items: center;
+  gap: 1.1rem;
+  max-width: 44rem;
+  margin: clamp(1.5rem, 3vw, 2.5rem) auto 0;
+  text-align: center;
+}
+
+.lake-copy .block__title,
+.lake-copy .block__body {
+  margin: 0;
+}
+
+.lake-copy .block__body {
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+@media (max-width: 640px) {
+  .lake {
+    height: 11rem;
+  }
+}

@@ -1,16 +1,18 @@
-/* Footer */
+/* Footer: always dark. The brand and link columns on top, and the wordmark across the full
+   content width below, like a watermark. */
 
 .site-footer {
   position: relative;
   z-index: 2;
-  padding: clamp(2.5rem, 4.5vw, 4rem) 0 1.5rem;
-  color: var(--text);
-  background: var(--wash);
+  overflow: hidden;
+  padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(2rem, 4vw, 3.5rem);
+  color: var(--night-text);
+  background: var(--night);
 }
 
 .site-footer__grid {
   row-gap: 2.5rem;
-  margin-bottom: clamp(2.5rem, 4.5vw, 4rem);
+  margin-bottom: clamp(5rem, 12vw, 11rem);
 }
 
 .site-footer__brand {
@@ -23,7 +25,7 @@
 .site-footer__brand p {
   max-width: 20rem;
   margin: 0;
-  color: var(--muted);
+  color: var(--night-text);
   font-size: 1.0625rem;
   line-height: 1.55;
 }
@@ -36,6 +38,8 @@
 .site-footer__logo img {
   width: auto;
   height: 2.25rem;
+  /* Grey, close to the footer's text colour. */
+  filter: brightness(0) invert(0.68);
 }
 
 .site-footer__column {
@@ -44,6 +48,7 @@
 
 .site-footer__column .eyebrow {
   margin-bottom: 1rem;
+  color: var(--night-muted);
 }
 
 .site-footer__column ul {
@@ -54,9 +59,8 @@
   list-style: none;
 }
 
-.site-footer__column a,
-.site-footer__nav a {
-  color: var(--text);
+.site-footer__column a {
+  color: var(--night-text);
   font-size: 0.9375rem;
   text-decoration: underline;
   text-decoration-color: transparent;
@@ -66,33 +70,38 @@
 }
 
 .site-footer__column a:hover,
-.site-footer__nav a:hover,
-.site-footer__column a:focus-visible,
-.site-footer__nav a:focus-visible {
-  color: var(--ink);
+.site-footer__column a:focus-visible {
+  color: var(--night-ink);
   text-decoration-color: currentColor;
 }
 
-.site-footer__nav {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  color: var(--quiet);
-  font-size: 0.8125rem;
+/* The viewBox is the word's measured ink box, so it spans the content width edge to edge. */
+.site-footer__wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  fill: color-mix(in srgb, var(--night) 93%, white);
+  font-family: inherit;
+  font-size: 400px;
+  font-weight: 500;
+  letter-spacing: -18px;
+  user-select: none;
+  pointer-events: none;
 }
 
-.site-footer__nav a {
-  color: var(--quiet);
-  font-size: 0.8125rem;
+@media (max-width: 922px) {
+  .site-footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer__column {
+    grid-column: span 3;
+  }
 }
 
-
-html.dark .site-footer__logo img {
-  filter: brightness(0) invert(1);
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .site-footer__logo img {
-    filter: brightness(0) invert(1);
+@media (max-width: 760px) {
+  .site-footer__column {
+    grid-column: span 6;
   }
 }

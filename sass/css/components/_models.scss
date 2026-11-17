@@ -1,4 +1,5 @@
-/* Carousel: the track bleeds into the side inset so the next card peeks in. */
+/* Carousel: the track reaches out to the edges of the window, so the next cards peek in, and fades
+   out across that margin instead of being cut. Snapping lines each card up with the content. */
 
 .carousel__controls {
   display: flex;
@@ -37,19 +38,29 @@
 
 .carousel__track {
   --carousel-gap: 1rem;
+  /* From the content edge to the window edge: the side inset, plus whatever the window has beyond
+     the container's maximum width. No percentages, so it means the same in scroll-padding. */
+  --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: calc((100% - 2 * var(--carousel-gap)) / 3);
   gap: var(--carousel-gap);
-  margin: 0 calc(-1 * var(--inset));
-  padding: 0 var(--inset);
+  margin: 0 calc(-1 * var(--bleed));
+  padding: 0 var(--bleed);
   overflow-x: auto;
   overflow-y: hidden;
   list-style: none;
-  scroll-padding-inline: var(--inset);
+  scroll-padding-inline: var(--bleed);
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   overscroll-behavior-x: contain;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--bleed),
+    #000 calc(100% - var(--bleed)),
+    transparent
+  );
 }
 
 .carousel__track::-webkit-scrollbar {
@@ -61,226 +72,49 @@
   scroll-snap-align: start;
 }
 
+/* Model media: the hero's surface and ribbon (ribbon.js), each card with its own stretch of the
+   spectrum, under the card's label. */
 .card__media {
-  --model-card-bg: #233f86;
-  --model-card-image: url("../images/posts/model-vision.webp");
+  --model-card-bg: var(--hero-surface);
   position: relative;
   isolation: isolate;
   overflow: hidden;
   aspect-ratio: 16 / 10;
   border-radius: var(--radius);
   background-color: var(--model-card-bg);
-  background-image:
-    radial-gradient(rgb(255 255 255 / 10%) 1px, transparent 0.0813rem),
-    var(--model-card-image);
-  background-position: 0 0, center;
-  background-repeat: repeat, no-repeat;
-  background-size: 1rem 1rem, cover;
+  background-image: radial-gradient(var(--tint-strong) 1px, transparent 0.0813rem);
+  background-size: 1rem 1rem;
 }
 
-.card__link .model-motif {
-  transition: transform 500ms var(--ease-out);
+.card__ribbon {
+  position: absolute;
+  z-index: 0;
+  /* Wider than the card, so the blur doesn't fade the band at the sides. */
+  inset: -10% -4%;
+  display: block;
+  width: 108%;
+  height: 120%;
+  opacity: 0;
+  filter: blur(5px);
+  pointer-events: none;
+  transition:
+    opacity 2.4s var(--ease-out),
+    transform 700ms var(--ease-out);
 }
 
-.card__link:focus-visible .card__media {
-  box-shadow: inset 0 0 0 0.125rem var(--paper-on-dark);
+.card__ribbon.is-ready {
+  opacity: 0.7;
 }
 
+/* On hover the ribbon swells gently, the way the card illustrations used to. */
 @media (hover: hover) and (pointer: fine) {
-  .card__link:hover .model-motif {
-    transform: scale(1.04);
+  .card__link:is(:hover, :focus-visible) .card__ribbon {
+    transform: scale(1.08) rotate(-1.5deg);
   }
 }
 
-.card__media--language {
-  --model-card-bg: #a86822;
-  --model-card-image: url("../images/posts/model-language.webp");
-}
-
-.card__media--vision {
-  --model-card-bg: #173f8f;
-  --model-card-image: url("../images/posts/model-vision.webp");
-}
-
-.card__media--timeseries {
-  --model-card-bg: #24581f;
-  --model-card-image: url("../images/posts/model-timeseries.webp");
-}
-
-.card__media--decision {
-  --model-card-bg: #165b60;
-  --model-card-image: url("../images/posts/model-decision.webp");
-  background-blend-mode: normal, luminosity;
-}
-
-.card__media--retrieval {
-  --model-card-bg: #a92f0b;
-  --model-card-image: url("../images/posts/model-retrieval.webp");
-}
-
-/* Each illustration shares the media's 8:5 canvas and fades clear of the label. */
-.model-motif {
-  --motif-accent: #ffffff;
-  --motif-tint: rgb(255 255 255 / 12%);
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  color: var(--paper-on-dark);
-  mask-image: linear-gradient(to bottom, #000 35%, transparent 65%);
-  pointer-events: none;
-}
-
-.model-motif--code {
-  inset: -4% -12% -10% -7%;
-  width: auto;
-  height: auto;
-  overflow: hidden;
-  padding: clamp(1rem, 2vw, 1.5rem) 0 5rem;
-  background: transparent;
-  color: var(--motif-accent);
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-size: clamp(0.68rem, 0.9vw, 0.86rem);
-  line-height: clamp(1.35rem, 1.8vw, 1.7rem);
-}
-
-.model-motif--code > span {
-  display: block;
-  min-width: max-content;
-  padding-right: 2rem;
-  white-space: pre;
-}
-
-.model-motif--code .code__keyword,
-.model-motif--code .code__fn {
-  color: var(--motif-accent);
-}
-
-.model-motif--code .code__ctx {
-  color: rgb(255 255 255 / 76%);
-}
-
-.model-motif--code .code__string {
-  color: rgb(255 255 255 / 58%);
-}
-
-.model-motif path,
-.model-motif circle {
-  vector-effect: non-scaling-stroke;
-}
-
-.model-motif--vision {
-  inset: -8% -5%;
-  width: auto;
-  height: auto;
-}
-
-.model-motif__object {
-  position: absolute;
-  border: 1px solid var(--motif-accent);
-  border-radius: 0.125rem;
-  background: rgb(255 255 255 / 4%);
-}
-
-.model-motif__object::before {
-  position: absolute;
-  top: -1rem;
-  left: -1px;
-  padding: 0.12rem 0.32rem;
-  border-radius: 0.125rem 0.125rem 0 0;
-  color: var(--model-card-bg);
-  background: var(--motif-accent);
-  font-size: clamp(0.45rem, 0.58vw, 0.55rem);
-  line-height: 0.75rem;
-  content: attr(data-label);
-}
-
-.model-motif__object--a {
-  top: 25%;
-  left: 13%;
-  width: 34%;
-  height: 40%;
-}
-
-.model-motif__object--b {
-  top: 14%;
-  right: 14%;
-  width: 29%;
-  height: 48%;
-}
-
-.model-motif__scan {
-  position: absolute;
-  z-index: 1;
-  top: 45%;
-  right: 0;
-  left: 0;
-  height: 1px;
-  background: var(--motif-accent);
-  box-shadow: 0 0 0.5rem rgb(255 255 255 / 50%);
-}
-
-.model-motif__range {
-  fill: var(--motif-tint);
-}
-
-.model-motif__actual,
-.model-motif__forecast,
-.model-motif__route,
-.model-motif__branch {
-  fill: none;
-  stroke: var(--motif-accent);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.75;
-}
-
-.model-motif__forecast {
-  stroke-dasharray: 4 5;
-}
-
-.model-motif__branch {
-  stroke: rgb(255 255 255 / 28%);
-  stroke-width: 1.25;
-}
-
-.model-motif__point {
-  fill: var(--model-card-bg);
-  stroke: rgb(255 255 255 / 48%);
-  stroke-width: 1.25;
-}
-
-.model-motif__point.is-selected {
-  fill: var(--model-card-bg);
-  stroke: var(--motif-accent);
-  stroke-width: 1.75;
-}
-
-.model-motif__choice {
-  fill: var(--motif-accent);
-}
-
-.model-motif__check {
-  fill: none;
-  stroke: var(--model-card-bg);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.5;
-}
-
-.model-motif__embedding {
-  fill: var(--motif-accent);
-  opacity: 0.85;
-}
-
-.model-motif__embedding--soft {
-  opacity: 0.5;
-}
-
-.model-motif__embedding--faint {
-  opacity: 0.25;
+.card__link:focus-visible .card__media {
+  box-shadow: inset 0 0 0 0.125rem var(--ink);
 }
 
 .card__link {
@@ -300,14 +134,14 @@
   text-underline-offset: 0.18em;
 }
 
-/* The category label sits below the model's characteristic visual motif. */
+/* The category label sits at the bottom of the card, over the ribbon. */
 .card__overlay {
   position: absolute;
   z-index: 3;
   inset: auto 0 0;
   margin: 0;
   padding: 2.75rem clamp(1rem, 1.8vw, 1.5rem) clamp(1rem, 1.8vw, 1.5rem);
-  color: var(--paper-on-dark);
+  color: var(--ink);
   font-size: clamp(1.375rem, 2.1vw, 2rem);
   font-weight: 450;
   line-height: 1.04;
@@ -319,7 +153,7 @@
 }
 
 .card__overlay span + span {
-  color: rgb(255 255 255 / 70%);
+  color: var(--muted);
 }
 
 .card__title {

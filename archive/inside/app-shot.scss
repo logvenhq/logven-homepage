@@ -1,3 +1,5 @@
+/* Archived from sass/css/components/_app-shot.scss. Not compiled. */
+
 /*
  * App shots: static recreations of real Logven app screens (workspace Home and
  * a sheet view) for the "Inside the product" stage.
@@ -18,16 +20,16 @@
 
 .app-shot {
   /* Neutral scale and semantic roles match the app's light/dark theme tokens. */
-  --n0: light-dark(#ffffff, #191919);
-  --n100: light-dark(#f4f5f7, #1f1f20);
-  --n150: light-dark(#eeeff2, #252526);
-  --n160: light-dark(#e9eaee, #272728);
-  --n500: light-dark(#c8cad1, #49494a);
-  --n550: light-dark(#b4b7bf, #616162);
-  --n700: light-dark(#83868f, #8e8e8f);
-  --n725: light-dark(#6b6e78, #a8a8a9);
-  --n750: light-dark(#545862, #c1c1c2);
-  --n950: light-dark(#1d2027, #eeeeef);
+  --n0: #ffffff;
+  --n100: #f4f5f7;
+  --n150: #eeeff2;
+  --n160: #e9eaee;
+  --n500: #c8cad1;
+  --n550: #b4b7bf;
+  --n700: #83868f;
+  --n725: #6b6e78;
+  --n750: #545862;
+  --n950: #1d2027;
 
   --ink: var(--n950);
   --ink-body: var(--n750);
@@ -36,24 +38,24 @@
   --ink-mist: var(--n500);
 
   --page: var(--n0);
-  --column: light-dark(#f9f9fb, #212122);
+  --column: #f9f9fb;
   --well: var(--n100);
   --sidebar-border: var(--n160);
   --sidebar-project-open: var(--n150);
   --menu-item-selected: var(--n160);
   --row-divider: var(--n160);
-  --divider: light-dark(var(--n160), color-mix(in srgb, var(--n150) 75%, var(--n100)));
+  --divider: var(--n160);
   /* The app's activity ramp (indigo), not the website's sky-blue one. */
   --activity-0: var(--n150);
-  --activity-1: light-dark(#dde4fd, #252e55);
-  --activity-2: light-dark(#afc0f9, #37488f);
+  --activity-1: #dde4fd;
+  --activity-2: #afc0f9;
   --activity-3: #6b8cf2;
-  --activity-4: light-dark(#3f5fd6, #afc0f9);
+  --activity-4: #3f5fd6;
   --chip: var(--n150);
-  --badge-purple-surface: light-dark(#efecfd, #2c2945);
-  --badge-purple-text: light-dark(#7f6fdb, #c4bbf8);
-  --mascot-ink: light-dark(#151619, #eeeeef);
-  --mascot-eye: light-dark(#ffffff, #272728);
+  --badge-purple-surface: #efecfd;
+  --badge-purple-text: #7f6fdb;
+  --mascot-ink: #151619;
+  --mascot-eye: #ffffff;
 
 
   --radius-card: 8px;
@@ -845,9 +847,9 @@
   border-radius: 999px;
 }
 
-.app-shot .as-dot--nominal { background: light-dark(oklch(0.72 0.13 150), oklch(0.8 0.11 150)); }
-.app-shot .as-dot--watch { background: light-dark(oklch(0.72 0.13 61), oklch(0.8 0.11 61)); }
-.app-shot .as-dot--anomaly { background: light-dark(oklch(0.72 0.13 25), oklch(0.8 0.11 25)); }
+.app-shot .as-dot--nominal { background: oklch(0.72 0.13 150); }
+.app-shot .as-dot--watch { background: oklch(0.72 0.13 61); }
+.app-shot .as-dot--anomaly { background: oklch(0.72 0.13 25); }
 
 .app-shot .as-tag {
   padding: 2px 6px;

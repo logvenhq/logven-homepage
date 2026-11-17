@@ -1,0 +1,65 @@
+/*
+ * Problem section: nested grey bands, wide on the left, that narrow in two soft steps into one
+ * thin stream on the right: a team's scattered data gathering into one place. A faint pulse
+ * travels along them. Plain SVG in templates/index.html; no script.
+ */
+
+.flow {
+  grid-column: 6 / -1;
+  align-self: center;
+  /* The thin stream runs on past the content to the window edge. */
+  margin-right: calc(-1 * (max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset)));
+  /* The wide end fades in, so the bands come out of the page rather than starting at an edge. */
+  mask-image: linear-gradient(to right, transparent, #000 22%);
+}
+
+.flow__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Tints of the site's ink: the inner band darkest, each one fading as it narrows. */
+.flow__stop--outer-a { stop-color: color-mix(in srgb, var(--ink) 5%, white); }
+.flow__stop--outer-b { stop-color: color-mix(in srgb, var(--ink) 3.5%, white); }
+.flow__stop--outer-c { stop-color: color-mix(in srgb, var(--ink) 2%, white); }
+.flow__stop--mid-a { stop-color: color-mix(in srgb, var(--ink) 9%, white); }
+.flow__stop--mid-b { stop-color: color-mix(in srgb, var(--ink) 6%, white); }
+.flow__stop--mid-c { stop-color: color-mix(in srgb, var(--ink) 3%, white); }
+.flow__stop--inner-a { stop-color: color-mix(in srgb, var(--ink) 14%, white); }
+.flow__stop--inner-b { stop-color: color-mix(in srgb, var(--ink) 9%, white); }
+.flow__stop--inner-c { stop-color: color-mix(in srgb, var(--ink) 4%, white); }
+
+/* A soft shade drifting left to right through the bands, like data on its way in. */
+.flow__pulse {
+  animation: flow-pulse 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.flow__pulse--late {
+  animation-delay: -4.5s;
+}
+
+@keyframes flow-pulse {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(1160px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow__pulse {
+    display: none;
+  }
+}
+
+/* Below wide laptops the copy and the flow stack, so the flow keeps its full width. */
+@media (max-width: 1100px) {
+  .intro__copy,
+  .flow {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,3 +1,5 @@
+/* Archived from sass/css/components/_outcomes.scss. Not compiled. */
+
 /* Outcomes: a mosaic of cards. Each card holds a render of the app in its upper part,
    running off the right edge and fading out well above the caption. */
 
@@ -20,8 +22,7 @@
   background-color: var(--hero);
 }
 
-.story-card,
-.block--dots {
+.story-card {
   background-image: radial-gradient(var(--tint-strong) 1px, transparent 0.0813rem);
   background-size: 1rem 1rem;
 }

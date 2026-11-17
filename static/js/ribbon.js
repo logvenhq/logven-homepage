@@ -1,11 +1,20 @@
-// The hero ribbon: a soft band of spectral light behind the ledger.
-// A small fragment shader draws it, so the band can sway, twist and shimmer continuously.
-// Where it turns edge-on it pinches and its light gathers, like a ribbon catching the sun.
+// The hero ribbon: a soft band of spectral light. A small fragment shader draws it, so the band
+// can sway, twist and shimmer continuously. Where it turns edge-on it pinches and its light
+// gathers, like a ribbon catching the sun.
+//
+// Every <canvas data-ribbon> on the page gets one: the hero, the model cards and the call to
+// action. One WebGL context renders them all and copies each frame into the visible canvases.
+// Optional attributes change a ribbon's pose and colours:
+//   data-ribbon-pose="centre rise pinch width"  where the band sits, how far it climbs to the
+//                                                right, where it twists, and how wide it is
+//   data-ribbon-hue="start span"                which stretch of the spectrum it shows (0 to 1,
+//                                                wrapping), and how much of it
 (() => {
-  const canvas = document.querySelector("[data-ribbon]");
-  if (!canvas) return;
+  const targets = [...document.querySelectorAll("canvas[data-ribbon]")];
+  if (!targets.length) return;
 
-  const gl = canvas.getContext("webgl", { premultipliedAlpha: true, antialias: false, alpha: true });
+  const glCanvas = document.createElement("canvas");
+  const gl = glCanvas.getContext("webgl", { premultipliedAlpha: true, antialias: false, alpha: true });
   if (!gl) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -21,18 +30,25 @@
     precision mediump float;
     uniform vec2 resolution;
     uniform float time;
+    uniform vec4 pose;
+    uniform vec2 hue;
 
     const float PI = 3.14159265;
 
-    // Peach, pink, violet, blue, sky, aqua, butter: across the band, top to bottom.
+    // Peach, pink, violet, blue, sky, aqua, butter, and back to peach, so a stretch can wrap.
     vec3 spectrum(float s) {
-      s = clamp(s, 0.0, 1.0) * 6.0;
+      s = fract(s) * 7.0;
       vec3 c = mix(vec3(0.97, 0.72, 0.61), vec3(0.93, 0.61, 0.80), clamp(s, 0.0, 1.0));
       c = mix(c, vec3(0.64, 0.56, 0.96), clamp(s - 1.0, 0.0, 1.0));
       c = mix(c, vec3(0.36, 0.51, 0.94), clamp(s - 2.0, 0.0, 1.0));
       c = mix(c, vec3(0.43, 0.78, 0.96), clamp(s - 3.0, 0.0, 1.0));
       c = mix(c, vec3(0.65, 0.93, 0.90), clamp(s - 4.0, 0.0, 1.0));
-      return mix(c, vec3(0.96, 0.91, 0.65), clamp(s - 5.0, 0.0, 1.0));
+      c = mix(c, vec3(0.96, 0.91, 0.65), clamp(s - 5.0, 0.0, 1.0));
+      return mix(c, vec3(0.97, 0.72, 0.61), clamp(s - 6.0, 0.0, 1.0));
+    }
+
+    vec3 band(float s) {
+      return spectrum(hue.x + clamp(s, 0.0, 1.0) * hue.y);
     }
 
     void main() {
@@ -40,21 +56,21 @@
       float x = uv.x;
       float t = time;
 
-      // The centre line rises from lower left to upper right and sways on slow, unrelated waves.
+      // The centre line rises towards the right and sways on slow, unrelated waves.
       float rise = smoothstep(0.25, 1.1, x);
-      float centre = 0.40 + 0.26 * rise * rise
+      float centre = pose.x + pose.y * rise * rise
         + 0.035 * sin(x * 4.2 + t * 0.21)
         + 0.022 * sin(x * 7.9 - t * 0.33 + 1.3)
         + 0.012 * sin(x * 13.0 + t * 0.47);
 
       // The twist wanders back and forth, so the pinch drifts along the band.
-      float pinch = 0.48 + 0.09 * sin(t * 0.11) + 0.04 * sin(t * 0.07 + 2.0);
+      float pinch = pose.z + 0.09 * sin(t * 0.11) + 0.04 * sin(t * 0.07 + 2.0);
       float d = x - pinch;
-      float width = 0.055 + 0.085 * pow(abs(d) / 0.6, 1.2);
+      float width = (0.055 + 0.085 * pow(abs(d) / 0.6, 1.2)) * pose.w;
       float twist = PI * 0.5 + d * PI * (1.35 + 0.12 * sin(t * 0.09));
       float facing = cos(twist);
       float h = width * facing;
-      h = sign(h + 1e-4) * max(abs(h), 0.011);
+      h = sign(h + 1e-4) * max(abs(h), 0.011 * pose.w);
 
       float offset = uv.y - centre;
       float v = offset / h;
@@ -62,20 +78,20 @@
 
       // The band: soft edges, colour across it, with a slow shimmer travelling along it.
       float shimmer = 0.07 * sin(x * 5.0 - t * 0.6) + 0.04 * sin(x * 11.0 + t * 0.4);
-      vec3 colour = spectrum(v * 0.5 + 0.5 + shimmer);
-      float band = 1.0 - smoothstep(0.55, 1.15, abs(v));
+      vec3 colour = band(v * 0.5 + 0.5 + shimmer);
+      float body = 1.0 - smoothstep(0.55, 1.15, abs(v));
       float glint = exp(-pow((v - 0.25) * 3.2, 2.0)) * (0.35 + 0.25 * sin(x * 6.0 - t * 0.8));
-      colour = mix(colour, vec3(1.0), clamp(glint, 0.0, 0.6) * band);
-      band *= 0.82 + 0.35 * edgeOn;
+      colour = mix(colour, vec3(1.0), clamp(glint, 0.0, 0.6) * body);
+      body *= 0.82 + 0.35 * edgeOn;
 
       // A wide haze around the band, tinted by the colour nearest to it. Where the band turns
-      // over, the tint settles on violet, so the haze doesn't flip colour at the twist.
-      float spread = abs(h) + 0.09;
+      // over, the tint settles on the middle of its stretch, so the haze doesn't flip at the twist.
+      float spread = abs(h) + 0.09 * pose.w;
       float haze = exp(-pow(offset / spread, 2.0)) * 0.22;
-      vec3 hazeColour = mix(spectrum(0.4), spectrum(clamp(v * 0.5 + 0.5, 0.0, 1.0)), smoothstep(0.0, 0.5, abs(facing)));
+      vec3 hazeColour = mix(band(0.4), band(v * 0.5 + 0.5), smoothstep(0.0, 0.5, abs(facing)));
 
-      float alpha = clamp(band + haze * (1.0 - band), 0.0, 1.0);
-      vec3 rgb = mix(hazeColour, colour, band / max(alpha, 1e-3));
+      float alpha = clamp(body + haze * (1.0 - body), 0.0, 1.0);
+      vec3 rgb = mix(hazeColour, colour, body / max(alpha, 1e-3));
       gl_FragColor = vec4(rgb * alpha, alpha);
     }
   `;
@@ -105,34 +121,60 @@
   gl.enableVertexAttribArray(position);
   gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
 
-  const resolution = gl.getUniformLocation(program, "resolution");
-  const time = gl.getUniformLocation(program, "time");
+  const uniform = (name) => gl.getUniformLocation(program, name);
+  const resolution = uniform("resolution");
+  const time = uniform("time");
+  const pose = uniform("pose");
+  const hue = uniform("hue");
 
-  // Start at a random moment so the ribbon isn't in the same pose on every visit.
-  const offset = Math.random() * 600;
-  let frame = 0;
-  let visible = true;
-
-  const resize = () => {
-    const width = Math.max(1, Math.round(canvas.clientWidth * SCALE));
-    const height = Math.max(1, Math.round(canvas.clientHeight * SCALE));
-    if (canvas.width === width && canvas.height === height) return;
-    canvas.width = width;
-    canvas.height = height;
-    gl.viewport(0, 0, width, height);
-    gl.uniform2f(resolution, width, height);
+  const numbers = (value, fallback) => {
+    const parsed = (value || "").trim().split(/\s+/).filter(Boolean).map(Number);
+    return fallback.map((n, i) => (Number.isFinite(parsed[i]) ? parsed[i] : n));
   };
 
-  const draw = (now) => {
-    resize();
-    gl.uniform1f(time, offset + now / 1000);
+  const ribbons = targets
+    .map((canvas) => ({
+      canvas,
+      context: canvas.getContext("2d"),
+      pose: numbers(canvas.dataset.ribbonPose, [0.4, 0.26, 0.48, 1]),
+      hue: numbers(canvas.dataset.ribbonHue, [0, 6 / 7]),
+      // Start each one at a random moment, so no two share a pose and none repeats between visits.
+      offset: Math.random() * 600,
+      visible: false,
+    }))
+    .filter((ribbon) => ribbon.context);
+
+  const draw = (ribbon, now) => {
+    const { canvas, context } = ribbon;
+    const width = Math.max(1, Math.round(canvas.clientWidth * SCALE));
+    const height = Math.max(1, Math.round(canvas.clientHeight * SCALE));
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    if (glCanvas.width < width || glCanvas.height < height) {
+      glCanvas.width = Math.max(glCanvas.width, width);
+      glCanvas.height = Math.max(glCanvas.height, height);
+    }
+
+    gl.viewport(0, 0, width, height);
+    gl.uniform2f(resolution, width, height);
+    gl.uniform1f(time, ribbon.offset + now / 1000);
+    gl.uniform4f(pose, ...ribbon.pose);
+    gl.uniform2f(hue, ...ribbon.hue);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    // WebGL draws from the bottom-left corner, so the frame is the bottom strip of the buffer.
+    context.clearRect(0, 0, width, height);
+    context.drawImage(glCanvas, 0, glCanvas.height - height, width, height, 0, 0, width, height);
   };
 
+  let frame = 0;
+
   const loop = (now) => {
-    draw(now);
+    ribbons.forEach((ribbon) => ribbon.visible && draw(ribbon, now));
     frame = requestAnimationFrame(loop);
   };
 
@@ -140,23 +182,32 @@
     cancelAnimationFrame(frame);
     frame = 0;
     if (reduceMotion.matches) {
-      draw(0);
-    } else if (visible) {
+      ribbons.forEach((ribbon) => draw(ribbon, 0));
+    } else if (ribbons.some((ribbon) => ribbon.visible)) {
       frame = requestAnimationFrame(loop);
     }
   };
 
-  new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting;
-    update();
-  }).observe(canvas);
+  const byCanvas = new Map(ribbons.map((ribbon) => [ribbon.canvas, ribbon]));
 
-  new ResizeObserver(() => {
-    if (!frame) draw(performance.now());
-  }).observe(canvas);
+  const visibility = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      byCanvas.get(entry.target).visible = entry.isIntersecting;
+    });
+    update();
+  });
+
+  const sizes = new ResizeObserver((entries) => {
+    if (frame) return;
+    entries.forEach((entry) => draw(byCanvas.get(entry.target), reduceMotion.matches ? 0 : performance.now()));
+  });
+
+  ribbons.forEach((ribbon) => {
+    draw(ribbon, reduceMotion.matches ? 0 : performance.now());
+    ribbon.canvas.classList.add("is-ready");
+    visibility.observe(ribbon.canvas);
+    sizes.observe(ribbon.canvas);
+  });
 
   reduceMotion.addEventListener("change", update);
-  draw(performance.now());
-  canvas.classList.add("is-ready");
-  update();
 })();

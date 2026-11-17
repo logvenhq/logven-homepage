@@ -1,25 +1,9 @@
 /* Responsive */
 
-/* Narrower laptops: the activity card gets the width its header needs. */
-@media (max-width: 1224px) {
-  .mosaic {
-    grid-template-columns: minmax(0, 4.6fr) minmax(0, 3.3fr) minmax(0, 4.1fr);
-  }
-
-  .app-shot.render-shot--cards {
-    --fade-x: 4.5rem;
-  }
-
-  .render-shot .rs-stack {
-    grid-template-columns: repeat(2, 17.5rem);
-  }
-}
-
 @media (max-width: 922px) {
   .section-top__title,
   .section-top__intro,
   .intro__copy,
-  .pulse,
   .lined__row {
     grid-template-columns: 1fr;
   }
@@ -39,33 +23,6 @@
     grid-column: span 6;
   }
 
-  .mosaic {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .story-card--tall {
-    --render-h: 21rem;
-    grid-row: auto;
-    grid-column: 1 / -1;
-  }
-
-  .story-card--wide {
-    --render-h: 13rem;
-    grid-column: 1 / -1;
-  }
-
-  .story-card:nth-child(3) {
-    grid-column: 1;
-  }
-
-  .story-card:nth-child(4) {
-    grid-column: 2;
-  }
-
-  .render-shot .rs-stack {
-    grid-template-columns: repeat(2, minmax(0, 22rem));
-  }
-
   .carousel__track {
     grid-auto-columns: calc((100% - var(--carousel-gap)) / 2);
   }
@@ -74,13 +31,6 @@
     grid-column: 1 / -1;
   }
 
-  .site-footer__brand {
-    grid-column: 1 / -1;
-  }
-
-  .site-footer__column {
-    grid-column: span 3;
-  }
 }
 
 @media (max-width: 760px) {
@@ -213,8 +163,8 @@
   }
 
   .site-header--model.is-menu-open .site-header__links {
-    --ink: light-dark(#1d2027, #eeeeef);
-    --text: light-dark(#545862, #c1c1c2);
+    --ink: #1d2027;
+    --text: #545862;
   }
 
   .site-header__logo img {
@@ -241,26 +191,6 @@
     margin-bottom: 1.25rem;
   }
 
-  .mosaic {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .story-card:nth-child(n) {
-    grid-column: 1;
-  }
-
-  .story-card--tall {
-    --render-h: 19rem;
-  }
-
-  .render-shot .rs-stack {
-    grid-template-columns: repeat(2, 17.5rem);
-  }
-
-  .app-shot.render-shot--sheet {
-    left: var(--inset-card);
-  }
-
   .facts {
     grid-template-columns: 1fr;
   }
@@ -269,27 +199,9 @@
     grid-auto-columns: 84%;
   }
 
-  .site-footer__column {
-    grid-column: span 6;
-  }
-
-  .site-footer__nav {
-    flex-direction: column;
-  }
-}
-
-/* The second operation card would only show as a sliver on phones. */
-@media (max-width: 520px) {
-  .render-shot .rs-stack > .as-card:nth-child(2) {
-    display: none;
-  }
 }
 
 @media (max-width: 760px) {
-  .stage {
-    height: 20rem;
-  }
-
   .note {
     grid-column: 1 / -1;
   }

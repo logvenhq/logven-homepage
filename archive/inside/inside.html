@@ -1,0 +1,34 @@
+    <section id="inside" class="block block--wash" aria-labelledby="inside-title">
+      <div class="container">
+        <div class="grid section-top">
+          <div class="section-top__title">
+            <h2 id="inside-title" class="block__title" data-reveal>Inside the product</h2>
+          </div>
+          <p class="block__body section-top__intro" data-reveal>
+            It all happens in one place, and there are only four things to learn.
+          </p>
+        </div>
+        <div class="stage" aria-hidden="true" data-reveal>
+          {% include "partials/app_home.html" %}
+          {% include "partials/app_sheet.html" %}
+        </div>
+        <div class="grid notes">
+          <div class="note" data-reveal>
+            <h3 class="note__name"><img src="{{ get_url(path='images/blocks/sheets_cube.svg') }}" alt="" width="14" height="14">Sheets</h3>
+            <p class="note__text">Sheets hold your data. They look like a spreadsheet and behave like a database.</p>
+          </div>
+          <div class="note" data-reveal>
+            <h3 class="note__name"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Workers</h3>
+            <p class="note__text">Workers run the tasks your team hands over.</p>
+          </div>
+          <div class="note" data-reveal>
+            <h3 class="note__name"><img src="{{ get_url(path='images/blocks/boards_cube.svg') }}" alt="" width="14" height="14">Boards</h3>
+            <p class="note__text">Boards turn your data into live analysis.</p>
+          </div>
+          <div class="note" data-reveal>
+            <h3 class="note__name"><img src="{{ get_url(path='images/blocks/project.svg') }}" alt="" width="14" height="14">Processes</h3>
+            <p class="note__text">A process groups the sheets, workers and boards behind one job.</p>
+          </div>
+        </div>
+      </div>
+    </section>
