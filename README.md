@@ -36,7 +36,7 @@ tar -czf /tmp/logven-homepage.tar.gz -C public .
 - `content/` holds page copy and sections in TOML front matter, including the homepage FAQ. Copy follows the product description: data work, the central data lake, automations that become traceable software, and data that stays yours.
 - `sass/css/style.scss` imports the stylesheet partials in cascade order. Zola compiles them to `/css/style.css`.
 - `static/js/` contains the theme controls, header and reveal behavior, plus the homepage carousel, copy controls and animations. Homepage interactions load through the homepage's script block.
-- `archive/` keeps retired components outside the build, such as the hero squares (see `archive/hero-matrix/README.md`).
+- `archive/` keeps retired components outside the build, such as the hero squares and the system-of-record section (see the README in each folder).
 - `static/fonts/` holds the Latin WOFF2 subset of Geist that the site preloads and serves. It covers the site's text, punctuation, arrows and subscripts. The original Geist variable TTF it was converted from lives in `fonts-src/`, outside `static/`, so it isn't deployed.
 - `static/images/` and `static/brand/` contain the images, icons and logo files used by the site. The logo files come from [`logvenhq/logven-identity`](https://github.com/logvenhq/logven-identity). Assets in `static/` are copied directly into the build.
 
