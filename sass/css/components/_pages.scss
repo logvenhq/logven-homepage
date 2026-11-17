@@ -99,3 +99,126 @@
 .page-head__actions {
   margin-top: 0.5rem;
 }
+
+/* Contact: the address and next steps on the left, a pilot brief on a washed card on the right. */
+
+.contact {
+  padding-block: clamp(3rem, 6vw, 5rem) clamp(3.5rem, 6vw, 5rem);
+}
+
+.contact__grid {
+  row-gap: 2.5rem;
+  align-items: start;
+}
+
+.contact__intro {
+  display: grid;
+  grid-column: 1 / 7;
+  justify-items: start;
+  gap: 1rem;
+}
+
+.contact__email {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.contact__address {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact__address a {
+  color: var(--ink);
+  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-decoration: underline;
+  text-decoration-color: var(--shade-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+
+.contact__address a:hover,
+.contact__address a:focus-visible {
+  color: var(--interactive);
+  text-decoration-color: currentColor;
+}
+
+.contact__links,
+.contact__steps {
+  list-style: none;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.contact__pilot {
+  display: grid;
+  grid-column: 8 / -1;
+  gap: 1rem;
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+  border-radius: var(--radius);
+  background: var(--wash);
+}
+
+.contact__pilot-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.contact__pilot-body {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.contact__steps {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.25rem 0 0.5rem;
+  padding: 0;
+}
+
+.contact__steps li {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.contact__step-number {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  color: var(--muted);
+  background: var(--paper);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1024px) {
+  .contact__intro,
+  .contact__pilot {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% set c = page.extra %}
+  {% set pilot = c.pilot %}
+  <section class="contact" aria-labelledby="page-title">
+    <div class="container grid contact__grid">
+      <div class="contact__intro">
+        <h1 id="page-title" class="page-head__title">{{ c.heading }}</h1>
+        <p class="page-head__lede">{{ c.lede }}</p>
+
+        <div class="contact__email">
+          <p class="eyebrow">Email</p>
+          <div class="contact__address">
+            <a id="contact-email" href="mailto:{{ c.email }}">{{ c.email }}</a>
+            <button class="code__copy" type="button" data-copy="contact-email" aria-label="Copy email address"><span class="code__copy-icon" aria-hidden="true"></span></button>
+          </div>
+        </div>
+
+        <ul class="contact__links" role="list">
+          {% for link in c.links %}
+            <li><a class="text-link" href="{{ link.href }}">{{ link.text }} <span aria-hidden="true">→</span></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <aside class="contact__pilot" aria-labelledby="pilot-title">
+        <h2 id="pilot-title" class="contact__pilot-title">{{ pilot.title }}</h2>
+        <p class="contact__pilot-body">{{ pilot.body }}</p>
+        <ol class="contact__steps" role="list">
+          {% for step in pilot.steps %}
+            <li><span class="contact__step-number" aria-hidden="true">{{ loop.index }}</span>{{ step }}</li>
+          {% endfor %}
+        </ol>
+        <div class="actions">
+          <a class="button" href="mailto:{{ c.email }}?subject={{ pilot.subject | urlencode_strict }}&amp;body={{ pilot.mail_body | urlencode_strict }}">Email us about a pilot</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+{% endblock content %}
+
+{% block scripts %}
+  <script src="{{ get_url(path='js/copy.js', cachebust=true) }}" defer></script>
+{% endblock scripts %}

@@ -31,7 +31,7 @@ tar -czf /tmp/logven-homepage.tar.gz -C public .
 
 ## Structure
 
-- `templates/base.html` contains the shared navigation, footer, appearance controls and page metadata. `index.html` renders the homepage and `page.html` renders inner pages.
+- `templates/base.html` contains the shared navigation, footer, appearance controls and page metadata. `index.html` renders the homepage, `contact.html` the contact page and `page.html` the other inner pages.
 - `templates/partials/` contains the product previews (app home, sheet, record), pricing, the FAQ, the inner page header and the shared call to action.
 - `content/` holds page copy and sections in TOML front matter, including the homepage FAQ. Copy follows the product description: data work, the central data lake, automations that become traceable software, and data that stays yours.
 - `sass/css/style.scss` imports the stylesheet partials in cascade order. Zola compiles them to `/css/style.css`.
