@@ -15,8 +15,8 @@
   height: 2.5rem;
   padding: 0 1rem;
   border-radius: var(--radius-ctl);
-  color: var(--paper-on-dark);
-  background: var(--primary);
+  color: var(--button-text);
+  background: var(--button);
   font-size: 0.9375rem;
   font-weight: 500;
   text-decoration: none;
@@ -28,7 +28,7 @@
 }
 
 .button:hover {
-  background: var(--primary-hover);
+  background: var(--button-hover);
 }
 
 .button:active {

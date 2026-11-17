@@ -9,6 +9,10 @@
   --primary: #245be7;
   --primary-hover: #3b6ce9;
   --interactive: #245be7;
+  /* Filled buttons: near-black, inverted in dark mode. */
+  --button: light-dark(#1d2027, #eeeeef);
+  --button-hover: light-dark(#343841, #d9d9db);
+  --button-text: light-dark(#ffffff, #1d2027);
 
   --paper: light-dark(#ffffff, #191919);
   --wash: light-dark(#f7f7f9, #1f1f20);

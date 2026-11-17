@@ -38,11 +38,17 @@
   --page: var(--n0);
   --column: light-dark(#f9f9fb, #212122);
   --well: var(--n100);
-  --well-subtle: var(--n100);
   --sidebar-border: var(--n160);
   --sidebar-project-open: var(--n150);
   --menu-item-selected: var(--n160);
   --row-divider: var(--n160);
+  --divider: light-dark(var(--n160), color-mix(in srgb, var(--n150) 75%, var(--n100)));
+  /* The app's activity ramp (indigo), not the website's sky-blue one. */
+  --activity-0: var(--n150);
+  --activity-1: light-dark(#dde4fd, #252e55);
+  --activity-2: light-dark(#afc0f9, #37488f);
+  --activity-3: #6b8cf2;
+  --activity-4: light-dark(#3f5fd6, #afc0f9);
   --chip: var(--n150);
   --badge-purple-surface: light-dark(#efecfd, #2c2945);
   --badge-purple-text: light-dark(#7f6fdb, #c4bbf8);
@@ -583,9 +589,9 @@
 .app-shot .as-card {
   min-width: 0;
   overflow: hidden;
+  border: 1px solid var(--divider);
   border-radius: var(--radius-card);
-  background: var(--well-subtle);
-  box-shadow: var(--shadow-soft);
+  background: var(--page);
   color: var(--ink);
 }
 

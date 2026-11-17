@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <section class="hero hero--home" aria-labelledby="hero-title">
+    <div class="hero-ribbon" aria-hidden="true"><canvas data-ribbon></canvas></div>
     <div class="ledger" data-ledger aria-hidden="true"></div>
     <div class="hero__content">
       <h1 id="hero-title" class="hero__title" data-reveal><strong>Centralise</strong> your teams’ <strong>data work</strong>.</h1>
@@ -686,6 +687,7 @@
   {% include "partials/cta.html" %}
 {% endblock content %}
 {% block scripts %}
+  <script src="{{ get_url(path='js/ribbon.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/ledger.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/cubes.js', cachebust=true) }}" defer></script>

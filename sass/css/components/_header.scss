@@ -95,12 +95,16 @@ main > .hero:first-child {
   gap: inherit;
 }
 
-.site-header__links a {
+/* The header's "Start a pilot" sits outside the menu, so it stays visible on phones,
+   but reads as a link like Pricing. */
+.site-header__links a,
+.site-header__cta {
   position: relative;
   padding-block: 0.5rem;
 }
 
-.site-header__links a::after {
+.site-header__links a::after,
+.site-header__cta::after {
   position: absolute;
   inset: auto 0 0.15rem;
   height: 1px;
@@ -113,6 +117,8 @@ main > .hero:first-child {
 
 .site-header__links a:hover::after,
 .site-header__links a:focus-visible::after,
+.site-header__cta:hover::after,
+.site-header__cta:focus-visible::after,
 .site-header__links a[aria-current="page"]::after {
   transform: scaleX(1);
 }
@@ -129,34 +135,10 @@ main > .hero:first-child {
 }
 
 .site-header__links a:hover,
-.site-header__links a[aria-current="page"] {
+.site-header__links a[aria-current="page"],
+.site-header__nav .site-header__cta:hover {
   color: var(--ink);
 }
-
-.site-header__nav .site-header__cta {
-  display: inline-flex;
-  align-items: center;
-  height: 2rem;
-  padding: 0 0.8rem;
-  border-radius: var(--radius-ctl);
-  color: var(--paper-on-dark);
-  background: var(--primary);
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition:
-    background-color 150ms ease,
-    transform 150ms ease;
-}
-
-.site-header__nav .site-header__cta:hover {
-  color: var(--paper-on-dark);
-  background: var(--primary-hover);
-}
-
-.site-header__nav .site-header__cta:active {
-  transform: scale(0.96);
-}
-
 
 html.dark .site-header__logo img {
   filter: brightness(0) invert(1);
