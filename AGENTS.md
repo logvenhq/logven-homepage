@@ -4,7 +4,7 @@ The marketing site for logven.com, built with Zola and Sass. Start with `README.
 
 ## Copy
 
-The site sells one idea: **centralise your team's data work.** Each person gets simple tools for their own data work; Logven turns that work into one central data bank, keeps it organised, and shows the data you need, including the data you didn't know you had. Repeated tasks become automations that Logven turns into reliable, traceable software. Logven runs on your own servers or in the cloud with European data residency, on small, private AI models.
+The site sells one idea: **centralise your team's data work.** Each person gets simple tools for their own data work; Logven turns that work into one central data lake, keeps it organised, and shows the data you need, including the data you didn't know you had. Repeated tasks become automations that Logven turns into reliable, traceable software. Logven runs on your own servers or in the cloud with European data residency, on small, private AI models.
 
 - Keep new or edited copy consistent with that description and with the existing sections: the problem, how Logven works, what you get, your data stays yours.
 - Write plainly and for buyers, not engineers. No month-long setup, no data project: say so when it matters.
