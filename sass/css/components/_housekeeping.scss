@@ -1,212 +1,31 @@
 /*
- * It stays tidy as it grows: the app's Optimization page at real size, on a dotted
- * card like the outcomes mosaic. The page starts inside the card and fades out at the
- * bottom, cropped below the Unused list. Loads after app-shot.css so these rules can
- * place the shot without the stage's absolute layout.
+ * It stays tidy as it grows: one wide card of the platform cubes (cubes.js, the "tidy" scene).
+ * Sheets, workers and boards drift out of place and get tidied back into one group per process.
+ * The surface and rim fade match the three cards in "How it works".
  */
 
 .housekeeping-shot {
-  position: relative;
   overflow: hidden;
-  height: 48rem;
+  height: clamp(14rem, 21vw, 19rem);
   margin-top: clamp(2rem, 3.5vw, 3rem);
   border-radius: 0.5rem;
-  background-color: var(--hero);
-  background-image: radial-gradient(var(--tint-strong) 1px, transparent 1.3px);
-  background-size: 16px 16px;
+  background: var(--wash);
 }
 
-.housekeeping-shot .hk-shot {
-  /* Raised surface and dividers match the outcomes previews in both themes. */
-  --page: var(--surface-raised);
-  --row-divider: var(--tint-strong);
-  --hk-gutter: 28px;
-  --hk-track: var(--tint-strong);
-  --hk-blue: light-dark(#6fa6ee, #8db8f2);
-  --hk-green: light-dark(#6ccb8e, #8fd8a6);
-
-  inset: clamp(1.5rem, 2.8vw, 2.5rem) clamp(1.5rem, 5vw, 4.5rem) auto;
-  bottom: 0;
-  border-radius: 8px 8px 0 0;
-  box-shadow: var(--shadow-soft);
-  mask-image: linear-gradient(to bottom, #000 80%, transparent);
-}
-
-.app-shot .hk-page {
-  padding: 24px 0 32px;
-}
-
-.app-shot .hk-header {
-  padding: 0 var(--hk-gutter) 8px;
-}
-
-/* Stats panel (_panel.html.erb): four columns split by dividers, two on narrow screens. */
-.app-shot .hk-panel {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 24px var(--hk-gutter) 0;
-  padding: 16px 0;
-  border: 1px solid var(--row-divider);
-  border-radius: var(--radius-card);
-}
-
-.app-shot .hk-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-  padding: 0 20px;
-}
-
-.app-shot .hk-stat + .hk-stat {
-  border-left: 1px solid var(--row-divider);
-}
-
-.app-shot .hk-stat__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-  height: 20px;
-  color: var(--ink-soft);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.app-shot .hk-stat__action {
-  color: var(--ink);
-}
-
-.app-shot .hk-stat__value {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  color: var(--ink);
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 36px;
-}
-
-.app-shot .hk-stat__value.as-faint {
-  color: var(--ink-faint);
-}
-
-.app-shot .hk-stat__of {
-  color: var(--ink-faint);
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.app-shot .hk-stat__note {
-  color: var(--ink-soft);
-  font-size: 14px;
-}
-
-.app-shot .hk-meter {
-  display: block;
-  height: 4px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--hk-track);
-}
-
-.app-shot .hk-meter--empty {
-  background: none;
-}
-
-.app-shot .hk-meter__fill {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  transform-origin: left;
-  transition: transform 1.2s var(--ease-out) 0.25s;
-}
-
-.app-shot .hk-meter__fill--blue { background: var(--hk-blue); }
-.app-shot .hk-meter__fill--green { background: var(--hk-green); }
-
-/* The bars fill in as the section is revealed; without JavaScript they start full. */
-.housekeeping-shot[data-reveal-text]:not(.is-visible) .hk-meter__fill {
-  transform: scaleX(0);
-}
-
-/* Suggestions and Unused lists (data-table rows) */
-.app-shot .hk-section {
-  padding: 32px var(--hk-gutter) 0;
-}
-
-.app-shot .hk-cols {
-  grid-template-columns: minmax(12rem, 1fr) 15rem 9rem 6rem;
-}
-
-.app-shot .hk-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-  color: var(--ink);
-  font-weight: 500;
-}
-
-/* Narrow screens: the panel keeps Placement and In use and the lists drop the review
-   link, then the reason, and the header gives its room to the lists. */
-@container (max-width: 48rem) {
-  .app-shot .hk-panel {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .app-shot .hk-stat:nth-child(n + 3) {
-    display: none;
-  }
-
-  .app-shot .hk-cols {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 6rem;
-  }
-
-  .app-shot .hk-action {
-    display: none;
-  }
-}
-
-@container (max-width: 30rem) {
-  .app-shot .hk-page {
-    --hk-gutter: 16px;
-    padding-top: 20px;
-  }
-
-  .app-shot .hk-header {
-    display: none;
-  }
-
-  .app-shot .hk-panel {
-    margin-top: 0;
-  }
-
-  .app-shot .hk-stat {
-    padding: 0 16px;
-  }
-
-  .app-shot .hk-section {
-    padding-top: 32px;
-  }
-
-  .app-shot .hk-cols {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
-  .app-shot .hk-detail {
-    display: none;
-  }
+.cubes--tidy {
+  mask-image:
+    linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 16%, #000 76%, transparent 100%);
 }
 
 @media (max-width: 760px) {
   .housekeeping-shot {
-    height: 38rem;
+    height: 16rem;
   }
 
-  .housekeeping-shot .hk-shot {
-    inset: 1.25rem 1rem auto;
-    bottom: 0;
+  .cubes--tidy {
+    mask-image:
+      linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(to bottom, transparent 0, #000 16%, #000 76%, transparent 100%);
   }
 }

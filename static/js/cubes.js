@@ -94,6 +94,27 @@
     },
   };
 
+  // Interpolated position, opacity, and a depth cell: the farther-forward cell while sliding between two.
+  const viewAt = (c, now) => {
+    const m = c.move;
+    if (!m) return { pos: [c.i, c.j, c.k], depth: c.i + c.j, alpha: c.away ? 0 : 1 };
+    const t = clamp((now - m.t0) / m.dur);
+    const [[fi, fj, fk], [ti, tj, tk]] = [m.from, m.to];
+    if (m.mode === "lift") return { pos: [fi, fj, fk + 0.225 * (1 - Math.cos(2 * Math.PI * t))], depth: fi + fj, alpha: 1 };
+    // Sinking into the floor (or rising out of it) fades as it goes.
+    if (m.mode === "sink" || m.mode === "rise") {
+      const s = ease(t);
+      return { pos: [fi, fj, fk + (tk - fk) * s], depth: fi + fj, alpha: m.mode === "sink" ? 1 - s : s };
+    }
+    // Climbing rises before sliding over; stepping down slides off first, then settles.
+    const [up, down] = [tk > fk, tk < fk];
+    const h = ease(clamp(up ? (t - 0.35) / 0.65 : down ? t / 0.6 : t));
+    const v = ease(clamp(up ? t / 0.45 : down ? (t - 0.55) / 0.45 : t));
+    const pos = [fi + (ti - fi) * h, fj + (tj - fj) * h, fk + (tk - fk) * v];
+    const alpha = m.mode === "in" ? h : m.mode === "out" ? 1 - h : 1;
+    return { pos, alpha, depth: h <= 0 ? fi + fj : h >= 1 ? ti + tj : Math.max(fi + fj, ti + tj) };
+  };
+
   // The simulation knows nothing about the DOM: cubes, stacks per cell, crews that build, and passers-by.
   const createSim = (name, random = Math.random) => {
     const scene = SCENES[name];
@@ -344,21 +365,7 @@
       });
     };
 
-    // Interpolated position, opacity, and a depth cell: the farther-forward cell while sliding between two.
-    const view = (c) => {
-      const m = c.move;
-      if (!m) return { pos: [c.i, c.j, c.k], depth: c.i + c.j, alpha: c.away ? 0 : 1 };
-      const t = clamp((now - m.t0) / m.dur);
-      const [[fi, fj, fk], [ti, tj, tk]] = [m.from, m.to];
-      if (m.mode === "lift") return { pos: [fi, fj, fk + 0.225 * (1 - Math.cos(2 * Math.PI * t))], depth: fi + fj, alpha: 1 };
-      // Climbing rises before sliding over; stepping down slides off first, then settles.
-      const [up, down] = [tk > fk, tk < fk];
-      const h = ease(clamp(up ? (t - 0.35) / 0.65 : down ? t / 0.6 : t));
-      const v = ease(clamp(up ? t / 0.45 : down ? (t - 0.55) / 0.45 : t));
-      const pos = [fi + (ti - fi) * h, fj + (tj - fj) * h, fk + (tk - fk) * v];
-      const alpha = m.mode === "in" ? h : m.mode === "out" ? 1 - h : 1;
-      return { pos, alpha, depth: h <= 0 ? fi + fj : h >= 1 ? ti + tj : Math.max(fi + fj, ti + tj) };
-    };
+    const view = (c) => viewAt(c, now);
 
     crews.forEach((crew) => begin(crew, "build", 0));
     crews.forEach((crew) => {
@@ -374,6 +381,230 @@
     return { cubes, update, view };
   };
 
+  // Housekeeping: each process is a small group of sheets, workers and boards. Over time cubes drift out of
+  // place and unused ones turn up; then everything walks back home, the unused ones sink, and it holds.
+  const GROUPS = [
+    [[0, 0, 0, "sheets"], [1, 0, 0, "sheets"], [2, 0, 0, "sheets"], [0, 1, 0, "sheets"], [1, 1, 0, "sheets"], [2, 1, 0, "sheets"],
+      [1, 0, 1, "models"], [2, 0, 1, "models"], [-1, 0, 0, "workers"], [-1, 0, 1, "workers"], [-1, 0, 2, "workers"]],
+    [[0, 0, 0, "workers"], [0, 0, 1, "workers"], [0, 0, 2, "workers"], [1, 0, 0, "sheets"], [2, 0, 0, "sheets"], [0, 1, 0, "sheets"],
+      [1, 1, 0, "sheets"], [2, 1, 0, "sheets"], [1, 1, 1, "models"], [2, 1, 1, "models"], [3, 0, 0, "workers"]],
+    [[0, -1, 0, "sheets"], [0, 0, 0, "sheets"], [0, 1, 0, "sheets"], [1, -1, 0, "sheets"], [1, 0, 0, "sheets"], [1, 1, 0, "sheets"],
+      [0, -1, 1, "workers"], [0, 0, 1, "workers"], [-1, 1, 0, "models"], [-1, 1, 1, "models"], [-1, 2, 0, "models"]],
+    [[0, 0, 0, "models"], [0, 0, 1, "models"], [0, 1, 0, "sheets"], [1, 0, 0, "sheets"], [2, 0, 0, "sheets"], [1, 1, 0, "sheets"],
+      [2, 1, 0, "sheets"], [3, 0, 0, "workers"], [3, 0, 1, "workers"], [3, 1, 0, "workers"], [0, 2, 0, "sheets"]],
+  ];
+  const STRAYS = ["sheets", "workers", "models", "sheets", "models", "workers", "sheets"];
+
+  // `area` is where cubes may roam: |u| <= U and vMin <= v <= vMax, with u = i - j and v = i + j.
+  const createTidy = ({ count, spacing, area }, random = Math.random) => {
+    const cols = new Map();
+    const locks = new Set();
+    const inArea = (i, j) => Math.abs(i - j) <= area.U && i + j >= area.vMin && i + j <= area.vMax;
+    const groups = GROUPS.slice(0, count).map((cells, n) => {
+      const u = 2 * Math.round(((n - (count - 1) / 2) * spacing) / 2);
+      const [ci, cj] = [(u + 2) / 2, (2 - u) / 2];
+      return { centre: [ci, cj], slots: cells.map(([i, j, k, kind]) => ({ i: ci + i, j: cj + j, k, kind })) };
+    });
+    const foot = new Set(groups.flatMap((g) => g.slots.map((s) => key(s.i, s.j))));
+    // Each group plus a one-cell margin: cubes that wait or wander keep off it, so no slot is ever walled in.
+    const zone = new Set([...foot].flatMap((id) => [[0, 0], ...DIRS].map(([di, dj]) => key(cell(id)[0] + di, cell(id)[1] + dj))));
+    const cubes = [
+      ...groups.flatMap((g) => g.slots.map((s) => ({ group: g, kind: s.kind, home: s }))),
+      ...STRAYS.slice(0, count + 1).map((kind) => ({ stray: true, kind })),
+    ].map((c) => Object.assign(c, { i: 0, j: 0, k: 0, dir: [1, 0], goal: null, move: null, next: 0, blocked: 0, away: false }));
+    const room = [];
+    for (let i = -40; i <= 40; i += 1) for (let j = -40; j <= 40; j += 1) if (inArea(i, j)) room.push([i, j]);
+    const pick = (count, test) => {
+      const picked = [];
+      shuffle(room.filter(([i, j]) => test(i, j)), random).forEach((p) => picked.length < count && apart(picked, p, 1) && picked.push(p));
+      return picked;
+    };
+    const crowd = cubes.filter((c) => !c.stray);
+    const strays = cubes.filter((c) => c.stray);
+    let now = 0;
+    let phase = { name: "mess", until: 700 };
+
+    const pile = (i, j) => cols.get(key(i, j)) || [];
+    const height = (i, j) => pile(i, j).length;
+    const top = (i, j) => pile(i, j)[height(i, j) - 1];
+    const put = (c) => cols.set(key(c.i, c.j), [...pile(c.i, c.j), c]);
+    const take = (c) => cols.set(key(c.i, c.j), pile(c.i, c.j).slice(0, -1));
+    const at = (c, s) => c.i === s.i && c.j === s.j && c.k === s.k;
+    const home = (c) => !c.stray && !c.move && at(c, c.home);
+    const settled = (i, j, k) => Boolean(pile(i, j)[k] && home(pile(i, j)[k]) && !pile(i, j)[k].goal);
+    const free = (i, j) => inArea(i, j) && !foot.has(key(i, j)) && !height(i, j) && !locks.has(key(i, j));
+    const clear = (i, j) => free(i, j) && !zone.has(key(i, j));
+    const idle = (c) => !c.move && !c.away && top(c.i, c.j) === c && !locks.has(key(c.i, c.j));
+
+    const move = (c, i, j, k, mode) => {
+      if (!c.away) take(c);
+      locks.add(key(c.i, c.j)).add(key(i, j));
+      if (!mode) c.dir = [i - c.i, j - c.j];
+      const dur = mode ? 1100 : 380 + random() * 170 + 170 * Math.abs(k - c.k);
+      Object.assign(c, { move: { from: [c.i, c.j, c.k], to: [i, j, k], t0: now, dur, mode }, blocked: 0, away: false });
+    };
+    const finish = (c) => {
+      const [i, j, k] = c.move.to;
+      locks.delete(key(c.i, c.j));
+      locks.delete(key(i, j));
+      const sunk = c.move.mode === "sink";
+      Object.assign(c, { i, j, k: sunk ? 0 : k, away: sunk, move: null });
+      if (!sunk) put(c);
+      c.next = now + 60 + random() * 220 + (random() < 0.12 ? 400 + random() * 500 : 0);
+    };
+
+    // Distances over free ground from the goal, then one step downhill, preferring to keep going straight.
+    const flood = (starts) => {
+      const dist = new Map(starts.map(([i, j]) => [key(i, j), 0]));
+      for (let n = 0; n < starts.length; n += 1) {
+        const [i, j] = starts[n];
+        DIRS.forEach(([di, dj]) => {
+          if (dist.has(key(i + di, j + dj)) || !free(i + di, j + dj)) return;
+          dist.set(key(i + di, j + dj), dist.get(key(i, j)) + 1);
+          starts.push([i + di, j + dj]);
+        });
+      }
+      return dist;
+    };
+    const route = (c, dist) => {
+      let best = null;
+      [c.dir, ...shuffle(DIRS.slice(), random)].forEach(([di, dj]) => {
+        const d = dist.get(key(c.i + di, c.j + dj));
+        if (d !== undefined && (!best || d < best[2])) best = [c.i + di, c.j + dj, d];
+      });
+      return best;
+    };
+    const sidestep = (c) => {
+      c.blocked += 1;
+      if (c.blocked < 6) return;
+      const out = shuffle(DIRS.slice(), random).find(([di, dj]) => free(c.i + di, c.j + dj));
+      if (out) move(c, c.i + out[0], c.j + out[1], 0);
+    };
+
+    const decide = (c) => {
+      c.next = now + 150 + random() * 250;
+      if (!c.goal || !idle(c)) return;
+      const g = c.goal;
+      if (!g.slot) {
+        if (at(c, g)) return void (c.goal = null);
+        const next = free(g.i, g.j) && route(c, flood([[g.i, g.j]]));
+        if (next) return move(c, next[0], next[1], 0);
+        if ((c.blocked += 1) > 4) c.goal = null;
+        return;
+      }
+      const s = g.slot;
+      if (at(c, s)) return void (c.goal = null);
+      // A slot opens once the cube below it is home; until then, wait nearby and clear of every group.
+      const ready = (!s.k || settled(s.i, s.j, s.k - 1)) && height(s.i, s.j) === s.k && !locks.has(key(s.i, s.j));
+      if (ready) {
+        const next = route(c, flood([[s.i, s.j]]));
+        return next ? move(c, next[0], next[1], next[0] === s.i && next[1] === s.j ? s.k : 0) : sidestep(c);
+      }
+      if (c.k || zone.has(key(c.i, c.j))) {
+        const next = route(c, flood(room.filter(([i, j]) => clear(i, j))));
+        return next ? move(c, next[0], next[1], 0) : sidestep(c);
+      }
+      const next = route(c, flood([[s.i, s.j]]));
+      if (next && clear(next[0], next[1])) move(c, next[0], next[1], 0);
+    };
+
+    // Each kind goes to the nearest slot of that kind in its group, lower slots first; a cube already home keeps
+    // its slot.
+    const gather = () => {
+      groups.forEach((g) => {
+        const used = new Set();
+        const members = crowd.filter((c) => c.group === g);
+        members
+          .flatMap((c) => g.slots.filter((s) => s.kind === c.kind).map((s) => [Math.abs(c.i - s.i) + Math.abs(c.j - s.j) + Math.abs(c.k - s.k) + 2 * s.k + random() / 2, c, s]))
+          .sort((a, b) => a[0] - b[0])
+          .forEach(([, c, s]) => {
+            if (used.has(c) || used.has(s)) return;
+            used.add(c).add(s);
+            Object.assign(c, { home: s, goal: at(c, s) ? null : { slot: s } });
+          });
+      });
+      shuffle(strays.filter((c) => !c.away), random).forEach((c, n) => (c.sinkAt = now + 300 + n * 380 + random() * 300));
+    };
+    const spot = (near, lo, hi) => {
+      const dist = flood([near]);
+      const options = [...dist].filter(([id, d]) => d >= lo && d <= hi && !zone.has(id));
+      return options.length ? cell(options[Math.floor(random() * options.length)][0]) : null;
+    };
+    // Drift: one cube at a time leaves its place, now and then an unused one turns up.
+    const drift = () => {
+      const events = shuffle([...Array(Math.round(crowd.length * 0.25)).fill("leave"), ...strays.map(() => "arrive")], random);
+      phase = { name: "drift", events, at: now + 400 };
+    };
+    const happen = (event) => {
+      if (event === "arrive") {
+        const c = strays.find((s) => s.away);
+        const [ci, cj] = groups[Math.floor(random() * groups.length)].centre;
+        const p = c && pick(1, (i, j) => Math.max(Math.abs(i - ci), Math.abs(j - cj)) <= 6 && clear(i, j))[0];
+        if (!p) return;
+        [c.i, c.j, c.k] = [p[0], p[1], -0.7];
+        return move(c, p[0], p[1], 0, "rise");
+      }
+      const options = crowd.filter((c) => idle(c) && !c.goal && (home(c) || random() < 0.3));
+      const c = options[Math.floor(random() * options.length)];
+      const p = c && spot([c.i, c.j], 2, 5);
+      if (p) c.goal = { i: p[0], j: p[1], k: 0 };
+    };
+
+    const busy = () => cubes.some((c) => c.move || c.goal);
+    const update = (dt) => {
+      now += dt;
+      cubes.forEach((c) => c.move && now >= c.move.t0 + c.move.dur && finish(c));
+      strays.forEach((c) => c.sinkAt <= now && idle(c) && ((c.sinkAt = Infinity), move(c, c.i, c.j, -0.7, "sink")));
+      cubes.forEach((c) => !c.move && now >= c.next && decide(c));
+      if (phase.name === "mess" && now >= phase.until) {
+        gather();
+        phase = { name: "tidy", start: now };
+      } else if (phase.name === "tidy") {
+        const done = !busy() && strays.every((c) => c.away);
+        // Hold once everything is home; a tidy-up that somehow cannot finish just moves on.
+        if (done && !phase.until) phase.until = now + 3400;
+        if ((phase.until && now >= phase.until) || now - phase.start > 30000) drift();
+      } else if (phase.name === "drift") {
+        if (phase.events.length && now >= phase.at) {
+          happen(phase.events.pop());
+          phase.at = now + 150 + random() * 200;
+        } else if (!phase.events.length && !busy()) phase = { name: "mess", until: now + 1400 };
+      }
+    };
+
+    // The jumble the scene opens with: a few ground cubes still in place, the rest strewn round each group's
+    // place, some on top of others.
+    const strew = () => {
+      groups.forEach((g) => {
+        const [ci, cj] = g.centre;
+        const near = (i, j) => Math.max(Math.abs(i - ci), Math.abs(j - cj)) <= 5;
+        const members = crowd.filter((c) => c.group === g);
+        const kept = members.filter((c) => !c.home.k && random() < 0.3);
+        const loose = members.filter((c) => !kept.includes(c));
+        const picked = pick(loose.length, (i, j) => near(i, j) && clear(i, j));
+        kept.forEach((c) => put(Object.assign(c, c.home)));
+        loose.forEach((c, n) => {
+          const p = (n > 2 && random() < 0.15) || !picked[n] ? picked[Math.floor(random() * Math.min(n, picked.length))] : picked[n];
+          put(Object.assign(c, { i: p[0], j: p[1], k: height(p[0], p[1]) }));
+        });
+      });
+      const placed = pick(strays.length, clear);
+      strays.forEach((c, n) => (placed[n] ? put(Object.assign(c, { i: placed[n][0], j: placed[n][1] })) : (c.away = true)));
+    };
+    // The tidy end state, for reduced motion.
+    const settle = () => {
+      cols.clear();
+      locks.clear();
+      crowd.forEach((c) => Object.assign(c, { ...c.home, move: null, goal: null }));
+      crowd.slice().sort((a, b) => a.k - b.k).forEach(put);
+      strays.forEach((c) => Object.assign(c, { move: null, away: true, sinkAt: Infinity }));
+      phase = { name: "tidy", start: now, until: now + 3400 };
+    };
+
+    strew();
+    return { cubes, update, settle, view: (c) => viewAt(c, now) };
+  };
+
   const project = ([i, j, k]) => [
     (i * AXIS_I[0] + j * AXIS_J[0]) * GAP,
     (i * AXIS_I[1] + j * AXIS_J[1]) * GAP - k * RISE * GAP,
@@ -386,9 +617,8 @@
   };
 
   // A soft isometric grid whose lines run between the cube cells.
-  const drawGrid = (svg) => {
+  const drawGrid = (svg, reach = 24) => {
     const grid = element("g", { class: "cubes__grid" });
-    const reach = 24;
     for (let m = -reach; m <= reach; m += 1) {
       [[AXIS_I, AXIS_J], [AXIS_J, AXIS_I]].forEach(([along, across]) => {
         const [ox, oy] = [0, 1].map((n) => BASE[n] + (m + 0.5) * across[n] * GAP);
@@ -399,24 +629,56 @@
     svg.append(grid);
   };
 
+  // The housekeeping scene fills a wide card: cubes keep about the size they have in the three cards, and as
+  // many groups as fit sit side by side (two on a phone, four on a desktop).
+  const UNIT_X = AXIS_I[0] * GAP;
+  const UNIT_Y = AXIS_I[1] * GAP;
+  const fitTidy = (svg) => {
+    const { width, height } = svg.getBoundingClientRect();
+    const scale = Math.min(Math.max(width / 600, 1.4), 2.2);
+    const [w, h, middle] = [width / scale, height / scale, 2 * UNIT_Y + 4];
+    const box = [7 - w / 2, middle - h / 2, w, h].map((n) => n.toFixed(1)).join(" ");
+    const count = Math.min(Math.max(Math.floor((0.84 * w) / 95), 2), 4);
+    const area = {
+      U: Math.floor((0.44 * w - 10) / UNIT_X),
+      vMin: Math.ceil((middle - 0.34 * h + 4) / UNIT_Y),
+      vMax: Math.floor((middle + 0.32 * h - 14) / UNIT_Y),
+    };
+    return { box, count, spacing: (0.84 * w) / count / UNIT_X, area };
+  };
+
   const build = (svg) => {
     const name = svg.dataset.cubes;
-    if (!SCENES[name]) return;
+    const tidy = name === "tidy";
+    if (!SCENES[name] && !tidy) return;
 
-    const symbol = element("g", { id: `cube-${name}` });
-    COLORS[name].forEach((fill, index) => symbol.append(element("path", { d: FACES[index], fill })));
+    const ref = (kind) => (tidy ? `cube-tidy-${kind}` : `cube-${name}`);
     const defs = element("defs", {});
-    defs.append(symbol);
+    (tidy ? Object.keys(COLORS) : [name]).forEach((kind) => {
+      const symbol = element("g", { id: ref(kind) });
+      COLORS[kind].forEach((fill, index) => symbol.append(element("path", { d: FACES[index], fill })));
+      defs.append(symbol);
+    });
     svg.append(defs);
-    drawGrid(svg);
+    let fit = tidy && fitTidy(svg);
+    if (tidy) svg.setAttribute("viewBox", fit.box);
+    drawGrid(svg, tidy ? 60 : undefined);
     const layer = element("g", {});
     svg.append(layer);
 
-    const sim = createSim(name);
-    const nodes = sim.cubes.map(() => layer.appendChild(element("use", { href: `#cube-${name}` })));
-    const placed = [];
-    const faded = [];
-    let order = [];
+    let sim;
+    let nodes;
+    let placed;
+    let faded;
+    let order;
+    const start = () => {
+      sim = tidy ? createTidy(fit) : createSim(name);
+      if (tidy && reduceMotion.matches) sim.settle();
+      layer.replaceChildren();
+      nodes = sim.cubes.map((c) => layer.appendChild(element("use", { href: `#${ref(c.kind)}` })));
+      [placed, faded, order] = [[], [], []];
+    };
+    start();
 
     // Paint back to front: depth cell, then the exact diagonal, then height. Re-append only on change.
     const render = () => {
@@ -461,6 +723,18 @@
     }).observe(svg);
     document.addEventListener("visibilitychange", sync);
     reduceMotion.addEventListener("change", sync);
+    if (!tidy) return;
+
+    // With reduced motion the scene shows its tidy end state; a resize that changes the groups starts it over.
+    reduceMotion.addEventListener("change", () => reduceMotion.matches && (sim.settle(), render()));
+    new ResizeObserver(() => {
+      const next = fitTidy(svg);
+      svg.setAttribute("viewBox", next.box);
+      if (next.count === fit.count) return;
+      fit = next;
+      start();
+      render();
+    }).observe(svg);
   };
 
   // Build the simulations as their illustrations approach the viewport.
