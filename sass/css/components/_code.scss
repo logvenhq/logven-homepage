@@ -8,7 +8,6 @@
 
 .lined {
   position: relative;
-  border-inline: 1px solid var(--line);
 }
 
 .lined__head {
@@ -20,9 +19,11 @@
   padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.25rem, 3vw, 2.5rem) clamp(2rem, 3.5vw, 3rem);
 }
 
+/* The frame starts at the first rule; the title sits above it, open. */
 .lined__row {
   position: relative;
   display: grid;
+  border-inline: 1px solid var(--line);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
