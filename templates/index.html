@@ -529,8 +529,6 @@
             <figcaption class="code__bar">
               <span class="code__file"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Vibration trend</span>
               <span class="code__tag">Worker</span>
-              <button class="code__copy" type="button" data-copy="code-worker" aria-label="Copy code">{#- -#}
-              <span class="code__copy-icon" aria-hidden="true"></span></button>
             </figcaption>
             <pre class="code__body"><code id="code-worker"><span class="code__line"><span class="code__keyword">async</span> <span class="code__keyword">function</span> <span class="code__fn">run</span>(input, <span class="code__ctx">ctx</span>) {</span>{#- -#}{#- -#}
             <span class="code__line">  <span class="code__keyword">const</span> tests = <span class="code__ctx">ctx</span>.sheets</span>{#- -#}{#- -#}
@@ -562,8 +560,6 @@
             <figcaption class="code__bar">
               <span class="code__file"><img src="{{ get_url(path='images/blocks/workers_cube.svg') }}" alt="" width="14" height="14">Vibration trend</span>
               <span class="code__tag">Worker with model steps</span>
-              <button class="code__copy" type="button" data-copy="code-ai" aria-label="Copy code"><span class="code__copy-icon" aria-hidden="true">{#- -#}
-              </span></button>
             </figcaption>
             <pre class="code__body"><code id="code-ai"><span class="code__line"><span class="code__keyword">const</span> forecast = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">forecast</span>({</span>{#- -#}{#- -#}
             <span class="code__line">  model: <span class="code__string">"timestral"</span>,</span><span class="code__line">  series: readings,</span>{#- -#}{#- -#}
@@ -707,6 +703,5 @@
 {% block scripts %}
   <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/cubes.js', cachebust=true) }}" defer></script>
-  <script src="{{ get_url(path='js/copy.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/record-grid.js', cachebust=true) }}" defer></script>
 {% endblock scripts %}
