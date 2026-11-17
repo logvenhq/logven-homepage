@@ -1,0 +1,87 @@
+{# Static recreation of the Logven app's Optimization page (workspaces/optimizations/show.html.erb and _panel.html.erb),
+   cropped to the panel and the Suggestions and Unused lists. #}
+<div class="app-shot hk-shot">
+  <div class="hk-page">
+    <div class="hk-header">
+      <div class="as-title">Optimization</div>
+      <p class="as-copy">What the daily analysis of Asteria Aerospace suggests you change.</p>
+    </div>
+
+    <div class="hk-panel">
+      <div class="hk-stat">
+        <div class="hk-stat__head"><span>Placement</span></div>
+        <div class="hk-stat__value as-tnum">92%</div>
+        <span class="hk-meter"><span class="hk-meter__fill hk-meter__fill--blue" style="width:92%"></span></span>
+        <div class="hk-stat__note as-truncate">2 sheets would fit better elsewhere</div>
+      </div>
+      <div class="hk-stat">
+        <div class="hk-stat__head"><span>In use</span><span class="hk-stat__action">Unused</span></div>
+        <div class="hk-stat__value as-tnum">42 <span class="hk-stat__of">of 46</span></div>
+        <span class="hk-meter"><span class="hk-meter__fill hk-meter__fill--green" style="width:91%"></span></span>
+        <div class="hk-stat__note as-truncate">4 items unused</div>
+      </div>
+      <div class="hk-stat">
+        <div class="hk-stat__head"><span>Decisions</span></div>
+        <div class="hk-stat__value as-tnum">6</div>
+        <span class="hk-meter hk-meter--empty"></span>
+        <div class="hk-stat__note as-truncate">Decisions waiting</div>
+      </div>
+      <div class="hk-stat">
+        <div class="hk-stat__head"><span>Analysis</span><span class="hk-stat__action">Run now</span></div>
+        <div class="hk-stat__value as-faint">Nightly</div>
+        <span class="hk-meter hk-meter--empty"></span>
+        <div class="hk-stat__note as-truncate">Groups sheets and checks usage</div>
+      </div>
+    </div>
+
+    <div class="hk-section">
+      <div class="as-h3">Suggestions <span class="as-count">2</span></div>
+      <div class="as-table-header hk-cols"><span>Item</span><span class="hk-detail">To</span><span>Kind</span><span class="hk-action"></span></div>
+      <div class="as-table-list">
+        <div class="as-row hk-cols">
+          <span class="hk-item"><span class="as-cube as-cube--sheets"></span><span class="as-truncate">Vibration Readings</span></span>
+          <span class="hk-detail as-truncate as-body">To Flight Reliability</span>
+          <span class="as-cell-flex"><span class="as-badge as-badge--blue">Move sheet</span></span>
+          <span class="hk-action as-row-action">Review</span>
+        </div>
+        <div class="as-row hk-cols">
+          <span class="hk-item"><span class="as-cube as-cube--sheets"></span><span class="as-truncate">Ground Pass Schedule</span></span>
+          <span class="hk-detail as-truncate as-body">To Mission Operations</span>
+          <span class="as-cell-flex"><span class="as-badge as-badge--blue">Move sheet</span></span>
+          <span class="hk-action as-row-action">Review</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hk-section">
+      <div class="as-h3">Unused <span class="as-count">4</span></div>
+      <div class="as-table-header hk-cols"><span>Item</span><span class="hk-detail">Reason</span><span>Kind</span><span class="hk-action"></span></div>
+      <div class="as-table-list">
+        <div class="as-row hk-cols">
+          <span class="hk-item"><span class="as-cube as-cube--sheets"></span><span class="as-truncate">Bench Calibration 2025</span></span>
+          <span class="hk-detail as-truncate as-body">No path to an output</span>
+          <span class="as-cell-flex"><span class="as-badge as-badge--orange">Sheet</span></span>
+          <span class="hk-action as-row-action">Review</span>
+        </div>
+        <div class="as-row hk-cols">
+          <span class="hk-item"><span class="as-cube as-cube--workers"></span><span class="as-truncate">Weekly Vibration Digest</span></span>
+          <span class="hk-detail as-truncate as-body">Not used recently</span>
+          <span class="as-cell-flex"><span class="as-badge as-badge--orange">Worker</span></span>
+          <span class="hk-action as-row-action">Review</span>
+        </div>
+        <div class="as-row hk-cols">
+          <span class="hk-item"><span class="as-cube as-cube--workers"></span><span class="as-truncate">Invoice Matcher v1</span></span>
+          <span class="hk-detail as-truncate as-body">Not used recently and no path to an output</span>
+          <span class="as-cell-flex"><span class="as-badge as-badge--orange">Worker</span></span>
+          <span class="hk-action as-row-action">Review</span>
+        </div>
+        <div class="as-row hk-cols">
+          <span class="hk-item"><span class="as-cube as-cube--boards"></span><span class="as-truncate">Inspection Backlog</span></span>
+          <span class="hk-detail as-truncate as-body">Not used recently</span>
+          <span class="as-cell-flex"><span class="as-badge as-badge--orange">Board</span></span>
+          <span class="hk-action as-row-action">Review</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
