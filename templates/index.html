@@ -235,6 +235,7 @@
       </div>
     </section>
 
+    {% include "partials/numbers.html" %}
     <section id="code" class="block block--lined" aria-labelledby="code-title" data-header-dark>
       <div class="container">
         <div class="lined">
@@ -460,5 +461,6 @@
   <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/system.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/tidy.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/numbers.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/birdseye.js', cachebust=true) }}" defer></script>
 {% endblock scripts %}
