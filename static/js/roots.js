@@ -64,7 +64,10 @@
       node.bend = (random() - 0.5) * 0.08;
       node.lean = 0.35 + random() * 0.3;
     });
-    return { nodes, trunk, tips: nodes.filter((node) => !node.children.length), random };
+    // Every tip runs on past the left edge, so no branch stops in the middle of the picture.
+    const tips = nodes.filter((node) => !node.children.length);
+    tips.forEach((node) => (node.x = 1.12));
+    return { nodes, trunk, tips, random };
   };
 
   const tree = grow();
