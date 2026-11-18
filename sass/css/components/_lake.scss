@@ -1,8 +1,9 @@
 /*
  * One data lake: a hair-thin grey line comes in from each edge of the window, structured data on
  * the left and unstructured on the right, and flares only near the centre into a grey ring around
- * a black sphere, with the orb's smoke turning inside it (_orb.scss). Plain SVG in
- * templates/index.html. The grey outline is fixed; soft shades drift along it towards the centre.
+ * a black sphere, with the orb's smoke turning inside it (_orb.scss). The sphere's top edge catches
+ * a soft glow in the graphics palette. Plain SVG in templates/index.html. The grey outline is
+ * fixed; soft shades drift along it towards the centre, and the glow turns slowly.
  */
 
 .lake {
@@ -27,6 +28,19 @@
 
 .lake__sphere {
   fill: var(--ink);
+}
+
+/* The glow turns slowly, so the colours along the top of the sphere drift. */
+.lake__fringe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lake-fringe 24s linear infinite;
+}
+
+@keyframes lake-fringe {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Soft shades drift in along the grey from both edges and fade as they reach the sphere,
@@ -69,6 +83,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .lake__fringe,
   .lake__pulse {
     animation: none;
   }
