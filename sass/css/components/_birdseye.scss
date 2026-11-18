@@ -130,7 +130,7 @@
 }
 
 /* The data lake's sphere, white on night, with the orb's pale smoke turning inside it. Its top
-   edge catches a soft glow in the graphics palette, like the data lake's sphere (_lake.scss). */
+   edge catches a soft glow in the graphics palette. */
 .birdseye__sphere {
   position: absolute;
   top: 50%;
@@ -140,9 +140,9 @@
   transform: translate(-50%, -50%);
 }
 
-/* Sized and faded like the lake's glow: a blurred ring a touch larger than the sphere, nudged up and
-   masked to its top edge. The colours turn inside the mask, so the glow stays on top. The mask's box
-   leaves room round the ring for the blur, so the glow fades out instead of stopping at an edge. */
+/* A blurred ring a touch larger than the sphere, nudged up and masked to its top edge. The colours
+   turn inside the mask, so the glow stays on top. The mask's box leaves room round the ring for the
+   blur, so the glow fades out instead of stopping at an edge. */
 .birdseye__corona {
   --room: 0.5rem;
   --ring: calc(var(--sphere) + 0.125rem);
@@ -163,7 +163,13 @@
   border-radius: 50%;
   background: conic-gradient(from 0deg, var(--blue), var(--indigo), var(--violet), var(--orange), var(--amber), var(--sky), var(--azure), var(--blue));
   filter: blur(0.15rem);
-  animation: lake-fringe 30s linear infinite;
+  animation: birdseye-glow 30s linear infinite;
+}
+
+@keyframes birdseye-glow {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .birdseye__core {
