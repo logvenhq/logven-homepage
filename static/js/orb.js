@@ -1,4 +1,4 @@
-// The orb: smoke turning slowly inside a sphere, lit from below, like a voice assistant's orb.
+// The orb: soft, blurred colour drifting slowly inside a flat disc, lit from below left.
 // It fills the data lake's spheres: the lake, the hub in how it works and Birdseye. The tools
 // badges keep their plain black marks.
 //
@@ -20,6 +20,7 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const MAX_SCALE = 2;
+  const BLEED = 1;
 
   const vertex = `
     attribute vec2 position;
@@ -47,40 +48,34 @@
                  mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
     }
 
+    // Two broad octaves only: soft, out-of-focus shapes rather than fine wisps.
     float fbm(vec2 p) {
       float value = 0.0;
-      float amplitude = 0.5;
+      float amplitude = 0.6;
       mat2 turn = mat2(0.8, 0.6, -0.6, 0.8);
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 2; i++) {
         value += amplitude * noise(p);
-        p = turn * p * 2.02 + 3.1;
-        amplitude *= 0.5;
+        p = turn * p * 1.9 + 3.1;
+        amplitude *= 0.45;
       }
-      return value;
+      return value / 0.87;
     }
 
     void main() {
-      // -1 to 1 across the sphere, y up.
+      // -1 to 1 across the disc, y up. Flat: no bend over a sphere.
       vec2 p = (gl_FragCoord.xy / resolution) * 2.0 - 1.0;
       float r = length(p);
-      float t = time * 0.06;
+      float t = time * 0.05;
 
-      // Bend the plane over a sphere, so the smoke seems to wrap round it.
-      float z = sqrt(max(0.0, 1.0 - r * r));
-      vec2 q = p / (0.6 + 0.4 * z);
+      // One gentle warp at a low frequency, so the colour drifts in large, blurred masses.
+      vec2 a = vec2(fbm(p * 0.7 + vec2(t, -t * 0.7)), fbm(p * 0.7 + vec2(5.2 - t * 0.6, 1.3 + t)));
+      float density = fbm(p * 0.8 + 1.6 * a + vec2(1.7, 9.2) + t * 0.3);
 
-      // Domain warping: noise displaced by noise, twice, for slow, folding smoke.
-      vec2 a = vec2(fbm(q * 0.9 + vec2(t, -t * 0.7)), fbm(q * 0.9 + vec2(5.2 - t * 0.6, 1.3 + t)));
-      vec2 b = vec2(fbm(q * 1.0 + 2.0 * a + vec2(1.7, 9.2) + t * 0.5), fbm(q * 1.0 + 2.0 * a + vec2(8.3, 2.8) - t * 0.4));
-      float density = fbm(q * 0.8 + 2.4 * b);
-
-      // Light from below left: the smoke is strongest there and fades into the base at the top.
+      // Light from below left: the colour is strongest there and fades into the base at the top.
+      // A wide ramp, so nothing inside has a hard edge.
       float light = smoothstep(0.9, -0.9, p.y * 0.85 - p.x * 0.35);
-      float shade = pow(smoothstep(0.3, 0.9, density + 0.6 * light - 0.2), 1.15);
+      float shade = smoothstep(0.2, 1.0, density + 0.6 * light - 0.2);
       vec3 colour = mix(base, smoke, shade);
-
-      // The edge settles back into the base, so the sphere reads round.
-      colour = mix(colour, base, smoothstep(0.55, 1.0, r) * 0.4);
 
       // A crisp, anti-aliased edge; outside the circle stays transparent.
       float edge = 1.0 - smoothstep(1.0 - 2.0 / resolution.x, 1.0, r);
@@ -147,17 +142,20 @@
     const outer = frame.getBoundingClientRect();
     const box = target.getBoundingClientRect();
     if (!box.width) return false;
-    const left = box.left - outer.left - frame.clientLeft;
-    const top = box.top - outer.top - frame.clientTop;
-    const key = `${left.toFixed(1)} ${top.toFixed(1)} ${box.width.toFixed(1)}`;
+    // A pixel of bleed on every side, so the shape's soft edge stays under the orb's solid one
+    // instead of showing through as a thin ring.
+    const left = box.left - outer.left - frame.clientLeft - BLEED;
+    const top = box.top - outer.top - frame.clientTop - BLEED;
+    const width = box.width + 2 * BLEED;
+    const key = `${left.toFixed(1)} ${top.toFixed(1)} ${width.toFixed(1)}`;
     if (key !== orb.box) {
       orb.box = key;
       canvas.style.left = `${left}px`;
       canvas.style.top = `${top}px`;
-      canvas.style.width = `${box.width}px`;
-      canvas.style.height = `${box.width}px`;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${width}px`;
     }
-    const size = Math.max(1, Math.round(box.width * Math.min(window.devicePixelRatio || 1, MAX_SCALE)));
+    const size = Math.max(1, Math.round(width * Math.min(window.devicePixelRatio || 1, MAX_SCALE)));
     if (canvas.width !== size) {
       canvas.width = size;
       canvas.height = size;
