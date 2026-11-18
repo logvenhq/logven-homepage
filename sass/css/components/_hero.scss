@@ -9,7 +9,7 @@
   background: var(--hero-surface);
 }
 
-/* Homepage: the ribbon and ledger fill the top, the title sits below them. */
+/* Homepage: the ledger fills the top, the title sits below them. */
 .hero--home {
   grid-template-rows: minmax(0, 1fr) auto;
   align-content: stretch;
@@ -58,6 +58,117 @@
   text-wrap: balance;
 }
 
+/* Title chips: two small tiles open up in the homepage title on load, one before "Centralise"
+   and one before "data work". Each pushes the words apart on a soft spring, and its tile pops in
+   on a livelier one. They're decoration; the title reads the same without them. */
+.hero__pair {
+  white-space: nowrap;
+}
+
+.hero__chip {
+  --chip: 1em;
+  --chip-gap: 0.24em;
+  --chip-delay: 0.4s;
+  --chip-tilt: -14deg;
+  /* Springs, sampled: the gap settles with a slight give, the tile with a little bounce. */
+  --spring-open: linear(0, 0.018, 0.064, 0.13, 0.208, 0.292, 0.378, 0.462, 0.541, 0.615, 0.683, 0.743, 0.796, 0.841, 0.88, 0.913, 0.94, 0.961, 0.979, 0.992, 1.002, 1.009, 1.014, 1.018, 1.019, 1.02, 1.02, 1.019, 1.018, 1.016, 1.014, 1.013, 1.011, 1.009, 1.008, 1.007, 1.005, 1.004, 1.003, 1.003, 1);
+  --spring-pop: linear(0, 0.036, 0.128, 0.255, 0.398, 0.545, 0.683, 0.806, 0.909, 0.991, 1.052, 1.093, 1.116, 1.126, 1.124, 1.114, 1.1, 1.082, 1.063, 1.045, 1.029, 1.015, 1.004, 0.996, 0.99, 0.986, 0.984, 0.984, 0.985, 0.987, 0.989, 0.991, 0.994, 0.996, 0.998, 0.999, 1, 1.001, 1.002, 1.002, 1);
+
+  display: inline-flex;
+  justify-content: center;
+  width: var(--chip);
+  height: var(--chip);
+  margin-inline-end: var(--chip-gap);
+  vertical-align: -0.17em;
+  animation: hero-chip-open 0.80s var(--ease-out) var(--chip-delay) both;
+  animation-timing-function: var(--spring-open);
+}
+
+/* Centralise: orange warming to amber at the top, with a reddish edge. */
+.hero__chip--centralise {
+  --chip-glow: rgb(255 226 140 / 0.8);
+  --chip-deep: rgb(226 70 52 / 0.7);
+  --chip-accent: rgb(255 128 84 / 0.45);
+  --chip-base: linear-gradient(160deg, #ffbe55 0%, #ff9442 38%, #f86e3c 70%, #e85340 100%);
+  --chip-rim: rgb(255 238 205 / 0.3);
+  --chip-shade: rgb(160 46 24 / 0.32);
+  --chip-drop: rgb(232 100 50 / 0.2);
+}
+
+.hero__chip--data {
+  --chip-delay: 0.56s;
+  --chip-tilt: 14deg;
+  /* Data work: various blues with a touch of violet. */
+  --chip-glow: rgb(166 214 255 / 0.75);
+  --chip-deep: rgb(96 70 226 / 0.6);
+  --chip-accent: rgb(122 116 242 / 0.4);
+  --chip-base: linear-gradient(160deg, #5aa8ff 0%, #3b7cff 38%, #2f5cf0 70%, #3a44d6 100%);
+  --chip-rim: rgb(210 232 255 / 0.28);
+  --chip-shade: rgb(30 30 150 / 0.34);
+  --chip-drop: rgb(44 80 230 / 0.2);
+}
+
+.hero__chip-face {
+  flex: none;
+  width: var(--chip);
+  height: var(--chip);
+  border-radius: 0.25em;
+  /* Colours layer like light through glass: a pale glow at the top left, the main colour through
+     the middle, a deeper shade at the bottom right and a soft rim of light. Each chip sets its own. */
+  background:
+    radial-gradient(70% 55% at 22% 10%, var(--chip-glow), transparent 70%),
+    radial-gradient(65% 60% at 85% 95%, var(--chip-deep), transparent 75%),
+    radial-gradient(60% 50% at 90% 15%, var(--chip-accent), transparent 70%),
+    var(--chip-base);
+  box-shadow:
+    inset 0 0 0 1px var(--chip-rim),
+    inset 0 0.05em 0.08em var(--chip-rim),
+    inset 0 -0.05em 0.12em var(--chip-shade),
+    0 0.03em 0.08em var(--chip-drop);
+  animation:
+    hero-chip-pop 0.94s var(--ease-out) calc(var(--chip-delay) + 0.06s) both,
+    hero-chip-fade 0.35s var(--ease-out) calc(var(--chip-delay) + 0.06s) both;
+  animation-timing-function: var(--spring-pop), var(--ease-out);
+}
+
+.hero__chip-face svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* A faint shade of the tile's colour under the white glyph, so it sits softly on the tile. */
+.hero__chip-glyph {
+  filter: drop-shadow(0 1.5px 1.5px var(--chip-shade));
+}
+
+@keyframes hero-chip-open {
+  from {
+    width: 0;
+    margin-inline: 0;
+  }
+}
+
+@keyframes hero-chip-pop {
+  from {
+    transform: scale(0.25) rotate(var(--chip-tilt));
+  }
+}
+
+@keyframes hero-chip-fade {
+  from {
+    opacity: 0;
+    filter: blur(0.06em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__chip,
+  .hero__chip-face {
+    animation: none;
+  }
+}
+
 .hero__lede {
   max-width: 36rem;
   margin: 0;
@@ -74,6 +185,7 @@
 /* Ledger: columns of team figures that drift right to left above the homepage title. */
 .ledger {
   position: relative;
+  grid-area: 1 / 1;
   z-index: 2;
   min-height: 13rem;
   margin: clamp(1.25rem, 4vh, 3rem) calc(-1 * var(--inset)) clamp(2.5rem, 7vh, 5rem);
@@ -194,34 +306,3 @@
     font-size: 0.8125rem;
   }
 }
-
-/* Ribbon: a soft blue band of light, like the call to action's, that sways and twists behind the
-   ledger. ribbon.js draws it with a shader; without WebGL or JavaScript the hero simply has no ribbon. */
-.hero-ribbon {
-  position: relative;
-  z-index: 1;
-  grid-area: 1 / 1;
-  margin-inline: calc(-1 * var(--inset));
-  pointer-events: none;
-}
-
-.hero--home .ledger {
-  grid-area: 1 / 1;
-}
-
-.hero-ribbon canvas {
-  position: absolute;
-  /* Wider than the hero, so the blur doesn't fade the band at the sides. */
-  inset: -12% -2%;
-  display: block;
-  width: 104%;
-  height: 124%;
-  opacity: 0;
-  filter: blur(6px);
-  transition: opacity 2.4s var(--ease-out);
-}
-
-.hero-ribbon canvas.is-ready {
-  opacity: 0.6;
-}
-

@@ -2,10 +2,29 @@
 {% import "macros/orb.html" as orb %}
 {% block content %}
   <section class="hero hero--home" aria-labelledby="hero-title">
-    <div class="hero-ribbon" aria-hidden="true"><canvas data-ribbon data-ribbon-hue="0.86 0.30"></canvas></div>
     <div class="ledger" data-ledger aria-hidden="true"></div>
     <div class="hero__content">
-      <h1 id="hero-title" class="hero__title" data-reveal><strong>Centralise</strong> your teams’ <strong>data work</strong>.</h1>
+      <h1 id="hero-title" class="hero__title" data-reveal>
+        <span class="hero__pair"><span class="hero__chip hero__chip--centralise" aria-hidden="true"><span class="hero__chip-face">
+          <svg viewBox="0 0 100 100" focusable="false">
+            <defs>
+              <linearGradient id="hero-chip-fade" x1="8" x2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient>
+              <mask id="hero-chip-tail" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="url(#hero-chip-fade)"/></mask>
+            </defs>
+            <g class="hero__chip-glyph" fill="#fff" mask="url(#hero-chip-tail)"><path opacity="0.42" d="M8 21H16C37 21 37 47 58 47H86a3 3 0 0 1 0 6H58C37 53 37 79 16 79H8Z"/><path opacity="0.55" d="M8 30H24C42 30 42 47.2 60 47.2H86a2.8 2.8 0 0 1 0 5.6H60C42 52.8 42 70 24 70H8Z"/><path opacity="0.8" d="M8 39H31C46.5 39 46.5 47.4 62 47.4H86a2.6 2.6 0 0 1 0 5.2H62C46.5 52.6 46.5 61 31 61H8Z"/></g>
+            <path class="hero__chip-glyph" fill="#fff" d="M50 47.8H86a2.2 2.2 0 0 1 0 4.4H50Z"/>
+          </svg>
+        </span></span><strong>Centralise</strong></span>
+        your teams’
+        <span class="hero__pair"><span class="hero__chip hero__chip--data" aria-hidden="true"><span class="hero__chip-face">
+          <svg viewBox="0 0 100 100" focusable="false">
+            <defs>
+              <linearGradient id="hero-chip-star" x1="0" y1="0" x2="0" y2="117" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#dce5ff"/></linearGradient>
+            </defs>
+            <path class="hero__chip-glyph" fill="url(#hero-chip-star)" transform="translate(17.6 18.8) scale(0.53)" d="M70.5482 7.71645C68.0005 0.970421 61.5564 -0.662634 55.8581 0.21975C50.5364 1.04373 47.4629 5.46568 46.1132 11.3119L43.6387 22.03C42.514 26.9018 39.8904 29.375 35.318 31.3983L8.8584 43.7631C2.11237 46.3109 -1.18608 51.7072 0.387328 58.2283C1.96073 64.7494 7.35705 68.0478 13.8781 66.4744L24.5216 64.8264C29.8434 64.0025 32.3166 66.626 29.9925 72.2473L21.596 90.8349C18.0726 97.2056 20.6204 103.952 26.2417 106.276C32.351 108.802 39.3584 107.251 42.8818 100.881L53.0021 83.7173C56.3005 78.321 61.3973 78.4714 62.9707 84.9925L68.4403 105.755C69.7888 113.25 75.9345 117.748 82.4556 116.175C88.9767 114.601 92.0502 110.179 91.6761 102.909L89.5807 67.5309C89.2066 60.2604 92.0552 56.8128 98.8012 54.265L112.068 50.1438C119.789 47.821 122.351 42.7199 121.514 35.9036C120.754 29.7199 115.518 26.3091 108.248 26.6831L85.4621 27.5804C80.3652 27.4301 77.6671 25.7808 75.6438 21.2085L70.5482 7.71645Z"/>
+          </svg>
+        </span></span><strong>data work</strong></span>.
+      </h1>
       <p class="hero__lede" data-reveal>Your teams organise their data work their own way. Logven turns it into one central data lake, keeps it tidy and shows you all the data you have, even the data you didn’t know about.</p>
       <div class="actions" data-reveal>
         <a class="button" href="{{ get_url(path='@/contact.md') }}">Start a pilot</a>

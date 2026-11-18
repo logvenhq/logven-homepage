@@ -2,10 +2,8 @@
 // can sway, twist and shimmer continuously. Where it turns edge-on it pinches and its light
 // gathers, like a ribbon catching the sun.
 //
-// Every <canvas data-ribbon> on the page gets one: the hero, the model cards and the call to
-// action. One WebGL context renders them all and copies each frame into the visible canvases.
-// After each frame a canvas fires "ribbon:frame" with a function that says how strongly the band
-// covers any point of it, so other drawings can react to it (the hero ledger's rules turn white).
+// Every <canvas data-ribbon> on the page gets one: the model cards, the model pages and the call
+// to action. One WebGL context renders them all and copies each frame into the visible canvases.
 // Optional attributes change a ribbon's pose and colours:
 //   data-ribbon-pose="centre rise pinch width"  where the band sits, how far it climbs to the
 //                                                right, where it twists, and how wide it is
@@ -156,33 +154,6 @@
     }))
     .filter((ribbon) => ribbon.context);
 
-  // The shader's band, in JavaScript: how opaque the ribbon is at a point of its canvas (x and y
-  // from 0 to 1, y up), at a given time. It follows main() below line for line.
-  const smoothstep = (a, b, v) => {
-    const t = Math.min(1, Math.max(0, (v - a) / (b - a)));
-    return t * t * (3 - 2 * t);
-  };
-
-  const coverage = ([px, py, pz, pw], x, y, t) => {
-    const rise = smoothstep(0.25, 1.1, x);
-    const centre = px + py * rise * rise
-      + 0.035 * Math.sin(x * 4.2 + t * 0.21)
-      + 0.022 * Math.sin(x * 7.9 - t * 0.33 + 1.3)
-      + 0.012 * Math.sin(x * 13.0 + t * 0.47);
-    const pinch = pz + 0.09 * Math.sin(t * 0.11) + 0.04 * Math.sin(t * 0.07 + 2.0);
-    const d = x - pinch;
-    const width = (0.055 + 0.085 * Math.pow(Math.abs(d) / 0.6, 1.2)) * pw;
-    const facing = Math.cos(Math.PI * 0.5 + d * Math.PI * (1.35 + 0.12 * Math.sin(t * 0.09)));
-    let h = width * facing;
-    h = Math.sign(h + 1e-4) * Math.max(Math.abs(h), 0.011 * pw);
-    const offset = y - centre;
-    let body = 1 - smoothstep(0.55, 1.15, Math.abs(offset / h));
-    body *= 0.82 + 0.35 * (1 - Math.abs(facing));
-    const spread = Math.abs(h) + 0.09 * pw;
-    const haze = Math.exp(-((offset / spread) ** 2)) * 0.22;
-    return Math.min(1, Math.max(0, body + haze * (1 - body)));
-  };
-
   const draw = (ribbon, now) => {
     const { canvas, context } = ribbon;
     const width = Math.max(1, Math.round(canvas.clientWidth * SCALE));
@@ -208,11 +179,6 @@
     // WebGL draws from the bottom-left corner, so the frame is the bottom strip of the buffer.
     context.clearRect(0, 0, width, height);
     context.drawImage(glCanvas, 0, glCanvas.height - height, width, height, 0, 0, width, height);
-
-    // The latest frame's coverage stays on the canvas too, for scripts that start after it.
-    const t = ribbon.offset + now / 1000;
-    canvas.ribbonCoverage = (x, y) => coverage(ribbon.pose, x, y, t);
-    canvas.dispatchEvent(new CustomEvent("ribbon:frame", { detail: canvas.ribbonCoverage }));
   };
 
   let frame = 0;
