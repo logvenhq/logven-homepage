@@ -180,7 +180,6 @@
     // WebGL draws from the bottom-left corner, so the frame is the bottom strip of the buffer.
     context.clearRect(0, 0, width, height);
     context.drawImage(glCanvas, 0, glCanvas.height - height, width, height, 0, 0, width, height);
-
   };
 
   let frame = 0;
