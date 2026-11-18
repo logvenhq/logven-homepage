@@ -22,5 +22,5 @@ The site sells one idea: **centralise your teams' data work.** Each person gets 
 
 - Every section graphic uses one language: hair-thin grey lines and bands, the data lake's sphere, soft packets that fade to a gradient tail, and the soft ribbon. Black means something Logven made or runs. Small labels sit on hairline ticks, like the hero ledger.
 - Colour comes from one palette (`sass/css/base/_tokens.scss`): mostly blue, with violet and a warm orange and amber for movement. No full rainbow. The homepage hero is light (`--hero-surface`): the ledger drifts above the title, and the title's chips open its words apart.
-- Titles may carry title chips (`templates/macros/chip.html`): small glossy blue, violet or orange tiles with a white glyph. They're decoration; the title must read the same without them.
+- Titles may carry title chips (`templates/macros/chip.html`): small white tiles on a soft shadow, with an outlined glyph in blue, violet or orange. They're decoration; the title must read the same without them.
 - No app mockups or dashboard-style diagrams.
