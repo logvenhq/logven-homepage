@@ -113,6 +113,7 @@
    The dash pattern repeats once per packet, so the loop is seamless. */
 .birdseye__packet {
   fill: none;
+  stroke: #ffffff;
   stroke-width: 1.5;
   animation: birdseye-orbit var(--duration) linear infinite;
   animation-delay: var(--delay, 0s);
