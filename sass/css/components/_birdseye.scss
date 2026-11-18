@@ -141,18 +141,25 @@
 }
 
 /* Sized and faded like the lake's glow: a blurred ring a touch larger than the sphere, nudged up and
-   masked to its top edge. The colours turn inside the mask, so the glow stays on top. */
+   masked to its top edge. The colours turn inside the mask, so the glow stays on top. The mask's box
+   leaves room round the ring for the blur, so the glow fades out instead of stopping at an edge. */
 .birdseye__corona {
+  --room: 0.5rem;
+  --ring: calc(var(--sphere) + 0.125rem);
   position: absolute;
-  inset: -0.0625rem;
+  inset: calc(-0.0625rem - var(--room));
   transform: translateY(-0.1875rem);
-  mask-image: linear-gradient(to bottom, #000 30%, transparent 55%);
+  mask-image: linear-gradient(
+    to bottom,
+    #000 calc(var(--room) + 0.3 * var(--ring)),
+    transparent calc(var(--room) + 0.55 * var(--ring))
+  );
 }
 
 .birdseye__corona::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: var(--room);
   border-radius: 50%;
   background: conic-gradient(from 0deg, var(--blue), var(--indigo), var(--violet), var(--orange), var(--amber), var(--sky), var(--azure), var(--blue));
   filter: blur(0.15rem);
