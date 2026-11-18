@@ -76,47 +76,22 @@
 }
 
 /* The official wordmark from the lockup (without the star). The viewBox is its measured ink
-   box, so it spans the content width edge to edge. A soft light in the palette glows inside the
-   letters only: it follows the pointer over the footer and drifts along the word when the
-   pointer is elsewhere (static/js/wordmark.js). */
+   box, so it spans the content width edge to edge. It's drawn as a hairline outline. */
 .site-footer__wordmark {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
-  fill: color-mix(in srgb, var(--night) 93%, white);
+  fill: none;
+  stroke: color-mix(in srgb, var(--night) 80%, white);
+  stroke-width: 1;
   user-select: none;
   pointer-events: none;
 }
 
-/* Blue at the heart, through violet to a warm orange rim, then nothing. */
-.site-footer__light--core {
-  stop-color: var(--sky);
-  stop-opacity: 0.55;
-}
-
-.site-footer__light--mid {
-  stop-color: var(--violet);
-  stop-opacity: 0.3;
-}
-
-.site-footer__light--edge {
-  stop-color: var(--orange);
-  stop-opacity: 0.1;
-}
-
-.site-footer__light--out {
-  stop-color: var(--orange);
-  stop-opacity: 0;
-}
-
-.site-footer__glow {
-  opacity: 0;
-  transition: opacity 1.2s var(--ease-out, ease-out);
-}
-
-.site-footer__wordmark.is-lit .site-footer__glow {
-  opacity: 1;
+/* One device-independent hairline at any width. */
+.site-footer__wordmark path {
+  vector-effect: non-scaling-stroke;
 }
 
 @media (max-width: 922px) {
