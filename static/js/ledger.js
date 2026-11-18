@@ -283,60 +283,6 @@
     });
   };
 
-  /* Over the ribbon: the rules and the small labels at their ends are grey on the page and turn
-     white where the ribbon passes behind them. */
-
-  const RULE = [217, 219, 224];
-  const SMALL_TEXT = [107, 110, 120];
-  const whiten = (rgb, white) => `rgb(${rgb.map((c) => Math.round(c + (255 - c) * white)).join(" ")})`;
-  const RULE_SAMPLES = 24;
-  const TEXT_SAMPLES = [5, 3];
-  const TEXT_PAD = 4;
-  const ribbonCanvas = root.parentElement.querySelector(".hero-ribbon canvas");
-
-  const tintRules = (coverage) => {
-    const box = ribbonCanvas.getBoundingClientRect();
-    if (!box.width || !box.height) return;
-    columns.forEach((column) => {
-      const rule = column.ruleEl.getBoundingClientRect();
-      if (!rule.height) return;
-      const x = (rule.left - box.left) / box.width;
-      const stops = [];
-      for (let i = 0; i < RULE_SAMPLES; i += 1) {
-        const share = i / (RULE_SAMPLES - 1);
-        const y = 1 - (rule.top + share * rule.height - box.top) / box.height;
-        // The ribbon shows at a fraction of its strength, so a little cover is enough to go white.
-        const white = smoothstep(0.06, 0.4, coverage(x, y));
-        stops.push(`${whiten(RULE, white)} ${(share * 100).toFixed(1)}%`);
-      }
-      column.ruleEl.style.background = `linear-gradient(to bottom, ${stops.join(", ")})`;
-
-      [column.labelEl, column.indexEl].forEach((text) => {
-        const r = text.getBoundingClientRect();
-        if (!r.width) return;
-        // Sample across the whole label, a little beyond it for the canvas blur, and take the
-        // strongest cover: the band often clips only one end of a label.
-        let cover = 0;
-        for (let i = 0; i < TEXT_SAMPLES[0]; i += 1) {
-          for (let j = 0; j < TEXT_SAMPLES[1]; j += 1) {
-            const px = r.left - TEXT_PAD + ((r.width + TEXT_PAD * 2) * i) / (TEXT_SAMPLES[0] - 1);
-            const py = r.top - TEXT_PAD + ((r.height + TEXT_PAD * 2) * j) / (TEXT_SAMPLES[1] - 1);
-            cover = Math.max(cover, coverage((px - box.left) / box.width, 1 - (py - box.top) / box.height));
-          }
-        }
-        // A short ramp above the haze, so a label is grey or white and never a pale grey between.
-        const white = smoothstep(0.26, 0.4, cover);
-        text.style.color = whiten(SMALL_TEXT, white);
-        // The index is dimmed on the page; over the band it shows at full strength.
-        if (text === column.indexEl) text.style.opacity = (0.7 + 0.3 * white).toFixed(3);
-      });
-    });
-  };
-
-  if (ribbonCanvas) {
-    ribbonCanvas.addEventListener("ribbon:frame", (event) => tintRules(event.detail));
-  }
-
   const smoothstep = (edge0, edge1, value) => {
     const t = Math.max(0, Math.min(1, (value - edge0) / (edge1 - edge0)));
     return t * t * (3 - 2 * t);
@@ -422,7 +368,6 @@
         });
       });
       paint(time);
-      if (ribbonCanvas && ribbonCanvas.ribbonCoverage) tintRules(ribbonCanvas.ribbonCoverage);
       root.classList.add("is-ready");
       return;
     }

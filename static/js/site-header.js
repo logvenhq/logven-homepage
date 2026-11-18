@@ -18,5 +18,7 @@
 
   window.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update);
+  // Again once styles and fonts have settled, so the first check can't run against a half-styled page.
+  window.addEventListener("load", update);
   update();
 })();
