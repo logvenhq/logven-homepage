@@ -290,6 +290,8 @@
   const SMALL_TEXT = [107, 110, 120];
   const whiten = (rgb, white) => `rgb(${rgb.map((c) => Math.round(c + (255 - c) * white)).join(" ")})`;
   const RULE_SAMPLES = 24;
+  const TEXT_SAMPLES = [5, 3];
+  const TEXT_PAD = 4;
   const ribbonCanvas = root.parentElement.querySelector(".hero-ribbon canvas");
 
   const tintRules = (coverage) => {
@@ -312,8 +314,21 @@
       [column.labelEl, column.indexEl].forEach((text) => {
         const r = text.getBoundingClientRect();
         if (!r.width) return;
-        const cover = coverage((r.left + r.width / 2 - box.left) / box.width, 1 - (r.top + r.height / 2 - box.top) / box.height);
-        text.style.color = whiten(SMALL_TEXT, smoothstep(0.06, 0.4, cover));
+        // Sample across the whole label, a little beyond it for the canvas blur, and take the
+        // strongest cover: the band often clips only one end of a label.
+        let cover = 0;
+        for (let i = 0; i < TEXT_SAMPLES[0]; i += 1) {
+          for (let j = 0; j < TEXT_SAMPLES[1]; j += 1) {
+            const px = r.left - TEXT_PAD + ((r.width + TEXT_PAD * 2) * i) / (TEXT_SAMPLES[0] - 1);
+            const py = r.top - TEXT_PAD + ((r.height + TEXT_PAD * 2) * j) / (TEXT_SAMPLES[1] - 1);
+            cover = Math.max(cover, coverage((px - box.left) / box.width, 1 - (py - box.top) / box.height));
+          }
+        }
+        // A short ramp above the haze, so a label is grey or white and never a pale grey between.
+        const white = smoothstep(0.26, 0.4, cover);
+        text.style.color = whiten(SMALL_TEXT, white);
+        // The index is dimmed on the page; over the band it shows at full strength.
+        if (text === column.indexEl) text.style.opacity = (0.7 + 0.3 * white).toFixed(3);
       });
     });
   };
