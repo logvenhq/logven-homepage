@@ -9,57 +9,12 @@
   background: var(--hero-surface);
 }
 
-/* Homepage: the ledger fills the top and the title sits below it, light on a night-to-blue
-   gradient. A soft shadow gives the hero a visible end. */
+/* Homepage: the ribbon and ledger fill the top, the title sits below them. */
 .hero--home {
-  --ink: #ffffff;
-  --text: rgb(255 255 255 / 84%);
-  --muted: rgb(255 255 255 / 62%);
-  --quiet: rgb(255 255 255 / 50%);
-  --shade: rgb(255 255 255 / 16%);
-  --shade-strong: rgb(255 255 255 / 20%);
-  --button: #ffffff;
-  --button-hover: #e9eefc;
-  --button-text: var(--ink-on-light);
-  z-index: 1;
   grid-template-rows: minmax(0, 1fr) auto;
   align-content: stretch;
-  min-height: clamp(36rem, 94svh, 60rem);
-  padding: var(--header-height) var(--inset) clamp(3.5rem, 6vw, 5rem);
-  background: var(--deep-blue);
-  box-shadow:
-    0 1px 2px rgb(15 20 35 / 4%),
-    0 0.75rem 2.5rem rgb(15 20 35 / 7%);
-}
-
-/* Based on mindcloud.co's hero: a wide radial gradient from night into blue, stretched past the
-   hero so it ends in a saturated blue. */
-.hero__gradient {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(
-    201.67% 105.6% at 50% -6.34%,
-    #010918 0%,
-    #051026 31%,
-    #002869 53%,
-    var(--deep-blue) 86%,
-    #60a0ff 150%
-  );
-}
-
-@supports (color: color(display-p3 1 1 1)) {
-  .hero__gradient {
-    background: radial-gradient(
-      201.67% 105.6% at 50% -6.34%,
-      color(display-p3 0.012 0.035 0.09) 0%,
-      color(display-p3 0.027 0.063 0.145) 31%,
-      color(display-p3 0.035 0.153 0.396) 53%,
-      color(display-p3 0.051 0.329 0.89) 86%,
-      color(display-p3 0.435 0.624 1) 150%
-    );
-  }
+  min-height: clamp(36rem, 94svh, 57rem);
+  padding: var(--header-height) var(--inset) clamp(2.75rem, 5.5vw, 4.5rem);
 }
 
 .hero--home .hero__content {
@@ -116,15 +71,12 @@
   margin-top: 0.5rem;
 }
 
-/* Ledger: columns of team figures that drift right to left above the homepage title. Its white
-   adds to the gradient like light (plus-lighter), so the faint rules and labels take on the
-   hero's blue instead of turning grey. */
+/* Ledger: columns of team figures that drift right to left above the homepage title. */
 .ledger {
   position: relative;
   z-index: 2;
-  mix-blend-mode: plus-lighter;
   min-height: 13rem;
-  margin: clamp(1.25rem, 4vh, 3rem) calc(-1 * var(--inset)) clamp(2.5rem, 6vh, 4.5rem);
+  margin: clamp(1.25rem, 4vh, 3rem) calc(-1 * var(--inset)) clamp(2.5rem, 7vh, 5rem);
   padding-inline: var(--inset);
   overflow: hidden;
   pointer-events: none;
@@ -242,3 +194,34 @@
     font-size: 0.8125rem;
   }
 }
+
+/* Ribbon: a soft blue band of light, like the call to action's, that sways and twists behind the
+   ledger. ribbon.js draws it with a shader; without WebGL or JavaScript the hero simply has no ribbon. */
+.hero-ribbon {
+  position: relative;
+  z-index: 1;
+  grid-area: 1 / 1;
+  margin-inline: calc(-1 * var(--inset));
+  pointer-events: none;
+}
+
+.hero--home .ledger {
+  grid-area: 1 / 1;
+}
+
+.hero-ribbon canvas {
+  position: absolute;
+  /* Wider than the hero, so the blur doesn't fade the band at the sides. */
+  inset: -12% -2%;
+  display: block;
+  width: 104%;
+  height: 124%;
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 2.4s var(--ease-out);
+}
+
+.hero-ribbon canvas.is-ready {
+  opacity: 0.6;
+}
+
