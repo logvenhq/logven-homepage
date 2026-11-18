@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/orb.html" as orb %}
 {% block content %}
   <section class="hero hero--home" aria-labelledby="hero-title">
     <div class="hero-ribbon" aria-hidden="true"><canvas data-ribbon></canvas></div>
@@ -99,10 +100,6 @@
         <div class="lake" aria-hidden="true">
           <svg class="lake__art" viewBox="0 0 1600 360" preserveAspectRatio="xMidYMid slice" focusable="false">
             <defs>
-              <linearGradient id="lake-spectrum" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f7b89c"/><stop offset="0.17" stop-color="#ed9bcc"/><stop offset="0.34" stop-color="#a38ff5"/><stop offset="0.5" stop-color="#5c82f0"/><stop offset="0.66" stop-color="#6ec7f5"/><stop offset="0.83" stop-color="#a6ede6"/><stop offset="1" stop-color="#f5e8a6"/></linearGradient>
-              <linearGradient id="lake-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="0.3" stop-color="#fff"/><stop offset="0.55" stop-color="#fff" stop-opacity="0"/></linearGradient>
-              <mask id="lake-top" maskContentUnits="objectBoundingBox"><rect width="1" height="1" fill="url(#lake-fade)"/></mask>
-              <filter id="lake-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter>
               <linearGradient id="lake-pulse"><stop offset="0" stop-color="#1d2027" stop-opacity="0"/><stop offset="0.7" stop-color="#1d2027" stop-opacity="0.09"/><stop offset="1" stop-color="#1d2027" stop-opacity="0"/></linearGradient>
               <clipPath id="lake-clip"><use href="#lake-shape"/></clipPath>
             </defs>
@@ -115,9 +112,9 @@
                 <rect class="lake__pulse lake__pulse--offset lake__pulse--late" x="-260" y="0" width="260" height="360" fill="url(#lake-pulse)"/>{#- -#}
               </g>{#- -#}
             </g>
-            <g transform="translate(0 -5)" mask="url(#lake-top)"><circle class="lake__fringe" cx="800" cy="180" r="59" fill="url(#lake-spectrum)" filter="url(#lake-blur)"/></g>
             <circle class="lake__sphere" cx="800" cy="180" r="58"/>
           </svg>
+          {{ orb::orb(over=".lake__sphere") }}
         </div>
         <div class="lake-copy">
           <h2 id="lake-title" class="block__title" data-reveal>One place for <strong>all your data</strong>.</h2>
@@ -155,15 +152,9 @@
           </svg>
           <div class="system__hub">
             <svg class="system__sphere" viewBox="21 21 78 78" focusable="false">
-              <defs>
-                <linearGradient id="system-spectrum" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f7b89c"/><stop offset="0.17" stop-color="#ed9bcc"/><stop offset="0.34" stop-color="#a38ff5"/><stop offset="0.5" stop-color="#5c82f0"/><stop offset="0.66" stop-color="#6ec7f5"/><stop offset="0.83" stop-color="#a6ede6"/><stop offset="1" stop-color="#f5e8a6"/></linearGradient>
-                <linearGradient id="system-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="0.3" stop-color="#fff"/><stop offset="0.55" stop-color="#fff" stop-opacity="0"/></linearGradient>
-                <mask id="system-top" maskContentUnits="objectBoundingBox"><rect width="1" height="1" fill="url(#system-fade)"/></mask>
-                <filter id="system-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
-              </defs>
-              <g transform="translate(0 -3)" mask="url(#system-top)"><circle class="system__fringe" cx="60" cy="60" r="39" fill="url(#system-spectrum)" filter="url(#system-blur)"/></g>
               <circle class="system__core" cx="60" cy="60" r="38"/>
             </svg>
+            {{ orb::orb(over=".system__core") }}
           </div>
           <svg class="system__wires system__wires--out" viewBox="0 0 100 300" preserveAspectRatio="none" focusable="false">
             {%- for entity in entities %}
@@ -331,7 +322,7 @@
         </header>
         <figure class="birdseye__figure" aria-hidden="true" data-birdseye data-reveal>
           <svg class="birdseye__art" data-birdseye-art focusable="false"></svg>
-          <div class="birdseye__sphere"><span class="birdseye__corona"></span><span class="birdseye__core"></span></div>
+          <div class="birdseye__sphere"><span class="birdseye__core"></span>{{ orb::orb(over=".birdseye__core", tone="light") }}</div>
         </figure>
         <div class="birdseye__notes">
           <div class="birdseye__note" data-reveal>
@@ -464,6 +455,7 @@
 {% endblock content %}
 {% block scripts %}
   <script src="{{ get_url(path='js/ribbon.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/orb.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/ledger.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/system.js', cachebust=true) }}" defer></script>

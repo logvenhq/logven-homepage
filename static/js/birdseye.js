@@ -1,7 +1,7 @@
-// Birdseye: the data lake seen from above. A white sphere sits in the middle with the spectrum
-// all round it as a corona; hair-thin rings spread out from it like water, and faint spokes mark
-// the company's departments. Soft packets in the hero's hues orbit along the rings, the inner
-// ones faster than the outer, so the activity settles into a pattern.
+// Birdseye: the data lake seen from above. A white orb sits in the middle (orb.js); hair-thin
+// rings spread out from it like water, and faint spokes mark the company's departments. Soft
+// packets in the hero's hues orbit along the rings, the inner ones faster than the outer, so the
+// activity settles into a pattern.
 // Drawn at the size it's shown.
 (() => {
   const root = document.querySelector("[data-birdseye]");

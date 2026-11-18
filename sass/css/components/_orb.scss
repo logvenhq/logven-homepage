@@ -1,0 +1,19 @@
+/* The orb (templates/macros/orb.html, static/js/orb.js): a canvas of slow, turning smoke laid
+   over a sphere's shape. The script sets its position and size; it fades in once drawn, and the
+   plain shape beneath stays as the fallback. */
+.orb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out);
+}
+
+.orb.is-ready {
+  opacity: 1;
+}

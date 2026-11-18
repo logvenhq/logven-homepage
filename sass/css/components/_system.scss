@@ -162,12 +162,6 @@
   fill: var(--ink);
 }
 
-.system__fringe {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: lake-fringe 24s linear infinite;
-}
-
 .system__entity {
   display: grid;
   align-content: center;
@@ -207,10 +201,6 @@
 @media (prefers-reduced-motion: reduce) {
   .system__packet {
     display: none;
-  }
-
-  .system__fringe {
-    animation: none;
   }
 }
 

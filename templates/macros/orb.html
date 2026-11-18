@@ -1,0 +1,6 @@
+{#- The orb: smoke turning inside a sphere, drawn by static/js/orb.js over the shape that `over`
+    selects inside the same parent. Put it right after that shape; the parent needs no special
+    styling, the canvas positions itself. tone: "dark" (ink, the default) or "light" (white). -#}
+{% macro orb(over, tone="dark") -%}
+<canvas class="orb" data-orb="{{ over }}"{% if tone != "dark" %} data-orb-tone="{{ tone }}"{% endif %} aria-hidden="true"></canvas>
+{%- endmacro orb %}
