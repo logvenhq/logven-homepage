@@ -1,7 +1,7 @@
 /*
  * Birdseye: the management view, set at night like the code section above it. A centred title,
- * then the data lake seen from above (static/js/birdseye.js): a white orb (_orb.scss) with
- * hairline rings spreading out from it, faint spokes for the departments, and soft
+ * then the data lake seen from above (static/js/birdseye.js): a white orb (_orb.scss) in a soft
+ * corona of the graphics palette, hairline rings spreading out from it, faint spokes for the departments, and soft
  * packets orbiting along the rings. People never appear: the smallest unit is a team.
  */
 
@@ -73,7 +73,7 @@
 }
 
 /* The lake from above, full bleed. birdseye.js draws the rings, spokes and orbits at the size
-   they're shown; the sphere and its orb are centred here. */
+   they're shown; the sphere, its orb and corona are centred here. */
 .birdseye__figure {
   --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
   --sphere: 4.5rem;
@@ -129,7 +129,8 @@
   }
 }
 
-/* The data lake's sphere, white on night, with the orb's pale smoke turning inside it. */
+/* The data lake's sphere, white on night, with the orb's pale smoke turning inside it and the
+   graphics palette as a slowly turning corona. */
 .birdseye__sphere {
   position: absolute;
   top: 50%;
@@ -137,6 +138,16 @@
   width: var(--sphere);
   height: var(--sphere);
   transform: translate(-50%, -50%);
+}
+
+.birdseye__corona {
+  position: absolute;
+  inset: -0.3rem;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--blue), var(--indigo), var(--violet), var(--orange), var(--amber), var(--sky), var(--azure), var(--blue));
+  filter: blur(0.45rem);
+  opacity: 0.75;
+  animation: lake-fringe 30s linear infinite;
 }
 
 .birdseye__core {
@@ -185,10 +196,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .birdseye__packet {
+  .birdseye__packet,
+  .birdseye__corona {
     animation: none;
   }
-
 }
 
 @media (max-width: 960px) {
