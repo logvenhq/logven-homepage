@@ -1,5 +1,4 @@
-/* Footer: always dark. The brand and link columns on top, and a blueprint card of the brand
-   across the content width below. */
+/* Footer: always dark. The brand and link columns. */
 
 .site-footer {
   position: relative;
@@ -12,7 +11,6 @@
 
 .site-footer__grid {
   row-gap: 2.5rem;
-  margin-bottom: clamp(5rem, 12vw, 11rem);
 }
 
 .site-footer__brand {
@@ -73,63 +71,6 @@
 .site-footer__column a:focus-visible {
   color: var(--night-ink);
   text-decoration-color: currentColor;
-}
-
-/* The closing card: a blueprint of the brand in hairlines, every block taken from the logo. The
-   wordmark fills its own ink box, with its x-height and baseline drawn in, under two rows of cells
-   whose columns start at each letter. The star fills a square as tall as that box, on a crosshair,
-   over two rows of square cells a quarter of its size. Every stroke stays one pixel at any width. */
-.site-footer__card {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-  user-select: none;
-  pointer-events: none;
-}
-
-.site-footer__card * {
-  vector-effect: non-scaling-stroke;
-}
-
-/* A flat face under a faint sheen from the top left and a fine grain; a thin rim catches the light
-   along the top edge. */
-.site-footer__card-face {
-  fill: var(--night-raised);
-}
-
-.site-footer__card-rim {
-  fill: none;
-}
-
-/* One grey for every line. */
-.site-footer__card-frame,
-.site-footer__card-grid,
-.site-footer__card-guide,
-.site-footer__card-mark {
-  stroke: #36383e;
-}
-
-.site-footer__card-frame,
-.site-footer__card-grid,
-.site-footer__card-guide {
-  fill: none;
-}
-
-/* Marks are filled in the face's colour, so the guides stop at their edges. */
-.site-footer__card-mark {
-  fill: var(--night-raised);
-  stroke-linejoin: round;
-}
-
-/* The wordmark's letters overlap inside (the g's stem, the e's bar), so it's stroked at twice the
-   width and its own fill covers the inner half: only the outer silhouette shows, at one pixel. */
-.site-footer__card-mark--outer {
-  stroke-width: 2;
-}
-
-.site-footer__card-fill {
-  fill: var(--night-raised);
 }
 
 @media (max-width: 922px) {
