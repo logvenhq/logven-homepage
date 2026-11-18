@@ -151,15 +151,6 @@
   place-items: center;
 }
 
-.system__hub-label {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1;
-  white-space: nowrap;
-}
-
 .system__sphere {
   display: block;
   width: 4.875rem;
