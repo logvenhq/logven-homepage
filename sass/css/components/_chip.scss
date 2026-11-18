@@ -29,6 +29,11 @@
   margin-inline: var(--chip-gap) 0;
 }
 
+/* Punctuation after a chip sits inside its chip-pair and gets a hair of room. */
+.chip--after:not(:last-child) {
+  margin-inline-end: 0.07em;
+}
+
 .chip-pair ~ .chip-pair .chip {
   --chip-delay: 0.56s;
   --chip-tilt: 14deg;

@@ -1,8 +1,9 @@
 {#- A title chip: a small glossy tile with a plump white glyph that opens up inside a title,
     pushing the words apart on a spring (see _chip.scss). Wrap it with its words in
-    <span class="chip-pair">, so the two never wrap apart. Gradient ids follow the glyph, so use
+    <span class="chip-pair">, so the two never wrap apart; a comma after the
+    chip goes inside the pair too. Gradient ids follow the glyph, so use
     each glyph once per page.
-    glyph: funnel, db, sphere, tidy, lock or code. tone: orange, blue or violet.
+    glyph: funnel, db, sphere, tidy, lock, code, clock, sliders, gear or check. tone: orange, blue or violet.
     after: true when the chip follows its words instead of leading them. -#}
 {% macro chip(glyph, tone="blue", after=false) -%}
 <span class="chip chip--{{ tone }}{% if after %} chip--after{% endif %}" aria-hidden="true"><span class="chip__face"><svg viewBox="0 0 100 100" focusable="false">
@@ -20,6 +21,14 @@
     <g class="chip__glyph"><path fill="none" stroke="url(#chip-fill-lock)" stroke-width="9.5" d="M37 46V39a13 13 0 0 1 26 0v7"/><rect x="25" y="43" width="50" height="35" rx="11" fill="url(#chip-fill-lock)"/><path class="chip__hole" d="M44.5 59a5.5 5.5 0 1 1 8 4.9V68a2.5 2.5 0 0 1-5 0v-4.1a5.5 5.5 0 0 1-3-4.9Z"/></g>
   {%- elif glyph == "code" %}
     <g class="chip__glyph" fill="none" stroke="url(#chip-fill-code)" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="10" d="M35 33 19 50l16 17M65 33l16 17-16 17"/><path stroke-width="9" d="M56 28 44 72"/></g>
+  {%- elif glyph == "clock" %}
+    <g class="chip__glyph"><circle cx="50" cy="50" r="28" fill="url(#chip-fill-clock)"/><path class="chip__groove" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M50 35v16l10 7"/></g>
+  {%- elif glyph == "sliders" %}
+    <g class="chip__glyph" fill="url(#chip-fill-sliders)"><rect x="22" y="28" width="56" height="7" rx="3.5"/><rect x="22" y="46.5" width="56" height="7" rx="3.5"/><rect x="22" y="65" width="56" height="7" rx="3.5"/><circle cx="62" cy="31.5" r="9"/><circle cx="38" cy="50" r="9"/><circle cx="56" cy="68.5" r="9"/></g>
+  {%- elif glyph == "gear" %}
+    <g class="chip__glyph"><g fill="url(#chip-fill-gear)"><circle cx="50" cy="50" r="22"/>{% for turn in [0, 60, 120, 180, 240, 300] %}<rect x="42.5" y="19.5" width="15" height="20" rx="5" transform="rotate({{ turn }} 50 50)"/>{% endfor %}</g><circle class="chip__hole" cx="50" cy="50" r="8.5"/></g>
+  {%- elif glyph == "check" %}
+    <path class="chip__glyph" fill="none" stroke="url(#chip-fill-check)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" d="M29 51l14 14 28-29"/>
   {%- endif %}
 </svg></span></span>
 {%- endmacro chip %}
