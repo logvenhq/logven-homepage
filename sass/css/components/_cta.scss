@@ -1,4 +1,4 @@
-/* Call to action: dark type on the hero's surface, with its ribbon (ribbon.js) behind. */
+/* Call to action: dark type on the hero's surface, with a blue ribbon (ribbon.js) behind. */
 
 .cta-wrap {
   padding-bottom: clamp(2.5rem, 4.5vw, 4rem);
@@ -76,5 +76,7 @@
   line-height: 1.06;
   letter-spacing: -0.032em;
   text-wrap: balance;
+  /* Like the model cards' labels: letters take the ribbon's colour where it passes behind them. */
+  mix-blend-mode: luminosity;
 }
 

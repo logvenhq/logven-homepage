@@ -140,14 +140,14 @@
         <div class="system" aria-hidden="true" data-system data-reveal>
           <ul class="system__sources" role="list">
             {%- for source in sources %}
-            <li class="system__source"><i class="system__dot system__dot--{{ source.hue }}"></i>{{ source.name }}</li>
+            <li class="system__source"><i class="system__dot" style="--hue: var(--{{ source.hue }})"></i>{{ source.name }}</li>
             {%- endfor %}
           </ul>
           <svg class="system__wires" viewBox="0 0 100 300" preserveAspectRatio="none" focusable="false">
             {%- for source in sources %}
             {%- set y = 15 + loop.index0 * 45 %}
             <path class="system__wire" data-y="{{ y / 300 }} 0.5" d="M0 {{ y }}C55 {{ y }} 45 150 100 150"/>
-            <path class="system__packet system__packet--{{ source.hue }}" style="--i: {{ loop.index0 }}" data-y="{{ y / 300 }} 0.5" d="M0 {{ y }}C55 {{ y }} 45 150 100 150"/>
+            <path class="system__packet" style="--i: {{ loop.index0 }}; --hue: var(--{{ source.hue }})" data-y="{{ y / 300 }} 0.5" d="M0 {{ y }}C55 {{ y }} 45 150 100 150"/>
             {%- endfor %}
           </svg>
           <div class="system__hub">
@@ -168,7 +168,7 @@
             <li class="system__entity">
               <span class="system__entity-head"><span class="system__entity-name">{{ entity.name }}</span><span class="system__entity-count">{{ entity.records }}</span></span>
               <span class="system__entity-from">
-                {%- for hue in entity.hues %}<i class="system__dot system__dot--{{ hue }}"></i>{% endfor %}
+                {%- for hue in entity.hues %}<i class="system__dot" style="--hue: var(--{{ hue }})"></i>{% endfor %}
               </span>
             </li>
             {%- endfor %}
@@ -371,7 +371,7 @@
             <article class="card" data-reveal>
               <a class="card__link" href="{{ get_url(path='@/language-models.md') }}" aria-labelledby="model-language-title">
                 <div class="card__media card__media--language">
-                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.38 0.30 0.58 1.4" data-ribbon-hue="0.76 0.34" aria-hidden="true"></canvas>
+                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.38 0.30 0.58 1.4" data-ribbon-hue="0.86 0.28" aria-hidden="true"></canvas>
                   <p class="card__overlay"><span>Language.</span><span>Reads and writes text.</span></p>
                 </div>
                 <h3 class="card__title" id="model-language-title">Language models for documents and email</h3>
@@ -383,7 +383,7 @@
             <article class="card" data-reveal>
               <a class="card__link" href="{{ get_url(path='@/vision-models.md') }}" aria-labelledby="model-vision-title">
                 <div class="card__media card__media--vision">
-                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.64 -0.26 0.40 1.3" data-ribbon-hue="0.36 0.34" aria-hidden="true"></canvas>
+                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.64 -0.26 0.40 1.3" data-ribbon-hue="0.00 0.24" aria-hidden="true"></canvas>
                   <p class="card__overlay"><span>Vision.</span><span>Turns images into data.</span></p>
                 </div>
                 <h3 class="card__title" id="model-vision-title">Vision models for drawings, forms and photos</h3>
@@ -395,7 +395,7 @@
             <article class="card" data-reveal>
               <a class="card__link" href="{{ get_url(path='@/time-series-models.md') }}" aria-labelledby="model-timeseries-title">
                 <div class="card__media card__media--timeseries">
-                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.30 0.40 0.64 1.5" data-ribbon-hue="0.56 0.34" aria-hidden="true"></canvas>
+                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.30 0.40 0.64 1.5" data-ribbon-hue="0.40 0.24" aria-hidden="true"></canvas>
                   <p class="card__overlay"><span>Time series.</span><span>Forecasts what comes next.</span></p>
                 </div>
                 <h3 class="card__title" id="model-timeseries-title">Time-series models for sensor data</h3>
@@ -407,7 +407,7 @@
             <article class="card" data-reveal>
               <a class="card__link" href="{{ get_url(path='@/decision-models.md') }}" aria-labelledby="model-decision-title">
                 <div class="card__media card__media--decision">
-                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.52 0.12 0.34 1.3" data-ribbon-hue="0.16 0.34" aria-hidden="true"></canvas>
+                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.52 0.12 0.34 1.3" data-ribbon-hue="0.90 0.20" aria-hidden="true"></canvas>
                   <p class="card__overlay"><span>Decisions.</span><span>Weighs up the options.</span></p>
                 </div>
                 <h3 class="card__title" id="model-decision-title">Decision models for planning</h3>
@@ -419,7 +419,7 @@
             <article class="card" data-reveal>
               <a class="card__link" href="{{ get_url(path='@/retrieval-models.md') }}" aria-labelledby="model-retrieval-title">
                 <div class="card__media card__media--retrieval">
-                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.40 0.28 0.46 1.6" data-ribbon-hue="0.96 0.34" aria-hidden="true"></canvas>
+                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.40 0.28 0.46 1.6" data-ribbon-hue="0.10 0.30" aria-hidden="true"></canvas>
                   <p class="card__overlay"><span>Retrieval.</span><span>Finds what you need.</span></p>
                 </div>
                 <h3 class="card__title" id="model-retrieval-title">Retrieval models for company knowledge</h3>

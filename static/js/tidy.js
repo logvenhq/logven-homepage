@@ -1,6 +1,6 @@
 // Housekeeping: hair-thin grey wires run in from the left edge of the window, unevenly spaced:
 // one sits in the wrong lane and crosses over to its own, two copies of a list run side by side
-// and merge, and one wire that nobody uses fades out, dashed. A thin spectral line in the middle
+// and merge, and one wire that nobody uses fades out, dashed. A thin dark line in the middle
 // is the nightly check. Past it the wires run on as even, parallel lanes to the right edge.
 // Packets drift along the left side in the connectors' hues, each at its own pace; on the right
 // they all move at one steady speed, and the automated lanes carry trains of black dots.
@@ -21,13 +21,13 @@
   const SETTLE = 0.38; // where the wires have found their lane
   // Each incoming wire: where it starts, which lane it ends in, its hue and its pace.
   const WIRES = [
-    { from: 0.25, lane: 0, hue: "peach", duration: 6.2, delay: 0.4 },
-    { from: 0.3, lane: 1, hue: "pink", duration: 7.6, delay: 3.1 },
-    { from: 0.4, lane: 2, hue: "violet", duration: 5.4, delay: 1.2 },
+    { from: 0.25, lane: 0, hue: "orange", duration: 6.2, delay: 0.4 },
+    { from: 0.3, lane: 1, hue: "violet", duration: 7.6, delay: 3.1 },
+    { from: 0.4, lane: 2, hue: "indigo", duration: 5.4, delay: 1.2 },
     { from: 0.49, lane: 2, hue: "blue", duration: 6.8, delay: 4.4, merge: true },
     { from: 0.6, lane: 3, hue: "sky", duration: 5.9, delay: 2.2 },
-    { from: 0.09, lane: 4, hue: "mint", duration: 7.1, delay: 0.9, moved: true },
-    { from: 0.8, lane: 5, hue: "sun", duration: 6.5, delay: 5.3 },
+    { from: 0.09, lane: 4, hue: "azure", duration: 7.1, delay: 0.9, moved: true },
+    { from: 0.8, lane: 5, hue: "amber", duration: 6.5, delay: 5.3 },
   ];
   const STALE = { from: 0.9, end: 0.33 };
   const AUTOMATED = [1, 5];
@@ -73,16 +73,9 @@
     root.classList.toggle("is-wide", wide);
 
     const defs = el("defs");
-    const spectrum = el("linearGradient", { id: "tidy-spectrum", x1: 0, y1: 0, x2: 0, y2: 1 }, defs);
-    ["#f7b89c", "#ed9bcc", "#a38ff5", "#5c82f0", "#6ec7f5", "#a6ede6", "#f5e8a6"].forEach((color, i, all) =>
-      el("stop", { offset: i / (all.length - 1), "stop-color": color }, spectrum),
-    );
     const fade = el("linearGradient", { id: "tidy-fade", gradientUnits: "userSpaceOnUse", x1: 0, y1: 0, x2: X(STALE.end), y2: 0 }, defs);
     el("stop", { offset: 0.3, "stop-color": "#c9cbd1", "stop-opacity": 1 }, fade);
     el("stop", { offset: 1, "stop-color": "#c9cbd1", "stop-opacity": 0.35 }, fade);
-    el("filter", { id: "tidy-blur", x: "-400%", y: "-10%", width: "900%", height: "120%" }, defs).appendChild(
-      document.createElementNS(NS, "feGaussianBlur"),
-    ).setAttribute("stdDeviation", 3);
 
     const wires = el("g", { class: "tidy__wires" });
     const packets = el("g");
@@ -106,8 +99,8 @@
         probe.remove();
         return value;
       })();
-      packet(packets, visible, `tidy__packet tidy__hue--${wire.hue}`, (tail) =>
-        `stroke-dasharray:${tail} ${length + 200};--length:${r(length + 40)}px;--duration:${wire.duration}s;--delay:-${wire.delay}s`,
+      packet(packets, visible, "tidy__packet", (tail) =>
+        `--hue:var(--${wire.hue});stroke-dasharray:${tail} ${length + 200};--length:${r(length + 40)}px;--duration:${wire.duration}s;--delay:-${wire.delay}s`,
       );
     });
 
@@ -136,9 +129,8 @@
       el("circle", { cx: gate, cy: y, r: 2, class: "tidy__port" }, ticks);
     });
 
-    // The nightly check: a thin spectral line with a soft glow.
-    el("rect", { x: gate - 1.5, y: Y(0.12), width: 3, height: Y(0.76), rx: 1.5, fill: "url(#tidy-spectrum)", filter: "url(#tidy-blur)", opacity: 0.55 });
-    el("rect", { x: gate - 0.75, y: Y(0.12), width: 1.5, height: Y(0.76), rx: 0.75, fill: "url(#tidy-spectrum)" });
+    // The nightly check: a thin dark line.
+    el("rect", { x: gate - 0.75, y: Y(0.12), width: 1.5, height: Y(0.76), rx: 0.75, class: "tidy__check" });
 
     // Notes: a dot on the finding and a hairline up or down to its label.
     const note = (name, x, y, to) => {

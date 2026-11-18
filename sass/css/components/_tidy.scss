@@ -1,7 +1,7 @@
 /*
  * Housekeeping: the same hairlines as the connectors, before and after a night's check. Wires
  * come in from the left edge unevenly spaced: one crosses into its own lane, two copies merge,
- * one nobody uses fades out dashed. A thin spectral line is the check; past it the wires run
+ * one nobody uses fades out dashed. A thin dark line is the check; past it the wires run
  * on as even lanes, where everything moves at one speed and the automated lanes carry trains of
  * black dots. static/js/tidy.js draws it at the size it's shown and places the notes on their
  * hairline ticks. Without the script, or below 720px, the notes are a plain list.
@@ -9,13 +9,6 @@
 
 .tidy {
   --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
-  --peach: #eea684;
-  --pink: #e48bc0;
-  --violet: #9583ef;
-  --blue: #5c82f0;
-  --sky: #5ab8ea;
-  --mint: #6fcfc2;
-  --sun: #e6c95f;
   position: relative;
   height: clamp(17rem, 24vw, 21rem);
   margin: clamp(0.5rem, 2vw, 1.5rem) calc(-1 * var(--bleed)) 0;
@@ -49,10 +42,6 @@
   stroke-dasharray: 2.5 2.5;
 }
 
-.tidy__port {
-  fill: color-mix(in srgb, var(--ink) 28%, white);
-}
-
 .tidy__tick {
   fill: none;
   stroke: var(--shade-strong);
@@ -63,13 +52,11 @@
   fill: var(--ink);
 }
 
-.tidy__hue--peach { --hue: var(--peach); }
-.tidy__hue--pink { --hue: var(--pink); }
-.tidy__hue--violet { --hue: var(--violet); }
-.tidy__hue--blue { --hue: var(--blue); }
-.tidy__hue--sky { --hue: var(--sky); }
-.tidy__hue--mint { --hue: var(--mint); }
-.tidy__hue--sun { --hue: var(--sun); }
+/* The nightly check and the ports where lanes meet it. */
+.tidy__check,
+.tidy__port {
+  fill: color-mix(in srgb, var(--ink) 55%, white);
+}
 
 /* Before the check: one packet per wire in its hue, each at its own pace. */
 .tidy__packet {

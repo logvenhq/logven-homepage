@@ -2,22 +2,22 @@
 title = "Logven"
 template = "index.html"
 
-# "How it works": the sources workers read and the company model they build. Hues match the hero's spectrum.
+# "How it works": the sources workers read and the company model they build. Hues come from the site palette (mostly blue, with violet and warm accents).
 [[extra.sources]]
 name = "ERP"
-hue = "peach"
+hue = "blue"
 
 [[extra.sources]]
 name = "CRM"
-hue = "pink"
-
-[[extra.sources]]
-name = "Spreadsheets"
 hue = "violet"
 
 [[extra.sources]]
+name = "Spreadsheets"
+hue = "indigo"
+
+[[extra.sources]]
 name = "Email"
-hue = "blue"
+hue = "azure"
 
 [[extra.sources]]
 name = "Shared drives"
@@ -25,31 +25,31 @@ hue = "sky"
 
 [[extra.sources]]
 name = "PDFs and scans"
-hue = "mint"
+hue = "orange"
 
 [[extra.sources]]
 name = "Sensors"
-hue = "sun"
+hue = "amber"
 
 [[extra.entities]]
 name = "Customers"
 records = "1,284"
-hues = ["pink", "peach", "blue"]
+hues = ["violet", "blue", "azure"]
 
 [[extra.entities]]
 name = "Orders"
 records = "48,210"
-hues = ["peach", "violet", "mint"]
+hues = ["blue", "indigo", "orange"]
 
 [[extra.entities]]
 name = "Suppliers"
 records = "312"
-hues = ["peach", "blue", "sky"]
+hues = ["blue", "azure", "sky"]
 
 [[extra.entities]]
 name = "Machines"
 records = "86"
-hues = ["sun", "violet", "mint"]
+hues = ["amber", "indigo", "orange"]
 
 # Rendered in the FAQ section of the homepage.
 [[extra.faq]]

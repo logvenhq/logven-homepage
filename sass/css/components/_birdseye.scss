@@ -69,7 +69,7 @@
   width: 0.4375rem;
   height: 0.4375rem;
   border-radius: 50%;
-  background: conic-gradient(from 200deg, #f7b89c, #ed9bcc, #a38ff5, #5c82f0, #6ec7f5, #a6ede6, #f5e8a6, #f7b89c);
+  background: conic-gradient(from 200deg, var(--blue), var(--indigo), var(--violet), var(--orange), var(--amber), var(--sky), var(--azure), var(--blue));
 }
 
 /* The lake from above, full bleed. birdseye.js draws the rings, spokes and orbits at the size

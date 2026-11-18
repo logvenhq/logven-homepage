@@ -4,7 +4,7 @@
   {%- set hero = page.extra.model_hero %}
   <section class="hero hero--model card__media card__media--{{ hero.style }}" aria-labelledby="page-title">
     <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.36 0.34 0.52 1" aria-hidden="true"
-      data-ribbon-hue="{% if hero.style == 'language' %}0.76{% elif hero.style == 'vision' %}0.36{% elif hero.style == 'timeseries' %}0.56{% elif hero.style == 'decision' %}0.16{% else %}0.96{% endif %} 0.34"></canvas>
+      data-ribbon-hue="{% if hero.style == 'language' %}0.86 0.28{% elif hero.style == 'vision' %}0.00 0.24{% elif hero.style == 'timeseries' %}0.40 0.24{% elif hero.style == 'decision' %}0.90 0.20{% else %}0.10 0.30{% endif %}"></canvas>
     <div class="hero__content">
       <h1 id="page-title" class="hero__title" data-reveal><span>{{ hero.title }}</span><span>{{ hero.subtitle }}</span></h1>
     </div>

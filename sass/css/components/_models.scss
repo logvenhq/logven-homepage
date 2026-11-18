@@ -73,7 +73,7 @@
 }
 
 /* Model media: the hero's surface and ribbon (ribbon.js), each card with its own stretch of the
-   spectrum, under the card's label. */
+   palette (mostly blue), under the card's label. */
 .card__media {
   --model-card-bg: var(--hero-surface);
   position: relative;
@@ -146,6 +146,10 @@
   font-weight: 450;
   line-height: 1.04;
   letter-spacing: -0.035em;
+  /* The label keeps its own lightness but takes the colour of whatever is behind it, so where the
+     ribbon passes under a letter the letter turns blue (or violet, or orange) and stays grey on
+     the plain card. The card's media is isolated, so it only blends with its own ribbon. */
+  mix-blend-mode: luminosity;
 }
 
 .card__overlay span {

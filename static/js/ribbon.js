@@ -8,7 +8,7 @@
 // Optional attributes change a ribbon's pose and colours:
 //   data-ribbon-pose="centre rise pinch width"  where the band sits, how far it climbs to the
 //                                                right, where it twists, and how wide it is
-//   data-ribbon-hue="start span"                which stretch of the spectrum it shows (0 to 1,
+//   data-ribbon-hue="start span"                which stretch of the palette it shows (0 to 1,
 //                                                wrapping), and how much of it
 (() => {
   const targets = [...document.querySelectorAll("canvas[data-ribbon]")];
@@ -36,16 +36,17 @@
 
     const float PI = 3.14159265;
 
-    // Peach, pink, violet, blue, sky, aqua, butter, and back to peach, so a stretch can wrap.
+    // The palette in ribbon order (PALETTE below), back to the first so a stretch can wrap.
+    uniform vec3 palette[7];
     vec3 spectrum(float s) {
       s = fract(s) * 7.0;
-      vec3 c = mix(vec3(0.97, 0.72, 0.61), vec3(0.93, 0.61, 0.80), clamp(s, 0.0, 1.0));
-      c = mix(c, vec3(0.64, 0.56, 0.96), clamp(s - 1.0, 0.0, 1.0));
-      c = mix(c, vec3(0.36, 0.51, 0.94), clamp(s - 2.0, 0.0, 1.0));
-      c = mix(c, vec3(0.43, 0.78, 0.96), clamp(s - 3.0, 0.0, 1.0));
-      c = mix(c, vec3(0.65, 0.93, 0.90), clamp(s - 4.0, 0.0, 1.0));
-      c = mix(c, vec3(0.96, 0.91, 0.65), clamp(s - 5.0, 0.0, 1.0));
-      return mix(c, vec3(0.97, 0.72, 0.61), clamp(s - 6.0, 0.0, 1.0));
+      vec3 c = mix(palette[0], palette[1], clamp(s, 0.0, 1.0));
+      c = mix(c, palette[2], clamp(s - 1.0, 0.0, 1.0));
+      c = mix(c, palette[3], clamp(s - 2.0, 0.0, 1.0));
+      c = mix(c, palette[4], clamp(s - 3.0, 0.0, 1.0));
+      c = mix(c, palette[5], clamp(s - 4.0, 0.0, 1.0));
+      c = mix(c, palette[6], clamp(s - 5.0, 0.0, 1.0));
+      return mix(c, palette[0], clamp(s - 6.0, 0.0, 1.0));
     }
 
     vec3 band(float s) {
@@ -127,6 +128,15 @@
   const time = uniform("time");
   const pose = uniform("pose");
   const hue = uniform("hue");
+
+  // The palette from _tokens.scss, in the order the band runs through it. Each ribbon's stretch
+  // (data-ribbon-hue) should stay off amber-to-sky, which mixes muddy.
+  const PALETTE = ["azure", "blue", "indigo", "violet", "orange", "amber", "sky"];
+  const styles = getComputedStyle(document.documentElement);
+  gl.uniform3fv(uniform("palette"), PALETTE.flatMap((name) => {
+    const hex = styles.getPropertyValue(`--${name}`).trim().slice(1);
+    return [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+  }));
 
   const numbers = (value, fallback) => {
     const parsed = (value || "").trim().split(/\s+/).filter(Boolean).map(Number);

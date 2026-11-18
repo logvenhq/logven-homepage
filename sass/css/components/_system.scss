@@ -1,7 +1,7 @@
 /*
  * How it works: connectors on the left feed hair-thin grey wires into the data lake's black
  * sphere, and wires fan out from it into the company model on the right. Each source has one
- * hue from the hero's spectrum; the entities show the hues of the sources they're built from.
+ * colour from the palette (_tokens.scss); the entities show the colours of the sources they're built from.
  * Plain HTML and SVG in templates/index.html. The wires stretch to fit (non-scaling strokes),
  * so both lists use fixed row heights that the wire coordinates match:
  *   sources: 7 rows of 2rem with 1rem gaps = 20rem, centres every 45 of 300 units from 15;
@@ -11,13 +11,6 @@
 
 .system {
   --system-height: 20rem;
-  --peach: #eea684;
-  --pink: #e48bc0;
-  --violet: #9583ef;
-  --blue: #5c82f0;
-  --sky: #5ab8ea;
-  --mint: #6fcfc2;
-  --sun: #e6c95f;
   display: grid;
   grid-template-columns: 10.5rem minmax(4rem, 1fr) 4.875rem minmax(4rem, 1fr) 17rem;
   /* An explicit row, so the stretched wires can't size it from their aspect ratio. */
@@ -65,16 +58,9 @@
   width: 0.4375rem;
   height: 0.4375rem;
   border-radius: 50%;
-  background: var(--dot, var(--shade-strong));
+  background: var(--hue, var(--shade-strong));
 }
 
-.system__dot--peach { --dot: var(--peach); }
-.system__dot--pink { --dot: var(--pink); }
-.system__dot--violet { --dot: var(--violet); }
-.system__dot--blue { --dot: var(--blue); }
-.system__dot--sky { --dot: var(--sky); }
-.system__dot--mint { --dot: var(--mint); }
-.system__dot--sun { --dot: var(--sun); }
 
 .system__wires {
   display: block;
@@ -98,7 +84,7 @@
    translucent dashes of growing length that share one head, so each packet fades out towards
    its tail. Until the script has measured the wires, the packets stay hidden. */
 .system__packet {
-  stroke: var(--packet, var(--ink));
+  stroke: var(--hue, var(--ink));
   stroke-width: 1.5;
   stroke-dasharray: 0 1;
   opacity: 0;
@@ -111,17 +97,10 @@
   visibility: visible;
 }
 
-.system__packet--peach { --packet: var(--peach); }
-.system__packet--pink { --packet: var(--pink); }
-.system__packet--violet { --packet: var(--violet); }
-.system__packet--blue { --packet: var(--blue); }
-.system__packet--sky { --packet: var(--sky); }
-.system__packet--mint { --packet: var(--mint); }
-.system__packet--sun { --packet: var(--sun); }
 
 /* Out of the sphere the packets are the site's ink, a beat after the ones coming in. */
 .system__wires--out .system__packet {
-  --packet: color-mix(in srgb, var(--ink) 55%, white);
+  --hue: color-mix(in srgb, var(--ink) 55%, white);
   animation-delay: calc(var(--i) * -1.6s - 3.2s);
 }
 
