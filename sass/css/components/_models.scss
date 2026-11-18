@@ -72,8 +72,8 @@
   scroll-snap-align: start;
 }
 
-/* Model media: the hero's surface and ribbon (ribbon.js), each card with its own stretch of the
-   palette (mostly blue), under the card's label. */
+/* Model media: a light surface and a ribbon (ribbon.js), each card with its own stretch of the
+   palette, under the card's label. */
 .card__media {
   --model-card-bg: var(--hero-surface);
   position: relative;
