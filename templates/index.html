@@ -431,6 +431,22 @@
       </div>
     </section>
 
+    <section id="discovery" class="block roots-block" aria-labelledby="discovery-title" data-header-dark>
+      <div class="container">
+        <div class="grid section-top">
+          <div class="section-top__title">
+            <h2 id="discovery-title" class="block__title" data-reveal>Find the data <strong>you didn’t know you needed</strong></h2>
+          </div>
+          <p class="block__body section-top__intro" data-reveal>
+            Start a budget round or a pricing review, and Logven keeps watch over the data lake for anything that matters to it. Old forecasts, supplier contracts and another team’s spreadsheets turn up before you think to ask.
+          </p>
+        </div>
+      </div>
+      <figure class="roots" aria-hidden="true" data-roots>
+        <svg class="roots__art" data-roots-art focusable="false"></svg>
+        <div class="roots__sphere"><span class="birdseye__corona"></span><span class="birdseye__core"></span>{{ orb::orb(over=".birdseye__core", tone="light") }}</div>
+      </figure>
+    </section>
     <section id="faq" class="block" aria-labelledby="faq-title">
       <div class="container grid">
         <h2 id="faq-title" class="block__title faq__label" data-reveal>Questions</h2>
@@ -463,4 +479,5 @@
   <script src="{{ get_url(path='js/tidy.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/numbers.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/birdseye.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/roots.js', cachebust=true) }}" defer></script>
 {% endblock scripts %}

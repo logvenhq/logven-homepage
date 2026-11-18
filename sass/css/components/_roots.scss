@@ -1,0 +1,93 @@
+/*
+ * Discovery: a night section after Birdseye, on the data an analysis needs that nobody thought to
+ * ask for. The title and intro sit above an edge-to-edge illustration (static/js/roots.js):
+ * branches gather from the left into one thin trunk that flares into a grey ring round the sphere
+ * at the right edge, with the light orb and Birdseye's glow inside it. The branches and ring share
+ * one grey, so they read as a single shape, and the branches run off the left edge.
+ */
+
+.roots-block {
+  overflow: hidden;
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  background: var(--night);
+  color: var(--night-text);
+}
+
+.roots-block .block__title,
+.roots-block .block__title strong {
+  color: var(--night-ink);
+}
+
+.roots-block .section-top__intro {
+  color: var(--night-text);
+}
+
+.roots {
+  position: relative;
+  height: clamp(18rem, 28vw, 26rem);
+  margin: clamp(1rem, 3vw, 2.5rem) 0 0;
+  overflow: hidden;
+}
+
+.roots__art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.roots__ring {
+  fill: #26272c;
+}
+
+.roots__branch {
+  fill: none;
+  stroke: #26272c;
+  stroke-linecap: round;
+}
+
+.roots__packet {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  animation: roots-run var(--duration) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes roots-run {
+  from {
+    stroke-dashoffset: var(--from);
+  }
+
+  to {
+    stroke-dashoffset: var(--to);
+  }
+}
+
+/* The sphere, placed by roots.js, with the same glow on its top edge as Birdseye's. */
+.roots__sphere {
+  --sphere: var(--roots-size, 0px);
+  position: absolute;
+  top: var(--roots-y, 50%);
+  left: var(--roots-x, 100%);
+  width: var(--sphere);
+  height: var(--sphere);
+}
+
+/* Birdseye's glow is set for a small sphere; here it grows with this one. */
+.roots__sphere .birdseye__corona {
+  --room: calc(var(--sphere) * 0.12);
+  transform: translateY(calc(var(--sphere) * -0.04));
+}
+
+.roots__sphere .birdseye__corona::before {
+  filter: blur(calc(var(--sphere) * 0.03));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roots__packet {
+    display: none;
+  }
+}

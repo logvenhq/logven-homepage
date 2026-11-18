@@ -76,7 +76,9 @@
 }
 
 /* The official wordmark from the lockup (without the star). The viewBox is its measured ink
-   box, so it spans the content width edge to edge. */
+   box, so it spans the content width edge to edge. A soft light in the palette glows inside the
+   letters only: it follows the pointer over the footer and drifts along the word when the
+   pointer is elsewhere (static/js/wordmark.js). */
 .site-footer__wordmark {
   display: block;
   width: 100%;
@@ -85,6 +87,36 @@
   fill: color-mix(in srgb, var(--night) 93%, white);
   user-select: none;
   pointer-events: none;
+}
+
+/* Blue at the heart, through violet to a warm orange rim, then nothing. */
+.site-footer__light--core {
+  stop-color: var(--sky);
+  stop-opacity: 0.55;
+}
+
+.site-footer__light--mid {
+  stop-color: var(--violet);
+  stop-opacity: 0.3;
+}
+
+.site-footer__light--edge {
+  stop-color: var(--orange);
+  stop-opacity: 0.1;
+}
+
+.site-footer__light--out {
+  stop-color: var(--orange);
+  stop-opacity: 0;
+}
+
+.site-footer__glow {
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out, ease-out);
+}
+
+.site-footer__wordmark.is-lit .site-footer__glow {
+  opacity: 1;
 }
 
 @media (max-width: 922px) {
