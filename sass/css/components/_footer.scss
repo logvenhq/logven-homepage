@@ -84,8 +84,6 @@
   width: 100%;
   height: auto;
   overflow: visible;
-  /* A soft shadow under the card, so it sits on the footer like a real one. */
-  filter: drop-shadow(0 1.25rem 2.5rem rgb(0 0 0 / 0.35));
   user-select: none;
   pointer-events: none;
 }
