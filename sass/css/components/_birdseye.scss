@@ -1,7 +1,7 @@
 /*
  * Birdseye: the management view, set at night like the code section above it. A centred title,
- * then the data lake seen from above (static/js/birdseye.js): a white orb (_orb.scss) in a soft
- * corona of the graphics palette, hairline rings spreading out from it, faint spokes for the departments, and soft
+ * then the data lake seen from above (static/js/birdseye.js): a white orb (_orb.scss) whose top
+ * edge catches a soft glow in the graphics palette, hairline rings spreading out from it, faint spokes for the departments, and soft
  * packets orbiting along the rings. People never appear: the smallest unit is a team.
  */
 
@@ -73,7 +73,7 @@
 }
 
 /* The lake from above, full bleed. birdseye.js draws the rings, spokes and orbits at the size
-   they're shown; the sphere, its orb and corona are centred here. */
+   they're shown; the sphere, its orb and glow are centred here. */
 .birdseye__figure {
   --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
   --sphere: 4.5rem;
@@ -129,8 +129,8 @@
   }
 }
 
-/* The data lake's sphere, white on night, with the orb's pale smoke turning inside it and the
-   graphics palette as a slowly turning corona. */
+/* The data lake's sphere, white on night, with the orb's pale smoke turning inside it. Its top
+   edge catches a soft glow in the graphics palette, like the data lake's sphere (_lake.scss). */
 .birdseye__sphere {
   position: absolute;
   top: 50%;
@@ -140,13 +140,22 @@
   transform: translate(-50%, -50%);
 }
 
+/* Sized and faded like the lake's glow: a blurred ring a touch larger than the sphere, nudged up and
+   masked to its top edge. The colours turn inside the mask, so the glow stays on top. */
 .birdseye__corona {
   position: absolute;
-  inset: -0.3rem;
+  inset: -0.0625rem;
+  transform: translateY(-0.1875rem);
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 55%);
+}
+
+.birdseye__corona::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   border-radius: 50%;
   background: conic-gradient(from 0deg, var(--blue), var(--indigo), var(--violet), var(--orange), var(--amber), var(--sky), var(--azure), var(--blue));
-  filter: blur(0.45rem);
-  opacity: 0.75;
+  filter: blur(0.15rem);
   animation: lake-fringe 30s linear infinite;
 }
 
@@ -197,7 +206,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .birdseye__packet,
-  .birdseye__corona {
+  .birdseye__corona::before {
     animation: none;
   }
 }
