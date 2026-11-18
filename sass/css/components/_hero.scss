@@ -116,10 +116,13 @@
   margin-top: 0.5rem;
 }
 
-/* Ledger: columns of team figures that drift right to left above the homepage title. */
+/* Ledger: columns of team figures that drift right to left above the homepage title. Its white
+   adds to the gradient like light (plus-lighter), so the faint rules and labels take on the
+   hero's blue instead of turning grey. */
 .ledger {
   position: relative;
   z-index: 2;
+  mix-blend-mode: plus-lighter;
   min-height: 13rem;
   margin: clamp(1.25rem, 4vh, 3rem) calc(-1 * var(--inset)) clamp(2.5rem, 6vh, 4.5rem);
   padding-inline: var(--inset);
