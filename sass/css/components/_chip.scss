@@ -1,0 +1,155 @@
+/* Title chips (macros/chip.html): small glossy tiles that open up inside a title, pushing the
+   words apart on a soft spring while the tile pops in on a livelier one. In the hero they open on
+   load; further down, when paragraph-reveal.js reveals their title. A second chip in the same title
+   follows a beat later. They're decoration; the title reads the same without them. */
+
+.chip-pair {
+  white-space: nowrap;
+}
+
+.chip {
+  --chip: 1em;
+  --chip-gap: 0.24em;
+  --chip-delay: 0.4s;
+  --chip-tilt: -14deg;
+  /* Springs, sampled: the gap settles with a slight give, the tile with a little bounce. */
+  --spring-open: linear(0, 0.018, 0.064, 0.13, 0.208, 0.292, 0.378, 0.462, 0.541, 0.615, 0.683, 0.743, 0.796, 0.841, 0.88, 0.913, 0.94, 0.961, 0.979, 0.992, 1.002, 1.009, 1.014, 1.018, 1.019, 1.02, 1.02, 1.019, 1.018, 1.016, 1.014, 1.013, 1.011, 1.009, 1.008, 1.007, 1.005, 1.004, 1.003, 1.003, 1);
+  --spring-pop: linear(0, 0.036, 0.128, 0.255, 0.398, 0.545, 0.683, 0.806, 0.909, 0.991, 1.052, 1.093, 1.116, 1.126, 1.124, 1.114, 1.1, 1.082, 1.063, 1.045, 1.029, 1.015, 1.004, 0.996, 0.99, 0.986, 0.984, 0.984, 0.985, 0.987, 0.989, 0.991, 0.994, 0.996, 0.998, 0.999, 1, 1.001, 1.002, 1.002, 1);
+
+  display: inline-flex;
+  justify-content: center;
+  width: var(--chip);
+  height: var(--chip);
+  margin-inline-end: var(--chip-gap);
+  vertical-align: -0.17em;
+  animation: chip-open 0.80s var(--spring-open) var(--chip-delay) both;
+}
+
+.chip--after {
+  margin-inline: var(--chip-gap) 0;
+}
+
+.chip-pair ~ .chip-pair .chip {
+  --chip-delay: 0.56s;
+  --chip-tilt: 14deg;
+}
+
+/* Each tone layers like light through glass: a pale glow at the top left, the main colour
+   through the middle, a deeper shade at the bottom right and a soft rim of light. */
+
+/* Orange warming to amber at the top, with a reddish edge. */
+.chip--orange {
+  --chip-glow: rgb(255 226 140 / 0.8);
+  --chip-deep: rgb(226 70 52 / 0.7);
+  --chip-accent: rgb(255 128 84 / 0.45);
+  --chip-base: linear-gradient(160deg, #ffbe55 0%, #ff9442 38%, #f86e3c 70%, #e85340 100%);
+  --chip-rim: rgb(255 238 205 / 0.3);
+  --chip-shade: rgb(160 46 24 / 0.32);
+  --chip-drop: rgb(232 100 50 / 0.2);
+  --chip-tint: #ffdcc2;
+  --chip-groove: rgb(214 92 48 / 0.42);
+}
+
+/* Various blues with a touch of violet. */
+.chip--blue {
+  --chip-glow: rgb(166 214 255 / 0.75);
+  --chip-deep: rgb(96 70 226 / 0.6);
+  --chip-accent: rgb(122 116 242 / 0.4);
+  --chip-base: linear-gradient(160deg, #5aa8ff 0%, #3b7cff 38%, #2f5cf0 70%, #3a44d6 100%);
+  --chip-rim: rgb(210 232 255 / 0.28);
+  --chip-shade: rgb(30 30 150 / 0.34);
+  --chip-drop: rgb(44 80 230 / 0.2);
+  --chip-tint: #d3e0ff;
+  --chip-groove: rgb(46 78 200 / 0.38);
+}
+
+/* Violet, lilac at the top, deepening to indigo with a touch of blue. */
+.chip--violet {
+  --chip-glow: rgb(228 208 255 / 0.8);
+  --chip-deep: rgb(84 52 204 / 0.65);
+  --chip-accent: rgb(120 132 255 / 0.4);
+  --chip-base: linear-gradient(160deg, #bc9cff 0%, #9a7af2 38%, #7e5cea 70%, #6244d6 100%);
+  --chip-rim: rgb(238 226 255 / 0.3);
+  --chip-shade: rgb(64 30 150 / 0.34);
+  --chip-drop: rgb(110 70 230 / 0.2);
+  --chip-tint: #e2d4ff;
+  --chip-groove: rgb(104 64 206 / 0.42);
+}
+
+.chip__face {
+  flex: none;
+  width: var(--chip);
+  height: var(--chip);
+  border-radius: 0.25em;
+  background:
+    radial-gradient(70% 55% at 22% 10%, var(--chip-glow), transparent 70%),
+    radial-gradient(65% 60% at 85% 95%, var(--chip-deep), transparent 75%),
+    radial-gradient(60% 50% at 90% 15%, var(--chip-accent), transparent 70%),
+    var(--chip-base);
+  box-shadow:
+    inset 0 0 0 1px var(--chip-rim),
+    inset 0 0.05em 0.08em var(--chip-rim),
+    inset 0 -0.05em 0.12em var(--chip-shade),
+    0 0.03em 0.08em var(--chip-drop);
+  animation:
+    chip-pop 0.94s var(--spring-pop) calc(var(--chip-delay) + 0.06s) both,
+    chip-fade 0.35s var(--ease-out) calc(var(--chip-delay) + 0.06s) both;
+}
+
+.chip__face svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Glyphs are plump white shapes that cool to a tint of the tile at the bottom, with a faint shade
+   of the tile's colour under them so they sit softly on it. Grooves and holes take a deeper tint. */
+.chip__tint {
+  stop-color: var(--chip-tint);
+}
+
+.chip__groove {
+  fill: none;
+  stroke: var(--chip-groove);
+}
+
+.chip__hole {
+  fill: var(--chip-groove);
+}
+
+.chip__glyph {
+  filter: drop-shadow(0 1.5px 1.5px var(--chip-shade));
+}
+
+/* Titles further down wait, collapsed, until they're revealed. */
+[data-reveal-text]:not(.is-visible) .chip,
+[data-reveal-text]:not(.is-visible) .chip__face {
+  animation-play-state: paused;
+}
+
+@keyframes chip-open {
+  from {
+    width: 0;
+    margin-inline: 0;
+  }
+}
+
+@keyframes chip-pop {
+  from {
+    transform: scale(0.25) rotate(var(--chip-tilt));
+  }
+}
+
+@keyframes chip-fade {
+  from {
+    opacity: 0;
+    filter: blur(0.06em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .chip__face {
+    animation: none;
+  }
+}

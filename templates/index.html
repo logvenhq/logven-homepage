@@ -1,30 +1,11 @@
 {% extends "base.html" %}
 {% import "macros/orb.html" as orb %}
+{% import "macros/chip.html" as chips %}
 {% block content %}
   <section class="hero hero--home" aria-labelledby="hero-title">
     <div class="ledger" data-ledger aria-hidden="true"></div>
     <div class="hero__content">
-      <h1 id="hero-title" class="hero__title" data-reveal>
-        <span class="hero__pair"><span class="hero__chip hero__chip--centralise" aria-hidden="true"><span class="hero__chip-face">
-          <svg viewBox="0 0 100 100" focusable="false">
-            <defs>
-              <linearGradient id="hero-chip-fade" x1="8" x2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient>
-              <mask id="hero-chip-tail" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><rect width="100" height="100" fill="url(#hero-chip-fade)"/></mask>
-            </defs>
-            <g class="hero__chip-glyph" fill="#fff" mask="url(#hero-chip-tail)"><path opacity="0.42" d="M8 21H16C37 21 37 47 58 47H86a3 3 0 0 1 0 6H58C37 53 37 79 16 79H8Z"/><path opacity="0.55" d="M8 30H24C42 30 42 47.2 60 47.2H86a2.8 2.8 0 0 1 0 5.6H60C42 52.8 42 70 24 70H8Z"/><path opacity="0.8" d="M8 39H31C46.5 39 46.5 47.4 62 47.4H86a2.6 2.6 0 0 1 0 5.2H62C46.5 52.6 46.5 61 31 61H8Z"/></g>
-            <path class="hero__chip-glyph" fill="#fff" d="M50 47.8H86a2.2 2.2 0 0 1 0 4.4H50Z"/>
-          </svg>
-        </span></span><strong>Centralise</strong></span>
-        your teams’
-        <span class="hero__pair"><span class="hero__chip hero__chip--data" aria-hidden="true"><span class="hero__chip-face">
-          <svg viewBox="0 0 100 100" focusable="false">
-            <defs>
-              <linearGradient id="hero-chip-star" x1="0" y1="0" x2="0" y2="117" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#dce5ff"/></linearGradient>
-            </defs>
-            <path class="hero__chip-glyph" fill="url(#hero-chip-star)" transform="translate(17.6 18.8) scale(0.53)" d="M70.5482 7.71645C68.0005 0.970421 61.5564 -0.662634 55.8581 0.21975C50.5364 1.04373 47.4629 5.46568 46.1132 11.3119L43.6387 22.03C42.514 26.9018 39.8904 29.375 35.318 31.3983L8.8584 43.7631C2.11237 46.3109 -1.18608 51.7072 0.387328 58.2283C1.96073 64.7494 7.35705 68.0478 13.8781 66.4744L24.5216 64.8264C29.8434 64.0025 32.3166 66.626 29.9925 72.2473L21.596 90.8349C18.0726 97.2056 20.6204 103.952 26.2417 106.276C32.351 108.802 39.3584 107.251 42.8818 100.881L53.0021 83.7173C56.3005 78.321 61.3973 78.4714 62.9707 84.9925L68.4403 105.755C69.7888 113.25 75.9345 117.748 82.4556 116.175C88.9767 114.601 92.0502 110.179 91.6761 102.909L89.5807 67.5309C89.2066 60.2604 92.0552 56.8128 98.8012 54.265L112.068 50.1438C119.789 47.821 122.351 42.7199 121.514 35.9036C120.754 29.7199 115.518 26.3091 108.248 26.6831L85.4621 27.5804C80.3652 27.4301 77.6671 25.7808 75.6438 21.2085L70.5482 7.71645Z"/>
-          </svg>
-        </span></span><strong>data work</strong></span>.
-      </h1>
+      <h1 id="hero-title" class="hero__title" data-reveal><span class="chip-pair"><strong>Centralise</strong>{{ chips::chip(glyph="funnel", tone="orange", after=true) }}</span> your teams’ <span class="chip-pair"><strong>data work</strong>{{ chips::chip(glyph="db", after=true) }}</span></h1>
       <p class="hero__lede" data-reveal>Your teams organise their data work their own way. Logven turns it into one central data lake, keeps it tidy and shows you all the data you have, even the data you didn’t know about.</p>
       <div class="actions" data-reveal>
         <a class="button" href="{{ get_url(path='@/contact.md') }}">Start a pilot</a>
@@ -36,7 +17,7 @@
     <section id="product" class="block" aria-labelledby="problem-title">
       <div class="container grid intro">
         <div class="intro__copy">
-          <h2 id="problem-title" class="block__title" data-reveal>Before every decision, someone spends <strong>days gathering and analysing data</strong>.</h2>
+          <h2 id="problem-title" class="block__title" data-reveal>Before every decision, someone spends <strong>days gathering and analysing data</strong></h2>
           <p class="block__body" data-reveal>
             It’s spread across people, files, spreadsheets and emails, and nobody can see how it fits together. Most companies don’t even know what data they already have. Once it’s found, someone still has to clean it, combine it and work through it in spreadsheets.
           </p>
@@ -103,7 +84,7 @@
           </li>
         </ul>
         <div class="intro__copy">
-          <h2 id="tools-title" class="block__title" data-reveal>Give your teams <strong>simple tools</strong> for <strong>their own data work</strong>.</h2>
+          <h2 id="tools-title" class="block__title" data-reveal>Give your teams <strong>simple tools</strong> for <strong>their own data work</strong></h2>
           <p class="block__body" data-reveal>
             Each team gathers, models and analyses its data the way it already works, minus the copying, pasting and chasing. The repetitive parts run on their own, so the work moves smoothly from one week to the next.
           </p>
@@ -136,7 +117,7 @@
           {{ orb::orb(over=".lake__sphere") }}
         </div>
         <div class="lake-copy">
-          <h2 id="lake-title" class="block__title" data-reveal>One place for <strong>all your data</strong>.</h2>
+          <h2 id="lake-title" class="block__title" data-reveal>One place for <span class="chip-pair"><strong>all your data</strong>{{ chips::chip(glyph="sphere", after=true) }}</span></h2>
           <p class="block__body" data-reveal>
             Structured data from your spreadsheets, databases and the systems your teams already use. Unstructured data from reports, emails, PDFs and photos. Logven brings both into one central data lake, clean and connected, without anyone loading it by hand.
           </p>
@@ -148,7 +129,7 @@
       <div class="container">
         <div class="grid section-top">
           <div class="section-top__title">
-            <h2 id="system-title" class="block__title" data-reveal><strong>Workers</strong> bring in every source, <strong>structured or not</strong>.</h2>
+            <h2 id="system-title" class="block__title" data-reveal><strong>Workers</strong> bring in every source, <strong>structured or not</strong></h2>
           </div>
           <p class="block__body section-top__intro" data-reveal>
             Behind the data lake are workers: small pieces of code that Logven runs for each source. They pull from the systems your teams use and read the files they keep, then put it all together into one model of your company: every customer, order, supplier and machine, linked to the records behind it.
@@ -218,7 +199,7 @@
       <div class="container">
         <div class="grid section-top">
           <div class="section-top__title">
-            <h2 id="housekeeping-title" class="block__title" data-reveal>It <strong>stays tidy</strong>, and it <strong>gets better</strong> as it grows.</h2>
+            <h2 id="housekeeping-title" class="block__title" data-reveal>It <span class="chip-pair"><strong>stays tidy</strong>{{ chips::chip(glyph="tidy", tone="orange", after=true) }}</span>, and it <strong>gets better</strong> as it grows</h2>
           </div>
           <p class="block__body section-top__intro" data-reveal>
             Data lakes rarely get messy all at once. A sheet ends up in the wrong process, two teams keep the same list, a worker stops being used. Every night Logven looks over the whole workspace, tells you what to tidy and spots the work your teams keep repeating. Nothing changes until you accept it.
@@ -258,7 +239,7 @@
       <div class="container">
         <div class="block__head">
           <div class="block__head-copy">
-            <h2 id="models-title" class="block__title" data-reveal>Your data <strong>stays yours</strong>.</h2>
+            <h2 id="models-title" class="block__title" data-reveal>Your data <span class="chip-pair"><strong>stays yours</strong>{{ chips::chip(glyph="lock", tone="violet", after=true) }}</span></h2>
             <p class="block__body block__intro" data-reveal>
               Logven runs on your own servers, or in the cloud with European data residency. It uses small, private AI models, so your data never leaves your control.
             </p>
@@ -344,7 +325,7 @@
       <div class="container">
         <div class="lined">
           <div class="lined__head">
-            <h2 id="code-title" class="block__title" data-reveal>Every automation is <strong>written as code</strong>.</h2>
+            <h2 id="code-title" class="block__title" data-reveal>Every automation is <span class="chip-pair"><strong>written as code</strong>{{ chips::chip(glyph="code", after=true) }}</span></h2>
           </div>
           <div class="lined__row">
             <div class="lined__cell">
