@@ -1,14 +1,17 @@
 /*
  * One data lake: a hair-thin grey line comes in from each edge of the window, structured data on
  * the left and unstructured on the right, and flares only near the centre into a grey ring around
- * a black sphere, with the orb's smoke turning inside it (_orb.scss). Plain SVG in
+ * a white sphere, with pale smoke (_orb.scss). Plain SVG in
  * templates/index.html. The grey outline is fixed; soft shades drift along it towards the centre.
  */
 
 .lake {
   --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
+  --lake-height: clamp(10rem, 16vw, 15rem);
+  /* Match the 116-unit sphere to the SVG’s 1600 × 360 slice scaling. */
+  --sphere: max(7.25vw, calc(var(--lake-height) * 116 / 360));
   position: relative;
-  height: clamp(10rem, 16vw, 15rem);
+  height: var(--lake-height);
   margin: 0 calc(-1 * var(--bleed));
 }
 
@@ -22,11 +25,7 @@
 
 /* One grey for the lines and the ring, so they read as a single shape. */
 .lake__flow {
-  fill: color-mix(in srgb, var(--ink) 7%, white);
-}
-
-.lake__sphere {
-  fill: var(--ink);
+  fill: color-mix(in srgb, var(--orb-grey) 22%, white);
 }
 
 /* Soft shades drift in along the grey from both edges and fade as they reach the sphere,
@@ -96,6 +95,6 @@
 
 @media (max-width: 640px) {
   .lake {
-    height: 11rem;
+    --lake-height: 11rem;
   }
 }

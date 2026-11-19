@@ -1,114 +1,73 @@
-/*
- * Tools: three round badges, one for each part of the data work, each holding a small emblem of
- * the site graphic for that step: gathering, the problem section's bands converging into one
- * stream; modelling, the data lake's line flaring into the ring around its sphere; analysis,
- * Birdseye's rings seen from above. The emblems fade out before the ring. The badges are white
- * discs with a soft shadow, an inner ring and a faint diagonal sheen, each named underneath. They sit on the left, mirroring the problem section. Plain SVG in
- * templates/index.html.
- */
-
+/* The real app's populated Home page, in a natural landscape browser viewport.
+   The stage bleeds to the right; its edges and bottom dissolve into the page. */
 .intro--flip .intro__copy {
   grid-column: 8 / -1;
   grid-row: 1;
 }
 
-.badges {
-  display: flex;
-  grid-column: 1 / 7;
+#tools {
+  overflow: clip;
+}
+
+.tools-preview {
+  overflow: clip;
+  grid-column: 6 / -1;
   grid-row: 1;
-  justify-content: center;
-  align-self: center;
-  gap: clamp(1rem, 2vw, 1.75rem);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  min-width: 0;
+  margin: -3rem calc(-1 * (max(var(--inset), (100vw - 90rem) / 2) + 8rem)) -3rem 0;
+  padding: 3rem 0 3rem 1.5rem;
+  pointer-events: none;
+  mask-image:
+    linear-gradient(to right, transparent, #000 9%, #000 92%, transparent),
+    linear-gradient(to bottom, transparent, #000 10%, #000 72%, transparent 98%);
+  mask-composite: intersect;
 }
 
-.badges__item {
-  display: grid;
-  flex: none;
-  justify-items: center;
-  gap: 0.9rem;
-  width: clamp(7.5rem, 12.5vw, 11.25rem);
-}
-
-.badges__label {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9375rem;
-  line-height: 1.3;
-}
-
-.badge {
+.tools-preview__stage {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  border: 1px solid #e4e5e8;
-  border-radius: 50%;
-  /* Light from the top left: a soft grey there, white below, and a faint diagonal sheen. */
-  background:
-    linear-gradient(152deg, transparent 0 55%, rgb(255 255 255 / 85%) 55.4% 100%),
-    linear-gradient(152deg, #eeeff1 0%, #f7f7f8 55%, #ffffff 100%);
-  box-shadow:
-    0 1px 2px rgb(15 20 35 / 6%),
-    0 0.5rem 1.25rem rgb(15 20 35 / 7%),
-    inset 0 1px 0 #ffffff;
+  padding: 1.5rem 1.5rem 0 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -3rem;
+    background:
+      radial-gradient(ellipse at 40% 40%, rgb(77 127 242 / 0.07), transparent 65%),
+      radial-gradient(ellipse at 80% 70%, rgb(154 122 242 / 0.04), transparent 60%);
+  }
 }
 
-.badge__art {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+.tools-preview__window {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.45rem;
+  background: var(--paper);
+  box-shadow: 0 -0.5rem 2.5rem -0.5rem rgb(15 20 35 / 0.07);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgb(15 20 35 / 0.07);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
-.badge__ring {
-  fill: none;
-  stroke: #e6e7ea;
-  stroke-width: 1.25;
-}
-
-.badge__mark {
-  fill: var(--ink);
-}
-
-/* The emblems: the site's own tints, a few steps darker so they hold at this size. */
-.badge__band--outer { fill: color-mix(in srgb, var(--ink) 8%, white); }
-.badge__band--mid { fill: color-mix(in srgb, var(--ink) 15%, white); }
-.badge__band--inner { fill: color-mix(in srgb, var(--ink) 30%, white); }
-
-.badge__lake {
-  fill: color-mix(in srgb, var(--ink) 16%, white);
-}
-
-.badge__orbit {
-  fill: none;
-  stroke: color-mix(in srgb, var(--ink) 22%, white);
-  stroke-width: 1;
-}
-
-/* Below wide laptops the copy comes first and the badges sit in a row under it. */
 @media (max-width: 1100px) {
   .intro--flip .intro__copy,
-  .badges {
+  .tools-preview {
     grid-column: 1 / -1;
   }
 
-  .badges {
+  .tools-preview {
     grid-row: 2;
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  .badges {
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  .badges__item {
-    width: calc((100% - 1rem) / 3);
+    max-width: 54rem;
+    margin: -2rem calc(-1 * var(--inset)) -3rem -1rem;
   }
 }

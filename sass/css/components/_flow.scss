@@ -5,12 +5,13 @@
  */
 
 .flow {
-  grid-column: 6 / -1;
+  grid-column: 1 / 8;
+  grid-row: 1;
   align-self: center;
-  /* The thin stream runs on past the content to the window edge. */
-  margin-right: calc(-1 * (max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset)));
-  /* The wide end fades in, so the bands come out of the page rather than starting at an edge. */
-  mask-image: linear-gradient(to right, transparent, #000 22%);
+  /* The wide bands extend past the content to the left window edge. */
+  margin-left: calc(-1 * (max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset)));
+  /* Both ends dissolve into the page; the narrow stream fades before the copy. */
+  mask-image: linear-gradient(to right, transparent, #000 22%, #000 74%, transparent 100%);
 }
 
 .flow__art {
@@ -20,16 +21,16 @@
   overflow: visible;
 }
 
-/* Tints of the site's ink: the inner band darkest, each one fading as it narrows. */
-.flow__stop--outer-a { stop-color: color-mix(in srgb, var(--ink) 5%, white); }
-.flow__stop--outer-b { stop-color: color-mix(in srgb, var(--ink) 3.5%, white); }
-.flow__stop--outer-c { stop-color: color-mix(in srgb, var(--ink) 2%, white); }
-.flow__stop--mid-a { stop-color: color-mix(in srgb, var(--ink) 9%, white); }
-.flow__stop--mid-b { stop-color: color-mix(in srgb, var(--ink) 6%, white); }
-.flow__stop--mid-c { stop-color: color-mix(in srgb, var(--ink) 3%, white); }
-.flow__stop--inner-a { stop-color: color-mix(in srgb, var(--ink) 14%, white); }
-.flow__stop--inner-b { stop-color: color-mix(in srgb, var(--ink) 9%, white); }
-.flow__stop--inner-c { stop-color: color-mix(in srgb, var(--ink) 4%, white); }
+/* Tints of the light orb’s cool grey: the inner band darkest, each one fading as it narrows. */
+.flow__stop--outer-a { stop-color: color-mix(in srgb, var(--orb-grey) 14%, white); }
+.flow__stop--outer-b { stop-color: color-mix(in srgb, var(--orb-grey) 10%, white); }
+.flow__stop--outer-c { stop-color: color-mix(in srgb, var(--orb-grey) 6%, white); }
+.flow__stop--mid-a { stop-color: color-mix(in srgb, var(--orb-grey) 25%, white); }
+.flow__stop--mid-b { stop-color: color-mix(in srgb, var(--orb-grey) 17%, white); }
+.flow__stop--mid-c { stop-color: color-mix(in srgb, var(--orb-grey) 9%, white); }
+.flow__stop--inner-a { stop-color: color-mix(in srgb, var(--orb-grey) 38%, white); }
+.flow__stop--inner-b { stop-color: color-mix(in srgb, var(--orb-grey) 25%, white); }
+.flow__stop--inner-c { stop-color: color-mix(in srgb, var(--orb-grey) 12%, white); }
 
 /* A soft shade drifting left to right through the bands, like data on its way in. */
 .flow__pulse {
@@ -61,5 +62,9 @@
   .intro__copy,
   .flow {
     grid-column: 1 / -1;
+  }
+
+  .flow {
+    grid-row: 2;
   }
 }
