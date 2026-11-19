@@ -27,20 +27,46 @@
         </div>
         <div class="flow" aria-hidden="true" data-reveal>
           <svg class="flow__art" viewBox="0 0 900 480" focusable="false">
-            <defs>
-              <linearGradient id="flow-outer"><stop class="flow__stop flow__stop--outer-a" offset="0"/><stop class="flow__stop flow__stop--outer-b" offset="0.62"/><stop class="flow__stop flow__stop--outer-c" offset="1"/></linearGradient>
-              <linearGradient id="flow-mid"><stop class="flow__stop flow__stop--mid-a" offset="0"/><stop class="flow__stop flow__stop--mid-b" offset="0.62"/><stop class="flow__stop flow__stop--mid-c" offset="1"/></linearGradient>
-              <linearGradient id="flow-inner"><stop class="flow__stop flow__stop--inner-a" offset="0"/><stop class="flow__stop flow__stop--inner-b" offset="0.62"/><stop class="flow__stop flow__stop--inner-c" offset="1"/></linearGradient>
-              <linearGradient id="flow-pulse"><stop offset="0" stop-color="var(--orb-grey)" stop-opacity="0"/><stop offset="0.5" stop-color="var(--orb-grey)" stop-opacity="0.14"/><stop offset="1" stop-color="var(--orb-grey)" stop-opacity="0"/></linearGradient>
-              <clipPath id="flow-clip"><path d="M0 35H165C307.5 35 307.5 170 450 170H520C610 170 610 227 700 227H900V253H700C610 253 610 310 520 310H450C307.5 310 307.5 445 165 445H0Z"/></clipPath>
-            </defs>
-            <path class="flow__band" fill="url(#flow-outer)" d="M0 35H165C307.5 35 307.5 170 450 170H520C610 170 610 227 700 227H900V253H700C610 253 610 310 520 310H450C307.5 310 307.5 445 165 445H0Z"/>
-            <path class="flow__band" fill="url(#flow-mid)" d="M0 100H185C317.5 100 317.5 190 450 190H530C612.5 190 612.5 232 695 232H900V248H695C612.5 248 612.5 290 530 290H450C317.5 290 317.5 380 185 380H0Z"/>
-            <path class="flow__band" fill="url(#flow-inner)" d="M0 184H200C312.5 184 312.5 220 425 220H570C615 220 615 237 660 237H900V243H660C615 243 615 260 570 260H425C312.5 260 312.5 296 200 296H0Z"/>
-            <g clip-path="url(#flow-clip)"><rect class="flow__pulse" x="-260" y="0" width="260" height="480" fill="url(#flow-pulse)"/>{#- -#}
-              <rect class="flow__pulse flow__pulse--late" x="-260" y="0" width="260" height="480" fill="url(#flow-pulse)"/></g>
+            <g class="flow__wires">
+              <path class="flow__wire" d="M0 58H120C250 58 248 170 402 170H470C585 170 588 241 720 241"/>
+              <path class="flow__wire" d="M0 116H155C270 116 275 192 410 192H500C590 192 605 241 720 241"/>
+              <path class="flow__wire" d="M0 184H190C292 184 300 218 425 218H548C620 218 636 241 720 241"/>
+              <path class="flow__wire" d="M0 252H210C315 252 325 242 445 242H620C665 242 682 241 720 241"/>
+              <path class="flow__wire" d="M0 326H165C275 326 292 282 420 282H520C604 282 614 241 720 241"/>
+              <path class="flow__wire" d="M0 402H120C248 402 255 310 405 310H485C590 310 594 241 720 241"/>
+              <path class="flow__spine" d="M720 241H900"/>
+            </g>
+
+            <g class="flow__packets">
+              <path class="flow__packet" pathLength="100" style="--hue: var(--blue); --duration: 8.2s; --delay: -1.4s; --rest: 66" d="M0 58H120C250 58 248 170 402 170H470C585 170 588 241 720 241H900"/>
+              <path class="flow__packet" pathLength="100" style="--hue: var(--violet); --duration: 9.4s; --delay: -5.8s; --rest: 41" d="M0 116H155C270 116 275 192 410 192H500C590 192 605 241 720 241H900"/>
+              <path class="flow__packet" pathLength="100" style="--hue: var(--azure); --duration: 8.8s; --delay: -3.2s; --rest: 57" d="M0 184H190C292 184 300 218 425 218H548C620 218 636 241 720 241H900"/>
+              <path class="flow__packet" pathLength="100" style="--hue: var(--orange); --duration: 10.2s; --delay: -7.1s; --rest: 32" d="M0 252H210C315 252 325 242 445 242H620C665 242 682 241 720 241H900"/>
+              <path class="flow__packet" pathLength="100" style="--hue: var(--amber); --duration: 9s; --delay: -2.4s; --rest: 72" d="M0 326H165C275 326 292 282 420 282H520C604 282 614 241 720 241H900"/>
+              <path class="flow__packet" pathLength="100" style="--hue: var(--indigo); --duration: 8.6s; --delay: -6.3s; --rest: 48" d="M0 402H120C248 402 255 310 405 310H485C590 310 594 241 720 241H900"/>
+            </g>
+
+            <g class="flow__labels">
+              <path class="flow__tick" d="M186 184V142"/>
+              <circle class="flow__anchor" cx="186" cy="184" r="2.5"/>
+
+              <path class="flow__tick" d="M292 282V326"/>
+              <circle class="flow__anchor" cx="292" cy="282" r="2.5"/>
+
+              <path class="flow__tick" d="M470 170V126"/>
+              <circle class="flow__anchor" cx="470" cy="170" r="2.5"/>
+
+              <path class="flow__tick" d="M548 218V154"/>
+              <circle class="flow__anchor" cx="548" cy="218" r="2.5"/>
+            </g>
           </svg>
-          </div>
+          <ul class="flow__marks" role="list">
+            <li class="flow__mark flow__mark--spreadsheet" data-side="above">Spreadsheet</li>
+            <li class="flow__mark flow__mark--email" data-side="below">Email thread</li>
+            <li class="flow__mark flow__mark--pdf" data-side="above">PDF report</li>
+            <li class="flow__mark flow__mark--database" data-side="above">Database export</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -188,7 +214,7 @@
             <article class="card" data-reveal>
               <a class="card__link" href="{{ get_url(path='@/vision-models.md') }}" aria-labelledby="model-vision-title">
                 <div class="card__media card__media--vision">
-                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.64 -0.26 0.40 1.3" data-ribbon-hue="0.00 0.24" aria-hidden="true"></canvas>
+                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.64 -0.26 0.40 1.3" data-ribbon-palette="green" aria-hidden="true"></canvas>
                   <p class="card__overlay"><span>Vision.</span><span>Turns images into data.</span></p>
                 </div>
                 <h3 class="card__title" id="model-vision-title">Vision models for drawings, forms and photos</h3>
@@ -212,7 +238,7 @@
             <article class="card" data-reveal>
               <a class="card__link" href="{{ get_url(path='@/decision-models.md') }}" aria-labelledby="model-decision-title">
                 <div class="card__media card__media--decision">
-                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.52 0.12 0.34 1.3" data-ribbon-hue="0.90 0.20" aria-hidden="true"></canvas>
+                  <canvas class="card__ribbon" data-ribbon data-ribbon-pose="0.52 0.12 0.34 1.3" data-ribbon-palette="green" aria-hidden="true"></canvas>
                   <p class="card__overlay"><span>Decisions.</span><span>Weighs up the options.</span></p>
                 </div>
                 <h3 class="card__title" id="model-decision-title">Decision models for planning</h3>
@@ -388,6 +414,7 @@
   {% include "partials/cta.html" %}
 {% endblock content %}
 {% block scripts %}
+  <script src="{{ get_url(path='js/mockup.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/ribbon.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/orb.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/ledger.js', cachebust=true) }}" defer></script>

@@ -50,8 +50,9 @@
 .roots__packet {
   fill: none;
   stroke: #ffffff;
-  stroke-width: 1.5;
+  stroke-width: 1.6;
   stroke-linecap: round;
+  stroke-opacity: 0.62;
   animation: roots-run var(--duration) linear infinite;
   animation-delay: var(--delay, 0s);
 }

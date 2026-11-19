@@ -1,17 +1,16 @@
 /*
- * Problem section: nested grey bands, wide on the left, that narrow in two soft steps into one
- * thin stream on the right: a team's scattered data gathering into one place. A faint pulse
- * travels along them. Plain SVG in templates/index.html; no script.
+ * Problem section: loose hairline paths for spreadsheets, email, documents and systems converge
+ * into one stream. Coloured packets move at different speeds, echoing the housekeeping drawing's
+ * visual language while keeping the work visibly scattered. Plain SVG in templates/index.html.
  */
 
 .flow {
+  position: relative;
   grid-column: 1 / 8;
   grid-row: 1;
   align-self: center;
-  /* The wide bands extend past the content to the left window edge. */
   margin-left: calc(-1 * (max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset)));
-  /* Both ends dissolve into the page; the narrow stream fades before the copy. */
-  mask-image: linear-gradient(to right, transparent, #000 22%, #000 74%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 94%, transparent);
 }
 
 .flow__art {
@@ -21,43 +20,119 @@
   overflow: visible;
 }
 
-/* Tints of the light orb’s cool grey: the inner band darkest, each one fading as it narrows. */
-.flow__stop--outer-a { stop-color: color-mix(in srgb, var(--orb-grey) 14%, white); }
-.flow__stop--outer-b { stop-color: color-mix(in srgb, var(--orb-grey) 10%, white); }
-.flow__stop--outer-c { stop-color: color-mix(in srgb, var(--orb-grey) 6%, white); }
-.flow__stop--mid-a { stop-color: color-mix(in srgb, var(--orb-grey) 25%, white); }
-.flow__stop--mid-b { stop-color: color-mix(in srgb, var(--orb-grey) 17%, white); }
-.flow__stop--mid-c { stop-color: color-mix(in srgb, var(--orb-grey) 9%, white); }
-.flow__stop--inner-a { stop-color: color-mix(in srgb, var(--orb-grey) 38%, white); }
-.flow__stop--inner-b { stop-color: color-mix(in srgb, var(--orb-grey) 25%, white); }
-.flow__stop--inner-c { stop-color: color-mix(in srgb, var(--orb-grey) 12%, white); }
-
-/* A soft shade drifting left to right through the bands, like data on its way in. */
-.flow__pulse {
-  animation: flow-pulse 9s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+.flow__wire,
+.flow__spine,
+.flow__tick,
+.flow__packet {
+  fill: none;
+  vector-effect: non-scaling-stroke;
 }
 
-.flow__pulse--late {
-  animation-delay: -4.5s;
+.flow__wire,
+.flow__spine {
+  stroke: var(--shade);
+  stroke-width: 1;
 }
 
-@keyframes flow-pulse {
-  from {
-    transform: translateX(0);
+.flow__spine {
+  stroke: var(--shade-strong);
+}
+
+.flow__tick {
+  stroke: var(--shade-strong);
+  stroke-width: 1;
+}
+
+.flow__anchor {
+  fill: color-mix(in srgb, var(--ink) 45%, white);
+}
+
+.flow__marks {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.flow__mark {
+  position: absolute;
+  padding-left: 0.6rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.flow__mark[data-side="above"] {
+  transform: translateY(-0.1rem);
+}
+
+.flow__mark[data-side="below"] {
+  transform: translateY(0.1rem);
+}
+
+.flow__mark--spreadsheet {
+  top: 29.583%;
+  left: 20.667%;
+}
+
+.flow__mark--email {
+  bottom: 32.083%;
+  left: 32.444%;
+}
+
+.flow__mark--pdf {
+  top: 26.25%;
+  left: 52.222%;
+}
+
+.flow__mark--database {
+  top: 32.083%;
+  left: 60.889%;
+}
+
+.flow__packet {
+  stroke: var(--hue);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-opacity: 0.52;
+  stroke-dasharray: 7 93;
+  animation: flow-packet var(--duration) cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes flow-packet {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 100;
   }
 
-  to {
-    transform: translateX(1160px);
+  12% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flow__pulse {
-    display: none;
+  .flow__packet {
+    animation: none;
+    opacity: 0.52;
+    stroke-dashoffset: var(--rest);
   }
 }
 
-/* Below wide laptops the copy and the flow stack, so the flow keeps its full width. */
+/* Below wide laptops the copy and the illustration stack, as before. */
 @media (max-width: 1100px) {
   .intro__copy,
   .flow {

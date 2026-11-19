@@ -1,5 +1,5 @@
 // Birdseye: the data lake seen from above. A white orb sits in the middle (orb.js); hair-thin
-// rings spread out from it like water, and faint spokes mark the company's departments. Soft
+// rings spread out from it like water, and faint spokes mark the company's departments. Short
 // white packets orbit along the rings, the inner ones faster than the outer,
 // so the activity settles into a pattern.
 // Drawn at the size it's shown.
@@ -23,8 +23,7 @@
     { ring: 5, count: 2 },
     { ring: 6, count: 1 },
   ];
-  const TAILS = [0.4, 0.8, 1.3, 1.9, 2.6, 3.4];
-  const LAYER_OPACITY = 0.26;
+  const PACKET_LENGTH = 34;
 
   const el = (name, attributes = {}, parent = svg) => {
     const node = document.createElementNS(NS, name);
@@ -67,11 +66,8 @@
       const period = length / count;
       const duration = 14 * (RINGS[ring] / RINGS[0]) ** 0.75;
       const d = circle(cx, cy, r);
-      TAILS.forEach((tailShare) => {
-        const tail = r1(tailShare * 14);
-        const path = el("path", { d, class: "birdseye__packet" }, packets);
-        path.style.cssText = `stroke-opacity:${LAYER_OPACITY};stroke-dasharray:${tail} ${r1(period - tail)};--tail:${tail}px;--period:${r1(period)}px;--duration:${r1(duration)}s;--delay:-${r1((index * 2.3) % duration)}s`;
-      });
+      const path = el("path", { d, class: "birdseye__packet" }, packets);
+      path.style.cssText = `stroke-dasharray:${PACKET_LENGTH} ${r1(period - PACKET_LENGTH)};--tail:${PACKET_LENGTH}px;--period:${r1(period)}px;--duration:${r1(duration)}s;--delay:-${r1((index * 2.3) % duration)}s`;
     });
 
   };

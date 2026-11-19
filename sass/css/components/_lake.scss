@@ -1,15 +1,15 @@
-/* Two soft ribbons enter separately, then weave through each other. The shared
-   renderer draws both together so their crossings alternate over and under. */
+/* Three soft ribbons enter separately, then weave through each other. The shared
+   renderer draws them together so their crossings alternate over and under. */
 .lake {
   --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
   position: relative;
-  height: clamp(14rem, 24vw, 22rem);
+  height: clamp(22rem, 42vw, 40rem);
   margin: 0 calc(-1 * var(--bleed));
   overflow: clip;
   pointer-events: none;
   mask-image:
-    linear-gradient(to right, transparent, #000 8%, #000 94%, transparent),
-    linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    linear-gradient(to right, #000, #000 94%, transparent),
+    linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
   mask-composite: intersect;
 }
 

@@ -109,12 +109,13 @@
   stroke: #34363c;
 }
 
-/* Orbiting packets: stacked translucent dashes sharing one head, so each fades to its tail.
-   The dash pattern repeats once per packet, so the loop is seamless. */
+/* Orbiting packets: one crisp short line per orbit, repeating seamlessly. */
 .birdseye__packet {
   fill: none;
   stroke: #ffffff;
-  stroke-width: 1.5;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-opacity: 0.62;
   animation: birdseye-orbit var(--duration) linear infinite;
   animation-delay: var(--delay, 0s);
 }

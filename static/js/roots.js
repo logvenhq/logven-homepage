@@ -1,7 +1,7 @@
 // Roots: the discovery section's illustration, edge to edge. Branches come in from the left like
 // the roots of a tree or the arms of a river, joining one another until a single thin trunk flares
 // into a grey ring around the data lake's sphere at the right edge (orb.js fills it). Soft white
-// packets run down the branches into the sphere. The shape is seeded, so it's the same on every
+// short packets run down the branches into the sphere. The shape is seeded, so it's the same on every
 // visit, and it's drawn at the size it's shown.
 (() => {
   const root = document.querySelector("[data-roots]");
@@ -14,8 +14,7 @@
   // Packets: how many branches carry one at a time, and how fast they run, in px per second.
   const PACKETS = 9;
   const SPEED = 120;
-  const TAILS = [0.4, 0.8, 1.3, 1.9, 2.6, 3.4];
-  const LAYER_OPACITY = 0.26;
+  const PACKET_LENGTH = 34;
 
   const el = (name, attributes = {}, parent = svg) => {
     const node = document.createElementNS(NS, name);
@@ -138,7 +137,7 @@
         el("path", { class: "roots__branch", d: `M${r1(a.x)} ${r1(a.y)}${edge(node)}`, "stroke-width": r1(thick(node)) }, lines);
       });
 
-    // Packets: whole routes from a tip down to the sphere, each with a soft tail.
+    // Packets: one crisp short line runs from each selected tip down to the sphere.
     const packets = el("g", { class: "roots__packets" });
     const pick = seeded(SEED * 31);
     const routes = [...tree.tips].sort(() => pick() - 0.5).slice(0, PACKETS);
@@ -153,11 +152,8 @@
       // rests a while before the next one sets off down the same route.
       const run = length * (1.6 + pick() * 0.8);
       const duration = run / SPEED;
-      TAILS.forEach((share) => {
-        const tail = r1(share * 14);
-        const path = el("path", { d, class: "roots__packet" }, packets);
-        path.style.cssText = `stroke-opacity:${LAYER_OPACITY};stroke-dasharray:${tail} ${r1(run + tail)};--from:${tail}px;--to:${r1(tail - run)}px;--duration:${r1(duration)}s;--delay:-${r1((index * 2.9) % duration)}s`;
-      });
+      const path = el("path", { d, class: "roots__packet" }, packets);
+      path.style.cssText = `stroke-dasharray:${PACKET_LENGTH} ${r1(run + PACKET_LENGTH)};--from:${PACKET_LENGTH}px;--to:${r1(PACKET_LENGTH - run)}px;--duration:${r1(duration)}s;--delay:-${r1((index * 2.9) % duration)}s`;
     });
   };
 

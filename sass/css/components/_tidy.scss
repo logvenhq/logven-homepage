@@ -62,8 +62,9 @@
 .tidy__packet {
   fill: none;
   stroke: var(--hue);
-  stroke-width: 1.5;
-  stroke-opacity: 0.26;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-opacity: 0.58;
   opacity: 0;
   animation: tidy-packet var(--duration) cubic-bezier(0.45, 0, 0.55, 1) infinite;
   animation-delay: var(--delay);
@@ -93,8 +94,9 @@
 .tidy__beat {
   fill: none;
   stroke: color-mix(in srgb, var(--ink) 60%, white);
-  stroke-width: 1.5;
-  stroke-opacity: 0.22;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-opacity: 0.52;
   animation: tidy-beat var(--duration) linear infinite;
   animation-delay: var(--delay, 0s);
 }

@@ -11,7 +11,7 @@
 //                                                right, where it twists, and how wide it is
 //   data-ribbon-hue="start span"                which stretch of the palette it shows (0 to 1,
 //                                                wrapping), and how much of it
-//   data-ribbon-weave                           two coordinated, interlacing bands
+//   data-ribbon-weave                           three coordinated, interlacing bands
 (() => {
   const targets = [...document.querySelectorAll("canvas[data-ribbon]")];
   if (!targets.length) return;
@@ -36,6 +36,9 @@
     uniform vec4 pose;
     uniform vec2 hue;
     uniform float weave;
+    uniform float greenTint;
+    uniform vec3 green;
+    uniform vec3 aqua;
 
     const float PI = 3.14159265;
 
@@ -53,6 +56,7 @@
     }
 
     vec3 band(float s, vec2 colours) {
+      if (colours.x < 0.0) return mix(green, aqua, clamp(s, 0.0, 1.0));
       return spectrum(colours.x + clamp(s, 0.0, 1.0) * colours.y);
     }
 
@@ -85,6 +89,8 @@
       float t = time;
 
       if (weave > 0.5) {
+        // Leave room for the full broad entrances and their haze inside the canvas.
+        uv.y = (uv.y - 0.5) * 2.3 + 0.5;
         // A quiet, wide entrance tightens into an irregular braid on the right.
         // Both strands share a clock, so they keep meeting as they drift.
         float play = smoothstep(0.18, 0.62, x);
@@ -92,19 +98,34 @@
           + play * (0.42 * sin(x * 8.0 - t * 0.09) + 0.18 * sin(t * 0.13));
         float middle = 0.5 + play * (0.045 * sin(x * 7.0 + t * 0.08)
           + 0.025 * sin(x * 13.0 - t * 0.11));
-        float reach = mix(0.35, 0.17, smoothstep(0.25, 0.72, x));
+        // Sweep in from beyond the upper and lower left edges, with a broad inward curve.
+        float reach = mix(0.72, 0.17, smoothstep(0.0, 0.65, x));
         float blueCentre = middle - reach * cos(phase);
         float warmCentre = middle + reach * cos(phase + 0.28 * play * sin(x * 9.0 + 0.6));
         float blueFacing = cos(phase * 0.73 + 0.4);
         float warmFacing = cos(phase * 0.67 + 1.5);
-        float width = 0.085 - 0.018 * play;
-        float blueH = sign(blueFacing + 1e-4) * max(width * abs(blueFacing), 0.016);
-        float warmH = sign(warmFacing + 1e-4) * max(width * abs(warmFacing), 0.016);
+        // The bands begin partly outside the frame, so give their entrance enough body to stay
+        // legible before tapering back to the original braid width.
+        float entrance = 1.0 - smoothstep(0.04, 0.50, x);
+        float width = 0.085 - 0.018 * play + 0.23 * entrance;
+        float minimum = 0.016 + 0.012 * entrance;
+        // Keep some depth at the entrance without flattening either ribbon into a broad bar.
+        float blueProfile = mix(abs(blueFacing), 1.0, entrance);
+        float warmProfile = mix(abs(warmFacing), 1.0, entrance);
+        // Keep the cross-band gradient continuous as each strand turns.
+        float blueH = max(width * blueProfile, minimum);
+        float warmH = max(width * warmProfile, minimum);
         vec4 blue = lightBand(uv, t, blueCentre, blueH, blueFacing, 0.72, vec2(0.86, 0.30));
         vec4 warm = lightBand(uv, t + 3.0, warmCentre, warmH, warmFacing, 0.72, vec2(0.58, 0.14));
+        float greenCentre = middle + mix(0.0, 0.22, play) * sin(phase + 0.8);
+        float greenFacing = cos(phase * 0.8 + 0.8);
+        float greenH = max(width * mix(abs(greenFacing), 1.0, entrance), minimum);
+        vec4 mint = lightBand(uv, t + 6.0, greenCentre, greenH, greenFacing, 0.72, vec2(-1.0, 1.0));
         // Premultiplied layers swap depth between crossings, like a loose braid.
         gl_FragColor = mix(warm + blue * (1.0 - warm.a), blue + warm * (1.0 - blue.a),
           smoothstep(-0.25, 0.25, sin(phase)));
+        gl_FragColor = mix(gl_FragColor + mint * (1.0 - gl_FragColor.a),
+          mint + gl_FragColor * (1.0 - mint.a), smoothstep(-0.3, 0.3, cos(phase)));
         return;
       }
 
@@ -124,7 +145,7 @@
       float h = width * facing;
       h = sign(h + 1e-4) * max(abs(h), 0.011 * pose.w);
 
-      gl_FragColor = lightBand(uv, t, centre, h, facing, pose.w, hue);
+      gl_FragColor = lightBand(uv, t, centre, h, facing, pose.w, greenTint > 0.5 ? vec2(-1.0, 1.0) : hue);
     }
   `;
 
@@ -159,6 +180,7 @@
   const pose = uniform("pose");
   const hue = uniform("hue");
   const weave = uniform("weave");
+  const greenTint = uniform("greenTint");
 
   // The palette from _tokens.scss, in the order the band runs through it. Each ribbon's stretch
   // (data-ribbon-hue) should stay off amber-to-sky, which mixes muddy.
@@ -168,6 +190,11 @@
     const hex = styles.getPropertyValue(`--${name}`).trim().slice(1);
     return [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
   }));
+
+  ["green", "aqua"].forEach((name) => {
+    const hex = styles.getPropertyValue(`--${name}`).trim().slice(1);
+    gl.uniform3fv(uniform(name), [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255));
+  });
 
   const numbers = (value, fallback) => {
     const parsed = (value || "").trim().split(/\s+/).filter(Boolean).map(Number);
@@ -180,6 +207,7 @@
       context: canvas.getContext("2d"),
       pose: numbers(canvas.dataset.ribbonPose, [0.4, 0.26, 0.48, 1]),
       hue: numbers(canvas.dataset.ribbonHue, [0, 6 / 7]),
+      green: canvas.dataset.ribbonPalette === "green",
       weave: canvas.hasAttribute("data-ribbon-weave"),
       // Start each one at a random moment, so no two share a pose and none repeats between visits.
       offset: Math.random() * 600,
@@ -203,22 +231,27 @@
   };
 
   const weaveCoverage = (x, y, t) => {
+    y = (y - 0.5) * 2.3 + 0.5;
     const play = smoothstep(0.18, 0.62, x);
     const phase = 11 * x ** 2.25 - 0.3
       + play * (0.42 * Math.sin(x * 8 - t * 0.09) + 0.18 * Math.sin(t * 0.13));
     const middle = 0.5 + play * (0.045 * Math.sin(x * 7 + t * 0.08)
       + 0.025 * Math.sin(x * 13 - t * 0.11));
-    const reach = 0.35 - 0.18 * smoothstep(0.25, 0.72, x);
+    const reach = 0.72 - 0.55 * smoothstep(0, 0.65, x);
     const blueCentre = middle - reach * Math.cos(phase);
     const warmCentre = middle + reach * Math.cos(phase + 0.28 * play * Math.sin(x * 9 + 0.6));
-    const width = 0.085 - 0.018 * play;
+    const entrance = 1 - smoothstep(0.04, 0.5, x);
+    const width = 0.085 - 0.018 * play + 0.23 * entrance;
+    const minimum = 0.016 + 0.012 * entrance;
     const alpha = (centre, facing) => {
-      const h = Math.sign(facing + 1e-4) * Math.max(width * Math.abs(facing), 0.016);
+      const profile = Math.abs(facing) * (1 - entrance) + entrance;
+      const h = Math.max(width * profile, minimum);
       return bandCoverage(y - centre, h, facing, 0.72);
     };
     const blue = alpha(blueCentre, Math.cos(phase * 0.73 + 0.4));
     const warm = alpha(warmCentre, Math.cos(phase * 0.67 + 1.5));
-    return blue + warm * (1 - blue);
+    const mint = alpha(middle + (0.22 * play) * Math.sin(phase + 0.8), Math.cos(phase * 0.8 + 0.8));
+    return 1 - (1 - blue) * (1 - warm) * (1 - mint);
   };
 
   const coverage = ([px, py, pz, pw], x, y, t) => {
@@ -255,6 +288,7 @@
     gl.uniform4f(pose, ...ribbon.pose);
     gl.uniform2f(hue, ...ribbon.hue);
     gl.uniform1f(weave, ribbon.weave ? 1 : 0);
+    gl.uniform1f(greenTint, ribbon.green ? 1 : 0);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);

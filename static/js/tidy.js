@@ -31,7 +31,7 @@
   ];
   const STALE = { from: 0.9, end: 0.33 };
   const AUTOMATED = [1, 5];
-  const TAILS = [5, 10, 16, 23, 31, 40];
+  const PACKET_LENGTH = 34;
   // On the right everything moves at this speed, in pixels per second.
   const SPEED = 46;
 
@@ -43,13 +43,11 @@
   };
   const r = (value) => Math.round(value * 10) / 10;
 
-  // A packet: translucent dashes of growing length sharing one head, so it fades to its tail.
+  // One crisp short line, matching the packets used throughout the other section graphics.
   const packet = (parent, d, className, style) => {
-    TAILS.forEach((tail) => {
-      const path = el("path", { d, class: className }, parent);
-      path.style.cssText = style(tail);
-      path.style.setProperty("--tail", `${tail}px`);
-    });
+    const path = el("path", { d, class: className }, parent);
+    path.style.cssText = style(PACKET_LENGTH);
+    path.style.setProperty("--tail", `${PACKET_LENGTH}px`);
   };
 
   const draw = () => {
