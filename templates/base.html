@@ -44,8 +44,11 @@
       <div class="site-header__inner">
         <a class="site-header__logo" href="{{ home }}" aria-label="Logven home">{% include "partials/logo.html" %}</a>
         <nav class="site-header__nav" aria-label="Primary">
+          <a class="site-header__section" href="{{ home }}#how-it-works">How it works</a>
+          <a class="site-header__section" href="{{ home }}#models">Models</a>
           <a href="{{ home }}#pricing">Pricing</a>
-          <a href="{{ get_url(path='@/contact.md') }}">Start a pilot</a>
+          <a class="site-header__section" href="{{ home }}#faq">FAQ</a>
+          <a href="{{ get_url(path='@/contact.md') }}"{% if current_path == '/contact/' %} aria-current="page"{% endif %}>Start a pilot</a>
         </nav>
       </div>
     </header>

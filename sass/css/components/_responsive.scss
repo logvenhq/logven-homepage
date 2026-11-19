@@ -51,6 +51,11 @@
     gap: 0.25rem 1rem;
   }
 
+  /* Phones keep Pricing and Start a pilot; the footer lists every section. */
+  .site-header__section {
+    display: none;
+  }
+
   /* The navigation overlays the hero, which fills the screen. */
   .hero--home {
     min-height: 100dvh;

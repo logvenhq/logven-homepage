@@ -78,36 +78,23 @@ main > .hero:first-child {
   gap: clamp(1.25rem, 2.6vw, 2.25rem);
 }
 
-/* Both links read the same, with a hairline that draws in on hover. */
+/* Links read like the footer's: plain text whose underline fades in on hover. */
 .site-header__nav a {
-  position: relative;
   padding-block: 0.5rem;
   color: var(--text);
   font-size: 0.9375rem;
-  text-decoration: none;
-  transition: color 200ms ease;
-}
-
-.site-header__nav a::after {
-  position: absolute;
-  inset: auto 0 0.15rem;
-  height: 1px;
-  background: currentColor;
-  content: "";
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 250ms var(--ease-out);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
 }
 
 .site-header__nav a:hover,
+.site-header__nav a:focus-visible,
 .site-header__nav a[aria-current="page"] {
   color: var(--ink);
-}
-
-.site-header__nav a:hover::after,
-.site-header__nav a:focus-visible::after,
-.site-header__nav a[aria-current="page"]::after {
-  transform: scaleX(1);
+  text-decoration-color: currentColor;
 }
 
 /* Model pages: the header sits on the page's ribbon hero, so it starts in plain ink. */
