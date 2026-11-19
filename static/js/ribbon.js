@@ -11,6 +11,7 @@
 //                                                right, where it twists, and how wide it is
 //   data-ribbon-hue="start span"                which stretch of the palette it shows (0 to 1,
 //                                                wrapping), and how much of it
+//   data-ribbon-weave                           two coordinated, interlacing bands
 (() => {
   const targets = [...document.querySelectorAll("canvas[data-ribbon]")];
   if (!targets.length) return;
@@ -34,6 +35,7 @@
     uniform float time;
     uniform vec4 pose;
     uniform vec2 hue;
+    uniform float weave;
 
     const float PI = 3.14159265;
 
@@ -50,14 +52,61 @@
       return mix(c, palette[0], clamp(s - 6.0, 0.0, 1.0));
     }
 
-    vec3 band(float s) {
-      return spectrum(hue.x + clamp(s, 0.0, 1.0) * hue.y);
+    vec3 band(float s, vec2 colours) {
+      return spectrum(colours.x + clamp(s, 0.0, 1.0) * colours.y);
+    }
+
+    vec4 lightBand(vec2 uv, float t, float centre, float h, float facing, float scale, vec2 colours) {
+      float x = uv.x;
+      float offset = uv.y - centre;
+      float v = offset / h;
+      float edgeOn = 1.0 - abs(facing);
+
+      // Soft edges, colour across the ribbon, and a slow travelling shimmer.
+      float shimmer = 0.07 * sin(x * 5.0 - t * 0.6) + 0.04 * sin(x * 11.0 + t * 0.4);
+      vec3 colour = band(v * 0.5 + 0.5 + shimmer, colours);
+      float body = 1.0 - smoothstep(0.55, 1.15, abs(v));
+      float glint = exp(-pow((v - 0.25) * 3.2, 2.0)) * (0.35 + 0.25 * sin(x * 6.0 - t * 0.8));
+      colour = mix(colour, vec3(1.0), clamp(glint, 0.0, 0.6) * body);
+      body *= 0.82 + 0.35 * edgeOn;
+
+      // The haze keeps its middle tint as the ribbon turns edge-on.
+      float spread = abs(h) + 0.09 * scale;
+      float haze = exp(-pow(offset / spread, 2.0)) * 0.22;
+      vec3 hazeColour = mix(band(0.4, colours), band(v * 0.5 + 0.5, colours), smoothstep(0.0, 0.5, abs(facing)));
+      float alpha = clamp(body + haze * (1.0 - body), 0.0, 1.0);
+      vec3 rgb = mix(hazeColour, colour, body / max(alpha, 1e-3));
+      return vec4(rgb * alpha, alpha);
     }
 
     void main() {
       vec2 uv = gl_FragCoord.xy / resolution;
       float x = uv.x;
       float t = time;
+
+      if (weave > 0.5) {
+        // A quiet, wide entrance tightens into an irregular braid on the right.
+        // Both strands share a clock, so they keep meeting as they drift.
+        float play = smoothstep(0.18, 0.62, x);
+        float phase = 11.0 * pow(x, 2.25) - 0.3
+          + play * (0.42 * sin(x * 8.0 - t * 0.09) + 0.18 * sin(t * 0.13));
+        float middle = 0.5 + play * (0.045 * sin(x * 7.0 + t * 0.08)
+          + 0.025 * sin(x * 13.0 - t * 0.11));
+        float reach = mix(0.35, 0.17, smoothstep(0.25, 0.72, x));
+        float blueCentre = middle - reach * cos(phase);
+        float warmCentre = middle + reach * cos(phase + 0.28 * play * sin(x * 9.0 + 0.6));
+        float blueFacing = cos(phase * 0.73 + 0.4);
+        float warmFacing = cos(phase * 0.67 + 1.5);
+        float width = 0.085 - 0.018 * play;
+        float blueH = sign(blueFacing + 1e-4) * max(width * abs(blueFacing), 0.016);
+        float warmH = sign(warmFacing + 1e-4) * max(width * abs(warmFacing), 0.016);
+        vec4 blue = lightBand(uv, t, blueCentre, blueH, blueFacing, 0.72, vec2(0.86, 0.30));
+        vec4 warm = lightBand(uv, t + 3.0, warmCentre, warmH, warmFacing, 0.72, vec2(0.58, 0.14));
+        // Premultiplied layers swap depth between crossings, like a loose braid.
+        gl_FragColor = mix(warm + blue * (1.0 - warm.a), blue + warm * (1.0 - blue.a),
+          smoothstep(-0.25, 0.25, sin(phase)));
+        return;
+      }
 
       // The centre line rises towards the right and sways on slow, unrelated waves.
       float rise = smoothstep(0.25, 1.1, x);
@@ -75,27 +124,7 @@
       float h = width * facing;
       h = sign(h + 1e-4) * max(abs(h), 0.011 * pose.w);
 
-      float offset = uv.y - centre;
-      float v = offset / h;
-      float edgeOn = 1.0 - abs(facing);
-
-      // The band: soft edges, colour across it, with a slow shimmer travelling along it.
-      float shimmer = 0.07 * sin(x * 5.0 - t * 0.6) + 0.04 * sin(x * 11.0 + t * 0.4);
-      vec3 colour = band(v * 0.5 + 0.5 + shimmer);
-      float body = 1.0 - smoothstep(0.55, 1.15, abs(v));
-      float glint = exp(-pow((v - 0.25) * 3.2, 2.0)) * (0.35 + 0.25 * sin(x * 6.0 - t * 0.8));
-      colour = mix(colour, vec3(1.0), clamp(glint, 0.0, 0.6) * body);
-      body *= 0.82 + 0.35 * edgeOn;
-
-      // A wide haze around the band, tinted by the colour nearest to it. Where the band turns
-      // over, the tint settles on the middle of its stretch, so the haze doesn't flip at the twist.
-      float spread = abs(h) + 0.09 * pose.w;
-      float haze = exp(-pow(offset / spread, 2.0)) * 0.22;
-      vec3 hazeColour = mix(band(0.4), band(v * 0.5 + 0.5), smoothstep(0.0, 0.5, abs(facing)));
-
-      float alpha = clamp(body + haze * (1.0 - body), 0.0, 1.0);
-      vec3 rgb = mix(hazeColour, colour, body / max(alpha, 1e-3));
-      gl_FragColor = vec4(rgb * alpha, alpha);
+      gl_FragColor = lightBand(uv, t, centre, h, facing, pose.w, hue);
     }
   `;
 
@@ -129,6 +158,7 @@
   const time = uniform("time");
   const pose = uniform("pose");
   const hue = uniform("hue");
+  const weave = uniform("weave");
 
   // The palette from _tokens.scss, in the order the band runs through it. Each ribbon's stretch
   // (data-ribbon-hue) should stay off amber-to-sky, which mixes muddy.
@@ -150,6 +180,7 @@
       context: canvas.getContext("2d"),
       pose: numbers(canvas.dataset.ribbonPose, [0.4, 0.26, 0.48, 1]),
       hue: numbers(canvas.dataset.ribbonHue, [0, 6 / 7]),
+      weave: canvas.hasAttribute("data-ribbon-weave"),
       // Start each one at a random moment, so no two share a pose and none repeats between visits.
       offset: Math.random() * 600,
       visible: false,
@@ -161,6 +192,33 @@
   const smoothstep = (a, b, v) => {
     const t = Math.min(1, Math.max(0, (v - a) / (b - a)));
     return t * t * (3 - 2 * t);
+  };
+
+  const bandCoverage = (offset, h, facing, scale) => {
+    let body = 1 - smoothstep(0.55, 1.15, Math.abs(offset / h));
+    body *= 0.82 + 0.35 * (1 - Math.abs(facing));
+    const spread = Math.abs(h) + 0.09 * scale;
+    const haze = Math.exp(-((offset / spread) ** 2)) * 0.22;
+    return Math.min(1, Math.max(0, body + haze * (1 - body)));
+  };
+
+  const weaveCoverage = (x, y, t) => {
+    const play = smoothstep(0.18, 0.62, x);
+    const phase = 11 * x ** 2.25 - 0.3
+      + play * (0.42 * Math.sin(x * 8 - t * 0.09) + 0.18 * Math.sin(t * 0.13));
+    const middle = 0.5 + play * (0.045 * Math.sin(x * 7 + t * 0.08)
+      + 0.025 * Math.sin(x * 13 - t * 0.11));
+    const reach = 0.35 - 0.18 * smoothstep(0.25, 0.72, x);
+    const blueCentre = middle - reach * Math.cos(phase);
+    const warmCentre = middle + reach * Math.cos(phase + 0.28 * play * Math.sin(x * 9 + 0.6));
+    const width = 0.085 - 0.018 * play;
+    const alpha = (centre, facing) => {
+      const h = Math.sign(facing + 1e-4) * Math.max(width * Math.abs(facing), 0.016);
+      return bandCoverage(y - centre, h, facing, 0.72);
+    };
+    const blue = alpha(blueCentre, Math.cos(phase * 0.73 + 0.4));
+    const warm = alpha(warmCentre, Math.cos(phase * 0.67 + 1.5));
+    return blue + warm * (1 - blue);
   };
 
   const coverage = ([px, py, pz, pw], x, y, t) => {
@@ -175,12 +233,7 @@
     const facing = Math.cos(Math.PI * 0.5 + d * Math.PI * (1.35 + 0.12 * Math.sin(t * 0.09)));
     let h = width * facing;
     h = Math.sign(h + 1e-4) * Math.max(Math.abs(h), 0.011 * pw);
-    const offset = y - centre;
-    let body = 1 - smoothstep(0.55, 1.15, Math.abs(offset / h));
-    body *= 0.82 + 0.35 * (1 - Math.abs(facing));
-    const spread = Math.abs(h) + 0.09 * pw;
-    const haze = Math.exp(-((offset / spread) ** 2)) * 0.22;
-    return Math.min(1, Math.max(0, body + haze * (1 - body)));
+    return bandCoverage(y - centre, h, facing, pw);
   };
 
   const draw = (ribbon, now) => {
@@ -201,6 +254,7 @@
     gl.uniform1f(time, ribbon.offset + now / 1000);
     gl.uniform4f(pose, ...ribbon.pose);
     gl.uniform2f(hue, ...ribbon.hue);
+    gl.uniform1f(weave, ribbon.weave ? 1 : 0);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
@@ -211,7 +265,9 @@
 
     // The latest frame's coverage stays on the canvas too, for scripts that start after it.
     const t = ribbon.offset + now / 1000;
-    canvas.ribbonCoverage = (x, y) => coverage(ribbon.pose, x, y, t);
+    canvas.ribbonCoverage = ribbon.weave
+      ? (x, y) => weaveCoverage(x, y, t)
+      : (x, y) => coverage(ribbon.pose, x, y, t);
     canvas.dispatchEvent(new CustomEvent("ribbon:frame", { detail: canvas.ribbonCoverage }));
   };
 

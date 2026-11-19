@@ -1,76 +1,31 @@
-/*
- * One data lake: a hair-thin grey line comes in from each edge of the window, structured data on
- * the left and unstructured on the right, and flares only near the centre into a grey ring around
- * a white sphere, with pale smoke (_orb.scss). Plain SVG in
- * templates/index.html. The grey outline is fixed; soft shades drift along it towards the centre.
- */
-
+/* Two soft ribbons enter separately, then weave through each other. The shared
+   renderer draws both together so their crossings alternate over and under. */
 .lake {
   --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
-  --lake-height: clamp(10rem, 16vw, 15rem);
-  /* Match the 116-unit sphere to the SVG’s 1600 × 360 slice scaling. */
-  --sphere: max(7.25vw, calc(var(--lake-height) * 116 / 360));
   position: relative;
-  height: var(--lake-height);
+  height: clamp(14rem, 24vw, 22rem);
   margin: 0 calc(-1 * var(--bleed));
+  overflow: clip;
+  pointer-events: none;
+  mask-image:
+    linear-gradient(to right, transparent, #000 8%, #000 94%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  mask-composite: intersect;
 }
 
-.lake__art {
+.lake__ribbon {
   position: absolute;
   inset: 0;
   display: block;
   width: 100%;
   height: 100%;
-}
-
-/* One grey for the lines and the ring, so they read as a single shape. */
-.lake__flow {
-  fill: color-mix(in srgb, var(--orb-grey) 22%, white);
-}
-
-/* Soft shades drift in along the grey from both edges and fade as they reach the sphere,
-   like the problem section's bands. They're clipped to the grey shape, so its outline never moves. */
-.lake__pulse {
   opacity: 0;
-  animation: lake-pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  filter: blur(6px);
+  transition: opacity 2.4s var(--ease-out);
 }
 
-.lake__pulse--late {
-  animation-delay: -3.5s;
-}
-
-.lake__pulse--offset {
-  animation-delay: -1.75s;
-}
-
-.lake__pulse--offset.lake__pulse--late {
-  animation-delay: -5.25s;
-}
-
-@keyframes lake-pulse {
-  0% {
-    opacity: 0;
-    transform: translateX(0);
-  }
-
-  15% {
-    opacity: 1;
-  }
-
-  80% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateX(860px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lake__pulse {
-    animation: none;
-  }
+.lake__ribbon.is-ready {
+  opacity: 0.65;
 }
 
 /* The title and paragraph sit centred under the graphic. */
@@ -91,10 +46,4 @@
 .lake-copy .block__body {
   color: var(--muted);
   text-wrap: pretty;
-}
-
-@media (max-width: 640px) {
-  .lake {
-    --lake-height: 11rem;
-  }
 }
