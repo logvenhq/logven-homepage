@@ -312,7 +312,7 @@
               <span class="code__file">Vibration trend</span>
               <span class="code__tag">Worker</span>
             </figcaption>
-            <pre class="code__body"><code id="code-worker"><span class="code__line"><span class="code__keyword">async</span> <span class="code__keyword">function</span> <span class="code__fn">run</span>(input, <span class="code__ctx">ctx</span>) {</span>{#- -#}{#- -#}
+            <pre class="code__body"><code><span class="code__line"><span class="code__keyword">async</span> <span class="code__keyword">function</span> <span class="code__fn">run</span>(input, <span class="code__ctx">ctx</span>) {</span>{#- -#}{#- -#}
             <span class="code__line">  <span class="code__keyword">const</span> tests = <span class="code__ctx">ctx</span>.sheets</span>{#- -#}{#- -#}
             <span class="code__line">    .<span class="code__fn">list_records</span>(<span class="code__string">"hot_fire_test_campaign"</span>)</span>{#- -#}{#- -#}
             <span class="code__line">    .<span class="code__fn">filter</span>((test) =&gt; test.engine === input.engine);</span>{#- -#}{#- -#}
@@ -343,7 +343,7 @@
               <span class="code__file">Vibration trend</span>
               <span class="code__tag">Worker with model steps</span>
             </figcaption>
-            <pre class="code__body"><code id="code-ai"><span class="code__line"><span class="code__keyword">const</span> forecast = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">forecast</span>({</span>{#- -#}{#- -#}
+            <pre class="code__body"><code><span class="code__line"><span class="code__keyword">const</span> forecast = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">forecast</span>({</span>{#- -#}{#- -#}
             <span class="code__line">  model: <span class="code__string">"timestral"</span>,</span><span class="code__line">  series: readings,</span>{#- -#}{#- -#}
             <span class="code__line">  horizon: 10,</span><span class="code__line">});</span><span class="code__line"> </span>{#- -#}{#- -#}
             <span class="code__line"><span class="code__keyword">const</span> gauge = <span class="code__keyword">await</span> <span class="code__ctx">ctx</span>.<span class="code__fn">vision</span>({</span>{#- -#}{#- -#}

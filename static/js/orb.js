@@ -1,5 +1,5 @@
 // The orb: soft, blurred colour drifting slowly inside a flat disc, lit from below left.
-// It fills the data lake's spheres: the lake, the hub in how it works and Birdseye. The tools
+// It fills the data lake's spheres: the lake, Birdseye and the roots. The tools
 // badges keep their plain black marks.
 //
 // Use the orb macro (templates/macros/orb.html): it places a <canvas data-orb="selector"> next to

@@ -101,6 +101,9 @@
           </nav>
         </div>
       </div>
+      <div class="container">
+        <p class="site-footer__legal">© {{ now() | date(format="%Y") }} Logven. All rights reserved.</p>
+      </div>
     </footer>
 
     <script src="{{ get_url(path='js/paragraph-reveal.js', cachebust=true) }}" defer></script>

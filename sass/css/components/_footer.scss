@@ -1,12 +1,26 @@
-/* Footer: always dark. The brand and link columns. */
+/* Footer: always dark and tall. The brand and link columns at the top, the copyright line at
+   the very end. */
 
 .site-footer {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(4rem, 10vw, 8rem);
+  min-height: clamp(34rem, 80svh, 50rem);
   overflow: hidden;
   padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(2rem, 4vw, 3.5rem);
   color: var(--night-text);
   background: var(--night);
+}
+
+.site-footer__legal {
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--night-line);
+  color: var(--night-muted);
+  font-size: 0.875rem;
 }
 
 .site-footer__grid {
