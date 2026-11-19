@@ -9,7 +9,7 @@
   background: var(--hero-surface);
 }
 
-/* Homepage: the ledger fills the top, the title sits below them. */
+/* Homepage: the ribbon and ledger fill the top, the title sits below them. */
 .hero--home {
   grid-template-rows: minmax(0, 1fr) auto;
   align-content: stretch;
@@ -194,4 +194,30 @@
   .ledger__caption {
     font-size: 0.8125rem;
   }
+}
+
+/* Ribbon: a soft blue band of light, like the call to action's, that sways and twists behind the
+   ledger. ribbon.js draws it with a shader; without WebGL or JavaScript the hero simply has no ribbon. */
+.hero-ribbon {
+  position: relative;
+  z-index: 1;
+  grid-area: 1 / 1;
+  margin-inline: calc(-1 * var(--inset));
+  pointer-events: none;
+}
+
+.hero-ribbon canvas {
+  position: absolute;
+  /* Wider than the hero, so the blur doesn't fade the band at the sides. */
+  inset: -12% -2%;
+  display: block;
+  width: 104%;
+  height: 124%;
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 2.4s var(--ease-out);
+}
+
+.hero-ribbon canvas.is-ready {
+  opacity: 0.6;
 }
