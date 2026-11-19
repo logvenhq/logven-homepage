@@ -10,17 +10,19 @@
 
   // value is an integer; `decimals` places the point, so 986 with one decimal reads 98.6.
   const metrics = [
-    { team: "Sales", caption: "rows merged", value: 48210, step: [12, 140] },
-    { team: "Finance", caption: "invoices matched", value: 9384, step: [1, 9] },
-    { team: "Operations", caption: "files read", value: 1276, step: [1, 4] },
-    { team: "Plant", caption: "sensor readings", value: 2481903, step: [240, 1900] },
-    { team: "Quality", caption: "fields mapped", value: 3912, step: [2, 18] },
-    { team: "Across teams", caption: "datasets found", value: 214, step: [1, 2], rare: true },
-    { team: "Logistics", caption: "records linked", value: 126540, step: [40, 420] },
-    { team: "Finance", caption: "of records reconciled", value: 972, decimals: 1, suffix: "%", step: [-3, 3], min: 958, max: 994 },
-    { team: "Support", caption: "automations run", value: 18066, step: [3, 26] },
-    { team: "Procurement", caption: "duplicates removed", value: 742, step: [1, 3] },
-    { team: "HR", caption: "sheets tidied", value: 412, step: [1, 2], rare: true },
+    { team: "Energy", caption: "smart-meter readings imported", value: 3184227, step: [240, 1900] },
+    { team: "Sales", caption: "quotes matched to orders", value: 6412, step: [1, 5] },
+    { team: "Engineering", caption: "drawings linked to parts", value: 12840, step: [1, 8] },
+    { team: "Plant", caption: "line 3 sensor readings analysed", value: 2481903, step: [240, 1900] },
+    { team: "Finance", caption: "invoices matched to POs", value: 9384, step: [1, 9] },
+    { team: "Quality", caption: "batch records traced to raw lots", value: 1276, step: [1, 3] },
+    { team: "Across teams", caption: "data sources catalogued", value: 214, step: [1, 2], rare: true },
+    { team: "Solar", caption: "of inverter logs validated", value: 987, decimals: 1, suffix: "%", step: [-2, 2], min: 972, max: 996 },
+    { team: "Logistics", caption: "delivery notes linked to shipments", value: 48210, step: [6, 60] },
+    { team: "Maintenance", caption: "work-order logs analysed", value: 3912, step: [1, 4] },
+    { team: "Lab", caption: "test results imported", value: 18066, step: [3, 26] },
+    { team: "Procurement", caption: "supplier price lists compared", value: 742, step: [1, 3] },
+    { team: "Field service", caption: "site reports imported", value: 412, step: [1, 2], rare: true },
   ];
 
   // Springs: [stiffness, damping]. The column spring is just under critical, so it settles
@@ -283,6 +285,60 @@
     });
   };
 
+  /* Over the ribbon: the rules and the small labels at their ends are grey on the page and turn
+     white where the ribbon passes behind them. */
+
+  const RULE = [217, 219, 224];
+  const SMALL_TEXT = [107, 110, 120];
+  const whiten = (rgb, white) => `rgb(${rgb.map((c) => Math.round(c + (255 - c) * white)).join(" ")})`;
+  const RULE_SAMPLES = 24;
+  const TEXT_SAMPLES = [5, 3];
+  const TEXT_PAD = 4;
+  const ribbonCanvas = root.parentElement.querySelector(".hero-ribbon canvas");
+
+  const tintRules = (coverage) => {
+    const box = ribbonCanvas.getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    columns.forEach((column) => {
+      const rule = column.ruleEl.getBoundingClientRect();
+      if (!rule.height) return;
+      const x = (rule.left - box.left) / box.width;
+      const stops = [];
+      for (let i = 0; i < RULE_SAMPLES; i += 1) {
+        const share = i / (RULE_SAMPLES - 1);
+        const y = 1 - (rule.top + share * rule.height - box.top) / box.height;
+        // The ribbon shows at a fraction of its strength, so a little cover is enough to go white.
+        const white = smoothstep(0.06, 0.4, coverage(x, y));
+        stops.push(`${whiten(RULE, white)} ${(share * 100).toFixed(1)}%`);
+      }
+      column.ruleEl.style.background = `linear-gradient(to bottom, ${stops.join(", ")})`;
+
+      [column.labelEl, column.indexEl].forEach((text) => {
+        const r = text.getBoundingClientRect();
+        if (!r.width) return;
+        // Sample across the whole label, a little beyond it for the canvas blur, and take the
+        // strongest cover: the band often clips only one end of a label.
+        let cover = 0;
+        for (let i = 0; i < TEXT_SAMPLES[0]; i += 1) {
+          for (let j = 0; j < TEXT_SAMPLES[1]; j += 1) {
+            const px = r.left - TEXT_PAD + ((r.width + TEXT_PAD * 2) * i) / (TEXT_SAMPLES[0] - 1);
+            const py = r.top - TEXT_PAD + ((r.height + TEXT_PAD * 2) * j) / (TEXT_SAMPLES[1] - 1);
+            cover = Math.max(cover, coverage((px - box.left) / box.width, 1 - (py - box.top) / box.height));
+          }
+        }
+        // A short ramp above the haze, so a label is grey or white and never a pale grey between.
+        const white = smoothstep(0.26, 0.4, cover);
+        text.style.color = whiten(SMALL_TEXT, white);
+        // The index is dimmed on the page; over the band it shows at full strength.
+        if (text === column.indexEl) text.style.opacity = (0.7 + 0.3 * white).toFixed(3);
+      });
+    });
+  };
+
+  if (ribbonCanvas) {
+    ribbonCanvas.addEventListener("ribbon:frame", (event) => tintRules(event.detail));
+  }
+
   const smoothstep = (edge0, edge1, value) => {
     const t = Math.max(0, Math.min(1, (value - edge0) / (edge1 - edge0)));
     return t * t * (3 - 2 * t);
@@ -368,6 +424,7 @@
         });
       });
       paint(time);
+      if (ribbonCanvas && ribbonCanvas.ribbonCoverage) tintRules(ribbonCanvas.ribbonCoverage);
       root.classList.add("is-ready");
       return;
     }
