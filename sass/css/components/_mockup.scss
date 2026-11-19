@@ -157,11 +157,11 @@
 }
 
 /* The ribbon: groups split by hairlines, line icons in one grey (1.2 stroke), labels under the big
-   buttons. Only the conditional-formatting and table icons carry a touch of their real colours. */
+   buttons. No colour: the icons are all one grey. */
 .xl__ribbon {
   display: flex;
   align-items: center;
-  height: 4.4em;
+  height: 5.4em;
   padding: 0 0.8em;
   border-top: 1px solid var(--mist);
   border-bottom: 1px solid var(--mist);
@@ -186,23 +186,9 @@
   }
 }
 
-.xl-tint-r {
-  stroke: #e0707a;
-  stroke-width: 1.8;
-}
-
-.xl-tint-b {
-  stroke: #6f9be8;
-  stroke-width: 1.8;
-}
-
-.xl-fill-g {
-  fill: color-mix(in srgb, var(--xl-green) 22%, white);
-  stroke: none;
-}
-
-.xl-fill-a {
-  fill: color-mix(in srgb, var(--amber) 35%, white);
+/* A flat grey fill inside an icon, like a table's header row. */
+.xl-fill {
+  fill: var(--mist);
   stroke: none;
 }
 
@@ -262,10 +248,10 @@
   }
 }
 
-/* Fill and font colour: the glyph over a short bar of the colour last used. */
+/* Fill and font colour: the glyph over a short grey bar. */
 .xl__swatch {
   padding-bottom: 0.1em;
-  box-shadow: inset 0 -0.22em var(--c);
+  box-shadow: inset 0 -0.22em #c9cbd1;
   color: var(--muted);
   font-size: 0.95em;
   line-height: 1.1;
