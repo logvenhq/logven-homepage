@@ -1,0 +1,659 @@
+/*
+ * "How it works" (templates/partials/mockup.html): the spreadsheet and the procedure a team works from,
+ * with a capture of the real Logven board in front. Laid out like the old "Inside the product" stage,
+ * on white: a back window high on the left, the app a little right of centre, the whole stage fading
+ * out at the bottom and the edges. Every window shares one frame: a hairline ring drawn inside it
+ * and a soft shadow that rises above it.
+ * Everything is sized in em on a stage that scales with the window and bleeds past the container.
+ */
+
+.mock {
+  /* Full window width, so the windows can run off both sides. */
+  --bleed: calc(max(0px, (100vw - 90rem - 2 * var(--inset)) / 2) + var(--inset));
+  /* One frame for every window, the capture included: a crisp hairline ring, a white inner edge
+     along the top, and a soft shadow that rises above the window (the bottom fades out anyway). */
+  --mock-ring: inset 0 0 0 1px rgb(15 20 35 / 0.07);
+  --mock-lift: 0 -0.7em 2em -0.6em rgb(15 20 35 / 0.06);
+  container-type: inline-size;
+  /* The box starts 4rem higher than the stage, so the washes and the rising shadows fade out softly
+     instead of being cut on a straight line where the mask begins. */
+  margin: calc(clamp(0.5rem, 2vw, 1.5rem) - 4rem) calc(-1 * var(--bleed)) 0;
+  padding-top: 4rem;
+  pointer-events: none;
+  mask-image:
+    linear-gradient(to bottom, transparent 0, #000 3.5rem, #000 48%, transparent 98%),
+    linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.mock__stage {
+  position: relative;
+  width: 64em;
+  /* The windows sit 1.5em down (see .mock__window), leaving room for their shadows to rise into. */
+  height: 43.5em;
+  /* 72em fill the window, so the framing is the same at every width. */
+  margin-left: 4em;
+  font-size: calc(100cqi / 72);
+  pointer-events: none;
+  user-select: none;
+
+  /* Faint washes of light pooled around the windows give them somewhere to sit: blue under the
+     app, a touch of violet behind the spreadsheet. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -6em -6em;
+    background:
+      radial-gradient(40% 50% at 62% 48%, rgb(77 127 242 / 0.07), transparent 72%),
+      radial-gradient(30% 40% at 22% 22%, rgb(154 122 242 / 0.05), transparent 70%),
+      radial-gradient(25% 35% at 82% 10%, rgb(124 184 247 / 0.05), transparent 70%);
+  }
+}
+
+.mock__window {
+  position: absolute;
+  /* Each window is its own layer, so its ring stays under the windows in front. */
+  z-index: 0;
+  overflow: hidden;
+  margin-top: 1.5em;
+  border-radius: 0.4em;
+  /* Surfaces aren't flat white: a faint cool sheen from the top, like light across a screen. */
+  background: linear-gradient(180deg, #fff 0%, #fdfdfe 60%, #fafbfc 100%);
+  box-shadow: var(--mock-lift);
+
+  /* The ring is drawn inside, on top of the content, so it's the same hairline on every window
+     (masks and the capture's own pixels can't eat it). */
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--mock-ring);
+  }
+
+  /* A soft highlight along the top edge, fading out towards the sides. */
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.9) 30%, rgb(255 255 255 / 0.9) 70%, transparent);
+  }
+}
+
+/* The app, in front. */
+
+.shot {
+  z-index: 1;
+  top: 9.5em;
+  left: 12em;
+  width: 54em;
+  aspect-ratio: 1440 / 900;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* The spreadsheet: Excel as people actually see it, high on the left and bleeding off the page.
+   Title, ribbon tabs and controls, name box and formula bar, an equal-width grid with numbers and
+   dates on the right, light red conditional fills, sheet tabs and the status bar.
+   Excel's green marks only the active tabs. */
+
+.xl {
+  --xl-green: #1f7a4d;
+  --xl-grid: #e3e4e8;
+  --xl-head: #f5f6f7;
+  top: 0;
+  left: -7em;
+  width: 46em;
+  height: 34em;
+  color: #2f3238;
+
+  /* Quieter towards the left edge: a white veil rather than a mask, which would clip the frame. */
+  &::before {
+    background: linear-gradient(to right, rgb(255 255 255 / 0.55), transparent 32%);
+  }
+
+  > * {
+    font-size: 0.5em;
+  }
+}
+
+.xl__title {
+  padding: 0.75em 0 0.35em;
+  background: var(--hero-surface);
+  color: var(--text);
+  text-align: center;
+}
+
+.xl__tabs-top {
+  display: flex;
+  gap: 1.5em;
+  padding: 0.4em 1.6em 0;
+  background: var(--hero-surface);
+  color: var(--muted);
+  white-space: nowrap;
+
+  span {
+    padding-bottom: 0.5em;
+  }
+
+  .is-on {
+    box-shadow: inset 0 -2px var(--xl-green);
+    color: var(--ink);
+    font-weight: 500;
+  }
+}
+
+.xl__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* The ribbon: groups split by hairlines, line icons in one grey (1.2 stroke), labels under the big
+   buttons. Only the conditional-formatting and table icons carry a touch of their real colours. */
+.xl__ribbon {
+  display: flex;
+  align-items: center;
+  height: 4.4em;
+  padding: 0 0.8em;
+  border-top: 1px solid var(--mist);
+  border-bottom: 1px solid var(--mist);
+  color: var(--text);
+  white-space: nowrap;
+
+  svg {
+    flex: none;
+    width: 1.25em;
+    height: 1.25em;
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.15;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  svg.is-on {
+    border-radius: 0.2em;
+    background: var(--mist);
+    box-shadow: 0 0 0 0.2em var(--mist);
+  }
+}
+
+.xl-tint-r {
+  stroke: #e0707a;
+  stroke-width: 1.8;
+}
+
+.xl-tint-b {
+  stroke: #6f9be8;
+  stroke-width: 1.8;
+}
+
+.xl-fill-g {
+  fill: color-mix(in srgb, var(--xl-green) 22%, white);
+  stroke: none;
+}
+
+.xl-fill-a {
+  fill: color-mix(in srgb, var(--amber) 35%, white);
+  stroke: none;
+}
+
+.xl__group {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  height: 100%;
+  padding: 0 1.1em;
+  border-right: 1px solid var(--mist);
+  font-size: 0.92em;
+  line-height: 1.15;
+}
+
+.xl__group--last {
+  border-right: 0;
+}
+
+.xl__group--rows {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.55em;
+}
+
+.xl__line {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  height: 1.7em;
+
+  b,
+  em,
+  u {
+    width: 1em;
+    color: var(--ink);
+    font-size: 1.08em;
+    text-align: center;
+  }
+}
+
+.xl__line--num {
+  gap: 1em;
+  color: var(--muted);
+
+  small {
+    margin-left: 0.1em;
+    font-size: 0.8em;
+  }
+}
+
+.xl__txt {
+  color: var(--muted);
+
+  sup {
+    font-size: 0.6em;
+  }
+}
+
+/* Fill and font colour: the glyph over a short bar of the colour last used. */
+.xl__swatch {
+  padding-bottom: 0.1em;
+  box-shadow: inset 0 -0.22em var(--c);
+  color: var(--muted);
+  font-size: 0.95em;
+  line-height: 1.1;
+}
+
+.xl__big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  gap: 0.35em;
+  /* Icons on one line across the ribbon, whatever the label's length. */
+  padding-top: 0.55em;
+  text-align: center;
+
+  svg,
+  .xl__sigma {
+    width: 1.75em;
+    height: 1.75em;
+  }
+}
+
+.xl__sigma {
+  color: var(--muted);
+  font-size: 1em;
+  font-style: normal;
+  line-height: 1.75em;
+  transform: scale(1.35);
+}
+
+.xl__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+.xl__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 1.75em;
+  padding: 0 0.25em 0 0.55em;
+  border: 1px solid var(--shade);
+  border-radius: 0.3em;
+  background: var(--paper);
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.xl__box--font {
+  width: 8em;
+}
+
+.xl__box--size {
+  width: 3.2em;
+}
+
+.xl__box--fmt {
+  width: 8.6em;
+}
+
+.xl__formula {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  height: 2.3em;
+  padding: 0 0.8em;
+  border-bottom: 1px solid var(--mist);
+  white-space: nowrap;
+
+  i {
+    color: var(--quiet);
+    font-style: normal;
+  }
+}
+
+.xl__ref {
+  width: 5em;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--shade);
+  border-radius: 0.2em;
+}
+
+.xl__fx {
+  padding-right: 0.8em;
+  border-right: 1px solid var(--mist);
+  font-style: italic !important;
+}
+
+.xl__grid {
+  display: grid;
+  grid-template-columns: 3em 6.2em 4.4em 6.6em 6.4em 6em 6.4em 5.8em 5.8em 9em repeat(11, 5.8em);
+  grid-auto-rows: 1.75em;
+  font-variant-numeric: tabular-nums;
+}
+
+.xl__corner,
+.xl__col,
+.xl__row,
+.xl__cell {
+  overflow: hidden;
+  padding: 0 0.45em;
+  border-right: 1px solid var(--xl-grid);
+  border-bottom: 1px solid var(--xl-grid);
+  line-height: 1.75em;
+  white-space: nowrap;
+}
+
+.xl__corner,
+.xl__col,
+.xl__row {
+  background: var(--xl-head);
+  color: var(--quiet);
+  text-align: center;
+}
+
+/* Row 1 is frozen: a heavier line under it, like a frozen pane. */
+.xl__cell--head {
+  border-bottom-color: #c9cbd1;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.xl__cell--num {
+  text-align: right;
+}
+
+/* Excel's "Light red fill with dark red text", toned down. */
+.xl__cell--bad {
+  background: #fde4e6;
+  color: #a1283a;
+}
+
+.xl__cell--note {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 0.45em 0.45em 0;
+    border-style: solid;
+    border-color: transparent #d35050 transparent transparent;
+  }
+}
+
+.xl__sheets {
+  position: absolute;
+  right: 0;
+  bottom: 2em;
+  left: 0;
+  display: flex;
+  align-items: stretch;
+  height: 2.3em;
+  padding: 0 0.6em;
+  border-top: 1px solid var(--shade);
+  background: var(--xl-head);
+  color: var(--muted);
+  white-space: nowrap;
+
+  span {
+    display: flex;
+    align-items: center;
+    padding: 0 1.1em;
+    border-right: 1px solid var(--mist);
+  }
+
+  .is-on {
+    background: var(--paper);
+    box-shadow: inset 0 -2px var(--xl-green);
+    color: var(--xl-green);
+    font-weight: 500;
+  }
+}
+
+.xl__nav,
+.xl__add {
+  border: 0 !important;
+  color: var(--quiet);
+}
+
+.xl__status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  height: 2em;
+  padding: 0 1.2em;
+  background: var(--hero-surface);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.xl__stats {
+  margin-left: auto;
+}
+
+/* The procedure: a page high on the right. Only its top shows above the app, so the limits table
+   sits right there, with a highlighter mark and a reviewer's margin comment. */
+
+.doc {
+  top: 0;
+  left: 45em;
+  width: 22em;
+  height: 24em;
+  padding: 0 1.4em 1.1em;
+  color: var(--muted);
+  line-height: 1.5;
+
+  > * {
+    font-size: 0.5em;
+  }
+
+  p {
+    margin: 0 0 1em;
+  }
+
+  table {
+    width: 100%;
+    margin: 0 0 1.2em;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+
+  th,
+  td {
+    padding: 0.32em 0.6em 0.32em 0;
+    border-bottom: 1px solid var(--mist);
+    text-align: left;
+  }
+
+  th {
+    color: var(--quiet);
+    font-weight: 400;
+  }
+
+  td {
+    color: var(--text);
+  }
+
+  mark {
+    padding: 0.05em 0.2em;
+    border-radius: 0.15em;
+    background: color-mix(in srgb, var(--amber) 30%, white);
+    color: var(--ink);
+  }
+}
+
+/* The viewer's file tabs: the open file sits on the page, the other on the pale strip. */
+.doc__tabs {
+  display: flex;
+  gap: 0.3em;
+  margin: 0 -2.8em 1.4em;
+  padding: 0.7em 2.8em 0;
+  background: var(--hero-surface);
+  white-space: nowrap;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: -1px;
+    padding: 0.55em 1em;
+    border-radius: 0.5em 0.5em 0 0;
+    color: var(--quiet);
+  }
+
+  .is-on {
+    background: var(--paper);
+    color: var(--text);
+  }
+
+  i {
+    width: 0.8em;
+    height: 1em;
+    border-radius: 0.15em;
+    background: color-mix(in srgb, var(--orange) 55%, white);
+  }
+}
+
+.doc__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  margin-bottom: 1.1em;
+  color: var(--quiet);
+  white-space: nowrap;
+}
+
+.doc__h {
+  color: var(--ink);
+  font-weight: 500;
+
+  &:first-of-type {
+    margin-bottom: 0.4em;
+    font-size: 0.66em;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Comment threads, Linear-style: a pin on the spot and a small frosted card beside it, above every
+   window. Name and time on one line, the message under it. Sized in
+   stage em so --x and --y land on the anchor; only the text is scaled down. */
+
+.mock__note {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--y) + 1.5em);
+  left: var(--x);
+  width: 8.4em;
+  border-radius: 0.42em;
+  background: rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(0.6em) saturate(1.4);
+  box-shadow:
+    0 0 0 1px rgb(15 20 35 / 0.045),
+    inset 0 1px 0 #fff,
+    0 0.05em 0.15em rgb(15 20 35 / 0.03),
+    0 0.4em 1.1em -0.2em rgb(15 20 35 / 0.07),
+    0 1.2em 2.6em -0.6em rgb(15 20 35 / 0.06);
+  color: var(--text);
+  line-height: 1.45;
+  /* The card hangs just below and right of its pin. */
+  transform: translate(0.55em, 0.5em);
+
+  > * {
+    font-size: 0.5em;
+  }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    padding: 0.9em 1.1em 0.2em;
+  }
+
+  b {
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+
+  time {
+    color: var(--quiet);
+    opacity: 0.8;
+  }
+
+  p {
+    margin: 0;
+    padding: 0 1.1em 0.9em;
+  }
+
+  /* The pin, on the anchor itself. */
+  &::before {
+    content: "";
+    position: absolute;
+    top: -0.5em;
+    left: -0.55em;
+    width: 0.42em;
+    height: 0.42em;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: 0 0 0 0.17em color-mix(in srgb, var(--tone) 22%, transparent);
+    translate: -50% -50%;
+  }
+}
+
+.mock__note--left {
+  transform: translate(calc(-100% - 0.55em), 0.5em);
+
+  &::before {
+    right: -0.55em;
+    left: auto;
+    translate: 50% -50%;
+  }
+}
+
+/* Phones: crop to the board and what sits right around it. */
+@media (max-width: 760px) {
+  .mock__stage {
+    margin-left: -9em;
+    height: 38em;
+    font-size: calc(100cqi / 46);
+  }
+}

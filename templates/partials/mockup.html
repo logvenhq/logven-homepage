@@ -1,0 +1,146 @@
+{#- "How it works": the windows a team works in today, and Logven. Laid out like the old "Inside the product"
+    stage: a back window high on the left, the app in front a little right of centre, the stage fading
+    out at the bottom (see _mockup.scss). Everything tells one story, the Asteria Aerospace hot-fire
+    campaign: the spreadsheet engineers keep, the procedure that sets the limits, and the Logven board
+    that checks the results against those limits. Decorative only.
+    The board is a capture of the real app (static/images/home/app-board.webp, 1440 × 900 at 2x),
+    including the target ranges on KPIs and charts.
+    Spreadsheet cells: a leading "!" gets Excel's light red conditional fill, "^" adds a note marker.
+ -#}
+{%- set xl_cols = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"] %}
+{%- set xl_head = ["Test", "Engine", "Date", "Duration (s)", "Peak (kPa)", "Vib. (mm/s)", "Result", "Reviewer", "Notes"] %}
+{%- set xl_rows = [
+  "HF-279|AE4|12/08/2026|402|980.6|7.2|Nominal|M. Chen|",
+  "HF-280|AE4|14/08/2026|409|983.1|7.6|Nominal|M. Chen|",
+  "HF-281|AE5|15/08/2026|406|979.8|8.1|Nominal||",
+  "HF-282|AE4|18/08/2026|415|983.8|9.4|Watch|R. Okafor|^Redo, see email",
+  "HF-283|AE4|19/08/2026|401|984.0|!10.6|Watch||",
+  "HF-284|AE4|21/08/2026|397|984.2|!11.8|!Anomaly|R. Okafor|^Sensor 2?",
+  "HF-285|AE5|22/08/2026|406|979.8|6.9|Nominal|M. Chen|",
+  "HF-286|AE5|25/08/2026|410|980.3|7.1|Nominal||",
+  "HF-279-R2|AE4|26/08/2026|402|980.9|7.2|Nominal|M. Chen|",
+  "HF-280-R2|AE4|28/08/2026|409|983.1|7.6|Nominal||",
+  "HF-283-R1|AE4|29/08/2026|401|984.0|!10.6|Watch||",
+  "HF-284-R1|AE4|01/09/2026|397|984.2|!11.8|!Anomaly||Same as HF-284",
+  "HF-285-R1|AE5|02/09/2026|406|979.8|6.9|Nominal||"
+] %}
+<div class="mock" aria-hidden="true" data-reveal>
+  <div class="mock__stage">
+
+    <div class="mock__window xl">
+      <div class="xl__title">HotFire_Log_AE4-AE5_2026.xlsx</div>
+      <div class="xl__tabs-top"><span>File</span><span class="is-on">Home</span><span>Insert</span><span>Draw</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span><span>Automate</span></div>
+      {#- Excel's Home ribbon, minimal: line icons in one grey, two rows of small controls per group,
+          big buttons with their label underneath. -#}
+      <svg class="xl__defs" aria-hidden="true">
+        <symbol id="xl-paste" viewBox="0 0 16 16"><rect x="3" y="3" width="10" height="11.5" rx="1.5"/><rect x="5.5" y="1.5" width="5" height="3" rx="1"/><path d="M6 8h4M6 10.5h4"/></symbol>
+        <symbol id="xl-cut" viewBox="0 0 16 16"><circle cx="4.5" cy="11.5" r="2"/><circle cx="11.5" cy="11.5" r="2"/><path d="M6 10 12 2.5M10 10 4 2.5"/></symbol>
+        <symbol id="xl-copy" viewBox="0 0 16 16"><rect x="5" y="5" width="8.5" height="9" rx="1.2"/><path d="M3 11V3.2C3 2.5 3.5 2 4.2 2H10"/></symbol>
+        <symbol id="xl-border" viewBox="0 0 16 16"><rect x="2.5" y="2.5" width="11" height="11" rx="0.5" stroke-dasharray="1.2 1.4"/><path d="M2.5 13.5h11"/></symbol>
+        <symbol id="xl-left" viewBox="0 0 16 16"><path d="M2.5 4h11M2.5 7h7M2.5 10h11M2.5 13h7"/></symbol>
+        <symbol id="xl-center" viewBox="0 0 16 16"><path d="M2.5 4h11M4.5 7h7M2.5 10h11M4.5 13h7"/></symbol>
+        <symbol id="xl-right" viewBox="0 0 16 16"><path d="M2.5 4h11M6.5 7h7M2.5 10h11M6.5 13h7"/></symbol>
+        <symbol id="xl-top" viewBox="0 0 16 16"><path d="M2.5 2.5h11M8 13V5.5M5.5 8 8 5.5 10.5 8"/></symbol>
+        <symbol id="xl-middle" viewBox="0 0 16 16"><path d="M2.5 8h11M8 1.5v4M8 10.5v4"/></symbol>
+        <symbol id="xl-bottom" viewBox="0 0 16 16"><path d="M2.5 13.5h11M8 3v7.5M5.5 8 8 10.5 10.5 8"/></symbol>
+        <symbol id="xl-wrap" viewBox="0 0 16 16"><path d="M2.5 4h11M2.5 8h9a2 2 0 0 1 0 4H8M9.5 10.5 8 12l1.5 1.5M2.5 12h3"/></symbol>
+        <symbol id="xl-merge" viewBox="0 0 16 16"><rect x="1.5" y="3.5" width="13" height="9" rx="1"/><path d="M4 8h8M6 6.5 4 8l2 1.5M10 6.5 12 8l-2 1.5"/></symbol>
+        <symbol id="xl-cond" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1.2"/><path d="M2 6h12M2 10h12M6 2v12"/><path class="xl-tint-r" d="M7.5 3.5h4.5M7.5 7.5h2.5"/><path class="xl-tint-b" d="M7.5 11.5h5"/></symbol>
+        <symbol id="xl-table" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1.2"/><path class="xl-fill-g" d="M2.6 2.6h10.8V6H2.6z"/><path d="M2 6h12M2 10h12M6 2v12M10 2v12"/></symbol>
+        <symbol id="xl-styles" viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="8" rx="1.2"/><path class="xl-fill-a" d="M2.6 4.6h5.4v6.8H2.6z"/><path d="M8 4v8"/></symbol>
+        <symbol id="xl-insert" viewBox="0 0 16 16"><path d="M2 5.5h12M2 10.5h7M6 1.5v13M2 1.5h12v6M2 1.5v13h7"/><path d="M12.5 10v5M10 12.5h5"/></symbol>
+        <symbol id="xl-delete" viewBox="0 0 16 16"><path d="M2 5.5h12M2 10.5h7M6 1.5v13M2 1.5h12v6M2 1.5v13h7"/><path d="m10.5 10.5 4 4M14.5 10.5l-4 4"/></symbol>
+        <symbol id="xl-format" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="5" rx="1"/><path d="M2 4.5h12M5 7v7M11 7v3"/><path d="M9.5 10h3v4.5h-3z"/></symbol>
+        <symbol id="xl-sort" viewBox="0 0 16 16"><path d="M2.5 3h11l-4.3 5v5.5l-2.4-1.5V8z"/></symbol>
+        <symbol id="xl-find" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.4 10.4 3.6 3.6"/></symbol>
+        <symbol id="xl-caret" viewBox="0 0 16 16"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></symbol>
+      </svg>
+      <div class="xl__ribbon">
+        <span class="xl__group">
+          <span class="xl__big"><svg><use href="#xl-paste"/></svg>Paste</span>
+          <span class="xl__stack"><svg><use href="#xl-cut"/></svg><svg><use href="#xl-copy"/></svg></span>
+        </span>
+        <span class="xl__group xl__group--rows">
+          <span class="xl__line"><span class="xl__box xl__box--font">Aptos Narrow<svg><use href="#xl-caret"/></svg></span><span class="xl__box xl__box--size">12<svg><use href="#xl-caret"/></svg></span><span class="xl__txt">A<sup>+</sup></span><span class="xl__txt">A<sup>−</sup></span></span>
+          <span class="xl__line"><b>B</b><em>I</em><u>U</u><svg><use href="#xl-border"/></svg><span class="xl__swatch" style="--c: #f4c84a">◆</span><span class="xl__swatch" style="--c: #d64545">A</span></span>
+        </span>
+        <span class="xl__group xl__group--rows">
+          <span class="xl__line"><svg><use href="#xl-top"/></svg><svg><use href="#xl-middle"/></svg><svg class="is-on"><use href="#xl-bottom"/></svg><svg><use href="#xl-wrap"/></svg><span class="xl__txt">Wrap Text</span></span>
+          <span class="xl__line"><svg class="is-on"><use href="#xl-left"/></svg><svg><use href="#xl-center"/></svg><svg><use href="#xl-right"/></svg><svg><use href="#xl-merge"/></svg><span class="xl__txt">Merge</span></span>
+        </span>
+        <span class="xl__group xl__group--rows">
+          <span class="xl__line"><span class="xl__box xl__box--fmt">Number<svg><use href="#xl-caret"/></svg></span></span>
+          <span class="xl__line xl__line--num"><span>€</span><span>%</span><span>,</span><span>.0<small>←</small></span><span>.00</span></span>
+        </span>
+        <span class="xl__group">
+          <span class="xl__big"><svg><use href="#xl-cond"/></svg>Conditional<br>Formatting</span>
+          <span class="xl__big"><svg><use href="#xl-table"/></svg>Format<br>as Table</span>
+          <span class="xl__big"><svg><use href="#xl-styles"/></svg>Cell<br>Styles</span>
+        </span>
+        <span class="xl__group">
+          <span class="xl__big"><svg><use href="#xl-insert"/></svg>Insert</span>
+          <span class="xl__big"><svg><use href="#xl-delete"/></svg>Delete</span>
+          <span class="xl__big"><svg><use href="#xl-format"/></svg>Format</span>
+        </span>
+        <span class="xl__group xl__group--last">
+          <span class="xl__big"><i class="xl__sigma">Σ</i>AutoSum</span>
+          <span class="xl__big"><svg><use href="#xl-sort"/></svg>Sort &amp;<br>Filter</span>
+          <span class="xl__big"><svg><use href="#xl-find"/></svg>Find &amp;<br>Select</span>
+        </span>
+      </div>
+      <div class="xl__formula"><span class="xl__ref">A1</span><i>✕</i><i>✓</i><i class="xl__fx">fx</i><span>Test</span></div>
+      <div class="xl__grid">
+        <span class="xl__corner"></span>
+        {%- for col in xl_cols %}<span class="xl__col">{{ col }}</span>{% endfor %}
+        <span class="xl__row">1</span>
+        {%- for h in xl_head %}<span class="xl__cell xl__cell--head{% if loop.index > 2 and loop.index < 7 %} xl__cell--num{% endif %}">{{ h }}</span>{% endfor %}
+        {%- for i in range(end=xl_cols | length - xl_head | length) %}<span class="xl__cell"></span>{% endfor %}
+        {%- for row in xl_rows %}
+                <span class="xl__row">{{ loop.index + 1 }}</span>
+        {%- for cell in row | split(pat="|") %}
+        <span class="xl__cell{% if loop.index > 2 and loop.index < 7 %} xl__cell--num{% endif %}{% if cell is starting_with("!") %} xl__cell--bad{% elif cell is starting_with("^") %} xl__cell--note{% endif %}">{{ cell | trim_start_matches(pat="!") | trim_start_matches(pat="^") }}</span>
+        {%- endfor %}
+        {%- for i in range(end=xl_cols | length - xl_head | length) %}<span class="xl__cell"></span>{% endfor %}
+        {%- endfor %}
+        {%- for n in range(start=xl_rows | length + 2, end=46) %}
+        <span class="xl__row">{{ n }}</span>
+        {%- for i in range(end=xl_cols | length) %}<span class="xl__cell"></span>{% endfor %}
+        {%- endfor %}
+      </div>
+      <div class="xl__sheets"><span class="xl__nav">‹ ›</span><span class="is-on">Log</span><span>Limits</span><span>Retests</span><span>Pivot</span><span class="xl__add">+</span></div>
+      <div class="xl__status"><span>Ready</span><span class="xl__stats"></span><span>100%</span></div>
+    </div>
+
+    <div class="mock__window doc">
+      <div class="doc__tabs"><span class="is-on"><i></i>ATP-AE-004 Rev C.pdf</span><span><i></i>Supplier SQA-0117.pdf</span></div>
+      <div class="doc__meta"><span>ATP-AE-004 · Hot-Fire Acceptance Test Procedure</span><span>Page 7 of 14</span></div>
+      <p class="doc__h">5.2 Acceptance limits</p>
+      <table>
+        <tr><th>Characteristic</th><th>Limit</th><th>Sensor</th></tr>
+        <tr><td>Peak chamber pressure</td><td>975 – 990 kPa</td><td>PT-1, PT-2</td></tr>
+        <tr><td>Vibration, RMS</td><td>≤ 10 mm/s</td><td>ACC-1</td></tr>
+        <tr><td>Vibration, peak</td><td><mark>≤ 11 mm/s</mark></td><td>ACC-1, ACC-2</td></tr>
+        <tr><td>Burn duration</td><td>395 – 420 s</td><td>Sequencer</td></tr>
+      </table>
+      <p>A test is accepted when every characteristic falls within its limit. A result outside a limit is recorded as an anomaly, and the engine is held until the review board signs off a retest.</p>
+      <p class="doc__h">5.3 Retests</p>
+      <p>A retest uses the same engine and sequence, reported as R1, R2 and so on after the original test reference.</p>
+    </div>
+
+    <div class="mock__window shot"><img src="/images/home/app-board.webp" width="1440" height="900" alt="" loading="lazy" decoding="async"></div>
+
+    {#- Comment threads, pinned to the spot they discuss. --x and --y place the pin, in stage em. -#}
+    <div class="mock__note" style="--x: 6.3em; --y: 10.45em; --tone: var(--blue)">
+      <header><b>Maya Chen</b><time>Mon</time></header>
+      <p>I’m importing this log from now on, so we can finally use the data in it.</p>
+    </div>
+    <div class="mock__note mock__note--left" style="--x: 57.75em; --y: 8.85em; --tone: var(--orange)">
+      <header><b>R. Okafor</b><time>2d</time></header>
+      <p>Imported this one too. The board takes its limits from here.</p>
+    </div>
+    <div class="mock__note" style="--x: 38.7em; --y: 19.45em; --tone: var(--violet)">
+      <header><b>Sara Ferri</b><time>now</time></header>
+      <p>All 32 tests are in. HF-284 got flagged the moment it landed.</p>
+    </div>
+  </div>
+</div>

@@ -129,55 +129,17 @@
       <div class="container">
         <div class="grid section-top">
           <div class="section-top__title">
-            <h2 id="system-title" class="block__title" data-reveal><strong>Workers</strong> bring in every source, <strong>structured or not</strong></h2>
+            <h2 id="system-title" class="block__title" data-reveal><strong>Every source</strong> comes in, <strong>structured or not</strong></h2>
           </div>
           <p class="block__body section-top__intro" data-reveal>
-            Behind the data lake are workers: small pieces of code that Logven runs for each source. They pull from the systems your teams use and read the files they keep, then put it all together into one model of your company: every customer, order, supplier and machine, linked to the records behind it.
+            Logven connects to the apps your teams use and reads the files they keep, even the spreadsheet nobody dares to sort. It all lands in one place, linked and ready to work with.
           </p>
         </div>
-        {%- set sources = section.extra.sources %}
-        {%- set entities = section.extra.entities %}
-        <div class="system" aria-hidden="true" data-system data-reveal>
-          <ul class="system__sources" role="list">
-            {%- for source in sources %}
-            <li class="system__source"><i class="system__dot" style="--hue: var(--{{ source.hue }})"></i>{{ source.name }}</li>
-            {%- endfor %}
-          </ul>
-          <svg class="system__wires" viewBox="0 0 100 300" preserveAspectRatio="none" focusable="false">
-            {%- for source in sources %}
-            {%- set y = 15 + loop.index0 * 45 %}
-            <path class="system__wire" data-y="{{ y / 300 }} 0.5" d="M0 {{ y }}C55 {{ y }} 45 150 100 150"/>
-            <path class="system__packet" style="--i: {{ loop.index0 }}; --hue: var(--{{ source.hue }})" data-y="{{ y / 300 }} 0.5" d="M0 {{ y }}C55 {{ y }} 45 150 100 150"/>
-            {%- endfor %}
-          </svg>
-          <div class="system__hub">
-            <svg class="system__sphere" viewBox="21 21 78 78" focusable="false">
-              <circle class="system__core" cx="60" cy="60" r="38"/>
-            </svg>
-            {{ orb::orb(over=".system__core") }}
-          </div>
-          <svg class="system__wires system__wires--out" viewBox="0 0 100 300" preserveAspectRatio="none" focusable="false">
-            {%- for entity in entities %}
-            {%- set y = 31.875 + loop.index0 * 78.75 %}
-            <path class="system__wire" data-y="0.5 {{ y / 300 }}" d="M0 150C55 150 45 {{ y }} 100 {{ y }}"/>
-            <path class="system__packet" style="--i: {{ loop.index0 }}" data-y="0.5 {{ y / 300 }}" d="M0 150C55 150 45 {{ y }} 100 {{ y }}"/>
-            {%- endfor %}
-          </svg>
-          <ul class="system__model" role="list">
-            {%- for entity in entities %}
-            <li class="system__entity">
-              <span class="system__entity-head"><span class="system__entity-name">{{ entity.name }}</span><span class="system__entity-count">{{ entity.records }}</span></span>
-              <span class="system__entity-from">
-                {%- for hue in entity.hues %}<i class="system__dot" style="--hue: var(--{{ hue }})"></i>{% endfor %}
-              </span>
-            </li>
-            {%- endfor %}
-          </ul>
-        </div>
+        {% include "partials/mockup.html" %}
         <div class="grid notes">
           <div class="note" data-reveal>
-            <h3 class="note__name">A worker for every source</h3>
-            <p class="note__text">Each worker connects to one system, mailbox or shared drive and brings its data in. If you need a new one, we build it.</p>
+            <h3 class="note__name">Every app and file</h3>
+            <p class="note__text">Logven connects to each system, mailbox and shared drive your teams use. If a connection is missing, we build it.</p>
           </div>
           <div class="note" data-reveal>
             <h3 class="note__name">Structured or not</h3>
@@ -189,7 +151,7 @@
           </div>
           <div class="note" data-reveal>
             <h3 class="note__name">Always current</h3>
-            <p class="note__text">Workers run on a schedule, so the data lake shows today’s data, not last quarter’s export.</p>
+            <p class="note__text">Logven syncs every source on a schedule, so you always see today’s data.</p>
           </div>
         </div>
       </div>
@@ -476,7 +438,6 @@
   <script src="{{ get_url(path='js/orb.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/ledger.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/carousel.js', cachebust=true) }}" defer></script>
-  <script src="{{ get_url(path='js/system.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/tidy.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/numbers.js', cachebust=true) }}" defer></script>
   <script src="{{ get_url(path='js/birdseye.js', cachebust=true) }}" defer></script>

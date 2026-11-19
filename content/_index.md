@@ -2,55 +2,6 @@
 title = "Logven"
 template = "index.html"
 
-# "How it works": the sources workers read and the company model they build. Hues come from the site palette (mostly blue, with violet and warm accents).
-[[extra.sources]]
-name = "ERP"
-hue = "blue"
-
-[[extra.sources]]
-name = "CRM"
-hue = "violet"
-
-[[extra.sources]]
-name = "Spreadsheets"
-hue = "indigo"
-
-[[extra.sources]]
-name = "Email"
-hue = "azure"
-
-[[extra.sources]]
-name = "Shared drives"
-hue = "sky"
-
-[[extra.sources]]
-name = "PDFs and scans"
-hue = "orange"
-
-[[extra.sources]]
-name = "Sensors"
-hue = "amber"
-
-[[extra.entities]]
-name = "Customers"
-records = "1,284"
-hues = ["violet", "blue", "azure"]
-
-[[extra.entities]]
-name = "Orders"
-records = "48,210"
-hues = ["blue", "indigo", "orange"]
-
-[[extra.entities]]
-name = "Suppliers"
-records = "312"
-hues = ["blue", "azure", "sky"]
-
-[[extra.entities]]
-name = "Machines"
-records = "86"
-hues = ["amber", "indigo", "orange"]
-
 # Rendered in the FAQ section of the homepage.
 [[extra.faq]]
 question = "What is Logven?"
