@@ -5,7 +5,7 @@
 // Every <canvas data-ribbon> on the page gets one: the hero, the model cards and the call to
 // action. One WebGL context renders them all and copies each frame into the visible canvases.
 // After each frame a canvas fires "ribbon:frame" with a function that says how strongly the band
-// covers any point of it, so other drawings can react to it (the hero ledger's rules turn white).
+// covers any point of it, so other drawings can react to it (the hero ledger's rules and labels deepen over it).
 // Optional attributes change a ribbon's pose and colours:
 //   data-ribbon-pose="centre rise pinch width"  where the band sits, how far it climbs to the
 //                                                right, where it twists, and how wide it is

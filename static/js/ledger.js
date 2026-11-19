@@ -286,11 +286,13 @@
   };
 
   /* Over the ribbon: the rules and the small labels at their ends are grey on the page and turn
-     white where the ribbon passes behind them. */
+     a deeper blue-grey where the ribbon passes behind them, so they keep their contrast on it. */
 
   const RULE = [217, 219, 224];
+  const RULE_OVER = [148, 158, 190];
   const SMALL_TEXT = [107, 110, 120];
-  const whiten = (rgb, white) => `rgb(${rgb.map((c) => Math.round(c + (255 - c) * white)).join(" ")})`;
+  const SMALL_TEXT_OVER = [52, 58, 82];
+  const mix = (from, to, share) => `rgb(${from.map((c, i) => Math.round(c + (to[i] - c) * share)).join(" ")})`;
   const RULE_SAMPLES = 24;
   const TEXT_SAMPLES = [5, 3];
   const TEXT_PAD = 4;
@@ -307,9 +309,9 @@
       for (let i = 0; i < RULE_SAMPLES; i += 1) {
         const share = i / (RULE_SAMPLES - 1);
         const y = 1 - (rule.top + share * rule.height - box.top) / box.height;
-        // The ribbon shows at a fraction of its strength, so a little cover is enough to go white.
-        const white = smoothstep(0.06, 0.4, coverage(x, y));
-        stops.push(`${whiten(RULE, white)} ${(share * 100).toFixed(1)}%`);
+        // The ribbon shows at a fraction of its strength, so a little cover is enough to deepen.
+        const deep = smoothstep(0.06, 0.4, coverage(x, y));
+        stops.push(`${mix(RULE, RULE_OVER, deep)} ${(share * 100).toFixed(1)}%`);
       }
       column.ruleEl.style.background = `linear-gradient(to bottom, ${stops.join(", ")})`;
 
@@ -326,11 +328,11 @@
             cover = Math.max(cover, coverage((px - box.left) / box.width, 1 - (py - box.top) / box.height));
           }
         }
-        // A short ramp above the haze, so a label is grey or white and never a pale grey between.
-        const white = smoothstep(0.26, 0.4, cover);
-        text.style.color = whiten(SMALL_TEXT, white);
+        // Deepen as the band thickens behind the label, past the haze at its edges.
+        const deep = smoothstep(0.12, 0.4, cover);
+        text.style.color = mix(SMALL_TEXT, SMALL_TEXT_OVER, deep);
         // The index is dimmed on the page; over the band it shows at full strength.
-        if (text === column.indexEl) text.style.opacity = (0.7 + 0.3 * white).toFixed(3);
+        if (text === column.indexEl) text.style.opacity = (0.7 + 0.3 * deep).toFixed(3);
       });
     });
   };
