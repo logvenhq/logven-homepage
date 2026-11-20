@@ -645,3 +645,26 @@
     font-size: calc(100cqi / 46);
   }
 }
+
+/* The back windows sit quieter than the app, so attention goes to the capture. */
+.xl,
+.doc {
+  opacity: 0.72;
+}
+
+/* Parallax (static/js/parallax.js sets --p from -1 to 1 as the stage scrolls past): the back
+   windows trail the app, and each comment moves with the window it is pinned to. */
+.xl,
+.mock__note--xl {
+  translate: 0 calc(var(--p, 0) * 1.3em);
+}
+
+.doc,
+.mock__note--doc {
+  translate: 0 calc(var(--p, 0) * 0.85em);
+}
+
+.shot,
+.mock__note:not(.mock__note--xl, .mock__note--doc) {
+  translate: 0 calc(var(--p, 0) * -0.45em);
+}

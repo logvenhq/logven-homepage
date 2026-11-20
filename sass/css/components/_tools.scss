@@ -37,8 +37,13 @@
   }
 }
 
+.tools-preview__stage::before {
+  translate: 0 calc(var(--p, 0) * 1.4rem);
+}
+
 .tools-preview__window {
   position: relative;
+  translate: 0 calc(var(--p, 0) * -0.6rem);
   overflow: hidden;
   border-radius: 0.45rem;
   background: var(--paper);

@@ -30,6 +30,15 @@
   font-weight: 500;
 }
 
+/* A highlighted phrase wraps as a unit: a title breaks before or after it, not through it, unless
+   the phrase alone is wider than the line. */
+.hero__title strong,
+.block__title strong,
+.cta__title strong,
+.contact__title strong {
+  display: inline-block;
+}
+
 .block__title {
   margin: 0;
   color: var(--ink);
